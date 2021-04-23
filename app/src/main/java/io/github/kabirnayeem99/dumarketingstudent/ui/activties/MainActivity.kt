@@ -1,12 +1,17 @@
 package io.github.kabirnayeem99.dumarketingstudent.ui.activties
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import io.github.kabirnayeem99.dumarketingstudent.R
+import androidx.appcompat.app.AppCompatActivity
+import io.github.kabirnayeem99.dumarketingstudent.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 }
