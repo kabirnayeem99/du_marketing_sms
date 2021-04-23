@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.ui.fragments.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.ui.fragments.AboutFragment"
+        android:label="AboutFragment"
+        tools:layout="@layout/fragment_about" />
+
+    <fragment
+        android:id="@+id/facultyFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.ui.fragments.FacultyFragment"
+        android:label="FacultyFragment"
+        tools:layout="@layout/fragment_faculty" />
+
+    <fragment
+        android:id="@+id/galleryFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.ui.fragments.GalleryFragment"
+        android:label="GalleryFragment"
+        tools:layout="@layout/fragment_gallery" />
+
+    <fragment
+        android:id="@+id/noticeFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.ui.fragments.NoticeFragment"
+        android:label="NoticeFragment"
+        tools:layout="@layout/fragment_notice" />
+</navigation>
