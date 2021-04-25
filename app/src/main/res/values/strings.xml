@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">DU Marketing Student</string>
+    <string name="nav_drawer_open_desc">Open navigation drawer</string>
+    <string name="nav_drawer_close_desc">Close navigation drawer</string>
 </resources>
