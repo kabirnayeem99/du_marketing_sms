@@ -10,7 +10,6 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationView
 import io.github.kabirnayeem99.dumarketingstudent.R
 import io.github.kabirnayeem99.dumarketingstudent.databinding.ActivityMainBinding
 
@@ -23,7 +22,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(
+            layoutInflater
+        )
         setContentView(binding.root)
 
         setUpBottomNavBar()
@@ -40,7 +41,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpNavigationDrawer() {
-        val navigationView = binding.navDrawerView as NavigationView
+        val navigationView = binding.navDrawerView
 
         drawerLayout = binding.mainDrawerLayout
         drawerToggle = ActionBarDrawerToggle(
