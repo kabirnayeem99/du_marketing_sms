@@ -1,5 +1,7 @@
 package io.github.kabirnayeem99.dumarketingstudent.ui.activities
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -12,6 +14,7 @@ import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.github.kabirnayeem99.dumarketingstudent.R
 import io.github.kabirnayeem99.dumarketingstudent.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,7 +33,10 @@ class MainActivity : AppCompatActivity() {
         setUpBottomNavBar()
         setUpNavigationDrawer()
 
+
     }
+
+
 
     private fun setUpBottomNavBar() {
 

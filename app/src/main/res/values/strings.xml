@@ -2,4 +2,6 @@
     <string name="app_name">DU Marketing Student</string>
     <string name="nav_drawer_open_desc">Open navigation drawer</string>
     <string name="nav_drawer_close_desc">Close navigation drawer</string>
+    <string name="department_name">Department of Marketing,\nUniversity of Dhaka </string>
+    <string name="department_about">The Department of Marketing, one of the members of the Faculty of Business Studies, was created on 1st July, 1974. This department was established with a view to fulfilling the need for specialized education, research and training in the field of marketing. Presently, there are about 1200 students in its Bachelor, Master, M.Phil and Ph.D. programmes in the department. Since its inception, more than 3500 marketing graduates obtained degrees from this department, who cater to the growing demand for executives and trained manpower with strong skills in this specialized business area.</string>
 </resources>
