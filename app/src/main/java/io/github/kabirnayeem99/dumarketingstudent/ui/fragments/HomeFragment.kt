@@ -43,18 +43,13 @@ class HomeFragment : Fragment() {
         noticeViewModel.getLatestNotice().observe(viewLifecycleOwner, {
             binding.tvNoticeTitle.text = it.title
 
-            if (it.imageUrl == null) {
-                binding.ivRecentNotice.visibility = View.GONE
-            } else {
-
-                try {
-                    Glide.with(this)
-                        .load(it.imageUrl)
-                        .into(binding.ivRecentNotice)
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                    Log.e(TAG, "setUpLatestNotice: ${e.message}")
-                }
+            try {
+                Glide.with(this)
+                    .load(it.imageUrl)
+                    .into(binding.ivRecentNotice)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Log.e(TAG, "setUpLatestNotice: ${e.message}")
             }
 
         })

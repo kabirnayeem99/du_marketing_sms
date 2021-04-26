@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_margin="16sp"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+
+    <ScrollView
+        android:layout_width="400sp"
+        android:layout_height="500sp"
+        android:padding="16sp"
+        android:scrollIndicators="none">
+
+        <ImageView
+            android:id="@+id/ivNoticeDetailedImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8sp"
+            android:src="@drawable/img_fbs_du" />
+    </ScrollView>
+
+
+    <TextView
+        android:id="@+id/tvNoticeDetailedTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="8sp"
+        android:text="Notice title"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnCancelNoticeDetailed"
+        android:layout_width="300sp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8sp"
+        android:text="Mark As Seen" />
+
+</LinearLayout>
