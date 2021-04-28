@@ -6,13 +6,30 @@ import io.github.kabirnayeem99.dumarketingstudent.data.vo.RoutineData
 
 class RoutineRepository {
 
-    private val routineLiveData = MutableLiveData<RoutineData>()
+    private val routineLiveData = MutableLiveData<List<RoutineData>>()
 
-    fun getRoutine(): LiveData<RoutineData> {
-        val url =
-            "https://1.bp.blogspot.com/-Onykh7uN-XA/V5bQK2b7RqI/AAAAAAAABTg/nEo1VxregHMQa-mnPJA2u4nB3uZFpl8owCEw/s1600/Schedule.png"
+    fun getRoutine(): LiveData<List<RoutineData>> {
 
-        routineLiveData.value = RoutineData(url)
+        val routineList = listOf(
+            RoutineData(
+                "07:00", "AM", "Principles of Marketing", "MBA Building 203",
+                "Imrul Kayes"
+            ),
+
+            RoutineData(
+                "07:00", "AM", "Principles of Marketing", "MBA Building 203",
+                "Imrul Kayes"
+            ),
+            RoutineData(
+                "07:00", "AM", "Principles of Marketing", "MBA Building 203",
+                "Imrul Kayes"
+            ),
+            RoutineData(
+                "07:00", "AM", "Principles of Marketing", "MBA Building 203",
+                "Imrul Kayes"
+            ),
+        )
+        routineLiveData.value = routineList
         return routineLiveData
     }
 }

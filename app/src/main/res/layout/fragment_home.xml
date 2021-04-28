@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:overScrollMode="never">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -17,7 +19,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="300sp"
                 android:layout_marginTop="0sp"
+                android:padding="16sp"
                 app:iss_auto_cycle="true"
+                app:iss_corner_radius="25"
                 app:iss_delay="800"
                 app:iss_period="2000"
                 app:layout_constraintBottom_toTopOf="@+id/mcvRoutine"
@@ -30,108 +34,65 @@
                 android:id="@+id/mcvRoutine"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16sp"
-                android:padding="8sp"
-                app:cardCornerRadius="16sp"
-                app:cardElevation="2sp"
-                app:layout_constraintBottom_toTopOf="@id/mcvNotice"
+                android:layout_marginTop="16sp"
+                app:cardCornerRadius="36dp"
+                app:cardElevation="0.2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/galleryImageSlider">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="vertical"
-                    android:padding="16sp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/tvRoutineLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Routine"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16sp"
+                        android:layout_marginBottom="0sp"
+                        android:padding="8sp"
+                        android:text="Today's Classes"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toTopOf="@+id/ivRoutine"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:textStyle="bold" />
 
-                    <ImageView
-                        android:id="@+id/ivRoutine"
-                        android:layout_width="wrap_content"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvRoutine"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:minWidth="300sp"
-                        android:minHeight="300sp"
-                        android:scaleType="fitCenter"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvRoutineLabel" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/mcvNotice"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16sp"
-                android:padding="8sp"
-                app:cardCornerRadius="16sp"
-                app:cardElevation="2sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mcvRoutine">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                        android:overScrollMode="never"
+                        android:padding="16sp"
+                        tools:itemCount="2"
+                        tools:listitem="@layout/list_item_routine" />
 
                     <TextView
                         android:id="@+id/tvNoticeLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
                         android:layout_marginTop="16sp"
-                        android:text="Recent Notice"
+                        android:layout_marginBottom="0sp"
+                        android:padding="8sp"
+                        android:text="Recent Notices"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toTopOf="@+id/tvNoticeTitle"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:textStyle="bold" />
 
-
-                    <TextView
-                        android:id="@+id/tvNoticeTitle"
-                        android:layout_width="wrap_content"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvRecentNotice"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:overScrollMode="never"
                         android:padding="16sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvNoticeLabel" />
-
-                    <ImageView
-                        android:id="@+id/ivRecentNotice"
-                        android:layout_width="300sp"
-                        android:layout_height="300sp"
-                        android:scaleType="fitCenter"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvNoticeTitle" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        tools:listitem="@layout/list_item_notice_data" />
+                </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

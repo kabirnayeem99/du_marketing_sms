@@ -6,6 +6,6 @@ import io.github.kabirnayeem99.dumarketingstudent.data.repositories.NoticeReposi
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.NoticeData
 
 class NoticeViewModel(private val repo: NoticeRepository) : ViewModel() {
-    fun getLatestNotice(): LiveData<NoticeData> = repo.getLatestNotice()
+    fun getLatestThreeNotices(): LiveData<List<NoticeData>> = repo.getLatestThreeNotices()
     fun getNoticeListLiveData(): LiveData<List<NoticeData>> = repo.getNoticeListLiveData()
 }

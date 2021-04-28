@@ -6,20 +6,34 @@ import io.github.kabirnayeem99.dumarketingstudent.data.vo.NoticeData
 
 class NoticeRepository {
 
-    private val latestNoticeLiveData = MutableLiveData<NoticeData>()
+    private val latestNoticeListLiveData = MutableLiveData<List<NoticeData>>()
     private val noticeDataListLiveData = MutableLiveData<List<NoticeData>>()
 
-    fun getLatestNotice(): LiveData<NoticeData> {
-        val noticeData = NoticeData(
-            "Notice Inviting Tender",
-            "https://jobzalert.pk/tenders/ads_pic_directory/2020/03/07/dawn/School-Education-&-Literacy-Department-Karachi-Tender-Notice.jpg",
-            "12/12/2021",
-            "03:21 PM"
+    fun getLatestThreeNotices(): LiveData<List<NoticeData>> {
+        val noticeDataList = listOf(
+            NoticeData(
+                "Notice Inviting Tender",
+                "https://jobzalert.pk/tenders/ads_pic_directory/2020/03/07/dawn/School-Education-&-Literacy-Department-Karachi-Tender-Notice.jpg",
+                "12/12/2021",
+                "03:21 PM"
+            ),
+            NoticeData(
+                "Notice Inviting Tender",
+                "https://jobzalert.pk/tenders/ads_pic_directory/2020/03/07/dawn/School-Education-&-Literacy-Department-Karachi-Tender-Notice.jpg",
+                "12/12/2021",
+                "03:21 PM"
+            ),
+            NoticeData(
+                "Notice Inviting Tender",
+                "https://jobzalert.pk/tenders/ads_pic_directory/2020/03/07/dawn/School-Education-&-Literacy-Department-Karachi-Tender-Notice.jpg",
+                "12/12/2021",
+                "03:21 PM"
+            ),
         )
 
-        latestNoticeLiveData.value = noticeData
+        latestNoticeListLiveData.value = noticeDataList
 
-        return latestNoticeLiveData
+        return latestNoticeListLiveData
     }
 
     fun getNoticeListLiveData(): MutableLiveData<List<NoticeData>> {

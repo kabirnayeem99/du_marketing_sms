@@ -7,5 +7,5 @@ import io.github.kabirnayeem99.dumarketingstudent.data.vo.RoutineData
 
 class RoutineViewModel(private val repo: RoutineRepository) : ViewModel() {
 
-    fun getRoutine(): LiveData<RoutineData> = repo.getRoutine()
+    fun getRoutine(): LiveData<List<RoutineData>> = repo.getRoutine()
 }
