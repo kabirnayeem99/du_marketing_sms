@@ -6,18 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import io.github.kabirnayeem99.dumarketingstudent.R
-import io.github.kabirnayeem99.dumarketingstudent.data.repositories.NoticeRepository
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.NoticeData
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentNoticeBinding
 import io.github.kabirnayeem99.dumarketingstudent.databinding.LayoutNoticeDetailsBottomSheetBinding
+import io.github.kabirnayeem99.dumarketingstudent.ui.activities.MainActivity
 import io.github.kabirnayeem99.dumarketingstudent.util.adapters.NoticeDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.NoticeViewModel
-import io.github.kabirnayeem99.dumarketingstudent.viewmodel.NoticeViewModelFactory
 
 class NoticeFragment : Fragment() {
     private var _binding: FragmentNoticeBinding? = null
@@ -56,9 +54,7 @@ class NoticeFragment : Fragment() {
     }
 
     private val noticeViewModel: NoticeViewModel by lazy {
-        val repo = NoticeRepository()
-        val factory = NoticeViewModelFactory(repo)
-        ViewModelProvider(this, factory).get(NoticeViewModel::class.java)
+        (activity as MainActivity).noticeViewModel
     }
 
 

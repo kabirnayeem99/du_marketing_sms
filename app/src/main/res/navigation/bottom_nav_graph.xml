@@ -27,11 +27,24 @@
         android:id="@+id/galleryFragment"
         android:name="io.github.kabirnayeem99.dumarketingstudent.ui.fragments.GalleryFragment"
         android:label="GalleryFragment"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_gallery" >
+        <action
+            android:id="@+id/action_galleryFragment_to_imageDetailsFragment"
+            app:destination="@id/imageDetailsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/noticeFragment"
         android:name="io.github.kabirnayeem99.dumarketingstudent.ui.fragments.NoticeFragment"
         android:label="NoticeFragment"
         tools:layout="@layout/fragment_notice" />
+    <fragment
+        android:id="@+id/imageDetailsFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.ui.fragments.ImageDetailsFragment"
+        android:label="fragment_image_details"
+        tools:layout="@layout/fragment_image_details" >
+        <argument
+            android:name="galleryData"
+            app:argType="io.github.kabirnayeem99.dumarketingstudent.data.vo.GalleryData" />
+    </fragment>
 </navigation>

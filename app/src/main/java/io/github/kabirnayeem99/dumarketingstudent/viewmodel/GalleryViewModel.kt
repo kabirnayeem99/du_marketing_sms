@@ -8,4 +8,5 @@ import io.github.kabirnayeem99.dumarketingstudent.data.repositories.GalleryRepos
 class GalleryViewModel(private val repo: GalleryRepository) : ViewModel() {
 
     fun getRecentGallerySlideModel(): LiveData<List<SlideModel>> = repo.getRecentGallerySlideModel()
+    fun getGalleryImages() = repo.getGalleryImages()
 }

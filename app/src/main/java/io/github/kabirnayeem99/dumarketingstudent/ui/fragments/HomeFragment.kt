@@ -6,21 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.denzcoskun.imageslider.models.SlideModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import io.github.kabirnayeem99.dumarketingstudent.R
-import io.github.kabirnayeem99.dumarketingstudent.data.repositories.GalleryRepository
-import io.github.kabirnayeem99.dumarketingstudent.data.repositories.NoticeRepository
-import io.github.kabirnayeem99.dumarketingstudent.data.repositories.RoutineRepository
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.NoticeData
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentHomeBinding
 import io.github.kabirnayeem99.dumarketingstudent.databinding.LayoutNoticeDetailsBottomSheetBinding
+import io.github.kabirnayeem99.dumarketingstudent.ui.activities.MainActivity
 import io.github.kabirnayeem99.dumarketingstudent.util.adapters.NoticeDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.util.adapters.RoutineDataAdapter
-import io.github.kabirnayeem99.dumarketingstudent.viewmodel.*
+import io.github.kabirnayeem99.dumarketingstudent.viewmodel.GalleryViewModel
+import io.github.kabirnayeem99.dumarketingstudent.viewmodel.NoticeViewModel
+import io.github.kabirnayeem99.dumarketingstudent.viewmodel.RoutineViewModel
 
 class HomeFragment : Fragment() {
 
@@ -86,31 +85,17 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpRoutine() {
-
         routineViewModel.getRoutine().observe(viewLifecycleOwner, { routines ->
             routineDataAdapter.differ.submitList(routines)
         })
-
     }
 
 
-    private val galleryViewModel: GalleryViewModel by lazy {
-        val repository = GalleryRepository()
-        val factory = GalleryViewModelFactory(repository)
-        ViewModelProvider(this, factory).get(GalleryViewModel::class.java)
-    }
+    private val galleryViewModel: GalleryViewModel by lazy { (activity as MainActivity).galleryViewModel }
 
-    private val routineViewModel: RoutineViewModel by lazy {
-        val repository = RoutineRepository()
-        val factory = RoutineViewModelFactory(repository)
-        ViewModelProvider(this, factory).get(RoutineViewModel::class.java)
-    }
+    private val routineViewModel: RoutineViewModel by lazy { (activity as MainActivity).routineViewModel }
 
-    private val noticeViewModel: NoticeViewModel by lazy {
-        val repository = NoticeRepository()
-        val factory = NoticeViewModelFactory(repository)
-        ViewModelProvider(this, factory).get(NoticeViewModel::class.java)
-    }
+    private val noticeViewModel: NoticeViewModel by lazy { (activity as MainActivity).noticeViewModel }
 
     override fun onDestroyView() {
         super.onDestroyView()
