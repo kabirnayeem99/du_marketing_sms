@@ -80,7 +80,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="8sp"
-                    android:padding="1sp"
+                    android:padding="1.8sp"
                     android:paddingStart="0sp"
                     android:src="@drawable/ic_map_pointer" />
 
@@ -101,7 +101,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="8sp"
-                    android:padding="1sp"
+                    android:padding="1.8sp"
                     android:paddingStart="0sp"
                     android:src="@drawable/ic_faculty_placeholder" />
 

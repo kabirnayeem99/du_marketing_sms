@@ -44,7 +44,7 @@
         android:label="fragment_image_details"
         tools:layout="@layout/fragment_image_details" >
         <argument
-            android:name="galleryData"
-            app:argType="io.github.kabirnayeem99.dumarketingstudent.data.vo.GalleryData" />
+            android:name='"imageUrl"'
+            app:argType="string" />
     </fragment>
 </navigation>
