@@ -59,6 +59,7 @@ class HomeFragment : Fragment() {
         binding.rvRecentNotice.apply {
             adapter = noticeDataAdapter
             layoutManager = LinearLayoutManager(context)
+
         }
     }
 
@@ -67,6 +68,7 @@ class HomeFragment : Fragment() {
             adapter = routineDataAdapter
             layoutManager = LinearLayoutManager(context)
         }
+
     }
 
     private fun setUpLatestNotice() {

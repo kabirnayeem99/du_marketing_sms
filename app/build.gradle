@@ -76,4 +76,7 @@ dependencies {
 
     // Fragment Navigation
     implementation 'androidx.fragment:fragment-ktx:1.3.3'
+
+    // iOS-like over-scroll effect
+    implementation 'io.github.everythingme:overscroll-decor-android:1.1.1'
 }

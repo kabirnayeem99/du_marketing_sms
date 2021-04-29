@@ -12,6 +12,7 @@ import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentFacultyBin
 import io.github.kabirnayeem99.dumarketingstudent.util.adapters.FacultyDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.FacultyViewModel
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.FacultyViewModelFactory
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 
 class FacultyFragment : Fragment() {
 
@@ -39,6 +40,11 @@ class FacultyFragment : Fragment() {
         binding.rvFaculty.apply {
             adapter = facultyDataAdapter
             layoutManager = LinearLayoutManager(context)
+
+            OverScrollDecoratorHelper.setUpOverScroll(
+                this,
+                OverScrollDecoratorHelper.ORIENTATION_VERTICAL
+            )
         }
 
         facultyViewModel.getAllFacultyList().observe(viewLifecycleOwner, { facultyList ->

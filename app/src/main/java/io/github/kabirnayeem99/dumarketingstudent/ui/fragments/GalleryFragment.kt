@@ -16,6 +16,7 @@ import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentGalleryBin
 import io.github.kabirnayeem99.dumarketingstudent.util.adapters.GalleryDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.GalleryViewModel
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.GalleryViewModelFactory
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 
 class GalleryFragment : Fragment() {
 
@@ -50,6 +51,11 @@ class GalleryFragment : Fragment() {
         binding.rvGallery.apply {
             adapter = galleryAdapter
             layoutManager = StaggeredGridLayoutManager(3, LinearLayoutManager.VERTICAL)
+
+            OverScrollDecoratorHelper.setUpOverScroll(
+                this,
+                OverScrollDecoratorHelper.ORIENTATION_VERTICAL
+            )
         }
 
         galleryViewModel.getGalleryImages().observe(viewLifecycleOwner, { galleryList ->

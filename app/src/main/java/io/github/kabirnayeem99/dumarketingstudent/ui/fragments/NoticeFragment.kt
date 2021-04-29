@@ -16,6 +16,7 @@ import io.github.kabirnayeem99.dumarketingstudent.databinding.LayoutNoticeDetail
 import io.github.kabirnayeem99.dumarketingstudent.ui.activities.MainActivity
 import io.github.kabirnayeem99.dumarketingstudent.util.adapters.NoticeDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.NoticeViewModel
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 
 class NoticeFragment : Fragment() {
     private var _binding: FragmentNoticeBinding? = null
@@ -41,6 +42,11 @@ class NoticeFragment : Fragment() {
         binding.rvNoticeDataList.apply {
             adapter = noticeDataAdapter
             layoutManager = LinearLayoutManager(context)
+
+            OverScrollDecoratorHelper.setUpOverScroll(
+                this,
+                OverScrollDecoratorHelper.ORIENTATION_VERTICAL
+            )
         }
 
         setUpNoticeData()

@@ -33,6 +33,7 @@ class ImageDetailsFragment : Fragment() {
             Log.e(TAG, "onViewCreated: ${e.message}")
         }
 
+        binding.tvImageCat.text = "ImageCategory"
     }
 
     override fun onDestroyView() {
