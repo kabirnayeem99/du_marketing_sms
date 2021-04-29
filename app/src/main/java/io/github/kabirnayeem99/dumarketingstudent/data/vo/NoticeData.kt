@@ -19,7 +19,7 @@ data class NoticeData(
          *
          * @return a [NoticeData] data object
          */
-        fun QueryDocumentSnapshot.toNoticeData(): NoticeData {
+        private fun QueryDocumentSnapshot.toNoticeData(): NoticeData {
             val title: String = this["title"].toString()
             val imageUrl: String = this["imageUrl"].toString()
             val date: String = this["date"].toString()

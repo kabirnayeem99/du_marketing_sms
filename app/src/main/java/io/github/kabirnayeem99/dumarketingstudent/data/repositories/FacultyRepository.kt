@@ -1,55 +1,151 @@
 package io.github.kabirnayeem99.dumarketingstudent.data.repositories
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.firestore.EventListener
+import com.google.firebase.firestore.FirebaseFirestore
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.FacultyData
+import io.github.kabirnayeem99.dumarketingstudent.data.vo.FacultyData.Companion.toFacultyDataList
+import io.github.kabirnayeem99.dumarketingstudent.util.Constants.FACULTY_STORAGE_PATH
 import io.github.kabirnayeem99.dumarketingstudent.util.enums.FacultyPosts
 
 class FacultyRepository {
 
+    private val db = FirebaseFirestore.getInstance()
     private val facultyDataListLiveData = MutableLiveData<List<FacultyData>>()
 
+    // this mess needs to be cleaned soon
     fun getAllFacultyList(): LiveData<List<FacultyData>> {
-        val facultyDataList = listOf(
-            FacultyData(
-                "Rana Hossain",
-                "0182945933",
-                "himel@du.ac.bd",
-                FacultyPosts.ASSISTANT_PROFESSOR.values,
-                "https://media-eng.dhakatribune.com/uploads/2020/11/unnamed-1606052632291.jpg"
-            ),
-            FacultyData(
-                "Himel Mia",
-                "0182945933",
-                "Tama@du.ac.bd",
-                FacultyPosts.ASSISTANT_PROFESSOR.values,
-                "https://media-eng.dhakatribune.com/uploads/2020/11/unnamed-1606052632291.jpg"
-            ),
-            FacultyData(
-                "Muktar Hossain",
-                "0182945933",
-                "himel@du.ac.bd",
-                post = FacultyPosts.ASSISTANT_PROFESSOR.values,
-                "https://hr.bup.edu.bd/upload/picture/11526.JPG"
-            ),
-            FacultyData(
-                "Himel Hossain",
-                "0182945933",
-                "himel@du.ac.bd",
-                FacultyPosts.PROFESSOR.values,
-                "https://media-eng.dhakatribune.com/uploads/2020/11/unnamed-1606052632291.jpg"
-            ),
-            FacultyData(
-                "Akter Hossain",
-                "0182945933",
-                "himel@du.ac.bd",
-                FacultyPosts.CHAIRMAN.values,
-                "https://hr.bup.edu.bd/upload/picture/11526.JPG"
-            ),
+
+        val facultyDataList = mutableListOf<FacultyData>()
+
+        val refChairman =
+            db.collection(FACULTY_STORAGE_PATH).document(FacultyPosts.CHAIRMAN.values)
+                .collection("members_list")
+
+        val refProfessor = db.collection(FACULTY_STORAGE_PATH)
+            .document(FacultyPosts.PROFESSOR.values)
+            .collection("members_list")
+
+
+        val refAssistantProfessor = db.collection(FACULTY_STORAGE_PATH)
+            .document(FacultyPosts.ASSISTANT_PROFESSOR.values)
+            .collection("members_list")
+
+        val refAssociateProfessor = db.collection(FACULTY_STORAGE_PATH)
+            .document(FacultyPosts.ASSOCIATE_PROFESSOR.values)
+            .collection("members_list")
+
+
+        val refLecturer = db.collection(FACULTY_STORAGE_PATH)
+            .document(FacultyPosts.LECTURER.values)
+            .collection("members_list")
+
+        val refHonoraryProfessor = db.collection(FACULTY_STORAGE_PATH)
+            .document(FacultyPosts.HONORARY_PROFESSOR.values)
+            .collection("members_list")
+
+
+        refHonoraryProfessor.addSnapshotListener(
+            EventListener { value, error ->
+                if (error != null) {
+                    Log.e(TAG, "getAllFacultyList: ${error.message}")
+                    error.printStackTrace()
+                    return@EventListener
+                }
+
+                value?.toFacultyDataList()?.let { facultyDataList.addAll(it) }
+                facultyDataList.let {
+                    facultyDataListLiveData.value = it
+                }
+            }
         )
 
-        facultyDataListLiveData.value = facultyDataList
+        refAssistantProfessor.addSnapshotListener(
+            EventListener { value, error ->
+                if (error != null) {
+                    Log.e(TAG, "getAllFacultyList: ${error.message}")
+                    error.printStackTrace()
+                    return@EventListener
+                }
+
+                value?.toFacultyDataList()?.let { facultyDataList.addAll(it) }
+                facultyDataList?.let {
+                    facultyDataListLiveData.value = it
+                }
+            }
+        )
+
+        refLecturer.addSnapshotListener(
+            EventListener { value, error ->
+                if (error != null) {
+                    Log.e(TAG, "getAllFacultyList: ${error.message}")
+                    error.printStackTrace()
+                    return@EventListener
+                }
+
+                value?.toFacultyDataList()?.let { facultyDataList.addAll(it) }
+                facultyDataList?.let {
+                    facultyDataListLiveData.value = it
+                }
+            }
+        )
+
+        refAssociateProfessor.addSnapshotListener(
+            EventListener { value, error ->
+                if (error != null) {
+                    Log.e(TAG, "getAllFacultyList: ${error.message}")
+                    error.printStackTrace()
+                    return@EventListener
+                }
+                value?.toFacultyDataList()?.let { facultyDataList.addAll(it) }
+
+                facultyDataList.let {
+                    facultyDataListLiveData.value = it
+                }
+            }
+        )
+
+        refChairman.addSnapshotListener(
+            EventListener { value, error ->
+                if (error != null) {
+                    Log.e(TAG, "getAllFacultyList: ${error.message}")
+                    error.printStackTrace()
+                    return@EventListener
+                }
+
+                value?.toFacultyDataList()?.let { facultyDataList.addAll(it) }
+
+                facultyDataList.let {
+                    facultyDataListLiveData.value = it
+                }
+
+            }
+        )
+
+        refProfessor.addSnapshotListener(
+            EventListener { value, error ->
+                if (error != null) {
+                    Log.e(TAG, "getAllFacultyList: ${error.message}")
+                    error.printStackTrace()
+                    return@EventListener
+                }
+
+                value?.toFacultyDataList()?.let { facultyDataList.addAll(it) }
+
+                facultyDataList.let {
+                    facultyDataListLiveData.value = it
+                }
+
+            }
+        )
 
         return facultyDataListLiveData
+    }
+
+
+    companion object {
+        private const val TAG = "FacultyRepository"
     }
 }

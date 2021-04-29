@@ -11,7 +11,7 @@
         android:id="@+id/ivGalleryImage"
         android:layout_width="200sp"
         android:layout_height="150sp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/img_fbs_du" />
+        android:background="@color/black_overlay"
+        android:scaleType="centerCrop" />
 
 </com.google.android.material.card.MaterialCardView>

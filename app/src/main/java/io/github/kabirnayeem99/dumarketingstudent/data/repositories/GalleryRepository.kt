@@ -1,219 +1,130 @@
 package io.github.kabirnayeem99.dumarketingstudent.data.repositories
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.denzcoskun.imageslider.models.SlideModel
+import com.google.firebase.firestore.EventListener
+import com.google.firebase.firestore.FirebaseFirestore
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.GalleryData
+import io.github.kabirnayeem99.dumarketingstudent.data.vo.GalleryData.Companion.toGalleryDataList
+import io.github.kabirnayeem99.dumarketingstudent.data.vo.GalleryData.Companion.toSlideModelList
+import io.github.kabirnayeem99.dumarketingstudent.util.Constants
 import io.github.kabirnayeem99.dumarketingstudent.util.enums.GalleryImageCategory
 
 class GalleryRepository {
 
+    private val db = FirebaseFirestore.getInstance()
+
     private val recentGallerySlideModelLiveData = MutableLiveData<List<SlideModel>>()
-    private val recentGalleryDataLiveData = MutableLiveData<List<GalleryData>>()
+    private val allGalleryImagesLiveData = MutableLiveData<List<GalleryData>>()
 
     fun getRecentGallerySlideModel(): LiveData<List<SlideModel>> {
         val imageList = ArrayList<SlideModel>()
 
-        imageList.add(
-            SlideModel(
-                "https://www.campusvarta.com/wp-content/uploads/2020/01/dhaka_university.jpg",
-            )
+        val refConvocation =
+            db.collection(Constants.GALLERY_DB_REF)
+                .document(GalleryImageCategory.CONVOCATION.values)
+                .collection("images")
+
+        refConvocation.addSnapshotListener(
+            EventListener { value, error ->
+                if (error != null) {
+                    Log.e(TAG, "getGalleryImages: ${error.message}")
+                    return@EventListener
+                }
+
+                if (value != null) {
+                    imageList.addAll(value.toSlideModelList())
+                    recentGallerySlideModelLiveData.value = imageList
+                }
+            }
         )
 
-        imageList.add(
-            SlideModel(
-                "https://upload.wikimedia.org/wikipedia/commons/9/94/16122009_Dhaka_University_Mosque_photo1_Ranadipam_Basu.jpg",
-            )
-        )
-        imageList.add(
-            SlideModel(
-                "https://upload.wikimedia.org/wikipedia/commons/2/27/Dhaka_University_03698.JPG",
-            )
-        )
 
         recentGallerySlideModelLiveData.value = imageList
 
         return recentGallerySlideModelLiveData
     }
 
+    // a mess i should take care of
     fun getGalleryImages(): LiveData<List<GalleryData>> {
-        val imageList = ArrayList<GalleryData>()
+        val imageList = mutableListOf<GalleryData>()
 
-        imageList.add(
-            GalleryData(
-                "https://www.campusvarta.com/wp-content/uploads/2020/01/dhaka_university.jpg",
-                GalleryImageCategory.CLASS.values,
-            )
-        )
+        val refClub =
+            db.collection(Constants.GALLERY_DB_REF).document(GalleryImageCategory.CLUB.values)
+                .collection("images")
 
-        imageList.add(
-            GalleryData(
-                "https://upload.wikimedia.org/wikipedia/commons/9/94/16122009_Dhaka_University_Mosque_photo1_Ranadipam_Basu.jpg",
-                GalleryImageCategory.CLASS.values,
-            )
-        )
-        imageList.add(
-            GalleryData(
-                "https://upload.wikimedia.org/wikipedia/commons/2/27/Dhaka_University_03698.JPG",
-                GalleryImageCategory.CONVOCATION.values,
-            )
-        )
-        imageList.add(
-            GalleryData(
-                "https://upload.wikimedia.org/wikipedia/commons/2/27/Dhaka_University_03698.JPG",
-                GalleryImageCategory.CLASS.values,
+        refClub.addSnapshotListener(
+            EventListener { value, error ->
+                if (error != null) {
+                    Log.e(TAG, "getGalleryImages: ${error.message}")
+                    return@EventListener
+                }
 
-                )
+                if (value != null) {
+                    imageList.addAll(value.toGalleryDataList())
+                    allGalleryImagesLiveData.value = imageList
+                }
+            }
         )
-        imageList.add(
-            GalleryData(
-                "https://www.campusvarta.com/wp-content/uploads/2020/01/dhaka_university.jpg",
-                GalleryImageCategory.CLASS.values,
+        val refOther =
+            db.collection(Constants.GALLERY_DB_REF).document(GalleryImageCategory.OTHER.values)
+                .collection("images")
 
-                )
-        )
+        refOther.addSnapshotListener(
+            EventListener { value, error ->
+                if (error != null) {
+                    Log.e(TAG, "getGalleryImages: ${error.message}")
+                    return@EventListener
+                }
 
-        imageList.add(
-            GalleryData(
-                "https://upload.wikimedia.org/wikipedia/commons/2/27/Dhaka_University_03698.JPG",
-                GalleryImageCategory.CLASS.values,
+                if (value != null) {
+                    imageList.addAll(value.toGalleryDataList())
+                    allGalleryImagesLiveData.value = imageList
+                }
+            }
+        )
+        val refClass =
+            db.collection(Constants.GALLERY_DB_REF).document(GalleryImageCategory.CLASS.values)
+                .collection("images")
 
-                )
-        )
-        imageList.add(
-            GalleryData(
-                "https://upload.wikimedia.org/wikipedia/commons/2/27/Dhaka_University_03698.JPG",
-                GalleryImageCategory.DAY_SPECIAL.values,
+        refClass.addSnapshotListener(
+            EventListener { value, error ->
+                if (error != null) {
+                    Log.e(TAG, "getGalleryImages: ${error.message}")
+                    return@EventListener
+                }
 
-                )
+                if (value != null) {
+                    imageList.addAll(value.toGalleryDataList())
+                    allGalleryImagesLiveData.value = imageList
+                }
+            }
         )
-        imageList.add(
-            GalleryData(
-                "https://upload.wikimedia.org/wikipedia/commons/2/27/Dhaka_University_03698.JPG",
-                GalleryImageCategory.CLUB.values
-            )
-        )
-        imageList.add(
-            GalleryData(
-                "https://upload.wikimedia.org/wikipedia/commons/2/27/Dhaka_University_03698.JPG",
-                GalleryImageCategory.CLUB.values
-            )
-        )
+        val refConvocation =
+            db.collection(Constants.GALLERY_DB_REF)
+                .document(GalleryImageCategory.CONVOCATION.values)
+                .collection("images")
 
-        imageList.add(
-            GalleryData(
-                "https://www.campusvarta.com/wp-content/uploads/2020/01/dhaka_university.jpg",
-                GalleryImageCategory.CLUB.values
-            )
-        )
+        refConvocation.addSnapshotListener(
+            EventListener { value, error ->
+                if (error != null) {
+                    Log.e(TAG, "getGalleryImages: ${error.message}")
+                    return@EventListener
+                }
 
-        imageList.add(
-            GalleryData(
-                "https://upload.wikimedia.org/wikipedia/commons/2/27/Dhaka_University_03698.JPG",
-                GalleryImageCategory.CLUB.values
-            )
-        )
-        imageList.add(
-            GalleryData(
-                "https://upload.wikimedia.org/wikipedia/commons/2/27/Dhaka_University_03698.JPG",
-                GalleryImageCategory.CLUB.values
-            )
-        )
-        imageList.add(
-            GalleryData(
-                "https://upload.wikimedia.org/wikipedia/commons/2/27/Dhaka_University_03698.JPG",
-                GalleryImageCategory.CLUB.values
-            )
-        )
-        imageList.add(
-            GalleryData(
-                "https://upload.wikimedia.org/wikipedia/commons/2/27/Dhaka_University_03698.JPG",
-                GalleryImageCategory.CLUB.values
-            )
+                if (value != null) {
+                    imageList.addAll(value.toGalleryDataList())
+                    allGalleryImagesLiveData.value = imageList
+                }
+            }
         )
 
-        imageList.add(
-            GalleryData(
-                "https://www.campusvarta.com/wp-content/uploads/2020/01/dhaka_university.jpg",
-                GalleryImageCategory.CLUB.values
-            )
-        )
+        return allGalleryImagesLiveData
+    }
 
-        imageList.add(
-            GalleryData(
-                "https://upload.wikimedia.org/wikipedia/commons/2/27/Dhaka_University_03698.JPG",
-                GalleryImageCategory.CLUB.values
-            )
-        )
-        imageList.add(
-            GalleryData(
-                "https://upload.wikimedia.org/wikipedia/commons/2/27/Dhaka_University_03698.JPG",
-                GalleryImageCategory.CLUB.values
-            )
-        )
-        imageList.add(
-            GalleryData(
-                "https://upload.wikimedia.org/wikipedia/commons/2/27/Dhaka_University_03698.JPG",
-                GalleryImageCategory.CLUB.values
-            )
-        )
-        imageList.add(
-            GalleryData(
-                "https://upload.wikimedia.org/wikipedia/commons/2/27/Dhaka_University_03698.JPG",
-                GalleryImageCategory.CLUB.values
-            )
-        )
-        imageList.add(
-            GalleryData(
-                "https://upload.wikimedia.org/wikipedia/commons/2/27/Dhaka_University_03698.JPG",
-                GalleryImageCategory.CLUB.values
-            )
-        )
-        imageList.add(
-            GalleryData(
-                "https://upload.wikimedia.org/wikipedia/commons/2/27/Dhaka_University_03698.JPG",
-                GalleryImageCategory.CLUB.values
-            )
-        )
-        imageList.add(
-            GalleryData(
-                "https://upload.wikimedia.org/wikipedia/commons/2/27/Dhaka_University_03698.JPG",
-                GalleryImageCategory.CLUB.values
-            )
-        )
-        imageList.add(
-            GalleryData(
-                "https://upload.wikimedia.org/wikipedia/commons/2/27/Dhaka_University_03698.JPG",
-                GalleryImageCategory.DAY_SPECIAL.values,
-            )
-        )
-        imageList.add(
-            GalleryData(
-                "https://upload.wikimedia.org/wikipedia/commons/2/27/Dhaka_University_03698.JPG",
-                GalleryImageCategory.DAY_SPECIAL.values,
-            )
-        )
-        imageList.add(
-            GalleryData(
-                "https://upload.wikimedia.org/wikipedia/commons/2/27/Dhaka_University_03698.JPG",
-                GalleryImageCategory.DAY_SPECIAL.values,
-            )
-        )
-        imageList.add(
-            GalleryData(
-                "https://upload.wikimedia.org/wikipedia/commons/2/27/Dhaka_University_03698.JPG",
-                GalleryImageCategory.DAY_SPECIAL.values,
-            )
-        )
-        imageList.add(
-            GalleryData(
-                "https://upload.wikimedia.org/wikipedia/commons/2/27/Dhaka_University_03698.JPG",
-                GalleryImageCategory.DAY_SPECIAL.values,
-            )
-        )
-
-        recentGalleryDataLiveData.value = imageList
-
-        return recentGalleryDataLiveData
+    companion object {
+        private const val TAG = "GalleryRepository"
     }
 }

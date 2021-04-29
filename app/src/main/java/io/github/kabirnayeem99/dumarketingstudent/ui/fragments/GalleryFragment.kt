@@ -8,8 +8,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import io.github.kabirnayeem99.dumarketingstudent.R
 import io.github.kabirnayeem99.dumarketingstudent.data.repositories.GalleryRepository
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentGalleryBinding
@@ -50,8 +49,9 @@ class GalleryFragment : Fragment() {
     private fun setUpRecyclerView() {
         binding.rvGallery.apply {
             adapter = galleryAdapter
-            layoutManager = StaggeredGridLayoutManager(3, LinearLayoutManager.VERTICAL)
+            layoutManager = GridLayoutManager(context, 3)
 
+            // iOS like spring effect
             OverScrollDecoratorHelper.setUpOverScroll(
                 this,
                 OverScrollDecoratorHelper.ORIENTATION_VERTICAL

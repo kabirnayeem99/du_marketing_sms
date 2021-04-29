@@ -47,4 +47,8 @@
             android:name='"imageUrl"'
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.ui.fragments.WebViewFragment"
+        android:label="WebViewFragment" />
 </navigation>

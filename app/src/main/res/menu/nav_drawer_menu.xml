@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_item_book"
+        android:id="@+id/ebookFragment"
         android:icon="@drawable/ic_ebook"
         android:title="Ebook"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/menu_item_website"
+        android:id="@+id/webViewFragment"
         android:icon="@drawable/ic_website"
         android:title="Website" />
 

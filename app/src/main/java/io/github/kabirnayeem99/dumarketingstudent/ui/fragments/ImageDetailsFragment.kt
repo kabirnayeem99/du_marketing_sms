@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentImageDetailsBinding
 
+
 class ImageDetailsFragment : Fragment() {
 
     private var _binding: FragmentImageDetailsBinding? = null
@@ -26,14 +27,15 @@ class ImageDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val imageUrl = arguments?.get("imageUrl")
         try {
-            Glide.with(binding.root).load(arguments?.get("imageUrl")).into(binding.ivImageDetails)
+            Glide.with(binding.root).load(imageUrl).into(binding.ivImageDetails)
         } catch (e: Exception) {
             e.printStackTrace()
             Log.e(TAG, "onViewCreated: ${e.message}")
         }
 
-        binding.tvImageCat.text = "ImageCategory"
+        binding.ivImageDetails.doubleTapToZoom = true
     }
 
     override fun onDestroyView() {
