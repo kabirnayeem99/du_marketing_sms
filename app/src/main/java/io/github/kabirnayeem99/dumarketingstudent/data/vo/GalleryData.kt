@@ -27,9 +27,10 @@ data class GalleryData(
             return galleryDataList
         }
 
-        fun QueryDocumentSnapshot.toSlideModel(): SlideModel {
+        private fun QueryDocumentSnapshot.toSlideModel(): SlideModel {
             val imageUrl = this["imageUrl"].toString()
-            return SlideModel(imageUrl, "")
+            val category = this["category"].toString()
+            return SlideModel(imageUrl = imageUrl, title = null)
         }
 
         fun QuerySnapshot.toSlideModelList(): List<SlideModel> {
