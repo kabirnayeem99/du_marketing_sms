@@ -3,6 +3,9 @@ package io.github.kabirnayeem99.dumarketingstudent.util
 import io.github.kabirnayeem99.dumarketingstudent.util.enums.FacultyPosts
 
 object Constants {
+    const val ABOUT_DB_PATH: String = "About"
+    const val LATITUDE: String = "latitude"
+    const val LONGTITUDE: String = "longtitude"
     const val FACULTY_STORAGE_PATH: String = "Faculty"
     const val EBOOK_STORAGE_PATH: String = "Ebook"
     const val EBOOK_DB_REF: String = "Ebook"

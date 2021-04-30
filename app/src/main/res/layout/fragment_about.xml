@@ -69,11 +69,11 @@
             android:text="About" />
 
         <TextView
+            android:id="@+id/tvAboutIntro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingHorizontal="16sp"
             android:paddingVertical="8sp"
-            android:text="@string/department_about"
             android:textAlignment="center" />
     </LinearLayout>
 </ScrollView>
