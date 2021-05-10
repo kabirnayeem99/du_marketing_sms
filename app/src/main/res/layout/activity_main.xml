@@ -8,37 +8,43 @@
     android:fitsSystemWindows="true"
     tools:context=".ui.activities.MainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <fragment
-            android:id="@+id/fNavHost"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="0sp"
-            android:layout_height="0sp"
-            app:defaultNavHost="true"
-            app:layout_constraintBottom_toTopOf="@id/bottomNavBar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navGraph="@navigation/bottom_nav_graph" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavBar"
-            android:layout_width="0sp"
-            android:layout_height="52dp"
-            android:elevation="0sp"
-            android:padding="6sp"
-            app:elevation="0sp"
-            app:itemRippleColor="@null"
-            app:labelVisibilityMode="unlabeled"
-            app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/bottom_nav_menu" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <fragment
+                android:id="@+id/fNavHost"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="0sp"
+                android:layout_height="0sp"
+                app:defaultNavHost="true"
+                app:layout_constraintBottom_toTopOf="@id/bottomNavBar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navGraph="@navigation/bottom_nav_graph" />
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNavBar"
+                android:layout_width="0sp"
+                android:layout_height="48dp"
+                android:elevation="0sp"
+                android:padding="6sp"
+                app:elevation="0sp"
+                app:itemIconSize="28dp"
+                app:itemRippleColor="@null"
+                app:labelVisibilityMode="unlabeled"
+                app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:menu="@menu/bottom_nav_menu" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navDrawerView"

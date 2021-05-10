@@ -62,7 +62,7 @@
                     android:layout_marginEnd="8sp"
                     android:padding="1.8sp"
                     android:paddingStart="0sp"
-                    android:src="@drawable/ic_job_position" />
+                    android:src="@drawable/ic_fluent_briefcase_24_selector" />
 
 
                 <TextView
@@ -86,7 +86,7 @@
                     android:layout_marginEnd="8sp"
                     android:padding="1.8sp"
                     android:paddingStart="0sp"
-                    android:src="@drawable/ic_telephone" />
+                    android:src="@drawable/ic_fluent_phone_24_selector" />
 
                 <TextView
                     android:id="@+id/tvFacultyPhone"
@@ -98,6 +98,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="2sp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -106,7 +107,7 @@
                     android:layout_marginEnd="8sp"
                     android:padding="1.8sp"
                     android:paddingStart="0sp"
-                    android:src="@drawable/ic_mail" />
+                    android:src="@drawable/ic_fluent_mail_24_selector" />
 
                 <TextView
                     android:id="@+id/tvFacultyEmail"
