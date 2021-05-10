@@ -72,12 +72,16 @@ class NoticeFragment : Fragment() {
         val sheet = LayoutNoticeDetailsBottomSheetBinding.inflate(
             LayoutInflater.from(context)
         ).apply {
-            try {
-                context?.let { context ->
-                    Glide.with(context).load(noticeData.imageUrl).into(ivNoticeDetailedImage)
+
+            if (noticeData.imageUrl.isNotBlank() || noticeData.imageUrl.isNotEmpty()) {
+                try {
+                    ivNoticeDetailedImage.visibility = View.VISIBLE
+                    context?.let { context ->
+                        Glide.with(context).load(noticeData.imageUrl).into(ivNoticeDetailedImage)
+                    }
+                } catch (e: Exception) {
+                    Log.e(TAG, "lambda: ${e.message}")
                 }
-            } catch (e: Exception) {
-                Log.e(TAG, "lambda: ${e.message}")
             }
 
             tvNoticeDetailedTitle.text = noticeData.title

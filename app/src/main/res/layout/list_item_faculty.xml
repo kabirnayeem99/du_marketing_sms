@@ -4,9 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8sp"
+    android:layout_margin="@dimen/default_margin_8_sp"
     app:cardCornerRadius="16sp"
-    app:cardElevation="0.8sp">
+    app:cardElevation="0.1sp"
+    app:strokeColor="@color/semi_transparent_dark_grey"
+    app:strokeWidth="@dimen/stroke_line_width_0_8_sp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +22,6 @@
             android:layout_height="70sp"
             android:layout_margin="8sp"
             android:layout_marginEnd="16sp"
-            android:backgroundTint="@color/black"
             android:elevation="0sp"
             app:cardCornerRadius="50sp"
             app:cardElevation="0sp">
@@ -29,6 +30,7 @@
                 android:id="@+id/ivProfileImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/ic_fluent_person_24_selector"
                 android:scaleType="centerCrop" />
         </androidx.cardview.widget.CardView>
 

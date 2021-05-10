@@ -9,6 +9,7 @@ object Constants {
     const val FACULTY_STORAGE_PATH: String = "Faculty"
     const val EBOOK_STORAGE_PATH: String = "Ebook"
     const val EBOOK_DB_REF: String = "Ebook"
+    const val ROUTINE_DB_REF: String = "Routine"
     const val FACULTY_DB_COLLECTION_NAME: String = "Faculty"
     const val NOTICE_IMAGE_PATH_STRING_FOLDER_NAME = "Notice"
     const val GALLERY_IMAGE_PATH_STRING_FOLDER_NAME = "Gallery"

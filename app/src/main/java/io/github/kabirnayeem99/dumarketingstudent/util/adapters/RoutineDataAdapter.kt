@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.RoutineData
 import io.github.kabirnayeem99.dumarketingstudent.databinding.ListItemRoutineBinding
+import io.github.kabirnayeem99.dumarketingstudent.util.TimeUtilities.getHourMinuteTimeFromStringTime
+import io.github.kabirnayeem99.dumarketingstudent.util.TimeUtilities.getMeridiemFromStringTime
 
 class RoutineDataAdapter : RecyclerView.Adapter<RoutineDataAdapter.ViewHolder>() {
 
@@ -16,8 +18,9 @@ class RoutineDataAdapter : RecyclerView.Adapter<RoutineDataAdapter.ViewHolder>()
             binding.tvSubjectName.text = routineData.className
             binding.tvTeacherName.text = routineData.facultyName
             binding.tvClassLocation.text = routineData.classLocation
-            binding.tvClassTime.text = routineData.time
-            binding.tvClassTimeMeridiem.text = routineData.meridian
+            binding.tvClassTime.text = getHourMinuteTimeFromStringTime(routineData.time)
+            binding.tvClassTimeMeridiem.text =
+                getMeridiemFromStringTime(routineData.time).toUpperCase()
         }
     }
 

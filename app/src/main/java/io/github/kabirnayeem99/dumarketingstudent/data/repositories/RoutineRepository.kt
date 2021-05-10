@@ -1,35 +1,35 @@
 package io.github.kabirnayeem99.dumarketingstudent.data.repositories
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.firestore.EventListener
+import com.google.firebase.firestore.FirebaseFirestore
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.RoutineData
+import io.github.kabirnayeem99.dumarketingstudent.data.vo.RoutineData.Companion.toRoutineDataList
+import io.github.kabirnayeem99.dumarketingstudent.util.Constants
+import io.github.kabirnayeem99.dumarketingstudent.util.Resource
 
 class RoutineRepository {
 
-    private val routineLiveData = MutableLiveData<List<RoutineData>>()
+    private val db = FirebaseFirestore.getInstance()
 
-    fun getRoutine(): LiveData<List<RoutineData>> {
+    private val routineLiveData = MutableLiveData<Resource<List<RoutineData>>>()
+    fun getRoutine(batchYear: String): MutableLiveData<Resource<List<RoutineData>>> {
+        db.collection(Constants.ROUTINE_DB_REF)
+            .document(batchYear)
+            .collection("routines").addSnapshotListener(
+                EventListener { value, error ->
 
-        val routineList = listOf(
-            RoutineData(
-                "07:00", "AM", "Principles of Marketing", "MBA Building 203",
-                "Imrul Kayes"
-            ),
+                    if (error != null) {
+                        routineLiveData.value =
+                            Resource.Error(error.message ?: "Firebase fire store error.")
+                        return@EventListener
+                    }
 
-            RoutineData(
-                "07:00", "AM", "Principles of Marketing", "MBA Building 203",
-                "Imrul Kayes"
-            ),
-            RoutineData(
-                "07:00", "AM", "Principles of Marketing", "MBA Building 203",
-                "Imrul Kayes"
-            ),
-            RoutineData(
-                "07:00", "AM", "Principles of Marketing", "MBA Building 203",
-                "Imrul Kayes"
-            ),
-        )
-        routineLiveData.value = routineList
+
+                    value?.toRoutineDataList()?.let { routineDataList ->
+                        routineLiveData.value = Resource.Success(routineDataList)
+                    }
+                })
         return routineLiveData
     }
 }

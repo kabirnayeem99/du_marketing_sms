@@ -4,9 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8sp"
+    android:layout_margin="@dimen/default_margin_8_sp"
     app:cardCornerRadius="16sp"
-    app:cardElevation="0.8sp">
+    app:cardElevation="@dimen/default_card_elevation_0_2_sp"
+    app:strokeColor="@color/semi_transparent_dark_grey"
+    app:strokeWidth="@dimen/stroke_line_width_0_8_sp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,10 +22,10 @@
             android:layout_height="70sp"
             android:layout_margin="8sp"
             android:layout_marginEnd="16sp"
-            android:backgroundTint="@color/black"
+            android:backgroundTint="#00000000"
             android:elevation="0sp"
             app:cardCornerRadius="50sp"
-            app:cardElevation="0sp"
+            app:cardElevation="0.0sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -32,8 +34,8 @@
                 android:id="@+id/ivRecentNotice"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/img_fbs_du" />
+                android:background="@drawable/ic_fluent_note_24_filled"
+                android:scaleType="centerCrop" />
         </androidx.cardview.widget.CardView>
 
         <LinearLayout
@@ -48,6 +50,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="4sp"
                 android:layout_marginBottom="0sp"
+                android:ellipsize="end"
+                android:maxLines="2"
                 android:text="Notification title adkfadalfdjakd"
                 android:textAlignment="gravity"
                 android:textSize="16sp"
@@ -65,8 +69,8 @@
                     android:layout_marginEnd="8sp"
                     android:padding="1.8sp"
                     android:paddingStart="0sp"
+                    android:paddingEnd="0sp"
                     android:src="@drawable/ic_fluent_calendar_checkmark_24_selector" />
-
 
                 <TextView
                     android:id="@+id/tvNoticeDate"
@@ -88,8 +92,8 @@
                     android:layout_marginEnd="8sp"
                     android:padding="1.8sp"
                     android:paddingStart="0sp"
+                    android:paddingEnd="0sp"
                     android:src="@drawable/ic_fluent_clock_24_selector" />
-
 
                 <TextView
                     android:id="@+id/tvNoticeTime"
@@ -99,7 +103,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
 
     </LinearLayout>
 

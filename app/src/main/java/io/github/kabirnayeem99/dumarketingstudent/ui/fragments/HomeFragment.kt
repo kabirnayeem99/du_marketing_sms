@@ -1,16 +1,19 @@
 package io.github.kabirnayeem99.dumarketingstudent.ui.fragments
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.denzcoskun.imageslider.models.SlideModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.textfield.TextInputLayout
 import io.github.kabirnayeem99.dumarketingstudent.R
 import io.github.kabirnayeem99.dumarketingstudent.data.repositories.GalleryRepository
 import io.github.kabirnayeem99.dumarketingstudent.data.repositories.NoticeRepository
@@ -18,9 +21,13 @@ import io.github.kabirnayeem99.dumarketingstudent.data.repositories.RoutineRepos
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.NoticeData
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentHomeBinding
 import io.github.kabirnayeem99.dumarketingstudent.databinding.LayoutNoticeDetailsBottomSheetBinding
+import io.github.kabirnayeem99.dumarketingstudent.ui.activities.MainActivity
+import io.github.kabirnayeem99.dumarketingstudent.util.Preferences
+import io.github.kabirnayeem99.dumarketingstudent.util.Resource
 import io.github.kabirnayeem99.dumarketingstudent.util.adapters.NoticeDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.util.adapters.RoutineDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.*
+
 
 class HomeFragment : Fragment() {
 
@@ -29,6 +36,9 @@ class HomeFragment : Fragment() {
     private val routineDataAdapter: RoutineDataAdapter by lazy {
         RoutineDataAdapter()
     }
+
+    lateinit var pref: Preferences
+
     private val noticeDataAdapter: NoticeDataAdapter by lazy {
         NoticeDataAdapter {
             showNoticeDataSheetDialog(it)
@@ -48,11 +58,57 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        pref = Preferences.getPreferences(requireContext()).also {
+            showAlertDialog(it)
+        }
+
+
         setUpGallerySlider()
         setUpRoutine()
         setUpLatestNotice()
         setUpRoutineRecyclerView()
         setUpNoticeRecyclerView()
+    }
+
+    private fun showAlertDialog(preferences: Preferences) {
+        if (preferences.getBatchYear().isNullOrBlank() || preferences.getBatchYear() == "0") {
+
+            val viewInflated: View = LayoutInflater.from(context)
+                .inflate(
+                    R.layout.dialog_batch_year,
+                    view?.findViewById(android.R.id.content),
+                    false
+                )
+
+            val input = viewInflated.findViewById(R.id.input) as TextInputLayout
+
+
+            val dialogBuilder = AlertDialog.Builder(requireContext()).apply {
+                setTitle("In which year you are?")
+                setView(viewInflated)
+                setCancelable(false)
+                setPositiveButton(
+                    "Save"
+                ) { dialog, _ ->
+                    val text = input.editText?.text.toString()
+                    if (text.toInt() in 1..4) {
+                        preferences.setBatchYear(text)
+                        dialog.dismiss()
+                    } else {
+                        Toast.makeText(context, "Should be between 1 to 4.", Toast.LENGTH_SHORT)
+                            .show()
+                        input.error = "Should be between 1 to 4."
+                    }
+                }
+                setNegativeButton("Cancel") { dialog, _ ->
+                    dialog.dismiss()
+                    (activity as MainActivity).onBackPressed()
+                    Toast.makeText(context, "You must select your year.", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            dialogBuilder.show()
+        }
     }
 
     private fun setUpNoticeRecyclerView() {
@@ -88,9 +144,21 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpRoutine() {
-        routineViewModel.getRoutine().observe(viewLifecycleOwner, { routines ->
-            routineDataAdapter.differ.submitList(routines)
-        })
+
+        pref.getBatchYear()?.let { batchYear ->
+            routineViewModel.getRoutine(batchYear).observe(viewLifecycleOwner, { resource ->
+                when (resource) {
+                    is Resource.Error -> {
+                        Toast.makeText(context, "Could not get the data.", Toast.LENGTH_SHORT)
+                            .show()
+                        Log.e(TAG, "setUpRoutine: ${resource.message}")
+                    }
+                    else -> {
+                        routineDataAdapter.differ.submitList(resource.data)
+                    }
+                }
+            })
+        }
     }
 
 
@@ -121,12 +189,17 @@ class HomeFragment : Fragment() {
         val sheet = LayoutNoticeDetailsBottomSheetBinding.inflate(
             LayoutInflater.from(context)
         ).apply {
-            try {
-                context?.let { context ->
-                    Glide.with(context).load(noticeData.imageUrl).into(ivNoticeDetailedImage)
+
+            if (noticeData.imageUrl.isNotBlank() && noticeData.imageUrl.isNotEmpty()) {
+                ivNoticeDetailedImage.visibility = View.VISIBLE
+                try {
+                    context?.let { context ->
+                        Glide.with(context).load(noticeData.imageUrl).into(ivNoticeDetailedImage)
+                    }
+                } catch (e: Exception) {
+                    Log.e(TAG, "lambda: ${e.message}")
+                    ivNoticeDetailedImage.visibility = View.GONE
                 }
-            } catch (e: Exception) {
-                Log.e(TAG, "lambda: ${e.message}")
             }
 
             tvNoticeDetailedTitle.text = noticeData.title
@@ -137,7 +210,6 @@ class HomeFragment : Fragment() {
                 sheet.btnCancelNoticeDetailed.setOnClickListener {
                     dismiss()
                 }
-
                 show()
             }
     }
