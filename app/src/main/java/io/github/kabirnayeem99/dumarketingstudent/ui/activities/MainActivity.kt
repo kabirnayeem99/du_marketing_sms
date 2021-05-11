@@ -6,11 +6,16 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.github.kabirnayeem99.dumarketingstudent.R
+import io.github.kabirnayeem99.dumarketingstudent.data.repositories.GalleryRepository
+import io.github.kabirnayeem99.dumarketingstudent.data.repositories.NoticeRepository
+import io.github.kabirnayeem99.dumarketingstudent.data.repositories.RoutineRepository
 import io.github.kabirnayeem99.dumarketingstudent.databinding.ActivityMainBinding
+import io.github.kabirnayeem99.dumarketingstudent.viewmodel.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -65,6 +70,24 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+    val galleryViewModel: GalleryViewModel by lazy {
+        val repository = GalleryRepository()
+        val factory = GalleryViewModelFactory(repository)
+        ViewModelProvider(this, factory).get(GalleryViewModel::class.java)
+    }
+
+    val routineViewModel: RoutineViewModel by lazy {
+        val repository = RoutineRepository()
+        val factory = RoutineViewModelFactory(repository)
+        ViewModelProvider(this, factory).get(RoutineViewModel::class.java)
+    }
+
+    val noticeViewModel: NoticeViewModel by lazy {
+        val repository = NoticeRepository()
+        val factory = NoticeViewModelFactory(repository)
+        ViewModelProvider(this, factory).get(NoticeViewModel::class.java)
+    }
 
     private fun closeDrawer() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {

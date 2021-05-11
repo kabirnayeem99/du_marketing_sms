@@ -6,15 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import io.github.kabirnayeem99.dumarketingstudent.R
-import io.github.kabirnayeem99.dumarketingstudent.data.repositories.GalleryRepository
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentGalleryBinding
+import io.github.kabirnayeem99.dumarketingstudent.ui.activities.MainActivity
 import io.github.kabirnayeem99.dumarketingstudent.util.adapters.GalleryDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.GalleryViewModel
-import io.github.kabirnayeem99.dumarketingstudent.viewmodel.GalleryViewModelFactory
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 
 class GalleryFragment : Fragment() {
@@ -65,9 +63,7 @@ class GalleryFragment : Fragment() {
 
 
     private val galleryViewModel: GalleryViewModel by lazy {
-        val repository = GalleryRepository()
-        val factory = GalleryViewModelFactory(repository)
-        ViewModelProvider(this, factory).get(GalleryViewModel::class.java)
+        (activity as MainActivity).galleryViewModel
     }
 
     override fun onDestroyView() {
