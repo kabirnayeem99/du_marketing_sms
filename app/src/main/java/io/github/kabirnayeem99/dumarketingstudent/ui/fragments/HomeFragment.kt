@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.denzcoskun.imageslider.models.SlideModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.textfield.TextInputLayout
 import io.github.kabirnayeem99.dumarketingstudent.R
@@ -35,7 +34,7 @@ class HomeFragment : Fragment() {
         RoutineDataAdapter()
     }
 
-    lateinit var pref: Preferences
+    private lateinit var pref: Preferences
 
     private val noticeDataAdapter: NoticeDataAdapter by lazy {
         NoticeDataAdapter {
@@ -133,11 +132,17 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpGallerySlider() {
-        var imageList: List<SlideModel>
 
-        galleryViewModel.getRecentGallerySlideModel().observe(viewLifecycleOwner, {
-            imageList = it
-            binding.galleryImageSlider.setImageList(imageList)
+        galleryViewModel.getRecentGallerySlideModel().observe(viewLifecycleOwner, { resource ->
+            when (resources) {
+                is Resource.Error<*> -> {
+                    Toast.makeText(context, "Could not get the images.", Toast.LENGTH_SHORT).show()
+                    Log.e(TAG, "setUpGallerySlider: ${resource.message}")
+                }
+                is Resource.Success<*> -> {
+                    resource.data?.let { binding.galleryImageSlider.setImageList(it) }
+                }
+            }
         })
     }
 

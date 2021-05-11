@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import io.github.kabirnayeem99.dumarketingstudent.R
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentGalleryBinding
 import io.github.kabirnayeem99.dumarketingstudent.ui.activities.MainActivity
+import io.github.kabirnayeem99.dumarketingstudent.util.Resource
 import io.github.kabirnayeem99.dumarketingstudent.util.adapters.GalleryDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.GalleryViewModel
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
@@ -56,8 +58,16 @@ class GalleryFragment : Fragment() {
             )
         }
 
-        galleryViewModel.getGalleryImages().observe(viewLifecycleOwner, { galleryList ->
-            galleryAdapter.differ.submitList(galleryList)
+        galleryViewModel.getGalleryImages().observe(viewLifecycleOwner, { resources ->
+
+            when (resources) {
+                is Resource.Error -> {
+                    Toast.makeText(context, "Could not get the images.", Toast.LENGTH_SHORT).show()
+                }
+                is Resource.Success -> {
+                    galleryAdapter.differ.submitList(resources.data)
+                }
+            }
         })
     }
 
