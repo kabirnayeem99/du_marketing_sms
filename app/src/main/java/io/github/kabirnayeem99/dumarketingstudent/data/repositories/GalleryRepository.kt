@@ -22,6 +22,7 @@ class GalleryRepository {
             MutableLiveData<Resource<List<SlideModel>>>()
         }
 
+        recentGallerySlideModelLiveData.value = Resource.Loading()
 
         val ref = db.collection(Constants.GALLERY_DB_REF)
             .orderBy("category")
@@ -39,14 +40,9 @@ class GalleryRepository {
                 }
 
                 if (value != null) {
-
                     val imageList = value.toSlideModelList()
 
-                    if (imageList.isEmpty()) {
-                        recentGallerySlideModelLiveData.value = Resource.Error("Empty list")
-                    } else {
-                        recentGallerySlideModelLiveData.value = Resource.Success(imageList)
-                    }
+                    recentGallerySlideModelLiveData.value = Resource.Success(imageList)
                 }
             }
         )

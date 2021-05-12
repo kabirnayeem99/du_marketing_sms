@@ -1,6 +1,7 @@
 package io.github.kabirnayeem99.dumarketingstudent.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,7 +50,7 @@ class GalleryFragment : Fragment() {
     private fun setUpRecyclerView() {
         binding.rvGallery.apply {
             adapter = galleryAdapter
-            layoutManager = GridLayoutManager(context, 3)
+            layoutManager = GridLayoutManager(context, 2)
 
             // iOS like spring effect
             OverScrollDecoratorHelper.setUpOverScroll(
@@ -62,10 +63,14 @@ class GalleryFragment : Fragment() {
 
             when (resources) {
                 is Resource.Error -> {
+                    Log.e(TAG, "setUpRecyclerView: ${resources.message}")
                     Toast.makeText(context, "Could not get the images.", Toast.LENGTH_SHORT).show()
                 }
                 is Resource.Success -> {
                     galleryAdapter.differ.submitList(resources.data)
+                }
+                else -> {
+
                 }
             }
         })
@@ -79,5 +84,9 @@ class GalleryFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val TAG = "GalleryFragment"
     }
 }

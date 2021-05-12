@@ -134,13 +134,13 @@ class HomeFragment : Fragment() {
     private fun setUpGallerySlider() {
 
         galleryViewModel.getRecentGallerySlideModel().observe(viewLifecycleOwner, { resource ->
-            when (resources) {
-                is Resource.Error<*> -> {
+            when (resource) {
+                is Resource.Success -> {
+                    resource.data?.let { binding.galleryImageSlider.setImageList(it) }
+                }
+                is Resource.Error -> {
                     Toast.makeText(context, "Could not get the images.", Toast.LENGTH_SHORT).show()
                     Log.e(TAG, "setUpGallerySlider: ${resource.message}")
-                }
-                is Resource.Success<*> -> {
-                    resource.data?.let { binding.galleryImageSlider.setImageList(it) }
                 }
             }
         })
