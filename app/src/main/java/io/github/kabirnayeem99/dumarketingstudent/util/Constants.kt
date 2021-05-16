@@ -8,6 +8,7 @@ object Constants {
     const val LONGTITUDE: String = "longtitude"
     const val FACULTY_STORAGE_PATH: String = "Faculty"
     const val EBOOK_STORAGE_PATH: String = "Ebook"
+    const val ABOUT_DB_REF: String = "About"
     const val EBOOK_DB_REF: String = "Ebook"
     const val ROUTINE_DB_REF: String = "Routine"
     const val FACULTY_DB_COLLECTION_NAME: String = "Faculty"

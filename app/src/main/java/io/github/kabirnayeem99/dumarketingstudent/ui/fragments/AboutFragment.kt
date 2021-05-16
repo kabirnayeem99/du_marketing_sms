@@ -10,9 +10,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import io.github.kabirnayeem99.dumarketingstudent.data.repositories.AboutRepository
+import io.github.kabirnayeem99.dumarketingstudent.data.vo.AboutData
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentAboutBinding
-import io.github.kabirnayeem99.dumarketingstudent.util.Constants
+import io.github.kabirnayeem99.dumarketingstudent.util.Resource
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.AboutViewModel
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.AboutViewModelFactory
 import java.util.*
@@ -21,6 +23,8 @@ import java.util.*
 class AboutFragment() : Fragment() {
 
     private var _binding: FragmentAboutBinding? = null
+
+    private lateinit var aboutData: AboutData
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -38,113 +42,96 @@ class AboutFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setUpMailContact()
-        setUpMap()
-        setUpTelephoneContact()
-
-        setUpAboutIntro()
-    }
-
-    private fun setUpAboutIntro() {
-        aboutViewModel.getAboutIntro().observe(viewLifecycleOwner, { intro ->
-            binding.tvAboutIntro.text = intro
-        })
-    }
-
-    private fun setUpMailContact() {
-
-        var mailAddresses: String = ""
-        aboutViewModel.getMailAddress().observe(viewLifecycleOwner, { mailAddress ->
-            mailAddresses = mailAddress
-        })
-        binding.ivMail.setOnClickListener {
-            try {
-                if (mailAddresses.isEmpty()) {
-                    return@setOnClickListener
+        aboutViewModel.getAboutData().observe(viewLifecycleOwner, { resource ->
+            when (resource) {
+                is Resource.Error -> {
+                    Toast.makeText(
+                        context,
+                        "Could not get the data from server.",
+                        Toast.LENGTH_LONG
+                    )
+                        .show()
+                    Log.e(TAG, "onViewCreated: ${resource.message}")
                 }
 
-                val intent = Intent(Intent.ACTION_VIEW)
-                val data =
-                    Uri.parse("mailto:$mailAddresses?subject=From DU Marketing Student App&body=Dear Sir, \n I am an student of your department.")
-                intent.data = data
-                startActivity(intent)
-
-            } catch (e: Exception) {
-
-                Log.e(TAG, "onViewCreated: ${e.message}")
-                e.printStackTrace()
-
-                Toast.makeText(context, "You don't have a mail app installed.", Toast.LENGTH_SHORT)
-                    .show()
+                is Resource.Success -> {
+                    resource.data?.let { resourceData ->
+                        aboutData = resourceData
+                        loadUi(aboutData)
+                    }
+                }
             }
-
-        }
+        })
     }
 
-    private fun setUpTelephoneContact() {
-        var telephoneNumber: String = ""
+    private fun loadUi(aboutData: AboutData) {
+        binding.tvAboutIntro.text = aboutData.intro
+        setUpMapButton(aboutData.lat, aboutData.long)
+        setUpMailButton(aboutData.email)
+        setUpTelephoneButton(aboutData.telephone)
+    }
 
-        aboutViewModel.getTelephoneNumber().observe(viewLifecycleOwner, {
-            telephoneNumber = it
-        })
-
+    private fun setUpTelephoneButton(telephoneNumber: String) {
         binding.ivTelephone.setOnClickListener {
             try {
-
-                if (telephoneNumber.isEmpty()) {
-                    return@setOnClickListener
-                }
-
                 val intent = Intent(Intent.ACTION_DIAL)
                 intent.data = Uri.parse("tel:$telephoneNumber")
                 startActivity(intent)
-
             } catch (e: Exception) {
-                Log.e(TAG, "onViewCreated: ${e.message}")
-                e.printStackTrace()
-                Toast.makeText(context, "Could not open the dialer.", Toast.LENGTH_SHORT).show()
+                Log.e(TAG, "setUpTelephoneButton: $e")
+                Snackbar.make(
+                    binding.root,
+                    "Couldn't open the dialer.",
+                    Snackbar.LENGTH_LONG
+                ).apply {
+                    show()
+                }
             }
         }
     }
 
-    private fun setUpMap() {
+    private fun setUpMailButton(emailAddress: String) {
+        binding.ivMail.setOnClickListener {
+            try {
+                val intent = Intent(Intent.ACTION_VIEW)
+                val data =
+                    Uri.parse("mailto:$emailAddress?subject=From DU Marketing Student App&body=Dear Sir, \n I am an student of your department.")
+                intent.data = data
+                startActivity(intent)
+            } catch (e: Exception) {
+                Log.e(TAG, "setUpMailButton: $e")
+                Snackbar.make(
+                    binding.root,
+                    "You don't have a mail app Installed.",
+                    Snackbar.LENGTH_LONG
+                ).apply {
+                    show()
+                }
 
-        var lat = 0.0
-        var long = 0.0
-        aboutViewModel.getLocation().observe(viewLifecycleOwner, { locationHashMap ->
+            }
+        }
+    }
 
-            lat = locationHashMap[Constants.LATITUDE] ?: 0.0
-            long = locationHashMap[Constants.LONGTITUDE] ?: 0.0
-
-        })
-
+    private fun setUpMapButton(lat: Double, long: Double) {
         binding.ivLocation.setOnClickListener {
             try {
-
-                if (lat == 0.0 || long == 0.0) {
-                    return@setOnClickListener
-                }
                 val uri: String =
                     java.lang.String.format(Locale.ENGLISH, "geo:%f,%f", lat, long)
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
                 startActivity(intent)
-
             } catch (e: Exception) {
-
-                Log.e(TAG, "onViewCreated: ${e.message}")
-
-                e.printStackTrace()
-
-                Toast.makeText(
-                    context,
-                    "Your mobile doesn't have a map installed.",
-                    Toast.LENGTH_SHORT
-                ).show()
-
+                Log.e(TAG, "setUpMapButton: $e")
+                Snackbar.make(
+                    binding.root,
+                    "You don't have Google Map installed.",
+                    Snackbar.LENGTH_LONG
+                ).apply {
+                    show()
+                }
             }
-
         }
     }
+
 
     private val aboutViewModel: AboutViewModel by lazy {
         val repo = AboutRepository()
