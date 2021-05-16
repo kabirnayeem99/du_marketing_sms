@@ -12,8 +12,16 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="snackbarStyle">@style/DUMarketingStudent_SnackbarStyle</item>
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@color/white</item>
+    </style>
+
+
+    <style name="DUMarketingStudent_SnackbarStyle" parent="Widget.MaterialComponents.Snackbar">
+        <item name="backgroundTint">@color/green_500</item>
+        <item name="android:textColor">#11000000</item>
+        <item name="android:layout_margin">16sp</item>
     </style>
 
     <!-- set the rounded drawable as background to your bottom sheet -->

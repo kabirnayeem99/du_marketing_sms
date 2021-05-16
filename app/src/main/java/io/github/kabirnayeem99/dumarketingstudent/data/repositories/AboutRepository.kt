@@ -29,24 +29,11 @@ class AboutRepository {
                     return@EventListener
                 }
 
-                if (value != null) {
 
-                    try {
-
-                        try {
-                            val aboutData: AboutData = value.toAboutData()
-                            aboutLiveData.value = Resource.Success(aboutData)
-                        } catch (e: Exception) {
-                            aboutLiveData.value = Resource.Error(
-                                e.message ?: "Could not de-serialise information data"
-                            )
-                        }
-
-                    } catch (e: Exception) {
-                        aboutLiveData.value =
-                            Resource.Error("Empty data or could not convert the snapshot to the about data")
+                value?.let {
+                    value.toAboutData().let { aboutData ->
+                        aboutLiveData.value = Resource.Success(aboutData)
                     }
-
                 }
             }
         )

@@ -10,17 +10,20 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.snackbar.Snackbar
+import io.github.kabirnayeem99.dumarketingstudent.R
 import io.github.kabirnayeem99.dumarketingstudent.data.repositories.AboutRepository
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.AboutData
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentAboutBinding
+import io.github.kabirnayeem99.dumarketingstudent.util.Constants.GMAIL_PACKAGE_NAME
+import io.github.kabirnayeem99.dumarketingstudent.util.Constants.GOOGLE_MAPS_PACKAGE_NAME
 import io.github.kabirnayeem99.dumarketingstudent.util.Resource
+import io.github.kabirnayeem99.dumarketingstudent.util.showSnackBar
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.AboutViewModel
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.AboutViewModelFactory
 import java.util.*
 
 
-class AboutFragment() : Fragment() {
+class AboutFragment : Fragment() {
 
     private var _binding: FragmentAboutBinding? = null
 
@@ -79,11 +82,12 @@ class AboutFragment() : Fragment() {
                 startActivity(intent)
             } catch (e: Exception) {
                 Log.e(TAG, "setUpTelephoneButton: $e")
-                Snackbar.make(
-                    binding.root,
-                    "Couldn't open the dialer.",
-                    Snackbar.LENGTH_LONG
+                showSnackBar(
+                    "You are using a chromebook or a tablet." +
+                            "\n" +
+                            "which doesn't support calling feature."
                 ).apply {
+                    anchorView = binding.snackbarPlacement;
                     show()
                 }
             }
@@ -93,20 +97,24 @@ class AboutFragment() : Fragment() {
     private fun setUpMailButton(emailAddress: String) {
         binding.ivMail.setOnClickListener {
             try {
-                val intent = Intent(Intent.ACTION_VIEW)
-                val data =
-                    Uri.parse("mailto:$emailAddress?subject=From DU Marketing Student App&body=Dear Sir, \n I am an student of your department.")
-                intent.data = data
+
+                val intent = Intent(Intent.ACTION_VIEW).apply {
+                    putExtra(Intent.EXTRA_EMAIL, emailAddress)
+                    putExtra(Intent.EXTRA_SUBJECT, "From " + getString(R.string.app_name))
+                    data = Uri.parse("mailto:")
+                }
+
                 startActivity(intent)
             } catch (e: Exception) {
                 Log.e(TAG, "setUpMailButton: $e")
-                Snackbar.make(
-                    binding.root,
-                    "You don't have a mail app Installed.",
-                    Snackbar.LENGTH_LONG
-                ).apply {
-                    show()
-                }
+                showSnackBar("You don't have a mail app installed.")
+                    .apply {
+                        anchorView = binding.snackbarPlacement;
+                        setAction("Install") {
+                            navigateToPlayStore(GMAIL_PACKAGE_NAME)
+                        }
+                        show()
+                    }
 
             }
         }
@@ -121,17 +129,32 @@ class AboutFragment() : Fragment() {
                 startActivity(intent)
             } catch (e: Exception) {
                 Log.e(TAG, "setUpMapButton: $e")
-                Snackbar.make(
-                    binding.root,
-                    "You don't have Google Map installed.",
-                    Snackbar.LENGTH_LONG
-                ).apply {
+                showSnackBar("You don't have Google Map installed.").apply {
+                    anchorView = binding.snackbarPlacement
+                    setAction("Install") {
+
+                        navigateToPlayStore(GOOGLE_MAPS_PACKAGE_NAME)
+
+                    }
                     show()
                 }
             }
         }
     }
 
+    private fun navigateToPlayStore(packageName: String) {
+        try {
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("market://details?id=$packageName")
+                )
+            )
+        } catch (e: Exception) {
+            Log.e(TAG, "navigateToPlayStore: $e")
+            showSnackBar("Could not find $packageName")
+        }
+    }
 
     private val aboutViewModel: AboutViewModel by lazy {
         val repo = AboutRepository()
