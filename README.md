@@ -1,5 +1,5 @@
 <p align="center">
- <img src="app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png" width="100"> 
+ <img src="app/src/main/res/drawable-xxhdpi/logo_github.png" width="100"> 
 </p>
 <h1 align="center">DU Marketing SMS (User)</h1>
 <h3 align="center">Native Android App for the students to help students to stay up-to-date. </h3>
