@@ -27,7 +27,7 @@
         android:id="@+id/galleryFragment"
         android:name="io.github.kabirnayeem99.dumarketingstudent.ui.fragments.GalleryFragment"
         android:label="GalleryFragment"
-        tools:layout="@layout/fragment_gallery" >
+        tools:layout="@layout/fragment_gallery">
         <action
             android:id="@+id/action_galleryFragment_to_imageDetailsFragment"
             app:destination="@id/imageDetailsFragment" />
@@ -42,7 +42,7 @@
         android:id="@+id/imageDetailsFragment"
         android:name="io.github.kabirnayeem99.dumarketingstudent.ui.fragments.ImageDetailsFragment"
         android:label="fragment_image_details"
-        tools:layout="@layout/fragment_image_details" >
+        tools:layout="@layout/fragment_image_details">
         <argument
             android:name='"imageUrl"'
             app:argType="string" />
@@ -51,4 +51,8 @@
         android:id="@+id/webViewFragment"
         android:name="io.github.kabirnayeem99.dumarketingstudent.ui.fragments.WebViewFragment"
         android:label="WebViewFragment" />
+    <fragment
+        android:id="@+id/ebookFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.ui.fragments.EbookFragment"
+        android:label="EbookFragment" />
 </navigation>
