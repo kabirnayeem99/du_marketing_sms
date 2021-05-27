@@ -86,7 +86,7 @@ class AboutFragment : Fragment() {
                             "\n" +
                             "which doesn't support calling feature."
                 ).apply {
-                    anchorView = binding.snackbarPlacement;
+                    anchorView = binding.snackbarPlacement
                     show()
                 }
             }
@@ -108,7 +108,7 @@ class AboutFragment : Fragment() {
                 Log.e(TAG, "setUpMailButton: $e")
                 showSnackBar("You don't have a mail app installed.")
                     .apply {
-                        anchorView = binding.snackbarPlacement;
+                        anchorView = binding.snackbarPlacement
                         setAction("Install") {
                             navigateToPlayStore(GMAIL_PACKAGE_NAME)
                         }

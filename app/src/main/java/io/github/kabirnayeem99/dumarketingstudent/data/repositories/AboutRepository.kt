@@ -41,7 +41,6 @@ class AboutRepository @Inject constructor(var db: FirebaseFirestore) {
         return aboutLiveData
     }
 
-
     companion object {
         private const val TAG = "AboutRepository"
     }

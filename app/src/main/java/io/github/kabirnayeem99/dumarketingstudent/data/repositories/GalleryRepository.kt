@@ -75,7 +75,4 @@ class GalleryRepository @Inject constructor(var db: FirebaseFirestore) {
         return allGalleryImagesLiveData
     }
 
-    companion object {
-        private const val TAG = "GalleryRepository"
-    }
 }

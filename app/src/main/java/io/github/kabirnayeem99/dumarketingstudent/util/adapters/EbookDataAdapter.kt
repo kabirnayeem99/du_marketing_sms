@@ -67,8 +67,4 @@ class EbookDataAdapter(private val listener: (EbookData) -> Unit) :
     }
 
     override fun getItemCount() = differ.currentList.size
-
-    companion object {
-        private const val TAG = "EbookDataAdapter"
-    }
 }

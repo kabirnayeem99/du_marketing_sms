@@ -163,11 +163,9 @@ class HomeFragment : Fragment() {
         }
     }
 
-
     private val galleryViewModel: GalleryViewModel by lazy {
         (activity as MainActivity).galleryViewModel
     }
-
 
     private val routineViewModel: RoutineViewModel by lazy {
         (activity as MainActivity).routineViewModel
@@ -211,7 +209,6 @@ class HomeFragment : Fragment() {
                 show()
             }
     }
-
 
     companion object {
         private const val TAG = "HomeFragment"

@@ -40,8 +40,4 @@ class FacultyRepository @Inject constructor(var db: FirebaseFirestore) {
         return facultyDataListLiveData
     }
 
-
-    companion object {
-        private const val TAG = "FacultyRepository"
-    }
 }

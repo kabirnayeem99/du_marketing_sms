@@ -36,8 +36,4 @@ class EbookRepository @Inject constructor(var db: FirebaseFirestore) {
         return ebookLiveData
     }
 
-
-    companion object {
-        private const val TAG = "AboutRepository"
-    }
 }

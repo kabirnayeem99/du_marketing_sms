@@ -101,8 +101,4 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-
-    companion object {
-        private const val TAG = "MainActivity"
-    }
 }
