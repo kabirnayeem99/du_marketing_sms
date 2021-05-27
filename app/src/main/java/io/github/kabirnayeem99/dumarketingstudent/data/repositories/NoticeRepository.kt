@@ -8,10 +8,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.NoticeData
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.NoticeData.Companion.toNoticeDataList
 import io.github.kabirnayeem99.dumarketingstudent.util.Constants.NOTICE_DB_REF
+import javax.inject.Inject
 
-class NoticeRepository {
+class NoticeRepository @Inject constructor(var db: FirebaseFirestore){
 
-    private val db = FirebaseFirestore.getInstance()
 
     private val latestNoticeListLiveData = MutableLiveData<List<NoticeData>>()
     private val noticeDataListLiveData = MutableLiveData<List<NoticeData>>()

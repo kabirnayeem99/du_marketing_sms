@@ -6,23 +6,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingstudent.R
-import io.github.kabirnayeem99.dumarketingstudent.data.repositories.NoticeRepository
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.NoticeData
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentNoticeBinding
 import io.github.kabirnayeem99.dumarketingstudent.databinding.LayoutNoticeDetailsBottomSheetBinding
 import io.github.kabirnayeem99.dumarketingstudent.util.adapters.NoticeDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.NoticeViewModel
-import io.github.kabirnayeem99.dumarketingstudent.viewmodel.NoticeViewModelFactory
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
-
+@AndroidEntryPoint
 class NoticeFragment : Fragment() {
     private var _binding: FragmentNoticeBinding? = null
     private val binding get() = _binding!!
+
+    private val noticeViewModel: NoticeViewModel by viewModels()
+
     private val noticeDataAdapter: NoticeDataAdapter by lazy {
         NoticeDataAdapter {
             showNoticeDataSheetDialog(it)
@@ -59,12 +61,6 @@ class NoticeFragment : Fragment() {
             noticeDataAdapter.differ.submitList(noticeDataList)
             Log.d(TAG, "setUpNoticeData: $noticeDataList")
         })
-    }
-
-    private val noticeViewModel: NoticeViewModel by lazy {
-        val repository = NoticeRepository()
-        val factory = NoticeViewModelFactory(repository)
-        ViewModelProvider(this, factory).get(NoticeViewModel::class.java)
     }
 
 

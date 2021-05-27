@@ -17,17 +17,6 @@ class Preferences(context: Context) {
         editor.apply()
     }
 
-    companion object {
-        private var instance: Any? = null
-
-        fun getPreferences(context: Context): Preferences {
-            if (instance == null) {
-                instance = Preferences(context)
-            }
-            return instance as Preferences
-        }
-    }
-
     fun setBatchYear(batchYear: String) {
         editor.putString(Config.BATCH_YEAR, batchYear)
         editor.apply()

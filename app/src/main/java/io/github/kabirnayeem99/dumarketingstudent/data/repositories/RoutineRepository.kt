@@ -7,10 +7,9 @@ import io.github.kabirnayeem99.dumarketingstudent.data.vo.RoutineData
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.RoutineData.Companion.toRoutineDataList
 import io.github.kabirnayeem99.dumarketingstudent.util.Constants
 import io.github.kabirnayeem99.dumarketingstudent.util.Resource
+import javax.inject.Inject
 
-class RoutineRepository {
-
-    private val db = FirebaseFirestore.getInstance()
+class RoutineRepository @Inject constructor(var db: FirebaseFirestore) {
 
     private val routineLiveData = MutableLiveData<Resource<List<RoutineData>>>()
     fun getRoutine(batchYear: String): MutableLiveData<Resource<List<RoutineData>>> {

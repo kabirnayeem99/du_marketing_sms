@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.textfield.TextInputLayout
+import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingstudent.R
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.NoticeData
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentHomeBinding
@@ -24,8 +25,9 @@ import io.github.kabirnayeem99.dumarketingstudent.util.adapters.RoutineDataAdapt
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.GalleryViewModel
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.NoticeViewModel
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.RoutineViewModel
+import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -34,7 +36,9 @@ class HomeFragment : Fragment() {
         RoutineDataAdapter()
     }
 
-    private lateinit var pref: Preferences
+    @Inject
+    lateinit var pref: Preferences
+
 
     private val noticeDataAdapter: NoticeDataAdapter by lazy {
         NoticeDataAdapter {
@@ -54,11 +58,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        pref = Preferences.getPreferences(requireContext()).also {
-            showAlertDialog(it)
-        }
-
+        showAlertDialog()
 
         setUpGallerySlider()
         setUpRoutine()
@@ -67,8 +67,8 @@ class HomeFragment : Fragment() {
         setUpNoticeRecyclerView()
     }
 
-    private fun showAlertDialog(preferences: Preferences) {
-        if (preferences.getBatchYear().isNullOrBlank() || preferences.getBatchYear() == "0") {
+    private fun showAlertDialog() {
+        if (pref.getBatchYear().isNullOrBlank() || pref.getBatchYear() == "0") {
 
             val viewInflated: View = LayoutInflater.from(context)
                 .inflate(
@@ -89,7 +89,7 @@ class HomeFragment : Fragment() {
                 ) { dialog, _ ->
                     val text = input.editText?.text.toString()
                     if (text.toInt() in 1..4) {
-                        preferences.setBatchYear(text)
+                        pref.setBatchYear(text)
                         dialog.dismiss()
                     } else {
                         Toast.makeText(context, "Should be between 1 to 4.", Toast.LENGTH_SHORT)
@@ -125,7 +125,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpLatestNotice() {
-
         noticeViewModel.getLatestThreeNotices().observe(viewLifecycleOwner, { noticeDataList ->
             noticeDataAdapter.differ.submitList(noticeDataList)
         })
@@ -202,6 +201,7 @@ class HomeFragment : Fragment() {
 
             tvNoticeDetailedTitle.text = noticeData.title
         }
+
         context?.let { ctxt -> BottomSheetDialog(ctxt, R.style.BottomSheetDialogTheme) }
             ?.apply {
                 setContentView(sheet.root)

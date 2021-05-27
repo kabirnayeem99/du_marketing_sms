@@ -1,6 +1,7 @@
 package io.github.kabirnayeem99.dumarketingstudent.util.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -14,11 +15,11 @@ class EbookDataAdapter(private val listener: (EbookData) -> Unit) :
     inner class ViewHolder(private val binding: ListItemEbookBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-
         fun bind(ebookData: EbookData) {
             binding.tvEbookName.text = ebookData.title
             binding.ivDownloadButton.setOnClickListener {
                 listener(ebookData)
+                binding.ivDownloadButton.visibility = View.GONE
             }
         }
     }

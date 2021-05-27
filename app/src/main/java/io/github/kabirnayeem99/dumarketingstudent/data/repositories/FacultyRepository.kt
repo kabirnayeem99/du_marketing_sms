@@ -8,10 +8,10 @@ import io.github.kabirnayeem99.dumarketingstudent.data.vo.FacultyData
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.FacultyData.Companion.toFacultyDataList
 import io.github.kabirnayeem99.dumarketingstudent.util.Constants.FACULTY_STORAGE_PATH
 import io.github.kabirnayeem99.dumarketingstudent.util.Resource
+import javax.inject.Inject
 
-class FacultyRepository {
+class FacultyRepository @Inject constructor(var db: FirebaseFirestore) {
 
-    private val db = FirebaseFirestore.getInstance()
     private val facultyDataListLiveData = MutableLiveData<Resource<List<FacultyData>>>()
 
     // this mess needs to be cleaned soon

@@ -7,9 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentImageDetailsBinding
 
-
+@AndroidEntryPoint
 class ImageDetailsFragment : Fragment() {
 
     private var _binding: FragmentImageDetailsBinding? = null
@@ -28,6 +29,7 @@ class ImageDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val imageUrl = arguments?.get("imageUrl")
+
         try {
             Glide.with(binding.root).load(imageUrl).into(binding.ivImageDetails)
         } catch (e: Exception) {

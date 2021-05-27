@@ -9,9 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingstudent.R
-import io.github.kabirnayeem99.dumarketingstudent.data.repositories.AboutRepository
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.AboutData
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentAboutBinding
 import io.github.kabirnayeem99.dumarketingstudent.util.Constants.GMAIL_PACKAGE_NAME
@@ -19,10 +19,9 @@ import io.github.kabirnayeem99.dumarketingstudent.util.Constants.GOOGLE_MAPS_PAC
 import io.github.kabirnayeem99.dumarketingstudent.util.Resource
 import io.github.kabirnayeem99.dumarketingstudent.util.showSnackBar
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.AboutViewModel
-import io.github.kabirnayeem99.dumarketingstudent.viewmodel.AboutViewModelFactory
 import java.util.*
 
-
+@AndroidEntryPoint
 class AboutFragment : Fragment() {
 
     private var _binding: FragmentAboutBinding? = null
@@ -156,11 +155,7 @@ class AboutFragment : Fragment() {
         }
     }
 
-    private val aboutViewModel: AboutViewModel by lazy {
-        val repo = AboutRepository()
-        val factory = AboutViewModelFactory(repo)
-        ViewModelProvider(this, factory).get(AboutViewModel::class.java)
-    }
+    private val aboutViewModel: AboutViewModel by viewModels()
 
     override fun onDestroyView() {
         super.onDestroyView()

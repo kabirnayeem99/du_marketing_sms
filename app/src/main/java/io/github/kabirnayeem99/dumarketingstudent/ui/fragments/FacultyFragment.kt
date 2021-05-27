@@ -7,16 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import io.github.kabirnayeem99.dumarketingstudent.data.repositories.FacultyRepository
+import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentFacultyBinding
 import io.github.kabirnayeem99.dumarketingstudent.util.Resource
 import io.github.kabirnayeem99.dumarketingstudent.util.adapters.FacultyDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.FacultyViewModel
-import io.github.kabirnayeem99.dumarketingstudent.viewmodel.FacultyViewModelFactory
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
-
+@AndroidEntryPoint
 class FacultyFragment : Fragment() {
 
     private var _binding: FragmentFacultyBinding? = null
@@ -67,11 +66,7 @@ class FacultyFragment : Fragment() {
 
     }
 
-    private val facultyViewModel: FacultyViewModel by lazy {
-        val repo = FacultyRepository()
-        val factory = FacultyViewModelFactory(repo)
-        ViewModelProvider(this, factory).get(FacultyViewModel::class.java)
-    }
+    private val facultyViewModel: FacultyViewModel by viewModels()
 
     override fun onDestroyView() {
         super.onDestroyView()

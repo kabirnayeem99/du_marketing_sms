@@ -8,9 +8,9 @@ import io.github.kabirnayeem99.dumarketingstudent.data.vo.EbookData
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.EbookData.Companion.toEbookDataList
 import io.github.kabirnayeem99.dumarketingstudent.util.Constants.EBOOK_DB_REF
 import io.github.kabirnayeem99.dumarketingstudent.util.Resource
+import javax.inject.Inject
 
-class EbookRepository {
-    private val db = FirebaseFirestore.getInstance()
+class EbookRepository @Inject constructor(var db: FirebaseFirestore) {
 
     fun getEbooks(): LiveData<Resource<List<EbookData>>> {
         val ebookLiveData = MutableLiveData<Resource<List<EbookData>>>()

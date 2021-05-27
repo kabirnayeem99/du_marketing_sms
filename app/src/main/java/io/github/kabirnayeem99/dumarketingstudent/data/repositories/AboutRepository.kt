@@ -9,9 +9,9 @@ import io.github.kabirnayeem99.dumarketingstudent.data.vo.AboutData
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.AboutData.Companion.toAboutData
 import io.github.kabirnayeem99.dumarketingstudent.util.Constants.ABOUT_DB_REF
 import io.github.kabirnayeem99.dumarketingstudent.util.Resource
+import javax.inject.Inject
 
-class AboutRepository {
-    private val db = FirebaseFirestore.getInstance()
+class AboutRepository @Inject constructor(var db: FirebaseFirestore) {
 
     fun getAboutData(): LiveData<Resource<AboutData>> {
 

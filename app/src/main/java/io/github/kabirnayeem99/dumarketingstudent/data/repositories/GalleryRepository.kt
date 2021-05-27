@@ -9,12 +9,10 @@ import io.github.kabirnayeem99.dumarketingstudent.data.vo.GalleryData.Companion.
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.GalleryData.Companion.toSlideModelList
 import io.github.kabirnayeem99.dumarketingstudent.util.Constants
 import io.github.kabirnayeem99.dumarketingstudent.util.Resource
+import javax.inject.Inject
 
-class GalleryRepository {
+class GalleryRepository @Inject constructor(var db: FirebaseFirestore) {
 
-    private val db: FirebaseFirestore by lazy {
-        FirebaseFirestore.getInstance()
-    }
 
     fun getRecentGallerySlideModel(): MutableLiveData<Resource<List<SlideModel>>> {
 

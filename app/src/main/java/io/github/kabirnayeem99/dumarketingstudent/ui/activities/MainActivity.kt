@@ -2,28 +2,35 @@ package io.github.kabirnayeem99.dumarketingstudent.ui.activities
 
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingstudent.R
-import io.github.kabirnayeem99.dumarketingstudent.data.repositories.GalleryRepository
-import io.github.kabirnayeem99.dumarketingstudent.data.repositories.NoticeRepository
-import io.github.kabirnayeem99.dumarketingstudent.data.repositories.RoutineRepository
 import io.github.kabirnayeem99.dumarketingstudent.databinding.ActivityMainBinding
-import io.github.kabirnayeem99.dumarketingstudent.viewmodel.*
+import io.github.kabirnayeem99.dumarketingstudent.viewmodel.GalleryViewModel
+import io.github.kabirnayeem99.dumarketingstudent.viewmodel.NoticeViewModel
+import io.github.kabirnayeem99.dumarketingstudent.viewmodel.RoutineViewModel
 
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     lateinit var bottomNavBar: BottomNavigationView
     private lateinit var binding: ActivityMainBinding
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var drawerToggle: ActionBarDrawerToggle
+
+
+    val galleryViewModel: GalleryViewModel by viewModels()
+    val routineViewModel: RoutineViewModel by viewModels()
+    val noticeViewModel: NoticeViewModel by viewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,24 +77,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
-    val galleryViewModel: GalleryViewModel by lazy {
-        val repository = GalleryRepository()
-        val factory = GalleryViewModelFactory(repository)
-        ViewModelProvider(this, factory).get(GalleryViewModel::class.java)
-    }
-
-    val routineViewModel: RoutineViewModel by lazy {
-        val repository = RoutineRepository()
-        val factory = RoutineViewModelFactory(repository)
-        ViewModelProvider(this, factory).get(RoutineViewModel::class.java)
-    }
-
-    val noticeViewModel: NoticeViewModel by lazy {
-        val repository = NoticeRepository()
-        val factory = NoticeViewModelFactory(repository)
-        ViewModelProvider(this, factory).get(NoticeViewModel::class.java)
-    }
 
     private fun closeDrawer() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {

@@ -1,9 +1,12 @@
 package io.github.kabirnayeem99.dumarketingstudent.viewmodel
 
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.kabirnayeem99.dumarketingstudent.data.repositories.RoutineRepository
+import javax.inject.Inject
 
-class RoutineViewModel(private val repo: RoutineRepository) : ViewModel() {
+@HiltViewModel
+class RoutineViewModel @Inject constructor(var repo: RoutineRepository) : ViewModel() {
 
     fun getRoutine(batchYear: String) = repo.getRoutine(batchYear)
 }

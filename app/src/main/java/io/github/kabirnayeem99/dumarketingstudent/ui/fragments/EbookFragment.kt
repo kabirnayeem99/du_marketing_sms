@@ -11,18 +11,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import io.github.kabirnayeem99.dumarketingstudent.data.repositories.EbookRepository
+import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.EbookData
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentEbookBinding
 import io.github.kabirnayeem99.dumarketingstudent.util.Resource
 import io.github.kabirnayeem99.dumarketingstudent.util.adapters.EbookDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.util.showSnackBar
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.EbookViewModel
-import io.github.kabirnayeem99.dumarketingstudent.viewmodel.EbookViewModelFactory
 
-
+@AndroidEntryPoint
 class EbookFragment : Fragment() {
 
     private var _binding: FragmentEbookBinding? = null
@@ -70,21 +69,16 @@ class EbookFragment : Fragment() {
     }
 
     private fun downloadEbook(ebookData: EbookData) {
-
-
         try {
             val url = ebookData.pdfUrl
             val request = DownloadManager.Request(Uri.parse(url)).apply {
-                setDescription("downloading ebook.")
-                setTitle("Ebook: " + ebookData.title)
-                allowScanningByMediaScanner()
+                setTitle(ebookData.title)
                 setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
                 setDestinationInExternalPublicDir(
                     Environment.DIRECTORY_DOWNLOADS,
                     "${ebookData.title}_${ebookData.key}.pdf"
                 )
             }
-
             val manager: DownloadManager =
                 requireContext().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
             manager.enqueue(request)
@@ -96,11 +90,7 @@ class EbookFragment : Fragment() {
     }
 
 
-    private val ebookViewModel: EbookViewModel by lazy {
-        val repo = EbookRepository()
-        val factory = EbookViewModelFactory(repo)
-        ViewModelProvider(this, factory).get(EbookViewModel::class.java)
-    }
+    private val ebookViewModel: EbookViewModel by viewModels()
 
     override fun onDestroyView() {
         super.onDestroyView()
