@@ -51,8 +51,8 @@
                 android:layout_margin="4sp"
                 android:layout_marginBottom="0sp"
                 android:ellipsize="end"
-                android:maxLines="2"
-                android:text="Notification title adkfadalfdjakd"
+                android:maxLines="1"
+                android:text="Notification title adkfadalfdjakd \n"
                 android:textAlignment="gravity"
                 android:textSize="16sp"
                 android:textStyle="bold" />
