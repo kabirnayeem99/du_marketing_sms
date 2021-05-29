@@ -19,6 +19,13 @@ DU Marketing SMS is an open-source native android application designed for the s
 
 This application is very light-weight, fast, simple in feature but very good at what it does. This application was built using Native Android SDK and Kotlin. It uses [Firebase](https://firebase.google.com/) as its back-end. 
 
+# Screenshots
+
+<a href="https://imgur.com/drmUcdN"><img src="https://i.imgur.com/drmUcdNh.jpg" width="200" hspace="10" vspace="10" title="source: imgur.com" /></a>
+<a href="https://imgur.com/zE8DGPO"><img src="https://i.imgur.com/zE8DGPO.jpg" width="200" hspace="10" vspace="10" title="source: imgur.com" /></a>
+<a href="https://imgur.com/5Xiplxu"><img src="https://i.imgur.com/5Xiplxu.jpg" width="200" hspace="10" vspace="10" title="source: imgur.com" /></a>
+<a href="https://imgur.com/GM3YI7n"><img src="https://i.imgur.com/GM3YI7n.jpg" width="200" hspace="10" vspace="10" title="source: imgur.com" /></a>
+<a href="https://imgur.com/ckhi9vZ"><img src="https://i.imgur.com/ckhi9vZ.jpg" width="200" hspace="10" vspace="10" title="source: imgur.com" /></a>
 
 # Features
 
