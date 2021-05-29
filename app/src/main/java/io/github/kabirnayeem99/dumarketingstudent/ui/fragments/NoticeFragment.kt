@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.ScaleAnimation
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,12 +17,19 @@ import io.github.kabirnayeem99.dumarketingstudent.data.vo.NoticeData
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentNoticeBinding
 import io.github.kabirnayeem99.dumarketingstudent.databinding.LayoutNoticeDetailsBottomSheetBinding
 import io.github.kabirnayeem99.dumarketingstudent.util.adapters.NoticeDataAdapter
+import io.github.kabirnayeem99.dumarketingstudent.util.showSnackBar
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.NoticeViewModel
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
+import javax.inject.Inject
+
+
 @AndroidEntryPoint
 class NoticeFragment : Fragment() {
     private var _binding: FragmentNoticeBinding? = null
     private val binding get() = _binding!!
+
+    @Inject
+    lateinit var scale: ScaleAnimation
 
     private val noticeViewModel: NoticeViewModel by viewModels()
 
@@ -42,6 +50,9 @@ class NoticeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.root.startAnimation(scale)
+
 
         binding.rvNoticeDataList.apply {
             adapter = noticeDataAdapter
@@ -76,19 +87,20 @@ class NoticeFragment : Fragment() {
                         Glide.with(context).load(noticeData.imageUrl).into(ivNoticeDetailedImage)
                     }
                 } catch (e: Exception) {
-                    Log.e(TAG, "lambda: ${e.message}")
+                    showSnackBar("Error occured. Notification could not be shown.")
                 }
             }
 
             tvNoticeDetailedTitle.text = noticeData.title
         }
-        context?.let { ctxt -> BottomSheetDialog(ctxt, R.style.BottomSheetDialogTheme) }
-            ?.apply {
+
+        BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme)
+            .apply {
                 setContentView(sheet.root)
+                sheet.root.startAnimation(scale)
                 sheet.btnCancelNoticeDetailed.setOnClickListener {
                     dismiss()
                 }
-
                 show()
             }
     }

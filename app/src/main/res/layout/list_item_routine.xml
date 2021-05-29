@@ -6,6 +6,7 @@
     android:layout_margin="@dimen/default_card_margin_8_sp"
     app:cardCornerRadius="16sp"
     app:cardElevation="@dimen/default_card_elevation_0_2_sp"
+    app:rippleColor="#0000"
     app:strokeColor="@color/semi_transparent_dark_grey"
     app:strokeWidth="@dimen/stroke_line_width_0_8_sp">
 

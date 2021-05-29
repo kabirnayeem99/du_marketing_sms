@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.ScaleAnimation
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,9 +33,12 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val routineDataAdapter: RoutineDataAdapter by lazy {
-        RoutineDataAdapter()
-    }
+
+    @Inject
+    lateinit var scale: ScaleAnimation
+
+    @Inject
+    lateinit var routineDataAdapter: RoutineDataAdapter
 
     @Inject
     lateinit var pref: Preferences
@@ -58,6 +62,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         showAlertDialog()
 
         setUpGallerySlider()
@@ -203,6 +208,7 @@ class HomeFragment : Fragment() {
         context?.let { ctxt -> BottomSheetDialog(ctxt, R.style.BottomSheetDialogTheme) }
             ?.apply {
                 setContentView(sheet.root)
+                sheet.root.startAnimation(scale)
                 sheet.btnCancelNoticeDetailed.setOnClickListener {
                     dismiss()
                 }

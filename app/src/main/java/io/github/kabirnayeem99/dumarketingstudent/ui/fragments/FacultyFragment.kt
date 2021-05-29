@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.ScaleAnimation
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -15,6 +16,8 @@ import io.github.kabirnayeem99.dumarketingstudent.util.Resource
 import io.github.kabirnayeem99.dumarketingstudent.util.adapters.FacultyDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.FacultyViewModel
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
+import javax.inject.Inject
+
 @AndroidEntryPoint
 class FacultyFragment : Fragment() {
 
@@ -23,6 +26,9 @@ class FacultyFragment : Fragment() {
     private val facultyDataAdapter: FacultyDataAdapter by lazy {
         FacultyDataAdapter()
     }
+
+    @Inject
+    lateinit var scale: ScaleAnimation
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,6 +41,9 @@ class FacultyFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.root.startAnimation(scale)
+
         setUpFacultyRecyclerView()
     }
 

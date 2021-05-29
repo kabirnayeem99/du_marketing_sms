@@ -2,6 +2,7 @@ package io.github.kabirnayeem99.dumarketingstudent.util.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.ScaleAnimation
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +11,10 @@ import io.github.kabirnayeem99.dumarketingstudent.databinding.ListItemRoutineBin
 import io.github.kabirnayeem99.dumarketingstudent.util.TimeUtilities.getHourMinuteTimeFromStringTime
 import io.github.kabirnayeem99.dumarketingstudent.util.TimeUtilities.getMeridiemFromStringTime
 
-class RoutineDataAdapter : RecyclerView.Adapter<RoutineDataAdapter.ViewHolder>() {
+
+class RoutineDataAdapter(var scale: ScaleAnimation) :
+    RecyclerView.Adapter<RoutineDataAdapter.ViewHolder>() {
+
 
     inner class ViewHolder(private val binding: ListItemRoutineBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -21,6 +25,10 @@ class RoutineDataAdapter : RecyclerView.Adapter<RoutineDataAdapter.ViewHolder>()
             binding.tvClassTime.text = getHourMinuteTimeFromStringTime(routineData.time)
             binding.tvClassTimeMeridiem.text =
                 getMeridiemFromStringTime(routineData.time).toUpperCase()
+
+            binding.root.setOnClickListener {
+                it.startAnimation(scale)
+            }
         }
     }
 

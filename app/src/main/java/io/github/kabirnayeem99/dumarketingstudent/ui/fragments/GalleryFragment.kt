@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.ScaleAnimation
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -18,11 +19,17 @@ import io.github.kabirnayeem99.dumarketingstudent.util.Resource
 import io.github.kabirnayeem99.dumarketingstudent.util.adapters.GalleryDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.GalleryViewModel
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
+import javax.inject.Inject
+
 @AndroidEntryPoint
 class GalleryFragment : Fragment() {
 
     private var _binding: FragmentGalleryBinding? = null
     private val binding get() = _binding!!
+
+
+    @Inject
+    lateinit var scale: ScaleAnimation
 
     private val galleryAdapter: GalleryDataAdapter by lazy {
         GalleryDataAdapter {
@@ -44,6 +51,7 @@ class GalleryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.root.startAnimation(scale)
         setUpRecyclerView()
     }
 

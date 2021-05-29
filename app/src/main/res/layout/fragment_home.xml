@@ -64,6 +64,7 @@
                         android:id="@+id/rvRoutine"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layoutAnimation="@anim/rv_fallout_layout_animation"
                         android:overScrollMode="never"
                         android:padding="16sp"
                         tools:itemCount="2"
@@ -85,6 +86,7 @@
                         android:id="@+id/rvRecentNotice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layoutAnimation="@anim/rv_fallout_layout_animation"
                         android:overScrollMode="never"
                         android:padding="16sp"
                         tools:listitem="@layout/list_item_notice_data" />

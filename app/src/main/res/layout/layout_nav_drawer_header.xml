@@ -1,36 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="200sp">
+    android:layout_height="200sp"
+    android:layout_gravity="center_horizontal"
+    android:background="@color/green_500"
+    android:backgroundTint="@color/green_500"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/img_fbs_du"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvAppIconNavHeader"
-        android:layout_width="80sp"
-        android:layout_height="80sp"
-        android:background="#000000"
-        app:cardBackgroundColor="@color/black"
-        app:cardCornerRadius="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/tvAppNameNavHeader"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/ic_launcher" />
-    </androidx.cardview.widget.CardView>
+        android:id="@+id/ivAppLogo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_margin="30dp"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintBottom_toTopOf="@+id/tvAppNameNavHeader" />
 
     <TextView
         android:id="@+id/tvAppNameNavHeader"
@@ -43,6 +29,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cvAppIconNavHeader"
+        app:layout_constraintTop_toBottomOf="@+id/ivAppLogo"
         app:layout_constraintVertical_bias="0.8" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

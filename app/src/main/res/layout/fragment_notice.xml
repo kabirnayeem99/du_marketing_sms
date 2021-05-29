@@ -10,6 +10,8 @@
         android:id="@+id/rvNoticeDataList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layoutAnimation="@anim/rv_fallout_layout_animation"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:listitem="@layout/list_item_notice_data" />

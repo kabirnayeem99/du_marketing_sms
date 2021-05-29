@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.ScaleAnimation
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -20,6 +21,7 @@ import io.github.kabirnayeem99.dumarketingstudent.util.Resource
 import io.github.kabirnayeem99.dumarketingstudent.util.showSnackBar
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.AboutViewModel
 import java.util.*
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class AboutFragment : Fragment() {
@@ -27,6 +29,9 @@ class AboutFragment : Fragment() {
     private var _binding: FragmentAboutBinding? = null
 
     private lateinit var aboutData: AboutData
+
+    @Inject
+    lateinit var scale: ScaleAnimation
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -43,6 +48,8 @@ class AboutFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.root.startAnimation(scale)
 
         aboutViewModel.getAboutData().observe(viewLifecycleOwner, { resource ->
             when (resource) {

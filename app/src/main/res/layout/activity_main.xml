@@ -5,6 +5,7 @@
     android:id="@+id/mainDrawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     android:fitsSystemWindows="true"
     tools:context=".ui.activities.MainActivity">
 
@@ -28,21 +29,37 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:navGraph="@navigation/bottom_nav_graph" />
 
-            <com.google.android.material.bottomnavigation.BottomNavigationView
+            <!--            <com.google.android.material.bottomnavigation.BottomNavigationView-->
+            <!--                android:id="@+id/bottomNavBar"-->
+            <!--                android:layout_width="0sp"-->
+            <!--                android:layout_height="48dp"-->
+            <!--                android:elevation="0sp"-->
+            <!--                android:padding="6sp"-->
+            <!--                app:elevation="0sp"-->
+            <!--                app:itemIconSize="28dp"-->
+            <!--                app:itemRippleColor="@null"-->
+            <!--                app:labelVisibilityMode="unlabeled"-->
+            <!--                app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:menu="@menu/bottom_nav_menu" />-->
+
+            <nl.joery.animatedbottombar.AnimatedBottomBar
                 android:id="@+id/bottomNavBar"
-                android:layout_width="0sp"
+                android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:elevation="0sp"
-                android:padding="6sp"
-                app:elevation="0sp"
-                app:itemIconSize="28dp"
-                app:itemRippleColor="@null"
-                app:labelVisibilityMode="unlabeled"
-                app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
+                app:abb_iconSize="28dp"
+                app:abb_indicatorAppearance="round"
+                app:abb_indicatorHeight="4dp"
+                app:abb_indicatorMargin="16dp"
+                app:abb_selectedIndex="0"
+                app:abb_selectedTabType="text"
+                app:abb_tabs="@menu/tabs"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:menu="@menu/bottom_nav_menu" />
+                app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

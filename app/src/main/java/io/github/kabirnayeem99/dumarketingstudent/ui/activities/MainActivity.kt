@@ -2,29 +2,40 @@ package io.github.kabirnayeem99.dumarketingstudent.ui.activities
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.animation.ScaleAnimation
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingstudent.R
 import io.github.kabirnayeem99.dumarketingstudent.databinding.ActivityMainBinding
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.GalleryViewModel
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.NoticeViewModel
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.RoutineViewModel
+import nl.joery.animatedbottombar.AnimatedBottomBar
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    lateinit var bottomNavBar: BottomNavigationView
     private lateinit var binding: ActivityMainBinding
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var drawerToggle: ActionBarDrawerToggle
+    lateinit var bottomNavBar: AnimatedBottomBar
+    lateinit var navController: NavController
+
+    var isInHome = true
+
+    @Inject
+    lateinit var scale: ScaleAnimation
 
 
     val galleryViewModel: GalleryViewModel by viewModels()
@@ -38,20 +49,55 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(
             layoutInflater
         )
+
         setContentView(binding.root)
 
-        setUpBottomNavBar()
+        binding.bottomNavBar.startAnimation(scale)
+
+//        setUpBottomNavBar()
+        setUpAnimatedBottomBar()
         setUpNavigationDrawer()
     }
 
 
-    private fun setUpBottomNavBar() {
+    private fun setUpAnimatedBottomBar() {
 
         bottomNavBar = binding.bottomNavBar
+
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fNavHost) as NavHostFragment
 
-        NavigationUI.setupWithNavController(bottomNavBar, navHostFragment.navController)
+        navController = navHostFragment.findNavController()
+
+
+        binding.bottomNavBar.onTabSelected = { tab ->
+            when (tab.id) {
+                R.id.homeFragment -> {
+                    navController.navigate(R.id.toHomeFragment)
+                    isInHome = true
+                }
+                R.id.aboutFragment -> {
+                    navController.navigate(R.id.toAboutFragment)
+                    isInHome = false
+                }
+                R.id.noticeFragment -> {
+                    navController.navigate(R.id.toNoticeFragment)
+                    isInHome = false
+                }
+                R.id.facultyFragment -> {
+                    navController.navigate(R.id.toFacultyFragment)
+                    isInHome = false
+                }
+                R.id.galleryFragment -> {
+                    navController.navigate(R.id.toGalleryFragment)
+                    isInHome = false
+                }
+            }
+        }
+
+        binding.bottomNavBar.onTabReselected = { tab ->
+            Toast.makeText(this, "You are already in ${tab.title}", Toast.LENGTH_SHORT).show()
+        }
     }
 
 
@@ -85,10 +131,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START)
+
+        closeDrawer()
+
+        if (isInHome) {
+            finish()
         } else {
-            super.onBackPressed()
+            bottomNavBar.selectTabAt(0)
+            navController.navigate(R.id.toHomeFragment)
         }
     }
 

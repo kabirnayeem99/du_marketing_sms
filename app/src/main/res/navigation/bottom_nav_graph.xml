@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_nav_graph"
+
     app:startDestination="@id/homeFragment">
 
     <fragment
@@ -10,6 +11,9 @@
         android:name="io.github.kabirnayeem99.dumarketingstudent.ui.fragments.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home" />
+    <action
+        android:id="@+id/toHomeFragment"
+        app:destination="@id/homeFragment" />
 
     <fragment
         android:id="@+id/aboutFragment"
@@ -17,11 +21,19 @@
         android:label="AboutFragment"
         tools:layout="@layout/fragment_about" />
 
+    <action
+        android:id="@+id/toAboutFragment"
+        app:destination="@id/aboutFragment" />
+
     <fragment
         android:id="@+id/facultyFragment"
         android:name="io.github.kabirnayeem99.dumarketingstudent.ui.fragments.FacultyFragment"
         android:label="FacultyFragment"
         tools:layout="@layout/fragment_faculty" />
+
+    <action
+        android:id="@+id/toFacultyFragment"
+        app:destination="@id/facultyFragment" />
 
     <fragment
         android:id="@+id/galleryFragment"
@@ -33,11 +45,20 @@
             app:destination="@id/imageDetailsFragment" />
     </fragment>
 
+    <action
+        android:id="@+id/toGalleryFragment"
+        app:destination="@id/galleryFragment" />
+
     <fragment
         android:id="@+id/noticeFragment"
         android:name="io.github.kabirnayeem99.dumarketingstudent.ui.fragments.NoticeFragment"
         android:label="NoticeFragment"
         tools:layout="@layout/fragment_notice" />
+
+    <action
+        android:id="@+id/toNoticeFragment"
+        app:destination="@id/noticeFragment" />
+
     <fragment
         android:id="@+id/imageDetailsFragment"
         android:name="io.github.kabirnayeem99.dumarketingstudent.ui.fragments.ImageDetailsFragment"
@@ -47,12 +68,23 @@
             android:name='"imageUrl"'
             app:argType="string" />
     </fragment>
+
     <fragment
         android:id="@+id/webViewFragment"
         android:name="io.github.kabirnayeem99.dumarketingstudent.ui.fragments.WebViewFragment"
         android:label="WebViewFragment" />
+
+    <action
+        android:id="@+id/toWebViewFragment"
+        app:destination="@id/webViewFragment" />
+
     <fragment
         android:id="@+id/ebookFragment"
         android:name="io.github.kabirnayeem99.dumarketingstudent.ui.fragments.EbookFragment"
         android:label="EbookFragment" />
+
+    <action
+        android:id="@+id/toEbookFragment"
+        app:destination="@id/ebookFragment" />
+
 </navigation>
