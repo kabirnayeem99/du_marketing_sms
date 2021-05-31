@@ -10,7 +10,7 @@ import io.github.kabirnayeem99.dumarketingstudent.data.vo.NoticeData.Companion.t
 import io.github.kabirnayeem99.dumarketingstudent.util.Constants.NOTICE_DB_REF
 import javax.inject.Inject
 
-class NoticeRepository @Inject constructor(var db: FirebaseFirestore){
+class NoticeRepository @Inject constructor(var db: FirebaseFirestore) {
 
 
     private val latestNoticeListLiveData = MutableLiveData<List<NoticeData>>()
@@ -26,8 +26,6 @@ class NoticeRepository @Inject constructor(var db: FirebaseFirestore){
         ref.addSnapshotListener(
             EventListener { value, error ->
                 if (error != null) {
-                    Log.e(TAG, "getLatestThreeNotices: ${error.message}")
-                    error.printStackTrace()
                     return@EventListener
                 }
 

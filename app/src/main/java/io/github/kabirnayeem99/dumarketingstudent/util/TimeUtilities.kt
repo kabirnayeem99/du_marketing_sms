@@ -1,6 +1,6 @@
 package io.github.kabirnayeem99.dumarketingstudent.util
 
-import android.util.Log
+import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -51,7 +51,7 @@ object TimeUtilities {
             val format = SimpleDateFormat("hh:mm a", Locale.UK)
             format.parse(timeString)
         } catch (e: Exception) {
-            Log.e(TAG, "getDateFromString: ${e.message}")
+            Timber.e(e)
             null
         }
     }
@@ -65,5 +65,4 @@ object TimeUtilities {
         return timeStr.substring(0, timeStr.length - 2)
     }
 
-    private const val TAG = "TimeUtilities"
 }

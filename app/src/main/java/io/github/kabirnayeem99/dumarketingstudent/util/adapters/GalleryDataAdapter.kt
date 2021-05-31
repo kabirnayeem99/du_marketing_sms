@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.GalleryData
 import io.github.kabirnayeem99.dumarketingstudent.databinding.ListItemGalleryBinding
+import timber.log.Timber
 
 class GalleryDataAdapter(private val listener: (GalleryData) -> Unit) :
     RecyclerView.Adapter<GalleryDataAdapter.ViewHolder>() {
@@ -20,8 +21,7 @@ class GalleryDataAdapter(private val listener: (GalleryData) -> Unit) :
             try {
                 Glide.with(binding.root).load(galleryData.imageUrl).into(binding.ivGalleryImage)
             } catch (e: Exception) {
-                e.printStackTrace()
-                Log.e(TAG, "bind: ${e.message}")
+                Timber.e(e)
             }
         }
 

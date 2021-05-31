@@ -1,7 +1,6 @@
 package io.github.kabirnayeem99.dumarketingstudent.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +18,7 @@ import io.github.kabirnayeem99.dumarketingstudent.util.Resource
 import io.github.kabirnayeem99.dumarketingstudent.util.adapters.GalleryDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.GalleryViewModel
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -72,7 +72,7 @@ class GalleryFragment : Fragment() {
 
             when (resources) {
                 is Resource.Error -> {
-                    Log.e(TAG, "setUpRecyclerView: ${resources.message}")
+                    Timber.e(resources.message)
                     Toast.makeText(context, "Could not get the images.", Toast.LENGTH_SHORT).show()
                 }
                 is Resource.Success -> {

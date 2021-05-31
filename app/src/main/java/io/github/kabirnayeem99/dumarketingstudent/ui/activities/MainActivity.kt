@@ -1,7 +1,6 @@
 package io.github.kabirnayeem99.dumarketingstudent.ui.activities
 
 import android.os.Bundle
-import android.util.Log
 import android.view.animation.ScaleAnimation
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -17,6 +16,7 @@ import io.github.kabirnayeem99.dumarketingstudent.viewmodel.GalleryViewModel
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.NoticeViewModel
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.RoutineViewModel
 import nl.joery.animatedbottombar.AnimatedBottomBar
+import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -141,7 +141,7 @@ class MainActivity : AppCompatActivity() {
                 bottomNavBar.setBackgroundColor(resources.getColor(R.color.white))
             }
         } catch (e: Exception) {
-            Log.e(TAG, "onViewCreated: ${e.printStackTrace()}")
+            Timber.e(e)
         }
     }
 

@@ -20,6 +20,7 @@ import io.github.kabirnayeem99.dumarketingstudent.util.Resource
 import io.github.kabirnayeem99.dumarketingstudent.util.adapters.EbookDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.util.showSnackBar
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.EbookViewModel
+import timber.log.Timber
 
 @AndroidEntryPoint
 class EbookFragment : Fragment() {
@@ -83,7 +84,7 @@ class EbookFragment : Fragment() {
                 requireContext().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
             manager.enqueue(request)
         } catch (e: Exception) {
-            Log.e(TAG, "downloadEbook: $e")
+            Timber.e(e)
             Toast.makeText(context, "Could not download ${ebookData.title}", Toast.LENGTH_SHORT)
                 .show()
         }

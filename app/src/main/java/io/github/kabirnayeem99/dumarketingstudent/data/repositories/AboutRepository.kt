@@ -1,6 +1,5 @@
 package io.github.kabirnayeem99.dumarketingstudent.data.repositories
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.EventListener
@@ -23,8 +22,6 @@ class AboutRepository @Inject constructor(var db: FirebaseFirestore) {
             EventListener { value, error ->
 
                 if (error != null) {
-                    Log.e(TAG, "getInformationData: ${error.message}")
-                    error.printStackTrace()
                     aboutLiveData.value = Resource.Error(error.message ?: "Unknown error.")
                     return@EventListener
                 }
@@ -39,9 +36,5 @@ class AboutRepository @Inject constructor(var db: FirebaseFirestore) {
         )
 
         return aboutLiveData
-    }
-
-    companion object {
-        private const val TAG = "AboutRepository"
     }
 }

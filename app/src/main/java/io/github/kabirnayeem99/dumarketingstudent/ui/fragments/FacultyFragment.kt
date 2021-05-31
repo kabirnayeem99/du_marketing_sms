@@ -1,8 +1,6 @@
 package io.github.kabirnayeem99.dumarketingstudent.ui.fragments
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,14 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import io.github.kabirnayeem99.dumarketingstudent.R
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentFacultyBinding
-import io.github.kabirnayeem99.dumarketingstudent.ui.activities.MainActivity
 import io.github.kabirnayeem99.dumarketingstudent.util.Resource
 import io.github.kabirnayeem99.dumarketingstudent.util.adapters.FacultyDataAdapter
-import io.github.kabirnayeem99.dumarketingstudent.util.isDarkThemeOn
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.FacultyViewModel
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -51,7 +47,6 @@ class FacultyFragment : Fragment() {
     }
 
 
-
     private fun setUpFacultyRecyclerView() {
         binding.rvFaculty.apply {
             adapter = facultyDataAdapter
@@ -67,13 +62,13 @@ class FacultyFragment : Fragment() {
             when (resource) {
                 is Resource.Error -> {
                     Toast.makeText(context, "Could not get the data.", Toast.LENGTH_SHORT).show()
-                    Log.e(TAG, "setUpFacultyRecyclerView: ${resource.message}")
+                    Timber.e(resource.message)
                 }
                 is Resource.Success -> {
                     facultyDataAdapter.differ.submitList(resource.data)
                 }
                 else -> {
-                    Log.d(TAG, "setUpFacultyRecyclerView: loading...")
+                    Timber.d("loading..")
                 }
             }
         })

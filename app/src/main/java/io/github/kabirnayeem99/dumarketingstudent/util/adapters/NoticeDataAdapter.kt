@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.NoticeData
 import io.github.kabirnayeem99.dumarketingstudent.databinding.ListItemNoticeDataBinding
+import timber.log.Timber
 
 class NoticeDataAdapter(private val listener: (NoticeData) -> Unit) :
     RecyclerView.Adapter<NoticeDataAdapter.ViewHolder>() {
@@ -30,8 +31,7 @@ class NoticeDataAdapter(private val listener: (NoticeData) -> Unit) :
                     .load(noticeData.imageUrl)
                     .into(binding.ivRecentNotice)
             } catch (e: Exception) {
-                Log.e(TAG, "bind: ${e.message}")
-                e.printStackTrace()
+                Timber.e(e)
             }
         }
     }

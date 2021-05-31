@@ -1,7 +1,6 @@
 package io.github.kabirnayeem99.dumarketingstudent.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +19,7 @@ import io.github.kabirnayeem99.dumarketingstudent.util.adapters.NoticeDataAdapte
 import io.github.kabirnayeem99.dumarketingstudent.util.showSnackBar
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.NoticeViewModel
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
+import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -71,7 +71,7 @@ class NoticeFragment : Fragment() {
     private fun setUpNoticeData() {
         noticeViewModel.getNoticeListLiveData().observe(viewLifecycleOwner, { noticeDataList ->
             noticeDataAdapter.differ.submitList(noticeDataList)
-            Log.d(TAG, "setUpNoticeData: $noticeDataList")
+            Timber.d(noticeDataList.toString())
         })
     }
 

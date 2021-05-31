@@ -97,4 +97,7 @@ dependencies {
 
     // AnimatedBottomBar
     implementation 'nl.joery.animatedbottombar:library:1.1.0'
+
+    // Timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 }

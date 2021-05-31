@@ -1,6 +1,5 @@
 package io.github.kabirnayeem99.dumarketingstudent.util.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -9,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.FacultyData
 import io.github.kabirnayeem99.dumarketingstudent.databinding.ListItemFacultyBinding
+import timber.log.Timber
 
 class FacultyDataAdapter : RecyclerView.Adapter<FacultyDataAdapter.ViewHolder>() {
     inner class ViewHolder(val binding: ListItemFacultyBinding) :
@@ -25,7 +25,7 @@ class FacultyDataAdapter : RecyclerView.Adapter<FacultyDataAdapter.ViewHolder>()
                     .into(binding.ivProfileImage)
             } catch (e: Exception) {
                 e.printStackTrace()
-                Log.e(TAG, "bind: ${e.message}")
+                Timber.e(e)
             }
         }
     }

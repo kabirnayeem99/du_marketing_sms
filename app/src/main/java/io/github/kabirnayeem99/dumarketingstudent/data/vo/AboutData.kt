@@ -1,7 +1,7 @@
 package io.github.kabirnayeem99.dumarketingstudent.data.vo
 
-import android.util.Log
 import com.google.firebase.firestore.DocumentSnapshot
+import timber.log.Timber
 
 data class AboutData(
     var intro: String,
@@ -25,8 +25,7 @@ data class AboutData(
                 lat = this["lat"].toString().toDouble()
                 long = this["long"].toString().toDouble()
             } catch (e: Exception) {
-                Log.e(TAG, "toInformationData: ${e.message}")
-                e.printStackTrace()
+                Timber.e(e)
             }
 
             val intro = this["intro"].toString()

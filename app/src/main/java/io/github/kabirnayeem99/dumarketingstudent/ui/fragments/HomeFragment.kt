@@ -1,7 +1,5 @@
 package io.github.kabirnayeem99.dumarketingstudent.ui.fragments
 
-import android.app.AlertDialog
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingstudent.R
@@ -24,7 +23,6 @@ import io.github.kabirnayeem99.dumarketingstudent.util.Preferences
 import io.github.kabirnayeem99.dumarketingstudent.util.Resource
 import io.github.kabirnayeem99.dumarketingstudent.util.adapters.NoticeDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.util.adapters.RoutineDataAdapter
-import io.github.kabirnayeem99.dumarketingstudent.util.isDarkThemeOn
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.GalleryViewModel
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.NoticeViewModel
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.RoutineViewModel
@@ -75,7 +73,6 @@ class HomeFragment : Fragment() {
     }
 
 
-
     private fun showAlertDialog() {
         if (pref.getBatchYear().isNullOrBlank() || pref.getBatchYear() == "0") {
 
@@ -89,7 +86,7 @@ class HomeFragment : Fragment() {
             val input = viewInflated.findViewById(R.id.input) as TextInputLayout
 
 
-            val dialogBuilder = AlertDialog.Builder(requireContext()).apply {
+            val dialogBuilder = MaterialAlertDialogBuilder(requireContext()).apply {
                 setTitle("In which year you are?")
                 setView(viewInflated)
                 setCancelable(false)

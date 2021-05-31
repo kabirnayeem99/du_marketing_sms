@@ -17,10 +17,8 @@ class EbookRepository @Inject constructor(var db: FirebaseFirestore) {
         db.collection(EBOOK_DB_REF).addSnapshotListener(
             EventListener { value, e ->
                 if (e != null) {
-
                     ebookLiveData.value =
                         Resource.Error(e.message ?: "Could not fetch from server.")
-
                     return@EventListener
                 }
 
