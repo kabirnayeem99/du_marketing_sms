@@ -67,6 +67,7 @@ class NoticeFragment : Fragment() {
         setUpNoticeData()
     }
 
+
     private fun setUpNoticeData() {
         noticeViewModel.getNoticeListLiveData().observe(viewLifecycleOwner, { noticeDataList ->
             noticeDataAdapter.differ.submitList(noticeDataList)

@@ -1,81 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mainDrawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
     android:fitsSystemWindows="true"
     tools:context=".ui.activities.MainActivity">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/ToolbarTheme"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:elevation="0sp">
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <fragment
-                android:id="@+id/fNavHost"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-                android:layout_width="0sp"
-                android:layout_height="0sp"
-                app:defaultNavHost="true"
-                app:layout_constraintBottom_toTopOf="@id/bottomNavBar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:navGraph="@navigation/bottom_nav_graph" />
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:text="@string/app_name"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
-            <!--            <com.google.android.material.bottomnavigation.BottomNavigationView-->
-            <!--                android:id="@+id/bottomNavBar"-->
-            <!--                android:layout_width="0sp"-->
-            <!--                android:layout_height="48dp"-->
-            <!--                android:elevation="0sp"-->
-            <!--                android:padding="6sp"-->
-            <!--                app:elevation="0sp"-->
-            <!--                app:itemIconSize="28dp"-->
-            <!--                app:itemRippleColor="@null"-->
-            <!--                app:labelVisibilityMode="unlabeled"-->
-            <!--                app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"-->
-            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintStart_toStartOf="parent"-->
-            <!--                app:menu="@menu/bottom_nav_menu" />-->
+            <ImageView
+                android:id="@+id/ivMenuIcon"
+                android:layout_width="42sp"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="16sp"
+                android:padding="8sp"
+                android:src="@drawable/ic_fluent_info_24_filled" />
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
 
-            <nl.joery.animatedbottombar.AnimatedBottomBar
-                android:id="@+id/bottomNavBar"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:elevation="0sp"
-                app:abb_iconSize="28dp"
-                app:abb_indicatorAppearance="round"
-                app:abb_indicatorHeight="4dp"
-                app:abb_indicatorMargin="16dp"
-                app:abb_selectedIndex="0"
-                app:abb_selectedTabType="text"
-                app:abb_tabs="@menu/tabs"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navDrawerView"
-        style="@style/NavigationDrawer"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:elevation="0sp"
-        android:fitsSystemWindows="true"
-        app:elevation="0sp"
-        app:headerLayout="@layout/layout_nav_drawer_header"
-        app:itemIconPadding="16sp"
-        app:itemShapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Nav"
-        app:itemShapeInsetEnd="8sp"
-        app:itemShapeInsetStart="8sp"
-        app:menu="@menu/nav_drawer_menu" />
-</androidx.drawerlayout.widget.DrawerLayout>
+
+        <fragment
+            android:id="@+id/fNavHost"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="0sp"
+            android:layout_height="0sp"
+            android:layout_marginTop="?attr/actionBarSize"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toTopOf="@id/bottomNavBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navGraph="@navigation/bottom_nav_graph" />
+
+        <nl.joery.animatedbottombar.AnimatedBottomBar
+            android:id="@+id/bottomNavBar"
+            android:layout_width="match_parent"
+            android:layout_height="52sp"
+            android:elevation="0sp"
+            app:abb_iconSize="30sp"
+            app:abb_indicatorAppearance="round"
+            app:abb_indicatorHeight="4sp"
+            app:abb_indicatorMargin="16sp"
+            app:abb_selectedIndex="0"
+            app:abb_selectedTabType="text"
+            app:abb_tabs="@menu/tabs"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -22,8 +22,8 @@
         android:title="Faculties"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/aboutFragment"
-        android:icon="@drawable/ic_fluent_info_24_selector"
-        android:title="About"
+        android:id="@+id/ebookFragment"
+        android:icon="@drawable/ic_fluent_document_pdf_24_selector"
+        android:title="Books"
         app:showAsAction="ifRoom" />
 </menu>

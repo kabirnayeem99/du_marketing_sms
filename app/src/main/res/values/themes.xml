@@ -10,7 +10,7 @@
         <item name="colorSecondaryVariant">@color/yellow_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@android:color/white</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="snackbarStyle">@style/DUMarketingStudent_SnackbarStyle</item>
         <!-- Customize your theme here. -->
@@ -57,6 +57,23 @@
         <item name="cornerSizeTopLeft">36dp</item>
         <item name="cornerSizeBottomRight">0dp</item>
         <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
+
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="actionMenuTextColor">@color/black</item>
+        <item name="colorAccent">@color/green_500</item>
+        <item name="backgroundColor">@color/white</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="ActionBarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="actionMenuTextColor">@color/black</item>
+        <item name="colorAccent">@color/green_500</item>
+        <item name="backgroundColor">@color/white</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
 </resources>

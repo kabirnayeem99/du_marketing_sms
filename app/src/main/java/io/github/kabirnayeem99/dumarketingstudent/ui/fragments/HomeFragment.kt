@@ -1,6 +1,7 @@
 package io.github.kabirnayeem99.dumarketingstudent.ui.fragments
 
 import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -23,6 +24,7 @@ import io.github.kabirnayeem99.dumarketingstudent.util.Preferences
 import io.github.kabirnayeem99.dumarketingstudent.util.Resource
 import io.github.kabirnayeem99.dumarketingstudent.util.adapters.NoticeDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.util.adapters.RoutineDataAdapter
+import io.github.kabirnayeem99.dumarketingstudent.util.isDarkThemeOn
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.GalleryViewModel
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.NoticeViewModel
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.RoutineViewModel
@@ -71,6 +73,8 @@ class HomeFragment : Fragment() {
         setUpRoutineRecyclerView()
         setUpNoticeRecyclerView()
     }
+
+
 
     private fun showAlertDialog() {
         if (pref.getBatchYear().isNullOrBlank() || pref.getBatchYear() == "0") {

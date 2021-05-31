@@ -1,5 +1,6 @@
 package io.github.kabirnayeem99.dumarketingstudent.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,9 +12,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import io.github.kabirnayeem99.dumarketingstudent.R
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentFacultyBinding
+import io.github.kabirnayeem99.dumarketingstudent.ui.activities.MainActivity
 import io.github.kabirnayeem99.dumarketingstudent.util.Resource
 import io.github.kabirnayeem99.dumarketingstudent.util.adapters.FacultyDataAdapter
+import io.github.kabirnayeem99.dumarketingstudent.util.isDarkThemeOn
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.FacultyViewModel
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 import javax.inject.Inject
@@ -41,11 +45,12 @@ class FacultyFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.root.startAnimation(scale)
 
         setUpFacultyRecyclerView()
     }
+
+
 
     private fun setUpFacultyRecyclerView() {
         binding.rvFaculty.apply {

@@ -1,5 +1,6 @@
 package io.github.kabirnayeem99.dumarketingstudent.ui.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -15,9 +16,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingstudent.R
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.AboutData
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentAboutBinding
+import io.github.kabirnayeem99.dumarketingstudent.ui.activities.MainActivity
 import io.github.kabirnayeem99.dumarketingstudent.util.Constants.GMAIL_PACKAGE_NAME
 import io.github.kabirnayeem99.dumarketingstudent.util.Constants.GOOGLE_MAPS_PACKAGE_NAME
 import io.github.kabirnayeem99.dumarketingstudent.util.Resource
+import io.github.kabirnayeem99.dumarketingstudent.util.isDarkThemeOn
 import io.github.kabirnayeem99.dumarketingstudent.util.showSnackBar
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.AboutViewModel
 import java.util.*
@@ -51,6 +54,7 @@ class AboutFragment : Fragment() {
 
         binding.root.startAnimation(scale)
 
+
         aboutViewModel.getAboutData().observe(viewLifecycleOwner, { resource ->
             when (resource) {
                 is Resource.Error -> {
@@ -72,6 +76,9 @@ class AboutFragment : Fragment() {
             }
         })
     }
+
+
+
 
     private fun loadUi(aboutData: AboutData) {
         binding.tvAboutIntro.text = aboutData.intro
