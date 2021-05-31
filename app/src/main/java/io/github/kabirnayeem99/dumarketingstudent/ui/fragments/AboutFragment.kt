@@ -3,7 +3,6 @@ package io.github.kabirnayeem99.dumarketingstudent.ui.fragments
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -169,7 +168,7 @@ class AboutFragment : Fragment() {
                 )
             )
         } catch (e: Exception) {
-            Log.e(TAG, "navigateToPlayStore: $e")
+            Timber.e(e)
             showSnackBar("Could not find $packageName")
         }
     }

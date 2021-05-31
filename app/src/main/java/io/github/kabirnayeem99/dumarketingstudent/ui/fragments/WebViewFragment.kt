@@ -18,6 +18,11 @@ import java.io.ByteArrayOutputStream
 import java.io.InputStream
 import java.util.*
 
+
+/*
+Refer to: Enhance Android WebView Performance using Glide by Mudit Sen
+https://proandroiddev.com/enhance-android-webview-performance-using-glide-aba4bbc41bc7
+ */
 class WebViewFragment : Fragment() {
     private var _binding: FragmentWebViewBinding? = null
 
