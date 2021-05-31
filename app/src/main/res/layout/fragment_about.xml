@@ -64,6 +64,14 @@
                     android:layout_height="wrap_content"
                     android:padding="8sp"
                     android:src="@drawable/ic_fluent_map_24_selector" />
+
+
+                <ImageView
+                    android:id="@+id/ivWeb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8sp"
+                    android:src="@drawable/ic_fluent_globe_24_selector" />
             </LinearLayout>
 
             <TextView

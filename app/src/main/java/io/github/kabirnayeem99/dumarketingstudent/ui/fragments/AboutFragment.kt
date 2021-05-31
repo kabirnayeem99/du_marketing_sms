@@ -11,6 +11,7 @@ import android.view.animation.ScaleAnimation
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingstudent.R
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.AboutData
@@ -62,7 +63,7 @@ class AboutFragment : Fragment() {
                         Toast.LENGTH_LONG
                     )
                         .show()
-                    Timber.e(e)
+                    Timber.e(resource.message)
                 }
 
                 is Resource.Success -> {
@@ -81,6 +82,7 @@ class AboutFragment : Fragment() {
         setUpMapButton(aboutData.lat, aboutData.long)
         setUpMailButton(aboutData.email)
         setUpTelephoneButton(aboutData.telephone)
+        setUpWebViewButton()
     }
 
     private fun setUpTelephoneButton(telephoneNumber: String) {
@@ -90,7 +92,7 @@ class AboutFragment : Fragment() {
                 intent.data = Uri.parse("tel:$telephoneNumber")
                 startActivity(intent)
             } catch (e: Exception) {
-                Log.e(TAG, "setUpTelephoneButton: $e")
+                Timber.e(e)
                 showSnackBar(
                     "You are using a chromebook or a tablet." +
                             "\n" +
@@ -115,7 +117,7 @@ class AboutFragment : Fragment() {
 
                 startActivity(intent)
             } catch (e: Exception) {
-                Log.e(TAG, "setUpMailButton: $e")
+                Timber.e(e)
                 showSnackBar("You don't have a mail app installed.")
                     .apply {
                         anchorView = binding.snackbarPlacement
@@ -129,6 +131,13 @@ class AboutFragment : Fragment() {
         }
     }
 
+
+    private fun setUpWebViewButton() {
+        binding.ivWeb.setOnClickListener {
+            findNavController().navigate(R.id.toWebViewFragment)
+        }
+    }
+
     private fun setUpMapButton(lat: Double, long: Double) {
         binding.ivLocation.setOnClickListener {
             try {
@@ -137,7 +146,7 @@ class AboutFragment : Fragment() {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
                 startActivity(intent)
             } catch (e: Exception) {
-                Log.e(TAG, "setUpMapButton: $e")
+                Timber.e(e)
                 showSnackBar("You don't have Google Map installed.").apply {
                     anchorView = binding.snackbarPlacement
                     setAction("Install") {

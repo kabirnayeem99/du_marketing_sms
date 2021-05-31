@@ -16,7 +16,6 @@ import io.github.kabirnayeem99.dumarketingstudent.data.vo.NoticeData
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentNoticeBinding
 import io.github.kabirnayeem99.dumarketingstudent.databinding.LayoutNoticeDetailsBottomSheetBinding
 import io.github.kabirnayeem99.dumarketingstudent.util.adapters.NoticeDataAdapter
-import io.github.kabirnayeem99.dumarketingstudent.util.showSnackBar
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.NoticeViewModel
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 import timber.log.Timber
@@ -83,12 +82,11 @@ class NoticeFragment : Fragment() {
 
             if (noticeData.imageUrl.isNotBlank() || noticeData.imageUrl.isNotEmpty()) {
                 try {
+                    Glide.with(requireContext()).load(noticeData.imageUrl)
+                        .into(ivNoticeDetailedImage)
                     ivNoticeDetailedImage.visibility = View.VISIBLE
-                    context?.let { context ->
-                        Glide.with(context).load(noticeData.imageUrl).into(ivNoticeDetailedImage)
-                    }
                 } catch (e: Exception) {
-                    showSnackBar("Error occured. Notification could not be shown.")
+                    ivNoticeDetailedImage.visibility = View.GONE
                 }
             }
 

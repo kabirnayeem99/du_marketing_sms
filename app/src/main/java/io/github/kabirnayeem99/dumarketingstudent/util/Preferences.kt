@@ -5,6 +5,9 @@ import android.content.SharedPreferences
 import io.github.kabirnayeem99.dumarketingstudent.util.enums.BatchYear
 
 
+/**
+ * Class for shared preferences
+ */
 class Preferences(context: Context) {
 
     private var sharedPreferences =
@@ -25,6 +28,5 @@ class Preferences(context: Context) {
     fun getBatchYear(): String? {
         return sharedPreferences.getString(Config.BATCH_YEAR, BatchYear.Null.value)
     }
-
 
 }

@@ -1,6 +1,5 @@
 package io.github.kabirnayeem99.dumarketingstudent.util.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -76,8 +75,4 @@ class NoticeDataAdapter(private val listener: (NoticeData) -> Unit) :
 
     override fun getItemCount() = differ.currentList.size
 
-
-    companion object {
-        private const val TAG = "NoticeDataAdapter"
-    }
 }
