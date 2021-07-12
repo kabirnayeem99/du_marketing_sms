@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_card_elevation_0_4dp">0.40dp</dimen>
+</resources>

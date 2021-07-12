@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="12sp"
+    android:padding="12sp"
+    app:cardCornerRadius="16sp"
+    app:cardElevation="0sp"
+    app:strokeColor="@color/blue_grey_200_transparent"
+    app:strokeWidth="0.8sp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/tvNoticeTitle"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_margin="12sp"
+            android:layout_marginStart="12sp"
+            android:layout_marginEnd="40dp"
+            android:singleLine="false"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toTopOf="@+id/ivNoticeImage"
+            app:layout_constraintEnd_toStartOf="@+id/btnDeleteNotice"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnDeleteNotice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12sp"
+            android:backgroundTint="@color/transparent"
+            android:backgroundTintMode="multiply"
+            android:contentDescription="Delete Notice Button"
+            android:src="@drawable/ic_fluent_delete_24_selector"
+            app:layout_constraintBottom_toTopOf="@+id/ivNoticeImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivNoticeImage"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_margin="6sp"
+            android:layout_marginHorizontal="12sp"
+            android:layout_marginBottom="12sp"
+            android:contentDescription="Notice Image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNoticeTitle" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

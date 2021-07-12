@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">DU Marketing Admin</string>
+    <string name="tf_hint_name">Name</string>
+    <string name="tf_hint_email">Email</string>
+    <string name="tf_hint_phone">Phone</string>
+    <string name="tf_hint_title">Title…</string>
+    <string name="tf_hint_ebook_name">Ebook Name…</string>
+    <string name="tf_hint_subject_name">Subject Name</string>
+    <string name="tf_hint_faculty_name">Faculty Name</string>
+    <string name="tf_hint_location">Class Location</string>
+    <string name="title_activity_authintication">AuthinticationActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="tf_hint_user_email">Email Address</string>
+    <string name="tf_hint_user_password">Password</string>
+</resources>

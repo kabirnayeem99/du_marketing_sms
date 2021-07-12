@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    tools:context=".ui.activities.dashboard.DashboardActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:gravity="center_horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TableRow
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcNotice"
+                    android:layout_width="140dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="12dp"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:onClick="onMcNoticeClick"
+                    android:padding="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="@dimen/default_card_elevation_0_4dp"
+                    app:layout_constraintBottom_toTopOf="@+id/mcEbook"
+                    app:layout_constraintEnd_toStartOf="@+id/mcGalleryImage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="@color/blue_grey_200_transparent"
+                    app:strokeWidth="1sp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center">
+
+                        <ImageView
+                            android:id="@+id/ivIconNotice"
+                            android:layout_width="96dp"
+                            android:layout_height="96dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="8dp"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_notice"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            style="@style/TextAppearance.AppCompat.Large"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="12dp"
+                            android:text="Notice"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/ivIconNotice" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcGalleryImage"
+                    android:layout_width="140dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="12dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:onClick="onMcGalleryClick"
+                    android:padding="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="@dimen/default_card_elevation_0_4dp"
+                    app:layout_constraintBottom_toTopOf="@+id/mcFaculty"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/mcNotice"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="@color/blue_grey_200_transparent"
+                    app:strokeWidth="1sp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center">
+
+                        <ImageView
+                            android:id="@+id/ivIconAddGalleryImage"
+                            android:layout_width="96dp"
+                            android:layout_height="96dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="8dp"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_gallery"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            style="@style/TextAppearance.AppCompat.Large"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="12dp"
+                            android:text="Gallery"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/ivIconAddGalleryImage" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+            </TableRow>
+
+            <TableRow
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcEbook"
+                    android:layout_width="140dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="12dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:onClick="onMcEbookClick"
+                    android:padding="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="@dimen/default_card_elevation_0_4dp"
+                    app:layout_constraintBottom_toTopOf="@+id/mcDeleteNotice"
+                    app:layout_constraintEnd_toStartOf="@+id/mcFaculty"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/mcNotice"
+                    app:strokeColor="@color/blue_grey_200_transparent"
+                    app:strokeWidth="1sp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center">
+
+                        <ImageView
+                            android:id="@+id/ivIconAddEbook"
+                            android:layout_width="96dp"
+                            android:layout_height="96dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="8sp"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_ebook"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            style="@style/TextAppearance.AppCompat.Large"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="12sp"
+                            android:text="Ebook"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/ivIconAddEbook" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcFaculty"
+                    android:layout_width="140sp"
+                    android:layout_height="150sp"
+                    android:layout_margin="12sp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:onClick="onMcFacultyClick"
+                    android:padding="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="@dimen/default_card_elevation_0_4dp"
+                    app:layout_constraintBottom_toTopOf="@+id/mcDeleteNotice"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/mcEbook"
+                    app:layout_constraintTop_toBottomOf="@+id/mcGalleryImage"
+                    app:strokeColor="@color/blue_grey_200_transparent"
+                    app:strokeWidth="1sp">
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center">
+
+                        <ImageView
+                            android:id="@+id/ivIconUpdateFaculty"
+                            android:layout_width="96dp"
+                            android:layout_height="96dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="8dp"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_faculty"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            style="@style/TextAppearance.AppCompat.Large"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="12dp"
+                            android:text="Faculty"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/ivIconUpdateFaculty" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+            </TableRow>
+
+            <TableRow
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="140dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="12dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:onClick="onMcRoutineClick"
+                    android:padding="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="@dimen/default_card_elevation_0_4dp"
+                    app:layout_constraintBottom_toTopOf="@+id/mcDeleteNotice"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/mcEbook"
+                    app:layout_constraintTop_toBottomOf="@+id/mcGalleryImage"
+                    app:strokeColor="@color/blue_grey_200_transparent"
+                    app:strokeWidth="1sp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center">
+
+                        <ImageView
+                            android:id="@+id/ivIconRoutine"
+                            android:layout_width="96dp"
+                            android:layout_height="96dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="8dp"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_alarm"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            style="@style/TextAppearance.AppCompat.Large"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="12dp"
+                            android:text="Routine"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/ivIconRoutine" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="140dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="12dp"
+                    android:layout_marginHorizontal="4dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:onClick="onMcInfoClick"
+                    android:padding="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="@dimen/default_card_elevation_0_4dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/mcEbook"
+                    app:strokeColor="@color/blue_grey_200_transparent"
+                    app:strokeWidth="1sp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center">
+
+                        <ImageView
+                            android:id="@+id/ivIconInfo"
+                            android:layout_width="96dp"
+                            android:layout_height="96dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="8dp"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_info"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <TextView
+                            style="@style/TextAppearance.AppCompat.Large"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="12dp"
+                            android:text="Information"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/ivIconInfo" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </TableRow>
+
+        </TableLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

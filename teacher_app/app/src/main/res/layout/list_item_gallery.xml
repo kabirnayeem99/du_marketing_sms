@@ -1,0 +1,50 @@
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="170sp"
+    android:layout_height="130sp"
+    android:layout_margin="8sp"
+    app:cardCornerRadius="8sp"
+    app:cardElevation="0sp"
+    app:strokeColor="@color/blue_grey_200_transparent"
+    app:strokeWidth="0.8sp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_background_overlay">
+
+        <ImageView
+            android:id="@+id/ivGalleryImage"
+            android:layout_width="170sp"
+            android:layout_height="130sp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher_round"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvImageCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="4sp"
+            android:padding="8sp"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/ivBtnDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="4sp"
+            android:padding="8sp"
+            android:src="@drawable/ic_fluent_delete_24_selector"
+            app:tint="@color/red" />
+    </RelativeLayout>
+</com.google.android.material.card.MaterialCardView>

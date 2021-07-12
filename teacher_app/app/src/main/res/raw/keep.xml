@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) Microsoft Corporation.
+  ~ Licensed under the MIT license.
+  -->
+
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:discard="@drawable/ic_fluent_*"
+    tools:shrinkMode="strict" /><!--
+        Save this file at your project's res/raw directory to exclude unused icons in build time.
+    -->
