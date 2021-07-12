@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="green_200">#FF9bdc9a</color>
+    <color name="green_500">#FF00ba25</color>
+    <color name="green_700">#FF009809</color>
+    <color name="yellow_200">#FFeeec9b</color>
+    <color name="yellow_700">#FFbbb12c</color>
+    <color name="black">#FF000000</color>
+    <color name="card_view_dark">#181818</color>
+    <color name="white">#FAFEF6</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
+    <color name="light_blue_A200">#FF40C4FF</color>
+    <color name="light_blue_A400">#FF00B0FF</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="semi_transparent_dark_grey">#55aaaaaa</color>
+</resources>

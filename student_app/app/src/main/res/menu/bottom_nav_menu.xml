@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_fluent_home_24_selector"
+        android:title="Home"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/noticeFragment"
+        android:icon="@drawable/ic_fluent_service_bell_24_selector"
+        android:title="Notice"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/galleryFragment"
+        android:icon="@drawable/ic_fluent_image_24_selector"
+        android:title="Gallery"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/facultyFragment"
+        android:icon="@drawable/ic_fluent_people_24_selector"
+        android:title="Faculties"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/aboutFragment"
+        android:icon="@drawable/ic_fluent_info_24_selector"
+        android:title="About"
+        app:showAsAction="ifRoom" />
+</menu>

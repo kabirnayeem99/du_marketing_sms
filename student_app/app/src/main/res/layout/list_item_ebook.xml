@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8sp"
+    android:padding="16sp"
+    app:strokeColor="@color/semi_transparent_dark_grey"
+    app:strokeWidth="@dimen/stroke_line_width_0_8_sp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_margin_8_sp"
+            android:layout_marginEnd="4sp"
+            android:layout_weight="10"
+            android:src="@drawable/ic_fluent_document_pdf_24_selector" />
+
+        <TextView
+            android:id="@+id/tvEbookName"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_margin_8_sp"
+            android:layout_weight="90"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/ivDownloadButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_margin_8_sp"
+            android:layout_weight="10"
+            android:src="@drawable/ic_fluent_arrow_download_24_selector" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
