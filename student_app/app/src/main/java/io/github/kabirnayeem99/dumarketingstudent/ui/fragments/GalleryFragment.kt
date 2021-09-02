@@ -3,8 +3,6 @@ package io.github.kabirnayeem99.dumarketingstudent.ui.fragments
 import android.os.Bundle
 import android.view.View
 import android.view.animation.ScaleAnimation
-import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.observe
 import androidx.navigation.findNavController
@@ -15,6 +13,7 @@ import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentGalleryBin
 import io.github.kabirnayeem99.dumarketingstudent.ui.adapters.GalleryDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.ui.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingstudent.util.Resource
+import io.github.kabirnayeem99.dumarketingstudent.util.showSnackBar
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.GalleryViewModel
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 import timber.log.Timber
@@ -33,10 +32,9 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>() {
 
     private val galleryAdapter: GalleryDataAdapter by lazy {
         GalleryDataAdapter {
-
-            val bundle = bundleOf("imageUrl" to it.imageUrl)
+            galleryViewModel.setSelectedImageUrl(it.imageUrl)
             binding.root.findNavController()
-                .navigate(R.id.action_galleryFragment_to_imageDetailsFragment, bundle)
+                .navigate(R.id.action_galleryFragment_to_imageDetailsFragment)
         }
     }
 
@@ -63,13 +61,13 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>() {
             when (resources) {
                 is Resource.Error -> {
                     Timber.e(resources.message)
-                    Toast.makeText(context, "Could not get the images.", Toast.LENGTH_SHORT).show()
+                    showSnackBar("Could not get the images.").show()
                 }
                 is Resource.Success -> {
                     galleryAdapter.differ.submitList(resources.data)
                 }
                 else -> {
-
+                    Timber.d("Loading the galleries.")
                 }
             }
         }

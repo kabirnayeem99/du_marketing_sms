@@ -3,8 +3,6 @@ package io.github.kabirnayeem99.dumarketingstudent.ui.fragments
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.animation.ScaleAnimation
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +21,8 @@ import io.github.kabirnayeem99.dumarketingstudent.ui.adapters.RoutineDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.ui.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingstudent.util.Preferences
 import io.github.kabirnayeem99.dumarketingstudent.util.Resource
+import io.github.kabirnayeem99.dumarketingstudent.util.showSnackBar
+import io.github.kabirnayeem99.dumarketingstudent.util.showToast
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.GalleryViewModel
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.NoticeViewModel
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.RoutineViewModel
@@ -42,8 +42,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private val noticeViewModel: NoticeViewModel by activityViewModels()
 
 
-
-
     @Inject
     lateinit var routineDataAdapter: RoutineDataAdapter
 
@@ -60,9 +58,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         showAlertDialog()
-
         setUpGallerySlider()
         setUpRoutine()
         setUpLatestNotice()
@@ -78,7 +74,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 .inflate(
                     R.layout.dialog_batch_year,
                     view?.findViewById(android.R.id.content),
-                    false
+                    true,
                 )
 
             val input = viewInflated.findViewById(R.id.input) as TextInputLayout
@@ -96,15 +92,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                         pref.setBatchYear(text)
                         dialog.dismiss()
                     } else {
-                        Toast.makeText(context, "Should be between 1 to 4.", Toast.LENGTH_SHORT)
-                            .show()
+                        showToast("You should select a value ranging from 1 to 4")
                         input.error = "Should be between 1 to 4."
+                        showAlertDialog()
                     }
                 }
                 setNegativeButton("Cancel") { dialog, _ ->
                     dialog.dismiss()
                     (activity as MainActivity).onBackPressed()
-                    Toast.makeText(context, "You must select your year.", Toast.LENGTH_SHORT).show()
+                    showToast("To use this application, you must select the batch you are studying.")
                 }
             }
 
@@ -142,7 +138,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     resource.data?.let { binding.galleryImageSlider.setImageList(it) }
                 }
                 is Resource.Error -> {
-                    Toast.makeText(context, "Could not get the images.", Toast.LENGTH_SHORT).show()
+                    binding.galleryImageSlider.visibility = View.GONE
                     Timber.e("setUpGallerySlider: ${resource.message}")
                 }
             }
@@ -155,8 +151,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             routineViewModel.getRoutine(batchYear).observe(viewLifecycleOwner) { resource ->
                 when (resource) {
                     is Resource.Error -> {
-                        Toast.makeText(context, "Could not get the data.", Toast.LENGTH_SHORT)
-                            .show()
+                        showSnackBar("Could not load the routines for you, maybe you have not selected your batch.")
                         Timber.e("setUpRoutine: ${resource.message}")
                     }
                     else -> {

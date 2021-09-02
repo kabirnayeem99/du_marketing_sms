@@ -4,10 +4,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.view.animation.ScaleAnimation
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,7 +20,6 @@ import io.github.kabirnayeem99.dumarketingstudent.util.showSnackBar
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.AboutViewModel
 import timber.log.Timber
 import java.util.*
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class AboutFragment : BaseFragment<FragmentAboutBinding>() {
@@ -36,16 +33,14 @@ class AboutFragment : BaseFragment<FragmentAboutBinding>() {
     override val layout: Int
         get() = R.layout.fragment_about
 
-    @Inject
-    lateinit var scale: ScaleAnimation
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getAboutData()
+    }
 
-        binding.root.startAnimation(scale)
 
-
+    private fun getAboutData() {
         aboutViewModel.getAboutData().observe(viewLifecycleOwner) { resource ->
             when (resource) {
                 is Resource.Error -> {
@@ -67,7 +62,6 @@ class AboutFragment : BaseFragment<FragmentAboutBinding>() {
             }
         }
     }
-
 
     private fun loadUi(aboutData: AboutData) {
         binding.tvAboutIntro.text = aboutData.intro
@@ -142,9 +136,7 @@ class AboutFragment : BaseFragment<FragmentAboutBinding>() {
                 showSnackBar("You don't have Google Map installed.").apply {
                     anchorView = binding.snackbarPlacement
                     setAction("Install") {
-
                         navigateToPlayStore(GOOGLE_MAPS_PACKAGE_NAME)
-
                     }
                     show()
                 }

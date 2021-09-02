@@ -1,9 +1,6 @@
 package io.github.kabirnayeem99.dumarketingstudent.ui.activities
 
 import android.os.Bundle
-import android.view.animation.ScaleAnimation
-import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -12,12 +9,9 @@ import io.github.kabirnayeem99.dumarketingstudent.R
 import io.github.kabirnayeem99.dumarketingstudent.databinding.ActivityMainBinding
 import io.github.kabirnayeem99.dumarketingstudent.ui.base.BaseActivity
 import io.github.kabirnayeem99.dumarketingstudent.util.isDarkThemeOn
-import io.github.kabirnayeem99.dumarketingstudent.viewmodel.GalleryViewModel
-import io.github.kabirnayeem99.dumarketingstudent.viewmodel.NoticeViewModel
-import io.github.kabirnayeem99.dumarketingstudent.viewmodel.RoutineViewModel
+import io.github.kabirnayeem99.dumarketingstudent.util.showToast
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import timber.log.Timber
-import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -30,31 +24,31 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     lateinit var bottomNavBar: AnimatedBottomBar
     lateinit var navController: NavController
 
-    var isInHome = true
-
-    @Inject
-    lateinit var scale: ScaleAnimation
-
-    val galleryViewModel: GalleryViewModel by viewModels()
-    val routineViewModel: RoutineViewModel by viewModels()
-    val noticeViewModel: NoticeViewModel by viewModels()
-
+    var isAtHome = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setUpToolbar()
+        setUpNavigation()
         setUpAnimatedBottomBar()
 
 
+    }
+
+    private fun setUpNavigation() {
+        setUpAnimatedBottomBar()
+        setUpAboutNavigation()
+    }
+
+    private fun setUpAboutNavigation() {
         binding.ivMenuIcon.setOnClickListener {
-            Toast.makeText(this, "About Info Should be shown", Toast.LENGTH_SHORT).show()
+            showToast("About Info Should be shown")
             navController.navigate(R.id.toAboutFragment)
-            isInHome = false
+            isAtHome = false
             changeBottomBarBackgroundColor()
             changeAppbarTitle("About")
         }
     }
-
 
     private fun changeAppbarTitle(text: String) {
         binding.toolbarTitle.text = text
@@ -69,7 +63,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private fun setUpAnimatedBottomBar() {
         bottomNavBar = binding.bottomNavBar
-        bottomNavBar.startAnimation(scale)
         changeBottomBarBackgroundColor()
 
         val navHostFragment =
@@ -82,33 +75,33 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             when (tab.id) {
                 R.id.homeFragment -> {
                     navController.navigate(R.id.toHomeFragment)
-                    isInHome = true
+                    isAtHome = true
                     changeBottomBarBackgroundColor()
                     changeAppbarTitle("Home")
                 }
                 R.id.ebookFragment -> {
                     navController.navigate(R.id.toEbookFragment)
-                    isInHome = false
+                    isAtHome = false
                     changeBottomBarBackgroundColor()
                     changeAppbarTitle("Ebooks")
 
                 }
                 R.id.noticeFragment -> {
                     navController.navigate(R.id.toNoticeFragment)
-                    isInHome = false
+                    isAtHome = false
                     changeBottomBarBackgroundColor()
                     changeAppbarTitle("Notice")
                 }
                 R.id.facultyFragment -> {
                     navController.navigate(R.id.toFacultyFragment)
-                    isInHome = false
+                    isAtHome = false
                     changeBottomBarBackgroundColor()
                     changeAppbarTitle("Faculty")
 
                 }
                 R.id.galleryFragment -> {
                     navController.navigate(R.id.toGalleryFragment)
-                    isInHome = false
+                    isAtHome = false
                     changeBottomBarBackgroundColor()
                     changeAppbarTitle("Gallery")
                 }
@@ -129,7 +122,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         try {
             if (isDarkThemeOn) {
-                if (isInHome) {
+                if (isAtHome) {
                     bottomNavBar.setBackgroundColor(resources.getColor(R.color.card_view_dark))
                 } else {
                     bottomNavBar.setBackgroundColor(resources.getColor(R.color.black))
@@ -143,8 +136,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun onBackPressed() {
-
-        if (isInHome) {
+        if (isAtHome) {
             finish()
         } else {
             bottomNavBar.selectTabAt(0)
