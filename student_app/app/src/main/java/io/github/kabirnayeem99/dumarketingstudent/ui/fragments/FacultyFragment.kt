@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.ScaleAnimation
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,14 +29,10 @@ class FacultyFragment : BaseFragment<FragmentFacultyBinding>() {
         FacultyDataAdapter()
     }
 
-    @Inject
-    lateinit var scale: ScaleAnimation
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.root.startAnimation(scale)
-
         setUpFacultyRecyclerView()
     }
 
@@ -68,7 +65,7 @@ class FacultyFragment : BaseFragment<FragmentFacultyBinding>() {
 
     }
 
-    private val facultyViewModel: FacultyViewModel by viewModels()
+    private val facultyViewModel: FacultyViewModel by activityViewModels()
 
 
 }

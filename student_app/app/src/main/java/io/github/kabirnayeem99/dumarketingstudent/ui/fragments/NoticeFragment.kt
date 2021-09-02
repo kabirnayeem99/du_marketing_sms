@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.ScaleAnimation
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -14,8 +14,8 @@ import io.github.kabirnayeem99.dumarketingstudent.R
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.NoticeData
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentNoticeBinding
 import io.github.kabirnayeem99.dumarketingstudent.databinding.LayoutNoticeDetailsBottomSheetBinding
-import io.github.kabirnayeem99.dumarketingstudent.ui.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingstudent.ui.adapters.NoticeDataAdapter
+import io.github.kabirnayeem99.dumarketingstudent.ui.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.NoticeViewModel
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 import timber.log.Timber
@@ -32,7 +32,7 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>() {
     @Inject
     lateinit var scale: ScaleAnimation
 
-    private val noticeViewModel: NoticeViewModel by viewModels()
+    private val noticeViewModel: NoticeViewModel by activityViewModels()
 
     private val noticeDataAdapter: NoticeDataAdapter by lazy {
         NoticeDataAdapter {

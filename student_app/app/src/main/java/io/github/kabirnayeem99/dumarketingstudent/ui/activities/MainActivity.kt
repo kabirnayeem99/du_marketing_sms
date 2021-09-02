@@ -116,7 +116,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
 
         binding.bottomNavBar.onTabReselected = { tab ->
-            Toast.makeText(this, "You are already in ${tab.title}", Toast.LENGTH_SHORT).show()
+            Timber.e("The user has selected $tab again")
         }
     }
 

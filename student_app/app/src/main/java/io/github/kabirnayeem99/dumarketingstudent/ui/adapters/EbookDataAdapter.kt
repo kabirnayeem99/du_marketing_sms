@@ -12,14 +12,33 @@ import io.github.kabirnayeem99.dumarketingstudent.databinding.ListItemEbookBindi
 class EbookDataAdapter(private val listener: (EbookData) -> Unit) :
     RecyclerView.Adapter<EbookDataAdapter.ViewHolder>() {
 
+    private var shouldShowLoading: Boolean = false
+
+    fun changeLoadingState(showLoading: Boolean) {
+        shouldShowLoading = showLoading
+        notifyDataSetChanged()
+    }
+
     inner class ViewHolder(private val binding: ListItemEbookBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        private fun showLoading(shouldShowLoading: Boolean) {
+            if (shouldShowLoading) {
+                binding.pbDownloadingIndicator.visibility = View.VISIBLE
+            } else {
+                binding.pbDownloadingIndicator.visibility = View.INVISIBLE
+            }
+        }
+
         fun bind(ebookData: EbookData) {
             binding.tvEbookName.text = ebookData.title
+
+            showLoading(shouldShowLoading)
+
             binding.ivDownloadButton.setOnClickListener {
                 listener(ebookData)
-                binding.ivDownloadButton.visibility = View.GONE
+                shouldShowLoading = true
+                showLoading(shouldShowLoading)
             }
         }
     }

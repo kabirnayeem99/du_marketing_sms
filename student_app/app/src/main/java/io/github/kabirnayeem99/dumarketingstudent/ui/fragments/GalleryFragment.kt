@@ -5,16 +5,16 @@ import android.view.View
 import android.view.animation.ScaleAnimation
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingstudent.R
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentGalleryBinding
-import io.github.kabirnayeem99.dumarketingstudent.ui.activities.MainActivity
+import io.github.kabirnayeem99.dumarketingstudent.ui.adapters.GalleryDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.ui.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingstudent.util.Resource
-import io.github.kabirnayeem99.dumarketingstudent.ui.adapters.GalleryDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.GalleryViewModel
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 import timber.log.Timber
@@ -26,9 +26,7 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>() {
     override val layout: Int
         get() = R.layout.fragment_gallery
 
-    private val galleryViewModel: GalleryViewModel by lazy {
-        (activity as MainActivity).galleryViewModel
-    }
+    private val galleryViewModel: GalleryViewModel by activityViewModels()
 
     @Inject
     lateinit var scale: ScaleAnimation
@@ -44,7 +42,6 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.root.startAnimation(scale)
         setUpRecyclerView()
     }
 

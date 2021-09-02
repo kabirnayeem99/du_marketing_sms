@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.ScaleAnimation
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -17,11 +18,11 @@ import io.github.kabirnayeem99.dumarketingstudent.data.vo.NoticeData
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentHomeBinding
 import io.github.kabirnayeem99.dumarketingstudent.databinding.LayoutNoticeDetailsBottomSheetBinding
 import io.github.kabirnayeem99.dumarketingstudent.ui.activities.MainActivity
+import io.github.kabirnayeem99.dumarketingstudent.ui.adapters.NoticeDataAdapter
+import io.github.kabirnayeem99.dumarketingstudent.ui.adapters.RoutineDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.ui.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingstudent.util.Preferences
 import io.github.kabirnayeem99.dumarketingstudent.util.Resource
-import io.github.kabirnayeem99.dumarketingstudent.ui.adapters.NoticeDataAdapter
-import io.github.kabirnayeem99.dumarketingstudent.ui.adapters.RoutineDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.GalleryViewModel
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.NoticeViewModel
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.RoutineViewModel
@@ -34,21 +35,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override val layout: Int
         get() = R.layout.fragment_home
 
-    private val galleryViewModel: GalleryViewModel by lazy {
-        (activity as MainActivity).galleryViewModel
-    }
+    private val galleryViewModel: GalleryViewModel by activityViewModels()
 
-    private val routineViewModel: RoutineViewModel by lazy {
-        (activity as MainActivity).routineViewModel
-    }
+    private val routineViewModel: RoutineViewModel by activityViewModels()
 
-    private val noticeViewModel: NoticeViewModel by lazy {
-        (activity as MainActivity).noticeViewModel
-    }
+    private val noticeViewModel: NoticeViewModel by activityViewModels()
 
 
-    @Inject
-    lateinit var scale: ScaleAnimation
+
 
     @Inject
     lateinit var routineDataAdapter: RoutineDataAdapter
@@ -197,7 +191,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         context?.let { ctxt -> BottomSheetDialog(ctxt, R.style.BottomSheetDialogTheme) }
             ?.apply {
                 setContentView(sheet.root)
-                sheet.root.startAnimation(scale)
                 sheet.btnCancelNoticeDetailed.setOnClickListener {
                     dismiss()
                 }
