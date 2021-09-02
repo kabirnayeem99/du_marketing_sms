@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.firebase:firebase-firestore:23.0.3@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6ab821edff0ee333ab0bb874d6ab856d/jetified-firebase-firestore-23.0.3/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7aacd49f2132e1e6bfa7847c61eb867a/jetified-firebase-firestore-23.0.3/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/94c1313b715a478cf90f2342a3905b7d/jetified-firebase-firestore-23.0.3/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7878ae54117a0fb2882ad4d2b98b2957/transformed/jetified-firebase-firestore-23.0.3/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b319631e81cc6a92598942be3e32e7bd/transformed/jetified-firebase-firestore-23.0.3/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5b221451da537cc877d568a47d641cfb/jetified-firebase-firestore-23.0.3/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/d05659f0f2cf680896d337ec79175653/transformed/jetified-firebase-firestore-23.0.3/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/d05659f0f2cf680896d337ec79175653/transformed/jetified-firebase-firestore-23.0.3/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/d05659f0f2cf680896d337ec79175653/transformed/jetified-firebase-firestore-23.0.3/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-firestore/23.0.3/e0a35744124e1ac4a50f470d32e8cc5b19b78209/firebase-firestore-23.0.3-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-firestore/23.0.3/f00e9b79aebc756f913f5eacb38e81a58dca62e9/firebase-firestore-23.0.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="Gradle: io.github.everythingme:overscroll-decor-android:1.1.1@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/25de8d65bd3b640eb79f6e58f64f93a9/jetified-overscroll-decor-android-1.1.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2cbef52c016a25958560b033d9166457/jetified-overscroll-decor-android-1.1.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3f514810da3725af2b8dedb02f68b42e/jetified-overscroll-decor-android-1.1.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e8ba895d7f880a6ab748451b3b629bf7/transformed/jetified-overscroll-decor-android-1.1.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b3e6751c3bfcd83c2c8e04a5a3a7c98e/transformed/jetified-overscroll-decor-android-1.1.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/249806db2515a74796a82ceb432559bc/jetified-overscroll-decor-android-1.1.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/afc830427fff850192690ffd098e302b/transformed/jetified-overscroll-decor-android-1.1.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/afc830427fff850192690ffd098e302b/transformed/jetified-overscroll-decor-android-1.1.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/afc830427fff850192690ffd098e302b/transformed/jetified-overscroll-decor-android-1.1.1/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.everythingme/overscroll-decor-android/1.1.1/2c97d7d409f809f23192b5f813a854bbf01d309d/overscroll-decor-android-1.1.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.everythingme/overscroll-decor-android/1.1.1/7f732e9f0f70e8b1035f7e9133538bfcb75df033/overscroll-decor-android-1.1.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

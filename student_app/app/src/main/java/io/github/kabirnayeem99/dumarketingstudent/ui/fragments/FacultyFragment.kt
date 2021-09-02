@@ -1,28 +1,29 @@
 package io.github.kabirnayeem99.dumarketingstudent.ui.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.ScaleAnimation
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import io.github.kabirnayeem99.dumarketingstudent.R
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentFacultyBinding
+import io.github.kabirnayeem99.dumarketingstudent.ui.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingstudent.util.Resource
-import io.github.kabirnayeem99.dumarketingstudent.util.adapters.FacultyDataAdapter
+import io.github.kabirnayeem99.dumarketingstudent.ui.adapters.FacultyDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.FacultyViewModel
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class FacultyFragment : Fragment() {
+class FacultyFragment : BaseFragment<FragmentFacultyBinding>() {
 
-    private var _binding: FragmentFacultyBinding? = null
-    private val binding get() = _binding!!
+    override val layout: Int
+        get() = R.layout.fragment_faculty
+
     private val facultyDataAdapter: FacultyDataAdapter by lazy {
         FacultyDataAdapter()
     }
@@ -30,14 +31,6 @@ class FacultyFragment : Fragment() {
     @Inject
     lateinit var scale: ScaleAnimation
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentFacultyBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -58,7 +51,7 @@ class FacultyFragment : Fragment() {
             )
         }
 
-        facultyViewModel.getAllFacultyList().observe(viewLifecycleOwner, { resource ->
+        facultyViewModel.getAllFacultyList().observe(viewLifecycleOwner) { resource ->
             when (resource) {
                 is Resource.Error -> {
                     Toast.makeText(context, "Could not get the data.", Toast.LENGTH_SHORT).show()
@@ -71,18 +64,11 @@ class FacultyFragment : Fragment() {
                     Timber.d("loading..")
                 }
             }
-        })
+        }
 
     }
 
     private val facultyViewModel: FacultyViewModel by viewModels()
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 
-    companion object {
-        private const val TAG = "FacultyFragment"
-    }
 }

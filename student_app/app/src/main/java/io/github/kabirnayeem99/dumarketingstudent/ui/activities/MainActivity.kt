@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.view.animation.ScaleAnimation
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingstudent.R
 import io.github.kabirnayeem99.dumarketingstudent.databinding.ActivityMainBinding
+import io.github.kabirnayeem99.dumarketingstudent.ui.base.BaseActivity
 import io.github.kabirnayeem99.dumarketingstudent.util.isDarkThemeOn
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.GalleryViewModel
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.NoticeViewModel
@@ -21,9 +21,12 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding>() {
 
-    private lateinit var binding: ActivityMainBinding
+
+    override val layout: Int
+        get() = R.layout.activity_main
+
     lateinit var bottomNavBar: AnimatedBottomBar
     lateinit var navController: NavController
 
@@ -32,7 +35,6 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var scale: ScaleAnimation
 
-
     val galleryViewModel: GalleryViewModel by viewModels()
     val routineViewModel: RoutineViewModel by viewModels()
     val noticeViewModel: NoticeViewModel by viewModels()
@@ -40,11 +42,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = ActivityMainBinding.inflate(
-            layoutInflater
-        )
-        setContentView(binding.root)
         setUpToolbar()
         setUpAnimatedBottomBar()
 
@@ -66,7 +63,7 @@ class MainActivity : AppCompatActivity() {
     private fun setUpToolbar() {
         val toolbar = binding.toolbar
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(false);
+        supportActionBar?.setDisplayShowTitleEnabled(false)
         binding.toolbarTitle.text = "Home"
     }
 
@@ -156,8 +153,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    companion object {
-        private const val TAG = "MainActivity"
-    }
 
 }

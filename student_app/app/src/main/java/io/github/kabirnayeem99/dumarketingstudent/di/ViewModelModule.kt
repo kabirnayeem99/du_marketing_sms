@@ -9,7 +9,7 @@ import io.github.kabirnayeem99.dumarketingstudent.data.repositories.*
 
 @Module
 @InstallIn(ViewModelComponent::class)
-class ViewModelModule {
+object ViewModelModule {
 
     @Provides
     fun provideAboutRepository(db: FirebaseFirestore): AboutRepository {
@@ -35,6 +35,4 @@ class ViewModelModule {
     fun provideNoticeRepository(db: FirebaseFirestore): NoticeRepository {
         return NoticeRepository(db)
     }
-
-
 }

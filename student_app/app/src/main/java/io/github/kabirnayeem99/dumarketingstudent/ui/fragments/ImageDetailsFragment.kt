@@ -1,34 +1,26 @@
 package io.github.kabirnayeem99.dumarketingstudent.ui.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.ScaleAnimation
-import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
+import io.github.kabirnayeem99.dumarketingstudent.R
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentImageDetailsBinding
+import io.github.kabirnayeem99.dumarketingstudent.ui.base.BaseFragment
 import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ImageDetailsFragment : Fragment() {
+class ImageDetailsFragment : BaseFragment<FragmentImageDetailsBinding>() {
 
-    private var _binding: FragmentImageDetailsBinding? = null
-    private val binding get() = _binding!!
 
     @Inject
     lateinit var scale: ScaleAnimation
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentImageDetailsBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override val layout: Int
+        get() = R.layout.fragment_image_details
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,12 +37,4 @@ class ImageDetailsFragment : Fragment() {
         binding.ivImageDetails.doubleTapToZoom = true
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-    companion object {
-        private const val TAG = "ImageDetailsFragment"
-    }
 }

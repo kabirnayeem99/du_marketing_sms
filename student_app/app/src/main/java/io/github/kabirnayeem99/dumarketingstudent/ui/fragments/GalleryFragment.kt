@@ -1,32 +1,34 @@
 package io.github.kabirnayeem99.dumarketingstudent.ui.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.ScaleAnimation
 import android.widget.Toast
 import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingstudent.R
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentGalleryBinding
 import io.github.kabirnayeem99.dumarketingstudent.ui.activities.MainActivity
+import io.github.kabirnayeem99.dumarketingstudent.ui.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingstudent.util.Resource
-import io.github.kabirnayeem99.dumarketingstudent.util.adapters.GalleryDataAdapter
+import io.github.kabirnayeem99.dumarketingstudent.ui.adapters.GalleryDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.GalleryViewModel
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class GalleryFragment : Fragment() {
+class GalleryFragment : BaseFragment<FragmentGalleryBinding>() {
 
-    private var _binding: FragmentGalleryBinding? = null
-    private val binding get() = _binding!!
+    override val layout: Int
+        get() = R.layout.fragment_gallery
 
+    private val galleryViewModel: GalleryViewModel by lazy {
+        (activity as MainActivity).galleryViewModel
+    }
 
     @Inject
     lateinit var scale: ScaleAnimation
@@ -38,15 +40,6 @@ class GalleryFragment : Fragment() {
             binding.root.findNavController()
                 .navigate(R.id.action_galleryFragment_to_imageDetailsFragment, bundle)
         }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentGalleryBinding.inflate(inflater, container, false)
-        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -68,7 +61,7 @@ class GalleryFragment : Fragment() {
             )
         }
 
-        galleryViewModel.getGalleryImages().observe(viewLifecycleOwner, { resources ->
+        galleryViewModel.getGalleryImages().observe(viewLifecycleOwner) { resources ->
 
             when (resources) {
                 is Resource.Error -> {
@@ -82,20 +75,8 @@ class GalleryFragment : Fragment() {
 
                 }
             }
-        })
+        }
     }
 
 
-    private val galleryViewModel: GalleryViewModel by lazy {
-        (activity as MainActivity).galleryViewModel
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-    companion object {
-        private const val TAG = "GalleryFragment"
-    }
 }

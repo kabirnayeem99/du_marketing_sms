@@ -1,52 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal"
-    android:layout_margin="@dimen/default_margin_8_sp"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    app:layout_behavior="io.github.kabirnayeem99.dumarketingstudent.util.LockableBottomSheetBehavior">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-    <com.jsibbold.zoomage.ZoomageView
-        android:id="@+id/ivNoticeDetailedImage"
-        android:layout_width="400sp"
-        android:layout_height="400sp"
-        android:layout_margin="@dimen/default_margin_8_sp"
-        android:padding="16sp"
-        android:scaleType="centerInside"
-        android:visibility="gone"
-        app:zoomage_restrictBounds="true" />
-
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:outlineProvider="background"
-        android:padding="16sp">
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/default_margin_8_sp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_behavior="io.github.kabirnayeem99.dumarketingstudent.util.LockableBottomSheetBehavior">
 
-        <TextView
-            android:id="@+id/tvNoticeDetailedTitle"
+
+        <com.jsibbold.zoomage.ZoomageView
+            android:id="@+id/ivNoticeDetailedImage"
+            android:layout_width="400sp"
+            android:layout_height="400sp"
+            android:layout_margin="@dimen/default_margin_8_sp"
+            android:padding="16sp"
+            android:scaleType="centerInside"
+            android:visibility="gone"
+            app:zoomage_restrictBounds="true" />
+
+
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:textSize="14sp" />
-    </ScrollView>
+            android:outlineProvider="background"
+            android:padding="16sp">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnCancelNoticeDetailed"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="@dimen/default_width_300_sp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/default_margin_8_sp"
-        android:layout_marginBottom="16sp"
-        android:insetLeft="0dp"
-        android:insetTop="0dp"
-        android:insetRight="0dp"
-        android:insetBottom="0dp"
-        android:text="Mark As Seen"
-        app:cornerRadius="50dp" />
+            <TextView
+                android:id="@+id/tvNoticeDetailedTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="14sp" />
+        </ScrollView>
 
-</LinearLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancelNoticeDetailed"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="@dimen/default_width_300_sp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_margin_8_sp"
+            android:layout_marginBottom="16sp"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:text="Mark As Seen"
+            app:cornerRadius="50dp" />
+
+    </LinearLayout>
+</layout>

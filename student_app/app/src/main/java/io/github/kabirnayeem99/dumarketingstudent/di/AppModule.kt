@@ -11,13 +11,13 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import io.github.kabirnayeem99.dumarketingstudent.R
+import io.github.kabirnayeem99.dumarketingstudent.ui.adapters.RoutineDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.util.Preferences
-import io.github.kabirnayeem99.dumarketingstudent.util.adapters.RoutineDataAdapter
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class AppModule {
+object AppModule {
 
     @Provides
     @Singleton

@@ -8,7 +8,7 @@ data class AboutData(
     var email: String,
     var telephone: String,
     var lat: Double,
-    var long: Double,
+    var long: Double
 ) {
     companion object {
         fun DocumentSnapshot.toAboutData(): AboutData {
@@ -35,7 +35,6 @@ data class AboutData(
 
         }
 
-        private const val TAG = "AboutData"
     }
 
 }

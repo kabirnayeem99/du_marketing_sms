@@ -3,10 +3,9 @@ package io.github.kabirnayeem99.dumarketingstudent.ui.fragments
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.ScaleAnimation
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -15,7 +14,8 @@ import io.github.kabirnayeem99.dumarketingstudent.R
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.NoticeData
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentNoticeBinding
 import io.github.kabirnayeem99.dumarketingstudent.databinding.LayoutNoticeDetailsBottomSheetBinding
-import io.github.kabirnayeem99.dumarketingstudent.util.adapters.NoticeDataAdapter
+import io.github.kabirnayeem99.dumarketingstudent.ui.base.BaseFragment
+import io.github.kabirnayeem99.dumarketingstudent.ui.adapters.NoticeDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.NoticeViewModel
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 import timber.log.Timber
@@ -23,9 +23,11 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class NoticeFragment : Fragment() {
-    private var _binding: FragmentNoticeBinding? = null
-    private val binding get() = _binding!!
+class NoticeFragment : BaseFragment<FragmentNoticeBinding>() {
+
+    override val layout: Int
+        get() = R.layout.fragment_notice
+
 
     @Inject
     lateinit var scale: ScaleAnimation
@@ -38,20 +40,11 @@ class NoticeFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentNoticeBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.root.startAnimation(scale)
-
 
         binding.rvNoticeDataList.apply {
             adapter = noticeDataAdapter
@@ -68,10 +61,10 @@ class NoticeFragment : Fragment() {
 
 
     private fun setUpNoticeData() {
-        noticeViewModel.getNoticeListLiveData().observe(viewLifecycleOwner, { noticeDataList ->
+        noticeViewModel.getNoticeListLiveData().observe(viewLifecycleOwner) { noticeDataList ->
             noticeDataAdapter.differ.submitList(noticeDataList)
             Timber.d(noticeDataList.toString())
-        })
+        }
     }
 
 
@@ -105,12 +98,4 @@ class NoticeFragment : Fragment() {
     }
 
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-    companion object {
-        private const val TAG = "NoticeFragment"
-    }
 }

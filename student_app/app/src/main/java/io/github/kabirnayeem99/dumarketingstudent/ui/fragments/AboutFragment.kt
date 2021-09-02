@@ -3,18 +3,17 @@ package io.github.kabirnayeem99.dumarketingstudent.ui.fragments
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.ScaleAnimation
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingstudent.R
 import io.github.kabirnayeem99.dumarketingstudent.data.vo.AboutData
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentAboutBinding
+import io.github.kabirnayeem99.dumarketingstudent.ui.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingstudent.util.Constants.GMAIL_PACKAGE_NAME
 import io.github.kabirnayeem99.dumarketingstudent.util.Constants.GOOGLE_MAPS_PACKAGE_NAME
 import io.github.kabirnayeem99.dumarketingstudent.util.Resource
@@ -25,27 +24,20 @@ import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class AboutFragment : Fragment() {
+class AboutFragment : BaseFragment<FragmentAboutBinding>() {
 
-    private var _binding: FragmentAboutBinding? = null
 
     private lateinit var aboutData: AboutData
+
+    private val aboutViewModel: AboutViewModel by viewModels()
+
+
+    override val layout: Int
+        get() = R.layout.fragment_about
 
     @Inject
     lateinit var scale: ScaleAnimation
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentAboutBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -53,7 +45,7 @@ class AboutFragment : Fragment() {
         binding.root.startAnimation(scale)
 
 
-        aboutViewModel.getAboutData().observe(viewLifecycleOwner, { resource ->
+        aboutViewModel.getAboutData().observe(viewLifecycleOwner) { resource ->
             when (resource) {
                 is Resource.Error -> {
                     Toast.makeText(
@@ -72,7 +64,7 @@ class AboutFragment : Fragment() {
                     }
                 }
             }
-        })
+        }
     }
 
 
@@ -173,14 +165,5 @@ class AboutFragment : Fragment() {
         }
     }
 
-    private val aboutViewModel: AboutViewModel by viewModels()
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-    companion object {
-        private const val TAG = "AboutFragment"
-    }
 }

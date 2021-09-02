@@ -1,13 +1,11 @@
 package io.github.kabirnayeem99.dumarketingstudent.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.ScaleAnimation
 import android.widget.Toast
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -19,20 +17,35 @@ import io.github.kabirnayeem99.dumarketingstudent.data.vo.NoticeData
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentHomeBinding
 import io.github.kabirnayeem99.dumarketingstudent.databinding.LayoutNoticeDetailsBottomSheetBinding
 import io.github.kabirnayeem99.dumarketingstudent.ui.activities.MainActivity
+import io.github.kabirnayeem99.dumarketingstudent.ui.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingstudent.util.Preferences
 import io.github.kabirnayeem99.dumarketingstudent.util.Resource
-import io.github.kabirnayeem99.dumarketingstudent.util.adapters.NoticeDataAdapter
-import io.github.kabirnayeem99.dumarketingstudent.util.adapters.RoutineDataAdapter
+import io.github.kabirnayeem99.dumarketingstudent.ui.adapters.NoticeDataAdapter
+import io.github.kabirnayeem99.dumarketingstudent.ui.adapters.RoutineDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.GalleryViewModel
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.NoticeViewModel
 import io.github.kabirnayeem99.dumarketingstudent.viewmodel.RoutineViewModel
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    override val layout: Int
+        get() = R.layout.fragment_home
+
+    private val galleryViewModel: GalleryViewModel by lazy {
+        (activity as MainActivity).galleryViewModel
+    }
+
+    private val routineViewModel: RoutineViewModel by lazy {
+        (activity as MainActivity).routineViewModel
+    }
+
+    private val noticeViewModel: NoticeViewModel by lazy {
+        (activity as MainActivity).noticeViewModel
+    }
+
 
     @Inject
     lateinit var scale: ScaleAnimation
@@ -48,15 +61,6 @@ class HomeFragment : Fragment() {
         NoticeDataAdapter {
             showNoticeDataSheetDialog(it)
         }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
     }
 
 
@@ -138,53 +142,37 @@ class HomeFragment : Fragment() {
 
     private fun setUpGallerySlider() {
 
-        galleryViewModel.getRecentGallerySlideModel().observe(viewLifecycleOwner, { resource ->
+        galleryViewModel.getRecentGallerySlideModel().observe(viewLifecycleOwner) { resource ->
             when (resource) {
                 is Resource.Success -> {
                     resource.data?.let { binding.galleryImageSlider.setImageList(it) }
                 }
                 is Resource.Error -> {
                     Toast.makeText(context, "Could not get the images.", Toast.LENGTH_SHORT).show()
-                    Log.e(TAG, "setUpGallerySlider: ${resource.message}")
+                    Timber.e("setUpGallerySlider: ${resource.message}")
                 }
             }
-        })
+        }
     }
 
     private fun setUpRoutine() {
 
         pref.getBatchYear()?.let { batchYear ->
-            routineViewModel.getRoutine(batchYear).observe(viewLifecycleOwner, { resource ->
+            routineViewModel.getRoutine(batchYear).observe(viewLifecycleOwner) { resource ->
                 when (resource) {
                     is Resource.Error -> {
                         Toast.makeText(context, "Could not get the data.", Toast.LENGTH_SHORT)
                             .show()
-                        Log.e(TAG, "setUpRoutine: ${resource.message}")
+                        Timber.e("setUpRoutine: ${resource.message}")
                     }
                     else -> {
                         routineDataAdapter.differ.submitList(resource.data)
                     }
                 }
-            })
+            }
         }
     }
 
-    private val galleryViewModel: GalleryViewModel by lazy {
-        (activity as MainActivity).galleryViewModel
-    }
-
-    private val routineViewModel: RoutineViewModel by lazy {
-        (activity as MainActivity).routineViewModel
-    }
-
-    private val noticeViewModel: NoticeViewModel by lazy {
-        (activity as MainActivity).noticeViewModel
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 
     private fun showNoticeDataSheetDialog(noticeData: NoticeData) {
         val sheet = LayoutNoticeDetailsBottomSheetBinding.inflate(
@@ -198,7 +186,7 @@ class HomeFragment : Fragment() {
                         Glide.with(context).load(noticeData.imageUrl).into(ivNoticeDetailedImage)
                     }
                 } catch (e: Exception) {
-                    Log.e(TAG, "lambda: ${e.message}")
+                    Timber.e("lambda: ${e.message}")
                     ivNoticeDetailedImage.visibility = View.GONE
                 }
             }
@@ -217,7 +205,4 @@ class HomeFragment : Fragment() {
             }
     }
 
-    companion object {
-        private const val TAG = "HomeFragment"
-    }
 }

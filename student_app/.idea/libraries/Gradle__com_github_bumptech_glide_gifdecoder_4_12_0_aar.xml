@@ -1,0 +1,24 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.bumptech.glide:gifdecoder:4.12.0@aar">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/f859c8e310211445ca131a837cf13f9b/transformed/jetified-gifdecoder-4.12.0/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/69e4ce31e96ea45827524b8ee71f4755/jetified-gifdecoder-4.12.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d34d13be53f6a429113b9fdf70c504db/jetified-gifdecoder-4.12.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/328879d8ae4f9534b1013f5cbf7acd6c/jetified-gifdecoder-4.12.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e31b0d0a8a6e93735b2ef7b0ba58d3aa/transformed/jetified-gifdecoder-4.12.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/98381896019882a1a3ca2286a0050c8f/transformed/jetified-gifdecoder-4.12.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bf9d6fd7b218f26fbca57a62c6b2ec7a/jetified-gifdecoder-4.12.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/f859c8e310211445ca131a837cf13f9b/transformed/jetified-gifdecoder-4.12.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/f859c8e310211445ca131a837cf13f9b/transformed/jetified-gifdecoder-4.12.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/f859c8e310211445ca131a837cf13f9b/transformed/jetified-gifdecoder-4.12.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/gifdecoder/4.12.0/746b9323bb108e97840d4dacd37bd8d4cec34419/gifdecoder-4.12.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/gifdecoder/4.12.0/756734cd8ffb3c771f376767fa8464157f2d02d4/gifdecoder-4.12.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

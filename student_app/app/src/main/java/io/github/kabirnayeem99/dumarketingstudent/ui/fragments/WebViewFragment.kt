@@ -3,15 +3,15 @@ package io.github.kabirnayeem99.dumarketingstudent.ui.fragments
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.webkit.*
-import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import dagger.hilt.android.AndroidEntryPoint
+import io.github.kabirnayeem99.dumarketingstudent.R
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentWebViewBinding
 import io.github.kabirnayeem99.dumarketingstudent.ui.activities.MainActivity
+import io.github.kabirnayeem99.dumarketingstudent.ui.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingstudent.util.Constants.DU_WEBSITE_URL
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
@@ -23,23 +23,14 @@ import java.util.*
 Refer to: Enhance Android WebView Performance using Glide by Mudit Sen
 https://proandroiddev.com/enhance-android-webview-performance-using-glide-aba4bbc41bc7
  */
-class WebViewFragment : Fragment() {
-    private var _binding: FragmentWebViewBinding? = null
+@AndroidEntryPoint
+class WebViewFragment : BaseFragment<FragmentWebViewBinding>() {
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+
+    override val layout: Int
+        get() = R.layout.fragment_web_view
 
     lateinit var webView: WebView
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentWebViewBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -92,7 +83,6 @@ class WebViewFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
         (activity as MainActivity).bottomNavBar.visibility = View.VISIBLE
     }
 
