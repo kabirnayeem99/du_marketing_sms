@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="16sp"
-    tools:context=".ui.activities.faculty.UpsertFacultyActivity">
+    tools:context=".presentation.view.activities.faculty.UpsertFacultyActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

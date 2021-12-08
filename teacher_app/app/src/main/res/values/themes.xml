@@ -11,9 +11,10 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
-
         <item name="snackbarStyle">@style/DUMarketingAdmin_SnackbarStyle</item>
         <item name="android:forceDarkAllowed">false</item>
+
+
 
     </style>
 

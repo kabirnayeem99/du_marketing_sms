@@ -1,5 +1,7 @@
 package io.github.kabirnayeem99.dumarketingadmin.ktx
 
+import android.content.Intent
+import android.os.Bundle
 import android.view.View
 import com.example.awesomedialog.*
 import com.google.android.material.snackbar.BaseTransientBottomBar
@@ -32,6 +34,19 @@ fun BaseActivity<*>.showMessage(message: String) {
     val snackbar = Snackbar.make(parentLayout, message, Snackbar.LENGTH_LONG)
     snackbar.animationMode = BaseTransientBottomBar.ANIMATION_MODE_SLIDE
     snackbar.show()
+}
+
+/**
+ * Opens an activity
+ *
+ * @param activityClass the .class of the activity that is going to open
+ * @param extras if there are any extras for the activity
+ */
+fun <T> BaseActivity<*>.openActivity(activityClass: Class<T>, extras: Bundle.() -> Unit = {}) {
+    val intent = Intent(this, activityClass)
+    intent.putExtras(Bundle().apply(extras))
+    startActivity(intent)
+    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
 }
 
 /**

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16sp"
-    tools:context=".ui.activities.routine.RoutineDetailsActivity">
+    tools:context=".presentation.view.activities.routine.RoutineDetailsActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvRoutineList"
