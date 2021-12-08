@@ -21,6 +21,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+
     buildTypes {
 
         release {
@@ -95,6 +100,12 @@ dependencies {
     api "com.google.dagger:dagger-android:$dagger_version"
     api "com.google.dagger:dagger-android-support:$dagger_version"
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+
+    // Easy permission - permission handling
+    implementation 'pub.devrel:easypermissions:3.0.0'
+
+    // Dialog
+    implementation 'com.github.chnouman:AwesomeDialog:1.0.5'
 
     // Undefined
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

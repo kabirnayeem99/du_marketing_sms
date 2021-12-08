@@ -19,4 +19,6 @@
     <string name="login_failed">"Login failed"</string>
     <string name="tf_hint_user_email">Email Address</string>
     <string name="tf_hint_user_password">Password</string>
+    <string name="rationale_ask_allow">Allow</string>
+    <string name="rationale_ask_dont">Don\'t Allow</string>
 </resources>
