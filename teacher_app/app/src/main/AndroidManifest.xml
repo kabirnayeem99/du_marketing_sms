@@ -13,6 +13,7 @@
         android:theme="@style/Theme.DUMarketingAdmin">
         <activity
             android:name=".ui.activities.authintication.ui.AuthActivity"
+            android:exported="true"
             android:immersive="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,50 +22,63 @@
         </activity>
         <activity
             android:name=".ui.activities.ebook.EbookActivity"
+            android:exported="false"
             android:label="Ebooks"
             android:parentActivityName=".ui.activities.dashboard.DashboardActivity" />
         <activity android:name=".ui.activities.routine.UpsertRoutineActivity" />
         <activity
             android:name=".ui.activities.routine.RoutineDetailsActivity"
+            android:exported="false"
             android:label="Routine"
             android:parentActivityName=".ui.activities.routine.RoutineActivity" />
         <activity
             android:name=".ui.activities.routine.RoutineActivity"
+            android:exported="false"
             android:label="Routine Dashboard"
             android:parentActivityName=".ui.activities.dashboard.DashboardActivity" />
         <activity
             android:name=".ui.activities.gallery.GalleryImageActivity"
+            android:exported="false"
             android:label="Gallery"
             android:parentActivityName=".ui.activities.dashboard.DashboardActivity" />
         <activity
             android:name=".ui.activities.information.InformationActivity"
+            android:exported="false"
             android:label="About Info"
             android:parentActivityName=".ui.activities.dashboard.DashboardActivity" />
         <activity
             android:name=".ui.activities.notice.NoticeActivity"
+            android:exported="false"
             android:label="Notices"
             android:parentActivityName=".ui.activities.dashboard.DashboardActivity" />
         <activity
             android:name=".ui.activities.faculty.FacultyActivity"
+            android:exported="false"
             android:label="Faculty Members"
             android:parentActivityName=".ui.activities.dashboard.DashboardActivity" />
         <activity
             android:name=".ui.activities.ebook.UploadEbookActivity"
+            android:exported="false"
             android:label="Upload Ebook"
             android:parentActivityName=".ui.activities.dashboard.DashboardActivity" />
         <activity
             android:name=".ui.activities.gallery.AddGalleryImageActivity"
+            android:exported="false"
             android:label="Upload Gallery Image"
             android:parentActivityName=".ui.activities.gallery.GalleryImageActivity" />
         <activity
             android:name=".ui.activities.faculty.UpsertFacultyActivity"
+            android:exported="false"
             android:label="Edit Faculty Member"
             android:parentActivityName=".ui.activities.faculty.FacultyActivity" />
         <activity
             android:name=".ui.activities.notice.AddNoticeActivity"
+            android:exported="false"
             android:label="Add Notice"
             android:parentActivityName=".ui.activities.dashboard.DashboardActivity" />
-        <activity android:name=".ui.activities.dashboard.DashboardActivity" />
+        <activity
+            android:name=".ui.activities.dashboard.DashboardActivity"
+            android:exported="false" />
 
     </application>
 

@@ -17,7 +17,6 @@ import io.github.kabirnayeem99.dumarketingadmin.ui.activities.dashboard.Dashboar
 import io.github.kabirnayeem99.dumarketingadmin.util.RegexValidatorUtils
 import javax.inject.Inject
 
-
 @AndroidEntryPoint
 class AuthActivity : AppCompatActivity() {
 

@@ -22,7 +22,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class DashboardActivity : AppCompatActivity() {
 
-
     @Inject
     lateinit var auth: FirebaseAuth
 
@@ -71,7 +70,7 @@ class DashboardActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.dashboard_menu, menu)
         return true
     }
