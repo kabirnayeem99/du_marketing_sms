@@ -17,6 +17,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_fragmentRoutine"
+            app:destination="@id/fragmentRoutine"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -37,6 +44,37 @@
         android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.ebook.UploadEbookFragment"
         android:label="UploadEbookFragment"
         tools:layout="@layout/fragment_upload_ebook" />
+    <fragment
+        android:id="@+id/routineDetailsFragment"
+        android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.routine.RoutineDetailsFragment"
+        android:label="RoutineDetailsFragment"
+        tools:layout="@layout/fragment_routine_details">
+        <action
+            android:id="@+id/action_routineDetailsFragment_to_upsertRoutineFragment"
+            app:destination="@id/upsertRoutineFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/upsertRoutineFragment"
+        android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.routine.UpsertRoutineFragment"
+        android:label="UpsertRoutineFragment"
+        tools:layout="@layout/fragment_upsert_routine" />
+    <fragment
+        android:id="@+id/fragmentRoutine"
+        android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.routine.FragmentRoutine"
+        android:label="FragmentRoutine"
+        tools:layout="@layout/fragment_routine">
+        <action
+            android:id="@+id/action_fragmentRoutine_to_routineDetailsFragment"
+            app:destination="@id/routineDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
 
 
 </navigation>

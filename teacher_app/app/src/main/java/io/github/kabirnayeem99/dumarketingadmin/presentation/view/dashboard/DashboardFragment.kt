@@ -10,12 +10,10 @@ import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentDashboardBinding
 import io.github.kabirnayeem99.dumarketingadmin.ktx.openActivity
-import io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.ebook.EbookActivity
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.faculty.FacultyActivity
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.gallery.GalleryImageActivity
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.information.InformationActivity
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.notice.NoticeActivity
-import io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.routine.RoutineActivity
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.auth.AuthActivity
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.DashboardViewModel
 
@@ -67,5 +65,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
 
     private fun onMcInfoClick(view: View) = activity?.openActivity(InformationActivity::class.java)
 
-    private fun onMcRoutineClick(view: View) = activity?.openActivity(RoutineActivity::class.java)
+    private fun onMcRoutineClick(view: View) {
+        navController.navigate(R.id.action_dashboardFragment_to_fragmentRoutine)
+    }
 }

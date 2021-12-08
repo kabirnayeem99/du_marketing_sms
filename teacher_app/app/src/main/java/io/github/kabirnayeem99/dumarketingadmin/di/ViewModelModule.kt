@@ -8,9 +8,11 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import io.github.kabirnayeem99.dumarketingadmin.data.dataSources.EbookDataSource
+import io.github.kabirnayeem99.dumarketingadmin.data.dataSources.RoutineDataSource
 import io.github.kabirnayeem99.dumarketingadmin.data.repositories.*
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.AuthenticationRepository
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.EbookRepository
+import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.RoutineRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -61,5 +63,12 @@ class ViewModelModule {
     }
 
     @Provides
-    fun provideRoutineRepository(db: FirebaseFirestore) = RoutineRepository(db)
+    fun provideRoutineDataSource(db: FirebaseFirestore): RoutineDataSource {
+        return RoutineDataSource(db)
+    }
+
+    @Provides
+    fun provideRoutineRepository(datasource: RoutineDataSource): RoutineRepository {
+        return DefaultRoutineRepository(datasource)
+    }
 }

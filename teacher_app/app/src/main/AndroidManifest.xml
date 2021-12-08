@@ -20,18 +20,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.routine.UpsertRoutineActivity" />
-        <activity
-            android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.routine.RoutineDetailsActivity"
-            android:exported="false"
-            android:label="Routine"
-            android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.routine.RoutineActivity" />
-        <activity
-            android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.routine.RoutineActivity"
-            android:exported="false"
-            android:label="Routine Dashboard"
-            android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.dashboard.DashboardActivity" />
         <activity
             android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.gallery.GalleryImageActivity"
             android:exported="false"
@@ -51,11 +39,6 @@
             android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.faculty.FacultyActivity"
             android:exported="false"
             android:label="Faculty Members"
-            android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.dashboard.DashboardActivity" />
-        <activity
-            android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.ebook.UploadEbookActivity"
-            android:exported="false"
-            android:label="Upload Ebook"
             android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.dashboard.DashboardActivity" />
         <activity
             android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.gallery.AddGalleryImageActivity"

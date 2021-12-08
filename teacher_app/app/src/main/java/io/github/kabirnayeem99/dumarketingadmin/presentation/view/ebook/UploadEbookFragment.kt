@@ -17,7 +17,6 @@ import io.github.kabirnayeem99.dumarketingadmin.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingadmin.data.vo.EbookData
 import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentUploadEbookBinding
 import io.github.kabirnayeem99.dumarketingadmin.ktx.showErrorMessage
-import io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.ebook.UploadEbookActivity
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.EbookViewModel
 import io.github.kabirnayeem99.dumarketingadmin.util.Constants.CONTENT_URI
 import io.github.kabirnayeem99.dumarketingadmin.util.Constants.FILE_URI

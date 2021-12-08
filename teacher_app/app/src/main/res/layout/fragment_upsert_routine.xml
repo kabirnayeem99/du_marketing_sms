@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -80,12 +79,16 @@
 
 
             <Button
-                android:id="@+id/btnAddFaculty"
-                android:layout_width="300sp"
-                android:layout_height="wrap_content"
+                android:id="@+id/btnSaveRotuine"
+                android:layout_width="300dp"
+                android:layout_height="56dp"
                 android:layout_gravity="center_horizontal"
-                android:onClick="btnSaveRoutineClick"
-                android:text="Save Routine" />
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="6dp"
+                android:background="@drawable/bg_rounded_rectangle_button_solid"
+                android:backgroundTint="?android:colorPrimary"
+                android:text="Save Routine"
+                android:textColor="@color/white" />
 
         </LinearLayout>
     </ScrollView>
