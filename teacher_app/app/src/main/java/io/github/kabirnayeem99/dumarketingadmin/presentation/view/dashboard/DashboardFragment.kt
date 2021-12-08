@@ -9,6 +9,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentDashboardBinding
+import io.github.kabirnayeem99.dumarketingadmin.ktx.animateAndOnClickListener
 import io.github.kabirnayeem99.dumarketingadmin.ktx.openActivity
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.faculty.FacultyActivity
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.gallery.GalleryImageActivity
@@ -34,12 +35,18 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
 
     private fun setUpViews() {
         navController = findNavController()
-        binding.mcNotice.setOnClickListener { onMcNoticeClick(it) }
-        binding.mcGalleryImage.setOnClickListener { onMcGalleryClick(it) }
-        binding.mcEbook.setOnClickListener { onMcEbookClick() }
-        binding.mcFaculty.setOnClickListener { onMcFacultyClick(it) }
-        binding.mcInfo.setOnClickListener { onMcInfoClick(it) }
-        binding.mcRoutine.setOnClickListener { onMcRoutineClick(it) }
+        binding.ivLogOutButton.animateAndOnClickListener { logOut() }
+        binding.mcNotice.animateAndOnClickListener { onMcNoticeClick(it) }
+        binding.mcGalleryImage.animateAndOnClickListener { onMcGalleryClick(it) }
+        binding.mcEbook.animateAndOnClickListener { onMcEbookClick() }
+        binding.mcFaculty.animateAndOnClickListener { onMcFacultyClick(it) }
+        binding.mcInfo.animateAndOnClickListener { onMcInfoClick(it) }
+        binding.mcRoutine.animateAndOnClickListener { onMcRoutineClick(it) }
+    }
+
+    private fun logOut() {
+        dashboardViewModel.logOut()
+        navigateToAuthentication()
     }
 
     private fun setUpObservers() {
@@ -57,15 +64,15 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
     private fun onMcGalleryClick(view: View) =
         activity?.openActivity(GalleryImageActivity::class.java)
 
-    private fun onMcEbookClick() {
+    private fun onMcEbookClick() =
         navController.navigate(R.id.action_dashboardFragment_to_ebookFragment)
-    }
+
 
     private fun onMcFacultyClick(view: View) = activity?.openActivity(FacultyActivity::class.java)
 
     private fun onMcInfoClick(view: View) = activity?.openActivity(InformationActivity::class.java)
 
-    private fun onMcRoutineClick(view: View) {
+    private fun onMcRoutineClick(view: View) =
         navController.navigate(R.id.action_dashboardFragment_to_fragmentRoutine)
-    }
+
 }

@@ -11,6 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentLoginBinding
+import io.github.kabirnayeem99.dumarketingadmin.ktx.animateAndOnClickListener
 import io.github.kabirnayeem99.dumarketingadmin.ktx.openActivity
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.dashboard.DashboardActivity
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.AuthenticationViewModel
@@ -42,7 +43,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     }
 
     private fun setUpRegisterButton() {
-        binding.btnRegister.setOnClickListener {
+        binding.btnRegister.animateAndOnClickListener {
             navController.navigate(R.id.action_loginFragment_to_registerFragment)
         }
     }
@@ -79,7 +80,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     }
 
     private fun setUpLoginButton() {
-        binding.btnLogin.setOnClickListener {
+        binding.btnLogin.animateAndOnClickListener {
             if (emailValidationTextWatcher.validateEmail() && passwordValidationTextWatcher.validatePassword()) {
                 logIn()
             }

@@ -29,10 +29,11 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding>() {
     private fun initViews() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fcv_dashboard_container) as NavHostFragment
-        val navController = navHostFragment.navController
+        navHostFragment.navController
     }
 
     private fun setUpObservers() {
+        dashboardViewModel.getAuthenticationStatus()
         dashboardViewModel.authenticated.observe(this, { isAuthenticated ->
             if (!isAuthenticated) navigateToAuthentication()
         })

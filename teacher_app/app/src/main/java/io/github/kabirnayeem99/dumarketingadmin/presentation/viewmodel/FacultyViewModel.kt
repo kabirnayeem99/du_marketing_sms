@@ -15,13 +15,13 @@ import javax.inject.Inject
 class FacultyViewModel @Inject constructor(val repo: FacultyRepository) : ViewModel() {
 
     fun insertFacultyDataToDb(facultyData: FacultyData, post: String): Task<Void> =
-        repo.upsertFacultyDataToDb(facultyData, post)
+        repo.upsertFacultyDataToDb(facultyData)
 
     fun uploadImage(imageFile: ByteArray, imageName: String): UploadTask =
         repo.uploadImage(imageFile, imageName)
 
     fun deleteFacultyData(facultyData: FacultyData, post: String): Task<Void>? =
-        repo.deleteFacultyData(facultyData, post)
+        repo.deleteFacultyData(facultyData)
 
     val facultyListLiveData: LiveData<Resource<List<FacultyData>>> =
         repo.getFacultyListLiveData()

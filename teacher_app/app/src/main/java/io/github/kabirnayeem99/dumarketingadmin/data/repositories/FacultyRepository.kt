@@ -1,6 +1,5 @@
 package io.github.kabirnayeem99.dumarketingadmin.data.repositories
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.tasks.Task
@@ -14,6 +13,7 @@ import io.github.kabirnayeem99.dumarketingadmin.data.vo.FacultyData.Companion.to
 import io.github.kabirnayeem99.dumarketingadmin.util.Constants.FACULTY_DB_COLLECTION_NAME
 import io.github.kabirnayeem99.dumarketingadmin.util.Constants.FACULTY_STORAGE_PATH
 import io.github.kabirnayeem99.dumarketingadmin.util.Resource
+import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
@@ -22,36 +22,31 @@ class FacultyRepository @Inject constructor(var db: FirebaseFirestore, var store
     // initialise database and storage
     private val storage = store.reference.child(FACULTY_STORAGE_PATH)
 
-
     // upload image
     fun uploadImage(imageFile: ByteArray, imageName: String): UploadTask {
-
         val filePath = storage.child("$imageName-$imageFile.jpg")
-
         return filePath.putBytes(imageFile)
-
     }
 
     // insert data to database
-    fun upsertFacultyDataToDb(facultyData: FacultyData, post: String): Task<Void> {
+    fun upsertFacultyDataToDb(facultyData: FacultyData): Task<Void> {
 
         lateinit var key: String
 
         if (facultyData.key != null) {
             key = facultyData.key!!
         } else {
-            key = facultyData.name.toLowerCase(Locale.ROOT).trimEnd() + System.currentTimeMillis()
+            key = facultyData.name.lowercase(Locale.ROOT).trimEnd() + System.currentTimeMillis()
             facultyData.key = key
         }
 
         return db.collection(FACULTY_DB_COLLECTION_NAME)
             .document(key)
             .set(facultyData)
-
     }
 
     // delete data
-    fun deleteFacultyData(facultyData: FacultyData, post: String): Task<Void>? {
+    fun deleteFacultyData(facultyData: FacultyData): Task<Void>? {
         return facultyData.key?.let { key ->
             facultyData.profileImageUrl?.let { url ->
                 BaasService.storage.getReferenceFromUrl(url).delete()
@@ -80,8 +75,7 @@ class FacultyRepository @Inject constructor(var db: FirebaseFirestore, var store
 
                 val facultyList = value?.toFacultyDataList()
 
-                Log.d(
-                    TAG,
+                Timber.d(
                     "getFacultyListLiveData: querySnapshot documents -> ${value?.documents ?: "Empty"}"
                 )
 
@@ -89,16 +83,12 @@ class FacultyRepository @Inject constructor(var db: FirebaseFirestore, var store
                     facultyListLiveData.value = Resource.Error("Empty List")
                 } else {
                     facultyListLiveData.value = Resource.Success(facultyList)
-                    Log.d(TAG, "getFacultyListLiveData: $facultyList")
+                    Timber.d("getFacultyListLiveData: $facultyList")
                 }
             }
         )
 
         return facultyListLiveData
-    }
-
-    companion object {
-        private const val TAG = "FacultyRepository"
     }
 
 }

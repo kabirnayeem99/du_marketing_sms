@@ -9,7 +9,7 @@
         android:toXDelta="0" />
 
     <alpha
-        android:duration="@android:integer/config_shortAnimTime"
+        android:duration="@android:integer/config_mediumAnimTime"
         android:fillAfter="true"
         android:fillBefore="true"
         android:fillEnabled="true"
