@@ -360,7 +360,7 @@ class UpsertFacultyActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.upsert_menu, menu)
         return true
     }

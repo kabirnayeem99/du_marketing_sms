@@ -29,7 +29,6 @@ object AppModule {
         return FirebaseFirestore.getInstance()
     }
 
-
     @Provides
     @Singleton
     fun provideFirebaseStorage(): FirebaseStorage {
@@ -40,6 +39,5 @@ object AppModule {
     fun provideContentResolver(@ApplicationContext app: Context): ContentResolver {
         return app.contentResolver
     }
-
 
 }
