@@ -1,44 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="12sp"
-    android:padding="12sp"
-    app:cardCornerRadius="8sp"
-    app:cardElevation="2sp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <RelativeLayout
+    <data>
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:layout_margin="12sp"
+        android:padding="12sp">
 
-        <TextView
-            android:id="@+id/tvBookTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_margin="12sp"
-            android:layout_marginStart="16sp"
-            android:layout_marginEnd="40dp"
-            android:singleLine="false"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/btnDeleteBook"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_margin="12sp"
-            android:backgroundTint="@color/transparent"
-            android:backgroundTintMode="multiply"
-            android:contentDescription="Delete Notice Button"
-            android:src="@drawable/ic_fluent_delete_24_selector" />
+            <TextView
+                android:id="@+id/tvBookTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="12sp"
+                android:layout_marginStart="16sp"
+                android:layout_marginEnd="40dp"
+                android:singleLine="false"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/btnDeleteBook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="12sp"
+                android:layout_marginTop="12sp"
+                android:layout_marginEnd="12sp"
+                android:layout_marginBottom="12sp"
+                android:backgroundTint="@color/transparent"
+                android:backgroundTintMode="multiply"
+                android:contentDescription="Delete Notice Button"
+                android:src="@drawable/ic_fluent_delete_24_selector" />
 
 
-    </RelativeLayout>
+        </RelativeLayout>
 
-</com.google.android.material.card.MaterialCardView>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

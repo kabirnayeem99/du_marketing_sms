@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="16sp"
-    tools:context=".ui.activities.faculty.FacultyActivity">
+    tools:context=".presentation.view.activities.faculty.FacultyActivity">
 
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/slRvFacultyMemberList"

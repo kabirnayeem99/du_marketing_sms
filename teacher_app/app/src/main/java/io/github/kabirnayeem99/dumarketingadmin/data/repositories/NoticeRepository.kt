@@ -8,7 +8,7 @@ import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
-import io.github.kabirnayeem99.dumarketingadmin.data.db.BaasService
+import io.github.kabirnayeem99.dumarketingadmin.data.dataSources.BaasService
 import io.github.kabirnayeem99.dumarketingadmin.data.vo.NoticeData
 import io.github.kabirnayeem99.dumarketingadmin.data.vo.NoticeData.Companion.toNoticeDataList
 import io.github.kabirnayeem99.dumarketingadmin.util.Constants.NOTICE_DB_REF

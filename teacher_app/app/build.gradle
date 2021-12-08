@@ -21,6 +21,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+
     buildTypes {
 
         release {
@@ -43,7 +48,7 @@ dependencies {
     // Android
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.0'
-    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'com.google.android.material:material:1.6.0-alpha01'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
     implementation 'androidx.activity:activity-ktx:1.4.0'
     implementation 'androidx.fragment:fragment-ktx:1.4.0'
@@ -95,6 +100,25 @@ dependencies {
     api "com.google.dagger:dagger-android:$dagger_version"
     api "com.google.dagger:dagger-android-support:$dagger_version"
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+
+    // Easy permission - permission handling
+    implementation 'pub.devrel:easypermissions:3.0.0'
+
+    // Dialog
+    implementation 'com.github.chnouman:AwesomeDialog:1.0.5'
+
+    // Logger
+    implementation 'com.jakewharton.timber:timber:5.0.1'
+
+    // Loading Indicator
+    implementation 'com.kaopiz:kprogresshud:1.2.0'
+
+    // Navigation
+    def nav_version = "2.3.5"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    // Feature module Support
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
 
     // Undefined
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

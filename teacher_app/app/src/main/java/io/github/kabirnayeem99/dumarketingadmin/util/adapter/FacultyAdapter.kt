@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.data.vo.FacultyData
-import io.github.kabirnayeem99.dumarketingadmin.ui.activities.faculty.UpsertFacultyActivity
+import io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.faculty.UpsertFacultyActivity
 import io.github.kabirnayeem99.dumarketingadmin.util.Constants.EXTRA_FACULTY_DATA
 
 class FacultyAdapter : RecyclerView.Adapter<FacultyAdapter.FacultyViewHolder>() {

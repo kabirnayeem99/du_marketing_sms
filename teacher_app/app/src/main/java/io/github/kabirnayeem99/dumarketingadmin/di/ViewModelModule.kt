@@ -1,20 +1,40 @@
 package io.github.kabirnayeem99.dumarketingadmin.di
 
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
+import io.github.kabirnayeem99.dumarketingadmin.data.dataSources.EbookDataSource
 import io.github.kabirnayeem99.dumarketingadmin.data.repositories.*
+import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.AuthenticationRepository
+import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.EbookRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 
 @Module
 @InstallIn(ViewModelComponent::class)
 class ViewModelModule {
+
+    @ExperimentalCoroutinesApi
     @Provides
-    fun provideEbookRepository(db: FirebaseFirestore, store: FirebaseStorage): EbookRepository {
-        return EbookRepository(db, store)
+    fun provideEbookDataSource(db: FirebaseFirestore, store: FirebaseStorage): EbookDataSource {
+        return EbookDataSource(db, store)
+    }
+
+    @Provides
+    fun provideIoScope(): CoroutineScope {
+        return CoroutineScope(Dispatchers.IO)
+    }
+
+    @ExperimentalCoroutinesApi
+    @Provides
+    fun provideEbookRepository(dataSource: EbookDataSource): EbookRepository {
+        return DefaultEbookRepository(dataSource)
     }
 
     @Provides
@@ -33,6 +53,11 @@ class ViewModelModule {
     @Provides
     fun provideNoticeRepository(db: FirebaseFirestore, store: FirebaseStorage): NoticeRepository {
         return NoticeRepository(db, store)
+    }
+
+    @Provides
+    fun provideAuthenticationRepository(auth: FirebaseAuth): AuthenticationRepository {
+        return DefaultAuthenticationRepository(auth)
     }
 
     @Provides
