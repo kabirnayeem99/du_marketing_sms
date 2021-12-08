@@ -3,6 +3,8 @@ package io.github.kabirnayeem99.dumarketingadmin.presentation.view.dashboard
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.base.BaseFragment
@@ -22,6 +24,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
 
     private val dashboardViewModel: DashboardViewModel by activityViewModels()
 
+    private lateinit var navController: NavController
 
     override val layoutRes: Int
         get() = R.layout.fragment_dashboard
@@ -32,9 +35,10 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
     }
 
     private fun setUpViews() {
+        navController = findNavController()
         binding.mcNotice.setOnClickListener { onMcNoticeClick(it) }
         binding.mcGalleryImage.setOnClickListener { onMcGalleryClick(it) }
-        binding.mcEbook.setOnClickListener { onMcEbookClick(it) }
+        binding.mcEbook.setOnClickListener { onMcEbookClick() }
         binding.mcFaculty.setOnClickListener { onMcFacultyClick(it) }
         binding.mcInfo.setOnClickListener { onMcInfoClick(it) }
         binding.mcRoutine.setOnClickListener { onMcRoutineClick(it) }
@@ -55,7 +59,9 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
     private fun onMcGalleryClick(view: View) =
         activity?.openActivity(GalleryImageActivity::class.java)
 
-    private fun onMcEbookClick(view: View) = activity?.openActivity(EbookActivity::class.java)
+    private fun onMcEbookClick() {
+        navController.navigate(R.id.action_dashboardFragment_to_ebookFragment)
+    }
 
     private fun onMcFacultyClick(view: View) = activity?.openActivity(FacultyActivity::class.java)
 

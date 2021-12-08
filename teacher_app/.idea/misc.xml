@@ -15,6 +15,7 @@
         <entry key="app/src/main/res/layout/activity_ebook.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/layout/activity_upload_ebook.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.1685185185185185" />
+        <entry key="app/src/main/res/layout/fragment_ebook.xml" value="0.1685185185185185" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.375" />
         <entry key="app/src/main/res/layout/list_item_ebook.xml" value="0.335" />

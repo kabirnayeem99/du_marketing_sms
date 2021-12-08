@@ -9,5 +9,21 @@
         android:id="@+id/dashboardFragment"
         android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.dashboard.DashboardFragment"
         android:label="DashboardFragment"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard">
+        <action
+            android:id="@+id/action_dashboardFragment_to_ebookFragment"
+            app:destination="@id/ebookFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ebookFragment"
+        android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.ebook.EbookFragment"
+        android:label="EbookFragment"
+        tools:layout="@layout/fragment_ebook" />
+
+
 </navigation>
