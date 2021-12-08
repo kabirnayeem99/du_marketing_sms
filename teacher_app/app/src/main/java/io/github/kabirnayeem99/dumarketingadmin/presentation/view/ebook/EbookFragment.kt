@@ -3,6 +3,8 @@ package io.github.kabirnayeem99.dumarketingadmin.presentation.view.ebook
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
@@ -16,6 +18,8 @@ import io.github.kabirnayeem99.dumarketingadmin.util.adapter.EbookDataAdapter
 
 @AndroidEntryPoint
 class EbookFragment : BaseFragment<FragmentEbookBinding>() {
+
+    lateinit var navController: NavController
     private val ebookViewModel: EbookViewModel by activityViewModels()
 
     private val ebookAdapter: EbookDataAdapter by lazy {
@@ -28,8 +32,16 @@ class EbookFragment : BaseFragment<FragmentEbookBinding>() {
         get() = R.layout.fragment_ebook
 
     override fun onCreated(savedInstanceState: Bundle?) {
+        handleViews()
         setUpBooksList()
         setUpObservers()
+    }
+
+    private fun handleViews() {
+        navController = findNavController()
+        binding.fabUploadEbook.setOnClickListener {
+            navController.navigate(R.id.action_ebookFragment_to_uploadEbookFragment)
+        }
     }
 
     private fun setUpBooksList() {

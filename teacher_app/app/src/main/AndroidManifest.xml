@@ -20,11 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.ebook.EbookActivity"
-            android:exported="false"
-            android:label="Ebooks"
-            android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.dashboard.DashboardActivity" />
+
         <activity android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.routine.UpsertRoutineActivity" />
         <activity
             android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.routine.RoutineDetailsActivity"

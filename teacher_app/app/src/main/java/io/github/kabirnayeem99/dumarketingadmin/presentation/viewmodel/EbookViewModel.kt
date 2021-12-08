@@ -61,7 +61,6 @@ class EbookViewModel @Inject constructor(
         }
     }
 
-
     private val _ebookUrl = MutableLiveData<String>()
     val ebookUrl: LiveData<String> = _ebookUrl
     fun uploadPdf(pdfFile: Uri, pdfName: String) {
@@ -83,7 +82,6 @@ class EbookViewModel @Inject constructor(
         }
     }
 
-
     private val _ebookList = MutableLiveData<List<EbookData>>()
     val ebookList: LiveData<List<EbookData>> = _ebookList
     fun getEbooks() {
@@ -104,4 +102,5 @@ class EbookViewModel @Inject constructor(
             }
         }
     }
+
 }

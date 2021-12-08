@@ -23,7 +23,20 @@
         android:id="@+id/ebookFragment"
         android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.ebook.EbookFragment"
         android:label="EbookFragment"
-        tools:layout="@layout/fragment_ebook" />
+        tools:layout="@layout/fragment_ebook">
+        <action
+            android:id="@+id/action_ebookFragment_to_uploadEbookFragment"
+            app:destination="@id/uploadEbookFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/uploadEbookFragment"
+        android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.ebook.UploadEbookFragment"
+        android:label="UploadEbookFragment"
+        tools:layout="@layout/fragment_upload_ebook" />
 
 
 </navigation>

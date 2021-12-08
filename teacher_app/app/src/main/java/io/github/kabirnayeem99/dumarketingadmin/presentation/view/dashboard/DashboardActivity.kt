@@ -8,6 +8,8 @@ import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.base.BaseActivity
 import io.github.kabirnayeem99.dumarketingadmin.databinding.ActivityDashboardBinding
 import io.github.kabirnayeem99.dumarketingadmin.ktx.openActivity
+import io.github.kabirnayeem99.dumarketingadmin.ktx.showErrorMessage
+import io.github.kabirnayeem99.dumarketingadmin.ktx.showMessage
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.auth.AuthActivity
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.DashboardViewModel
 
@@ -33,6 +35,18 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding>() {
     private fun setUpObservers() {
         dashboardViewModel.authenticated.observe(this, { isAuthenticated ->
             if (!isAuthenticated) navigateToAuthentication()
+        })
+
+        dashboardViewModel.errorMessage.observe(this, { errorMessage ->
+            showErrorMessage(errorMessage)
+        })
+
+        dashboardViewModel.message.observe(this, { message ->
+            showMessage(message)
+        })
+
+        dashboardViewModel.isLoading.observe(this, { showLoading ->
+            if (showLoading) loadingIndicator.show() else loadingIndicator.dismiss()
         })
     }
 
