@@ -57,15 +57,15 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
     private fun onMcGalleryClick(view: View) =
         activity?.openActivity(GalleryImageActivity::class.java)
 
-    private fun onMcEbookClick() {
+    private fun onMcEbookClick() =
         navController.navigate(R.id.action_dashboardFragment_to_ebookFragment)
-    }
+
 
     private fun onMcFacultyClick(view: View) = activity?.openActivity(FacultyActivity::class.java)
 
     private fun onMcInfoClick(view: View) = activity?.openActivity(InformationActivity::class.java)
 
-    private fun onMcRoutineClick(view: View) {
+    private fun onMcRoutineClick(view: View) =
         navController.navigate(R.id.action_dashboardFragment_to_fragmentRoutine)
-    }
+
 }

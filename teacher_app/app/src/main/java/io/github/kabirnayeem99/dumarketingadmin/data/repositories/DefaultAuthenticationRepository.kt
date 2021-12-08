@@ -6,6 +6,7 @@ import io.github.kabirnayeem99.dumarketingadmin.util.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
+import timber.log.Timber
 import javax.inject.Inject
 
 class DefaultAuthenticationRepository @Inject constructor(
@@ -34,8 +35,18 @@ class DefaultAuthenticationRepository @Inject constructor(
         }
     }
 
-    override fun getAuthenticationStatus() = flow<Boolean> {
-        emit(auth.currentUser != null)
+    override fun getAuthenticationStatus() = flow {
+
+        try {
+            val isLoggedIn = auth.currentUser != null
+            if (isLoggedIn)
+                emit(true)
+            else emit(false)
+        } catch (e: Exception) {
+            Timber.e(e.localizedMessage)
+            emit(false)
+        }
+
     }
 
 

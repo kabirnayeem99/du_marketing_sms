@@ -8,7 +8,7 @@
         android:fromXDelta="0"
         android:toXDelta="-100%p" />
     <alpha
-        android:duration="@android:integer/config_shortAnimTime"
+        android:duration="@android:integer/config_mediumAnimTime"
         android:fillAfter="true"
         android:fillBefore="true"
         android:fillEnabled="true"
