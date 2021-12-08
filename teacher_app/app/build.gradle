@@ -107,6 +107,19 @@ dependencies {
     // Dialog
     implementation 'com.github.chnouman:AwesomeDialog:1.0.5'
 
+    // Logger
+    implementation 'com.jakewharton.timber:timber:5.0.1'
+
+    // Loading Indicator
+    implementation 'com.kaopiz:kprogresshud:1.2.0'
+
+    // Navigation
+    def nav_version = "2.3.5"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    // Feature module Support
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+
     // Undefined
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     testImplementation 'junit:junit:4.13.2'

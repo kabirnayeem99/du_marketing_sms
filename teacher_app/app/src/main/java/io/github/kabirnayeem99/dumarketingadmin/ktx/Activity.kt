@@ -1,8 +1,10 @@
 package io.github.kabirnayeem99.dumarketingadmin.ktx
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.example.awesomedialog.*
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
@@ -42,7 +44,7 @@ fun BaseActivity<*>.showMessage(message: String) {
  * @param activityClass the .class of the activity that is going to open
  * @param extras if there are any extras for the activity
  */
-fun <T> BaseActivity<*>.openActivity(
+fun <T> Activity.openActivity(
     activityClass: Class<T>,
     shouldFinish: Boolean = false,
     extras: Bundle.() -> Unit = {}

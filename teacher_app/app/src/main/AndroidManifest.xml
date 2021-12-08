@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/Theme.DUMarketingAdmin">
         <activity
-            android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.authintication.ui.AuthActivity"
+            android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.auth.AuthActivity"
             android:exported="true"
             android:immersive="true">
             <intent-filter>
@@ -24,7 +24,7 @@
             android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.ebook.EbookActivity"
             android:exported="false"
             android:label="Ebooks"
-            android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.dashboard.DashboardActivity" />
+            android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.dashboard.DashboardActivity" />
         <activity android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.routine.UpsertRoutineActivity" />
         <activity
             android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.routine.RoutineDetailsActivity"
@@ -35,32 +35,32 @@
             android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.routine.RoutineActivity"
             android:exported="false"
             android:label="Routine Dashboard"
-            android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.dashboard.DashboardActivity" />
+            android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.dashboard.DashboardActivity" />
         <activity
             android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.gallery.GalleryImageActivity"
             android:exported="false"
             android:label="Gallery"
-            android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.dashboard.DashboardActivity" />
+            android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.dashboard.DashboardActivity" />
         <activity
             android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.information.InformationActivity"
             android:exported="false"
             android:label="About Info"
-            android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.dashboard.DashboardActivity" />
+            android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.dashboard.DashboardActivity" />
         <activity
             android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.notice.NoticeActivity"
             android:exported="false"
             android:label="Notices"
-            android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.dashboard.DashboardActivity" />
+            android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.dashboard.DashboardActivity" />
         <activity
             android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.faculty.FacultyActivity"
             android:exported="false"
             android:label="Faculty Members"
-            android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.dashboard.DashboardActivity" />
+            android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.dashboard.DashboardActivity" />
         <activity
             android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.ebook.UploadEbookActivity"
             android:exported="false"
             android:label="Upload Ebook"
-            android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.dashboard.DashboardActivity" />
+            android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.dashboard.DashboardActivity" />
         <activity
             android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.gallery.AddGalleryImageActivity"
             android:exported="false"
@@ -75,9 +75,9 @@
             android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.notice.AddNoticeActivity"
             android:exported="false"
             android:label="Add Notice"
-            android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.dashboard.DashboardActivity" />
+            android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.dashboard.DashboardActivity" />
         <activity
-            android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.dashboard.DashboardActivity"
+            android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.dashboard.DashboardActivity"
             android:exported="false" />
 
     </application>
