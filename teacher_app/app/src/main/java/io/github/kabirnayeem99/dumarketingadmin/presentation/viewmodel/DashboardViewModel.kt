@@ -16,18 +16,19 @@ class DashboardViewModel @Inject constructor(
     val ioScope: CoroutineScope,
 ) : BaseViewModel() {
 
-    init {
-        getAuthenticationStatus()
-    }
 
     private val _authenticated = MutableLiveData<Boolean>()
     val authenticated: LiveData<Boolean> = _authenticated
-    private fun getAuthenticationStatus() = ioScope.launch {
+    fun getAuthenticationStatus() = ioScope.launch {
         _isLoading.postValue(true)
         authRepo.getAuthenticationStatus().collect { authenticationStatus ->
             _isLoading.postValue(false)
             if (authenticationStatus) _message.postValue("Successfully logged in.")
             _authenticated.postValue(authenticationStatus)
         }
+    }
+
+    fun logOut(){
+        authRepo.logOut()
     }
 }

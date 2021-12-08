@@ -9,15 +9,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentRoutineDetailsBinding
+import io.github.kabirnayeem99.dumarketingadmin.ktx.animateAndOnClickListener
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.RoutineViewModel
 import io.github.kabirnayeem99.dumarketingadmin.util.adapter.RoutineDataAdapter
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 class RoutineDetailsFragment : BaseFragment<FragmentRoutineDetailsBinding>() {
     override val layoutRes: Int
         get() = R.layout.fragment_routine_details
 
-    lateinit var navController: NavController
+    private var batchYear: String = ""
 
+    private val routineViewModel: RoutineViewModel by activityViewModels()
+
+    lateinit var navController: NavController
 
     private val routineDataAdapter: RoutineDataAdapter by lazy {
         RoutineDataAdapter { routineData ->
@@ -27,17 +32,19 @@ class RoutineDetailsFragment : BaseFragment<FragmentRoutineDetailsBinding>() {
         }
     }
 
-    private var batchYear: String = ""
-
-    private val routineViewModel: RoutineViewModel by activityViewModels()
-
+    @ExperimentalCoroutinesApi
     override fun onCreated(savedInstanceState: Bundle?) {
-        batchYear = routineViewModel.batchYear
-
-        navController = findNavController()
+        handleViews()
         setUpRecyclerView(batchYear)
     }
 
+    private fun handleViews() {
+        batchYear = routineViewModel.batchYear
+        navController = findNavController()
+        binding.fabAddRoutine.animateAndOnClickListener { fabAddRoutineClick() }
+    }
+
+    @ExperimentalCoroutinesApi
     private fun setUpRecyclerView(batchYear: String) {
         binding.rvRoutineList.apply {
             adapter = routineDataAdapter
@@ -51,11 +58,10 @@ class RoutineDetailsFragment : BaseFragment<FragmentRoutineDetailsBinding>() {
 
     }
 
-    fun fabAddRoutineClick() {
+    private fun fabAddRoutineClick() {
         routineViewModel.selectedRoutine = null
         routineViewModel.batchYear = batchYear
         navController.navigate(R.id.action_routineDetailsFragment_to_upsertRoutineFragment)
-
     }
 
 

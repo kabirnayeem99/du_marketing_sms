@@ -11,6 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentRegisterBinding
+import io.github.kabirnayeem99.dumarketingadmin.ktx.animateAndOnClickListener
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.AuthenticationViewModel
 import io.github.kabirnayeem99.dumarketingadmin.util.RegexValidatorUtils
 
@@ -70,7 +71,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
     }
 
     private fun setUpRegisterButton() {
-        binding.btnRegister.setOnClickListener {
+        binding.btnRegister.animateAndOnClickListener {
             if (emailValidationTextWatcher.validateEmail() && passwordValidationTextWatcher.validatePassword()) {
                 register()
             }

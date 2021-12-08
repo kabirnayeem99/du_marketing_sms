@@ -4,6 +4,7 @@ import com.google.firebase.auth.FirebaseAuth
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.AuthenticationRepository
 import io.github.kabirnayeem99.dumarketingadmin.util.Resource
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import timber.log.Timber
@@ -35,18 +36,22 @@ class DefaultAuthenticationRepository @Inject constructor(
         }
     }
 
-    override fun getAuthenticationStatus() = flow {
+    override fun getAuthenticationStatus() = channelFlow<Boolean> {
 
         try {
             val isLoggedIn = auth.currentUser != null
             if (isLoggedIn)
-                emit(true)
-            else emit(false)
+                send(true)
+            else send(false)
         } catch (e: Exception) {
             Timber.e(e.localizedMessage)
-            emit(false)
+            send(false)
         }
 
+    }
+
+    override fun logOut() {
+        auth.signOut()
     }
 
 

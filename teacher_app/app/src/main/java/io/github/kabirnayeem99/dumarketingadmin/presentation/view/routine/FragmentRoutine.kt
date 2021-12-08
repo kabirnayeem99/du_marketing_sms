@@ -11,6 +11,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentRoutineBinding
+import io.github.kabirnayeem99.dumarketingadmin.ktx.animateAndOnClickListener
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.RoutineViewModel
 
 @AndroidEntryPoint
@@ -24,10 +25,10 @@ class FragmentRoutine : BaseFragment<FragmentRoutineBinding>() {
 
     override fun onCreated(savedInstanceState: Bundle?) {
         navController = findNavController()
-        binding.ivIconFirstYear.setOnClickListener(::onMcFirstYearRoutine)
-        binding.ivIconSecondYear.setOnClickListener(::onMcSecondYearRoutineClick)
-        binding.ivIconThirdYear.setOnClickListener(::onMcThirdYearRoutine)
-        binding.ivIconFourthYear.setOnClickListener(::onMcFourthYearRoutineClick)
+        binding.ivIconFirstYear.animateAndOnClickListener(::onMcFirstYearRoutine)
+        binding.ivIconSecondYear.animateAndOnClickListener(::onMcSecondYearRoutineClick)
+        binding.ivIconThirdYear.animateAndOnClickListener(::onMcThirdYearRoutine)
+        binding.ivIconFourthYear.animateAndOnClickListener(::onMcFourthYearRoutineClick)
     }
 
     private fun onMcFirstYearRoutine(view: View) = navigateToRoutineDetailsScreen(BatchYear.First)

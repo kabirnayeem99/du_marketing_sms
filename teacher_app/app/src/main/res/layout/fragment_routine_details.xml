@@ -20,6 +20,7 @@
             tools:listitem="@layout/list_item_routine" />
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fabAddRoutine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16sp"
