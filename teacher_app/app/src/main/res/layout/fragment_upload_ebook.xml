@@ -10,8 +10,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16sp"
-        tools:context=".presentation.view.activities.ebook.UploadEbookActivity">
+        android:padding="16sp">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -72,6 +71,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
+                android:id="@+id/btn_upload_book"
                 android:layout_width="300sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
