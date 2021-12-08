@@ -26,21 +26,51 @@ class EbookViewModel @Inject constructor(
 ) :
     BaseViewModel() {
 
-    fun saveEbook(ebookData: EbookData): Task<Void> =
-        repo.insertEbookDataToDb(ebookData)
 
-    fun deleteEbook(ebookData: EbookData): Task<Void>? =
-        repo.deleteEbookFromDb(ebookData)
-
-
-    fun uploadPdf(pdfFile: Uri, pdfName: String) {
-
+    fun saveEbook(ebookData: EbookData) {
         ioScope.launch {
+            _isLoading.postValue(true)
+            when (val resource = repo.insertEbookDataToDb(ebookData)) {
+                is Resource.Success -> {
+                    _isLoading.postValue(false)
+                    _message.postValue("Successfully uploaded ${resource.data}.")
+                }
+                is Resource.Error -> {
+                    _isLoading.postValue(false)
+                    _errorMessage.postValue(resource.message ?: "Something went wrong")
+                }
+                else -> _isLoading.postValue(false)
+            }
+        }
+    }
 
+    fun deleteEbook(ebookData: EbookData) {
+        ioScope.launch {
+            _isLoading.postValue(true)
+            when (val resource = repo.deleteEbookFromDb(ebookData)) {
+                is Resource.Success -> {
+                    _isLoading.postValue(false)
+                    _message.postValue("Successfully deleted ${resource.data}.")
+                }
+                is Resource.Error -> {
+                    _isLoading.postValue(false)
+                    _errorMessage.postValue(resource.message ?: "Something went wrong")
+                }
+                else -> _isLoading.postValue(false)
+            }
+        }
+    }
+
+
+    private val _ebookUrl = MutableLiveData<String>()
+    val ebookUrl: LiveData<String> = _ebookUrl
+    fun uploadPdf(pdfFile: Uri, pdfName: String) {
+        ioScope.launch {
             repo.uploadPdf(pdfFile, pdfName).collect { resource ->
                 when (resource) {
                     is Resource.Success -> {
                         _isLoading.postValue(false)
+                        _ebookUrl.postValue(resource.data!!)
                         _message.postValue("Successfully uploaded ${resource.data}")
                     }
                     is Resource.Error -> {
@@ -54,11 +84,24 @@ class EbookViewModel @Inject constructor(
     }
 
 
-    private val _ebookUploadSuccess = MutableLiveData<String>()
-    val ebookUploadSuccess: LiveData<String> = _ebookUploadSuccess
+    private val _ebookList = MutableLiveData<List<EbookData>>()
+    val ebookList: LiveData<List<EbookData>> = _ebookList
     fun getEbooks() {
         ioScope.launch {
-            repo.getEbooks()
+            repo.getEbooks().collect { resource ->
+                when (resource) {
+                    is Resource.Success -> {
+                        _isLoading.postValue(false)
+                        _ebookList.postValue(resource.data!!)
+                    }
+                    is Resource.Error -> {
+                        _isLoading.postValue(false)
+                        _ebookList.postValue(emptyList())
+                        _errorMessage.postValue(resource.message ?: "Something went wrong")
+                    }
+                    is Resource.Loading -> _isLoading.postValue(true)
+                }
+            }
         }
     }
 }

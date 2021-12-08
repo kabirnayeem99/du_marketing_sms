@@ -28,7 +28,6 @@ class DefaultEbookRepository
     val dataSource: EbookDataSource
 ) : EbookRepository {
 
-
     override suspend fun uploadPdf(pdfFile: Uri, pdfName: String) = flow {
         emit(Resource.Loading())
         val uploadPdfResource = dataSource.uploadPdf(pdfFile, pdfName)
@@ -36,40 +35,13 @@ class DefaultEbookRepository
     }
 
 
-    override fun insertEbookDataToDb(ebookData: EbookData): Task<Void> {
+    override suspend fun insertEbookDataToDb(ebookData: EbookData) =
+        dataSource.insertEbookDataToDb(ebookData)
 
-        lateinit var key: String
-
-        if (ebookData.key == null) {
-            key = ebookData.title.replace("\\s".toRegex(), "").also {
-                ebookData.key = it
-            }
-        } else {
-            ebookData.key?.let {
-                key = it
-            }
-        }
-
-        return db.collection(EBOOK_DB_REF).document(key).set(ebookData)
-    }
-
-    override fun deleteEbookFromDb(ebookData: EbookData): Task<Void>? {
-
-        Log.d(TAG, "deleteEbookFromDb: deleting $ebookData")
-
-        ebookData.key?.let { key ->
-            BaasService.storage.getReferenceFromUrl(ebookData.pdfUrl).delete().also {
-                return db.collection(EBOOK_DB_REF).document(key).delete()
-            }
-        }
-
-        return null
-    }
+    override suspend fun deleteEbookFromDb(ebookData: EbookData) =
+        dataSource.deleteEbookFromDb(ebookData)
 
     @ExperimentalCoroutinesApi
     override fun getEbooks(): Flow<Resource<List<EbookData>>> = dataSource.getEbooks()
 
-    companion object {
-        private const val TAG = "EbookRepository"
-    }
 }

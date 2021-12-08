@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface EbookRepository {
     suspend fun uploadPdf(pdfFile: Uri, pdfName: String): Flow<Resource<String>>
-    fun insertEbookDataToDb(ebookData: EbookData): Task<Void>
-    fun deleteEbookFromDb(ebookData: EbookData): Task<Void>?
+    suspend fun insertEbookDataToDb(ebookData: EbookData): Resource<String>
+    suspend fun deleteEbookFromDb(ebookData: EbookData): Resource<String>
     fun getEbooks(): Flow<Resource<List<EbookData>>>
 }

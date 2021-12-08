@@ -1,81 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16sp"
-    tools:context=".presentation.view.activities.ebook.UploadEbookActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16sp"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:padding="16sp"
+        tools:context=".presentation.view.activities.ebook.UploadEbookActivity">
 
 
-        <ImageView
-            android:id="@+id/ivIconEbookImage"
-            android:layout_width="100sp"
-            android:layout_height="100sp"
-            android:layout_gravity="center"
-            android:layout_margin="16sp"
-            android:layout_marginTop="8sp"
-            android:onClick="onIvSelectEbookClick"
-            android:padding="16dp"
-            android:src="@drawable/ic_fluent_book_add_24_selector"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <TextView
-            android:id="@+id/tvPdfName"
-            style="@style/TextAppearance.AppCompat.Caption"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12sp"
-            android:text="No Ebook selected yet"
-            app:layout_constraintBottom_toTopOf="@+id/tiEbookName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivIconEbookImage" />
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tiEbookName"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="300sp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
             android:layout_margin="16sp"
-            android:hint="@string/tf_hint_ebook_name"
-            android:textAlignment="center"
-            android:textDirection="ltr"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvPdfName">
+            android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
+
+            <ImageView
+                android:id="@+id/ivIconEbookImage"
+                android:layout_width="100sp"
+                android:layout_height="100sp"
+                android:layout_gravity="center"
+                android:layout_margin="16sp"
+                android:layout_marginTop="8sp"
+                android:onClick="onIvSelectEbookClick"
+                android:padding="16dp"
+                android:src="@drawable/ic_fluent_book_add_24_selector"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/tvPdfName"
+                style="@style/TextAppearance.AppCompat.Caption"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:maxLines="1" />
+                android:layout_margin="12sp"
+                android:text="No Ebook selected yet"
+                app:layout_constraintBottom_toTopOf="@+id/tiEbookName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivIconEbookImage" />
 
-        </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:layout_width="300sp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="8sp"
-            android:onClick="onBtnUploadEbookClick"
-            android:text="Upload Ebook"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tiEbookName" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tiEbookName"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="300sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="16sp"
+                android:hint="@string/tf_hint_ebook_name"
+                android:textAlignment="center"
+                android:textDirection="ltr"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPdfName">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:maxLines="1" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:layout_width="300sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="8sp"
+                android:onClick="onBtnUploadEbookClick"
+                android:text="Upload Ebook"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tiEbookName" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

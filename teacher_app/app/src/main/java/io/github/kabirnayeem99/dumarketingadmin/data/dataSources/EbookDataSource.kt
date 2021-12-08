@@ -1,18 +1,17 @@
 package io.github.kabirnayeem99.dumarketingadmin.data.dataSources
 
 import android.net.Uri
-import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.UploadTask
 import io.github.kabirnayeem99.dumarketingadmin.data.vo.EbookData
 import io.github.kabirnayeem99.dumarketingadmin.data.vo.EbookData.Companion.toEbookDataList
 import io.github.kabirnayeem99.dumarketingadmin.util.Constants
 import io.github.kabirnayeem99.dumarketingadmin.util.Resource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
@@ -61,6 +60,41 @@ class EbookDataSource @Inject constructor(
 
         }
 
+        awaitClose { cancel() }
+
+    }
+
+
+    suspend fun deleteEbookFromDb(ebookData: EbookData): Resource<String> {
+        return try {
+            ebookData.key?.let { key ->
+                BaasService.storage.getReferenceFromUrl(ebookData.pdfUrl).delete().also {
+                    db.collection(Constants.EBOOK_DB_REF).document(key).delete().await()
+                }
+            }?.await()
+            Resource.Success("Successfully delete ${ebookData.title}")
+        } catch (e: Exception) {
+            Resource.Error(e.localizedMessage ?: "Could not delete ${ebookData.title}")
+        }
+    }
+
+    suspend fun insertEbookDataToDb(ebookData: EbookData): Resource<String> {
+        try {
+            lateinit var key: String
+            if (ebookData.key == null) {
+                key = ebookData.title.replace("\\s".toRegex(), "").also {
+                    ebookData.key = it
+                }
+            } else {
+                ebookData.key?.let {
+                    key = it
+                }
+            }
+            db.collection(Constants.EBOOK_DB_REF).document(key).set(ebookData).await()
+            return Resource.Success("Successfully saved ${ebookData.title}.")
+        } catch (e: Exception) {
+            return Resource.Error("Could not save ${ebookData.title}.")
+        }
     }
 
 }

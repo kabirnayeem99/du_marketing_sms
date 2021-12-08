@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.DUMarketingAdmin" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.DUMarketingAdmin" parent="Theme.Material3.Dark">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/blue_grey_200</item>
         <item name="colorPrimaryVariant">@color/blue_grey_700</item>
