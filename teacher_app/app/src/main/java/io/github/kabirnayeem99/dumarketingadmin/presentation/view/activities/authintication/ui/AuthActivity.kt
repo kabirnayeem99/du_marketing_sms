@@ -1,76 +1,68 @@
 package io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.authintication.ui
 
-import android.app.ProgressDialog
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
+import io.github.kabirnayeem99.dumarketingadmin.base.BaseActivity
+import io.github.kabirnayeem99.dumarketingadmin.databinding.ActivityAuthBinding
+import io.github.kabirnayeem99.dumarketingadmin.ktx.openActivity
+import io.github.kabirnayeem99.dumarketingadmin.ktx.showErrorMessage
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.dashboard.DashboardActivity
 import io.github.kabirnayeem99.dumarketingadmin.util.RegexValidatorUtils
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class AuthActivity : AppCompatActivity() {
+class AuthActivity : BaseActivity<ActivityAuthBinding>() {
 
 
     @Inject
     lateinit var auth: FirebaseAuth
 
-    private val progressDialog: ProgressDialog by lazy {
-        ProgressDialog(this)
-    }
-
-    private lateinit var btnLogin: Button
-    private lateinit var btnRegister: Button
-    private lateinit var tiUserEmail: TextInputLayout
-    private lateinit var tiUserPassword: TextInputLayout
 
     private lateinit var emailValidationTextWatcher: ValidationTextWatcher
     private lateinit var passwordValidationTextWatcher: ValidationTextWatcher
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override val layout: Int
+        get() = R.layout.activity_auth
 
-
-        if (auth.currentUser == null) {
-            setContentView(R.layout.activity_auth)
-            initViews()
-
-            setUpEmailTextInput()
-            setUpPasswordTextInput()
-            setUpLoginButton()
-            setUpRegisterButton()
-
-        } else {
-            navigateToDashboard()
-        }
+    override fun onCreated(savedInstanceState: Bundle?) {
+        setUpEmailTextInput()
+        setUpPasswordTextInput()
+        setUpLoginButton()
+        setUpRegisterButton()
+//        if (auth.currentUser == null) {
+//            setUpEmailTextInput()
+//            setUpPasswordTextInput()
+//            setUpLoginButton()
+//            setUpRegisterButton()
+//
+//        } else {
+//            navigateToDashboard()
+//        }
     }
+
 
     private fun setUpEmailTextInput() {
         emailValidationTextWatcher =
-            ValidationTextWatcher(tiUserEmail)
+            ValidationTextWatcher(binding.tiUserEmail)
 
-        tiUserEmail.editText?.addTextChangedListener(emailValidationTextWatcher)
+        binding.tiUserEmail.editText?.addTextChangedListener(emailValidationTextWatcher)
 
     }
 
     private fun setUpPasswordTextInput() {
         passwordValidationTextWatcher =
-            ValidationTextWatcher(tiUserPassword)
+            ValidationTextWatcher(binding.tiUserPassword)
 
-        tiUserPassword.editText?.addTextChangedListener(passwordValidationTextWatcher)
+        binding.tiUserPassword.editText?.addTextChangedListener(passwordValidationTextWatcher)
     }
 
     private fun setUpLoginButton() {
-        btnLogin.setOnClickListener {
+        binding.btnLogin.setOnClickListener {
             if (emailValidationTextWatcher.validateEmail() && passwordValidationTextWatcher.validatePassword()) {
                 makeButtonUnclickable()
                 logIn()
@@ -79,7 +71,7 @@ class AuthActivity : AppCompatActivity() {
     }
 
     private fun setUpRegisterButton() {
-        btnRegister.setOnClickListener {
+        binding.btnRegister.setOnClickListener {
             if (emailValidationTextWatcher.validateEmail() && passwordValidationTextWatcher.validatePassword()) {
                 makeButtonUnclickable()
                 register()
@@ -88,75 +80,44 @@ class AuthActivity : AppCompatActivity() {
     }
 
     private fun makeButtonUnclickable() {
-        btnLogin.isClickable = false
-        btnRegister.isClickable = false
+        binding.btnLogin.isClickable = false
+        binding.btnRegister.isClickable = false
     }
 
     private fun makeButtonClickable() {
-        btnLogin.isClickable = true
-        btnRegister.isClickable = true
+        binding.btnLogin.isClickable = true
+        binding.btnRegister.isClickable = true
     }
 
     private fun logIn() {
-        progressDialog.setMessage("Logging in...")
-        progressDialog.show()
 
-        val email: String = tiUserEmail.editText?.text.toString()
-        val password: String = tiUserPassword.editText?.text.toString()
+        val email: String = binding.tiUserEmail.editText?.text.toString()
+        val password: String = binding.tiUserPassword.editText?.text.toString()
 
         auth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
             navigateToDashboard()
-            progressDialog.dismiss()
         }.addOnFailureListener { e ->
-            e.printStackTrace()
+            showErrorMessage("Could not log you in!\n${e.localizedMessage}.")
 
-            Snackbar.make(btnLogin, "Could not log you in. \n${e.message}", Snackbar.LENGTH_LONG)
-                .show()
-
-            progressDialog.dismiss()
-            makeButtonClickable()
         }
     }
 
     private fun register() {
 
-        progressDialog.setMessage("Signing up...")
-        progressDialog.show()
 
-        val email: String = tiUserEmail.editText?.text.toString()
-        val password: String = tiUserPassword.editText?.text.toString()
+        val email: String = binding.tiUserEmail.editText?.text.toString()
+        val password: String = binding.tiUserPassword.editText?.text.toString()
 
         auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
             navigateToDashboard()
-            progressDialog.dismiss()
         }.addOnFailureListener { e ->
-            e.printStackTrace()
-
-            Snackbar.make(
-                btnRegister,
-                "Could not create new account. \n${e.message}",
-                Snackbar.LENGTH_LONG
-            )
-
-            progressDialog.dismiss()
-            makeButtonClickable()
+            showErrorMessage(e.localizedMessage ?: "")
         }
     }
 
 
     private fun navigateToDashboard() {
-
-        // destroys sign in activity, so user can never back in
-
-        Intent(this, DashboardActivity::class.java)
-            .apply {
-                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            }
-            .also { intent ->
-                startActivity(intent)
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-            }
-        ActivityCompat.finishAffinity(this@AuthActivity)
+        openActivity(DashboardActivity::class.java, true)
     }
 
 
@@ -164,7 +125,7 @@ class AuthActivity : AppCompatActivity() {
         override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
         override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
         override fun afterTextChanged(editable: Editable) {
-            when (textInputLayout.getId()) {
+            when (textInputLayout.id) {
                 R.id.tiUserEmail -> validateEmail()
                 R.id.tiUserPassword -> validatePassword()
             }
@@ -200,13 +161,5 @@ class AuthActivity : AppCompatActivity() {
             }
         }
 
-    }
-
-
-    private fun initViews() {
-        btnLogin = findViewById(R.id.btnLogin)
-        btnRegister = findViewById(R.id.btnRegister)
-        tiUserEmail = findViewById(R.id.tiUserEmail)
-        tiUserPassword = findViewById(R.id.tiUserPassword)
     }
 }

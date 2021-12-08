@@ -10,6 +10,8 @@ import androidx.core.app.ActivityCompat
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
+import io.github.kabirnayeem99.dumarketingadmin.base.BaseActivity
+import io.github.kabirnayeem99.dumarketingadmin.databinding.ActivityDashboardBinding
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.authintication.ui.AuthActivity
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.ebook.EbookActivity
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.faculty.FacultyActivity
@@ -20,18 +22,17 @@ import io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.rou
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class DashboardActivity : AppCompatActivity() {
+class DashboardActivity : BaseActivity<ActivityDashboardBinding>() {
 
     @Inject
     lateinit var auth: FirebaseAuth
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override val layout: Int
+        get() = R.layout.activity_dashboard
 
+    override fun onCreated(savedInstanceState: Bundle?) {
         if (auth.currentUser == null) {
             navigateToAuthentication()
-        } else {
-            setContentView(R.layout.activity_dashboard)
         }
     }
 

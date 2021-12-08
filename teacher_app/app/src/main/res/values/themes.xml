@@ -1,26 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.DUMarketingAdmin" parent="Theme.Material3.Light">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blue_grey_500</item>
-        <item name="colorPrimaryVariant">@color/blue_grey_700</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/grey_200</item>
-        <item name="colorSecondaryVariant">@color/grey_700</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
-        <item name="snackbarStyle">@style/DUMarketingAdmin_SnackbarStyle</item>
-        <item name="android:forceDarkAllowed">false</item>
-
-
-    </style>
-
-    <style name="DUMarketingAdmin_SnackbarStyle" parent="Widget.MaterialComponents.Snackbar">
-        <item name="backgroundTint">@color/blue_grey_500</item>
-        <item name="android:textColor">#11000000</item>
-        <item name="android:layout_margin">16sp</item>
+    <style name="Theme.DUMarketingAdmin" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
     </style>
 
 

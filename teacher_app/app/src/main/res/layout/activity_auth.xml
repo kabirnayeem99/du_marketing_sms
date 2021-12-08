@@ -1,71 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".presentation.view.activities.authintication.ui.AuthActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@mipmap/ic_launcher_round" />
+    <data>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="12sp"
-        android:text="@string/app_name"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_gradient"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".presentation.view.activities.authintication.ui.AuthActivity">
+
+        <ImageView
+            android:id="@+id/iv_illustration_logo"
+            android:layout_width="350dp"
+            android:layout_height="200dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginVertical="52dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/illust_studying"
+            app:layout_constraintBottom_toTopOf="@id/cl_log_in_card"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.6" />
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tiUserEmail"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="300sp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="12sp"
-        android:hint="@string/tf_hint_user_email">
-
-        <com.google.android.material.textfield.TextInputEditText
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_log_in_card"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="textEmailAddress" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tiUserPassword"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="300sp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="12sp"
-        android:hint="@string/tf_hint_user_password">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="textPassword" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="0dp"
+            android:background="@drawable/bg_top_rounded_layout"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_illustration_logo"
+            app:layout_constraintVertical_bias="1">
 
 
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="300sp"
-        android:layout_height="wrap_content"
-        android:layout_margin="12sp"
-        android:text="Log In" />
+            <TextView
+                android:id="@+id/tv_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="12dp"
+                android:text="Admin Login"
+                android:textAlignment="center"
+                android:textColor="?android:colorPrimary"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/tiUserEmail"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnRegister"
-        android:layout_width="300sp"
-        android:layout_height="wrap_content"
-        android:layout_margin="12sp"
-        android:text="Register" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tiUserEmail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="6dp"
+                android:hint="@string/tf_hint_user_email"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
+                app:boxStrokeWidth="0.2dp"
+                app:boxStrokeWidthFocused="0.8dp"
+                app:layout_constraintBottom_toTopOf="@+id/tiUserPassword"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_label">
 
-</LinearLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tiUserPassword"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="6dp"
+                android:layout_marginBottom="7dp"
+                android:hint="@string/tf_hint_user_password"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
+                app:boxStrokeWidth="0.2dp"
+                app:boxStrokeWidthFocused="0.8dp"
+                app:layout_constraintBottom_toTopOf="@+id/btnLogin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tiUserEmail">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="300dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="6dp"
+                android:background="@drawable/bg_rounded_rectangle_button_solid"
+                android:backgroundTint="?android:colorPrimary"
+                android:text="Log In"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/btnRegister"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tiUserPassword" />
+
+            <Button
+                android:id="@+id/btnRegister"
+                android:layout_width="300dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="42dp"
+                android:background="@drawable/bg_rounded_rectangle_button_bordered"
+                android:text="Register"
+                android:textColor="?android:colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

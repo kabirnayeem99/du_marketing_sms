@@ -42,11 +42,16 @@ fun BaseActivity<*>.showMessage(message: String) {
  * @param activityClass the .class of the activity that is going to open
  * @param extras if there are any extras for the activity
  */
-fun <T> BaseActivity<*>.openActivity(activityClass: Class<T>, extras: Bundle.() -> Unit = {}) {
+fun <T> BaseActivity<*>.openActivity(
+    activityClass: Class<T>,
+    shouldFinish: Boolean = false,
+    extras: Bundle.() -> Unit = {}
+) {
     val intent = Intent(this, activityClass)
     intent.putExtras(Bundle().apply(extras))
     startActivity(intent)
     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+    if (shouldFinish) finish()
 }
 
 /**
