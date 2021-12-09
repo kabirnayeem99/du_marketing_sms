@@ -7,14 +7,13 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.kabirnayeem99.dumarketingadmin.base.BaseViewModel
 import io.github.kabirnayeem99.dumarketingadmin.data.repositories.DefaultRoutineRepository
-import io.github.kabirnayeem99.dumarketingadmin.data.vo.RoutineData
+import io.github.kabirnayeem99.dumarketingadmin.data.model.RoutineData
 import io.github.kabirnayeem99.dumarketingadmin.util.Resource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.coroutines.CoroutineContext
 
 @HiltViewModel
 class RoutineViewModel @Inject constructor(

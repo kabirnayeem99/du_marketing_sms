@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import io.github.kabirnayeem99.dumarketingadmin.R
-import io.github.kabirnayeem99.dumarketingadmin.data.vo.EbookData
+import io.github.kabirnayeem99.dumarketingadmin.data.model.EbookData
 
 class EbookDataAdapter(private var listener: (EbookData) -> Unit) :
     RecyclerView.Adapter<EbookDataAdapter.ViewHolder>() {

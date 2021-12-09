@@ -1,4 +1,4 @@
-package io.github.kabirnayeem99.dumarketingadmin.data.vo
+package io.github.kabirnayeem99.dumarketingadmin.data.model
 
 import android.os.Parcelable
 import android.util.Log

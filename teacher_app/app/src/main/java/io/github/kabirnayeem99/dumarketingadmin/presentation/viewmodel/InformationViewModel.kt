@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.google.android.gms.tasks.Task
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.kabirnayeem99.dumarketingadmin.data.repositories.InformationRepository
-import io.github.kabirnayeem99.dumarketingadmin.data.vo.InformationData
+import io.github.kabirnayeem99.dumarketingadmin.data.model.InformationData
 import javax.inject.Inject
 
 

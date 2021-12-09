@@ -17,7 +17,7 @@ import com.google.android.gms.tasks.Task
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
-import io.github.kabirnayeem99.dumarketingadmin.data.vo.NoticeData
+import io.github.kabirnayeem99.dumarketingadmin.data.model.NoticeData
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.fragments.DelayedProgressDialog
 import io.github.kabirnayeem99.dumarketingadmin.util.AssetUtilities
 import io.github.kabirnayeem99.dumarketingadmin.util.TimeUtilities

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import io.github.kabirnayeem99.dumarketingadmin.R
-import io.github.kabirnayeem99.dumarketingadmin.data.vo.RoutineData
+import io.github.kabirnayeem99.dumarketingadmin.data.model.RoutineData
 import io.github.kabirnayeem99.dumarketingadmin.util.TimeUtilities.getHourMinuteTimeFromStringTime
 import io.github.kabirnayeem99.dumarketingadmin.util.TimeUtilities.getMeridianFromStringTime
 

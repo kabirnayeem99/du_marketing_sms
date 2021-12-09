@@ -10,7 +10,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
-import io.github.kabirnayeem99.dumarketingadmin.data.vo.GalleryData
+import io.github.kabirnayeem99.dumarketingadmin.data.model.GalleryData
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.fragments.DelayedProgressDialog
 import io.github.kabirnayeem99.dumarketingadmin.util.AssetUtilities
 import io.github.kabirnayeem99.dumarketingadmin.util.AssetUtilities.dataUriToBitmap

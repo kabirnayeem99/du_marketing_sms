@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import io.github.kabirnayeem99.dumarketingadmin.R
-import io.github.kabirnayeem99.dumarketingadmin.data.vo.GalleryData
+import io.github.kabirnayeem99.dumarketingadmin.data.model.GalleryData
 
 class GalleryDataAdapter(private var listener: (GalleryData) -> Unit) :
     RecyclerView.Adapter<GalleryDataAdapter.ViewHolder>() {

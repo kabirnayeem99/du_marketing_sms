@@ -9,8 +9,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import io.github.kabirnayeem99.dumarketingadmin.data.dataSources.BaasService
-import io.github.kabirnayeem99.dumarketingadmin.data.vo.NoticeData
-import io.github.kabirnayeem99.dumarketingadmin.data.vo.NoticeData.Companion.toNoticeDataList
+import io.github.kabirnayeem99.dumarketingadmin.data.model.NoticeData
+import io.github.kabirnayeem99.dumarketingadmin.data.model.NoticeData.Companion.toNoticeDataList
 import io.github.kabirnayeem99.dumarketingadmin.util.Constants.NOTICE_DB_REF
 import io.github.kabirnayeem99.dumarketingadmin.util.Constants.NOTICE_IMAGE_PATH_STRING_FOLDER_NAME
 import io.github.kabirnayeem99.dumarketingadmin.util.Resource

@@ -3,11 +3,10 @@ package io.github.kabirnayeem99.dumarketingadmin.presentation.view.routine
 import android.os.Bundle
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
-import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.base.BaseFragment
-import io.github.kabirnayeem99.dumarketingadmin.data.vo.RoutineData
+import io.github.kabirnayeem99.dumarketingadmin.data.model.RoutineData
 import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentUpsertRoutineBinding
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.RoutineViewModel
 import io.github.kabirnayeem99.dumarketingadmin.util.TimeUtilities

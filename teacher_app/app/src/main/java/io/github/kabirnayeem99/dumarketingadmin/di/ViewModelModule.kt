@@ -9,17 +9,13 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import io.github.kabirnayeem99.dumarketingadmin.data.dataSources.EbookDataSource
 import io.github.kabirnayeem99.dumarketingadmin.data.dataSources.FacultyDataSource
+import io.github.kabirnayeem99.dumarketingadmin.data.dataSources.GalleryDataSource
 import io.github.kabirnayeem99.dumarketingadmin.data.dataSources.RoutineDataSource
 import io.github.kabirnayeem99.dumarketingadmin.data.repositories.*
-import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.AuthenticationRepository
-import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.EbookRepository
-import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.FacultyRepository
-import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.RoutineRepository
+import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.*
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlin.coroutines.CoroutineContext
 
 
 @Module
@@ -54,8 +50,14 @@ object ViewModelModule {
     }
 
     @Provides
-    fun provideGalleryRepository(db: FirebaseFirestore, store: FirebaseStorage): GalleryRepository {
-        return GalleryRepository(db, store)
+    fun provideGalleryDataSource(db: FirebaseFirestore, store: FirebaseStorage): GalleryDataSource {
+        return GalleryDataSource(db, store)
+    }
+
+    @ExperimentalCoroutinesApi
+    @Provides
+    fun provideGalleryRepository(dataSource: GalleryDataSource): GalleryRepository {
+        return DefaultGalleryRepository(dataSource)
     }
 
     @Provides

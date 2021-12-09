@@ -2,8 +2,8 @@ package io.github.kabirnayeem99.dumarketingadmin.data.dataSources
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import io.github.kabirnayeem99.dumarketingadmin.data.vo.FacultyData
-import io.github.kabirnayeem99.dumarketingadmin.data.vo.FacultyData.Companion.toFacultyDataList
+import io.github.kabirnayeem99.dumarketingadmin.data.model.FacultyData
+import io.github.kabirnayeem99.dumarketingadmin.data.model.FacultyData.Companion.toFacultyDataList
 import io.github.kabirnayeem99.dumarketingadmin.util.Constants
 import io.github.kabirnayeem99.dumarketingadmin.util.Resource
 import kotlinx.coroutines.flow.callbackFlow
