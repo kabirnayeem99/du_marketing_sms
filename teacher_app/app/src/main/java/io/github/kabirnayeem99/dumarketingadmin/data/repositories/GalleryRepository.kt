@@ -1,6 +1,5 @@
 package io.github.kabirnayeem99.dumarketingadmin.data.repositories
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.tasks.Task
@@ -15,6 +14,7 @@ import io.github.kabirnayeem99.dumarketingadmin.util.Constants.GALLERY_DB_REF
 import io.github.kabirnayeem99.dumarketingadmin.util.Constants.GALLERY_IMAGE_PATH_STRING_FOLDER_NAME
 import io.github.kabirnayeem99.dumarketingadmin.util.Resource
 import kotlinx.coroutines.tasks.await
+import timber.log.Timber
 import javax.inject.Inject
 
 class GalleryRepository @Inject constructor(var db: FirebaseFirestore, var store: FirebaseStorage) {
@@ -64,7 +64,7 @@ class GalleryRepository @Inject constructor(var db: FirebaseFirestore, var store
             return true
 
         } catch (e: Exception) {
-            Log.e(TAG, "deleteGalleryImage: $e")
+            Timber.e("deleteGalleryImage: $e")
 
             return false
         }
@@ -93,9 +93,5 @@ class GalleryRepository @Inject constructor(var db: FirebaseFirestore, var store
         )
 
         return galleryImageLiveData
-    }
-
-    companion object {
-        private const val TAG = "GalleryRepository"
     }
 }

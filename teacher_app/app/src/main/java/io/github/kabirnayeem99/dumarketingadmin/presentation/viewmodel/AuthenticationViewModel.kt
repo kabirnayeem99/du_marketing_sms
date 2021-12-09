@@ -2,19 +2,21 @@ package io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.kabirnayeem99.dumarketingadmin.base.BaseViewModel
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.AuthenticationRepository
 import io.github.kabirnayeem99.dumarketingadmin.util.Resource
-import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
 @HiltViewModel
 class AuthenticationViewModel @Inject constructor(
-    val authRepo: AuthenticationRepository,
-    val ioScope: CoroutineScope
+    private val authRepo: AuthenticationRepository,
+    private val ioContext: CoroutineDispatcher
 ) : BaseViewModel() {
 
     init {
@@ -35,7 +37,7 @@ class AuthenticationViewModel @Inject constructor(
     private val _loginSuccess = MutableLiveData<String>()
     val loginSuccess: LiveData<String> = _loginSuccess
 
-    fun login() = ioScope.launch {
+    fun login() = viewModelScope.launch(ioContext) {
         _isLoading.postValue(true)
         if (email.isEmpty()) {
             _isLoading.postValue(false)
@@ -64,7 +66,7 @@ class AuthenticationViewModel @Inject constructor(
     private val _registerSuccess = MutableLiveData<String>()
     val registerSuccess: LiveData<String> = _registerSuccess
 
-    fun register() = ioScope.launch {
+    fun register() = viewModelScope.launch(ioContext) {
         _isLoading.postValue(true)
         if (email.isEmpty()) {
             _isLoading.postValue(false)
@@ -93,7 +95,7 @@ class AuthenticationViewModel @Inject constructor(
 
     private val _authenticated = MutableLiveData<Boolean>()
     val authenticated: LiveData<Boolean> = _authenticated
-    fun getAuthenticationStatus() = ioScope.launch {
+    fun getAuthenticationStatus() = viewModelScope.launch(ioContext) {
         _isLoading.postValue(true)
         authRepo.getAuthenticationStatus().collect { authenticationStatus ->
             _isLoading.postValue(false)

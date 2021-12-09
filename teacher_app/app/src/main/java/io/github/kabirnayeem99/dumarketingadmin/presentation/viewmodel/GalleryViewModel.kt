@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class GalleryViewModel @Inject constructor(val repo: GalleryRepository) : ViewModel() {
+class GalleryViewModel @Inject constructor(val repo: GalleryRepository,) : ViewModel() {
 
     fun saveGalleryData(
         galleryData: GalleryData

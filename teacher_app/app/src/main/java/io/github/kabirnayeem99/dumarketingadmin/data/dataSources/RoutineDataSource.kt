@@ -1,6 +1,5 @@
 package io.github.kabirnayeem99.dumarketingadmin.data.dataSources
 
-import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import io.github.kabirnayeem99.dumarketingadmin.data.vo.RoutineData
 import io.github.kabirnayeem99.dumarketingadmin.data.vo.RoutineData.Companion.toRoutineDataList
@@ -35,7 +34,7 @@ class RoutineDataSource @Inject constructor(val db: FirebaseFirestore) {
 
         db.collection(Constants.ROUTINE_DB_REF)
             .document(batchYear)
-            .collection("routines").addSnapshotListener(EventListener { value, error ->
+            .collection("routines").addSnapshotListener { value, error ->
 
                 if (error != null || value == null) trySend(
                     Resource.Error(
@@ -46,7 +45,7 @@ class RoutineDataSource @Inject constructor(val db: FirebaseFirestore) {
                 if (value != null) {
                     trySend(Resource.Success(value.toRoutineDataList()))
                 }
-            })
+            }
 
         awaitClose { cancel() }
     }

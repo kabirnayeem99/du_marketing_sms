@@ -3,6 +3,7 @@ package io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.android.gms.tasks.Task
 import com.google.firebase.storage.UploadTask
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,29 +12,53 @@ import io.github.kabirnayeem99.dumarketingadmin.data.repositories.DefaultFaculty
 import io.github.kabirnayeem99.dumarketingadmin.data.vo.FacultyData
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.FacultyRepository
 import io.github.kabirnayeem99.dumarketingadmin.util.Resource
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
 
 @HiltViewModel
 class FacultyViewModel @Inject constructor(
-    val repo: FacultyRepository,
-    val ioScope: CoroutineScope
+    private val repo: FacultyRepository,
+    private val ioContext: CoroutineDispatcher,
 ) : BaseViewModel() {
 
-    fun insertFacultyDataToDb(facultyData: FacultyData, post: String): Task<Void> =
-        repo.upsertFacultyDataToDb(facultyData)
+    fun insertFacultyDataToDb(facultyData: FacultyData, post: String) {
+        _isLoading.postValue(true)
+        viewModelScope.launch(ioContext) {
+            val resource = repo.saveFacultyData(facultyData)
+            _isLoading.postValue(false)
+            when (resource) {
+                is Resource.Error -> _errorMessage.postValue(resource.message)
+                is Resource.Success -> _message.postValue("${resource.data} is saved.")
+                else -> Unit
+            }
+        }
+    }
 
 
-    fun uploadImage(imageFile: ByteArray, imageName: String): UploadTask {
-        repo.uploadImage(imageFile, imageName)
+    suspend fun uploadImage(imageFile: ByteArray, imageName: String): String? {
+        var url: String? = null
+        _isLoading.postValue(true)
+        val resource = repo.uploadImage(imageFile, imageName)
+        _isLoading.postValue(false)
+        when (resource) {
+            is Resource.Error -> _errorMessage.postValue("Image could not be uploaded")
+            is Resource.Success -> {
+                _message.postValue("$imageName is successfully saved")
+                url = resource.data
+            }
+            else -> Unit
+        }
+        return url
     }
 
     fun deleteFacultyData(facultyData: FacultyData, post: String) {
         _isLoading.postValue(true)
-        ioScope.launch {
+        viewModelScope.launch(ioContext) {
             val resource = repo.deleteFacultyData(facultyData)
             _isLoading.postValue(false)
             when (resource) {
@@ -50,7 +75,7 @@ class FacultyViewModel @Inject constructor(
 
     fun getFacultyList() {
         _isLoading.postValue(true)
-        ioScope.launch {
+        viewModelScope.launch(ioContext) {
             repo.getFacultyList().collect { resource ->
                 _isLoading.postValue(false)
                 when (resource) {

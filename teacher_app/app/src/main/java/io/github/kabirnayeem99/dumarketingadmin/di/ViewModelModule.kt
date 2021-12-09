@@ -15,14 +15,16 @@ import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.Authenticati
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.EbookRepository
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.FacultyRepository
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.RoutineRepository
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlin.coroutines.CoroutineContext
 
 
 @Module
 @InstallIn(ViewModelComponent::class)
-class ViewModelModule {
+object ViewModelModule {
 
     @ExperimentalCoroutinesApi
     @Provides
@@ -31,8 +33,8 @@ class ViewModelModule {
     }
 
     @Provides
-    fun provideIoScope(): CoroutineScope {
-        return CoroutineScope(Dispatchers.IO)
+    fun provideIoScope(): CoroutineDispatcher {
+        return Dispatchers.IO
     }
 
     @ExperimentalCoroutinesApi

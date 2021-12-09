@@ -13,6 +13,7 @@ import android.view.View
 import android.widget.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputLayout
 import com.lmntrx.android.library.livin.missme.ProgressDialog
@@ -24,9 +25,19 @@ import io.github.kabirnayeem99.dumarketingadmin.util.Constants.EXTRA_FACULTY_DAT
 import io.github.kabirnayeem99.dumarketingadmin.util.Constants.TEACHER_POSTS
 import io.github.kabirnayeem99.dumarketingadmin.util.RegexValidatorUtils
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.FacultyViewModel
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.util.*
+import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
+
 @AndroidEntryPoint
 class UpsertFacultyActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var ioContext: CoroutineDispatcher
 
     private lateinit var bitmap: Bitmap
     private var teacherPost: String = ""
@@ -199,28 +210,8 @@ class UpsertFacultyActivity : AppCompatActivity() {
 
     private fun upsertFacultyData(
         facultyData: FacultyData
-    ) {
+    ) = facultyViewModel.insertFacultyDataToDb(facultyData, facultyData.post)
 
-        val insertFacultyDataToDbTask =
-            facultyViewModel.insertFacultyDataToDb(facultyData, facultyData.post)
-
-        insertFacultyDataToDbTask
-            .addOnFailureListener { e ->
-                Toast.makeText(this, "Data could not be saved. ${e.message}", Toast.LENGTH_SHORT)
-                    .show()
-                progressDialog.dismiss()
-            }
-            .addOnSuccessListener {
-                Toast.makeText(
-                    this,
-                    "Successfully saved ${facultyData.name}'s data.",
-                    Toast.LENGTH_SHORT
-                ).show()
-                progressDialog.dismiss()
-
-                onBackPressed()
-            }
-    }
 
     /**
      * Uploads the image and saves the data.
@@ -229,44 +220,19 @@ class UpsertFacultyActivity : AppCompatActivity() {
         facultyData: FacultyData,
         bitmap: Bitmap,
     ) {
-        val imageName = facultyData.name.toLowerCase(Locale.ROOT).trim()
+        lifecycleScope.launch(ioContext) {
+            val imageName = facultyData.name.toLowerCase(Locale.ROOT).trim()
 
-        val imageFile: ByteArray by lazy {
-            AssetUtilities.bitmapToJpeg(bitmap)
+            val imageFile: ByteArray by lazy {
+                AssetUtilities.bitmapToJpeg(bitmap)
+            }
+
+            val imageUrl = facultyViewModel.uploadImage(imageFile, imageName)
+
+            facultyData.profileImageUrl = imageUrl
+
+            upsertFacultyData(facultyData)
         }
-
-        val uploadImageTask = facultyViewModel.uploadImage(imageFile, imageName)
-
-        uploadImageTask
-            .addOnFailureListener { e ->
-
-                Log.e(TAG, "uploadImageAndSaveData: $e")
-
-                Toast.makeText(
-                    this,
-                    "Image could not be saved. ${e.message}",
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
-                progressDialog.dismiss()
-            }
-            .addOnSuccessListener { uploadTaskSnapshot ->
-
-                val uriTask = uploadTaskSnapshot.storage.downloadUrl
-
-                while (!uriTask.isComplete) {
-                }
-
-                val url = uriTask.result.toString()
-
-                facultyData.profileImageUrl = url
-
-                Log.d(TAG, "uploadImageAndSaveData: $url")
-
-                upsertFacultyData(facultyData)
-
-            }
-
     }
 
     private val progressDialog: ProgressDialog by lazy {
@@ -284,23 +250,10 @@ class UpsertFacultyActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         if (item.itemId == R.id.menuItemDelete) {
-
-
             return if (facultyData != null) {
                 showProgressDialog("Deleting...")
                 facultyData?.let {
                     facultyViewModel.deleteFacultyData(it, it.post)
-                        ?.addOnFailureListener { e ->
-                            Toast.makeText(this, "Failed to delete this", Toast.LENGTH_SHORT).show()
-                            e.printStackTrace()
-                            progressDialog.dismiss()
-                        }
-                        ?.addOnSuccessListener {
-                            Toast.makeText(this, "Successfully deleted this", Toast.LENGTH_SHORT)
-                                .show()
-                            progressDialog.dismiss()
-                            onBackPressed()
-                        }
                 }
                 false
             } else {
@@ -345,12 +298,12 @@ class UpsertFacultyActivity : AppCompatActivity() {
                         Glide.with(this@UpsertFacultyActivity)
                             .load(AssetUtilities.bitmapToJpeg(bitmap)).into(ivAvatar)
                     } catch (e: Exception) {
-                        Log.e(TAG, "onActivityResult: $e")
+                        Timber.e("onActivityResult: $e")
                     }
 
                 } catch (e: Exception) {
 
-                    Log.e(TAG, "onActivityResult: $e")
+                    Timber.e("onActivityResult: $e")
 
                     Toast.makeText(
                         this, "Could not get the image.", Toast.LENGTH_SHORT
@@ -389,7 +342,6 @@ class UpsertFacultyActivity : AppCompatActivity() {
 
     companion object {
         private const val PICK_IMAGE_REQ_CODE = 1
-        private const val TAG = "UpsertFacultyActivity"
     }
 
 }
