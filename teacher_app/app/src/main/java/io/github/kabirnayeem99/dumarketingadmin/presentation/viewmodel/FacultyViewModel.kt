@@ -31,8 +31,18 @@ class FacultyViewModel @Inject constructor(
         repo.uploadImage(imageFile, imageName)
     }
 
-    fun deleteFacultyData(facultyData: FacultyData, post: String): Task<Void>? =
-        repo.deleteFacultyData(facultyData)
+    fun deleteFacultyData(facultyData: FacultyData, post: String) {
+        _isLoading.postValue(true)
+        ioScope.launch {
+            val resource = repo.deleteFacultyData(facultyData)
+            _isLoading.postValue(false)
+            when (resource) {
+                is Resource.Error -> _errorMessage.postValue(resource.message)
+                is Resource.Success -> _message.postValue("Successfully deleted ${facultyData.name}.")
+                else -> Unit
+            }
+        }
+    }
 
 
     private val _facultyListObservable = MutableLiveData<List<FacultyData>>(emptyList())
