@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import io.github.kabirnayeem99.dumarketingadmin.R
-import io.github.kabirnayeem99.dumarketingadmin.data.vo.FacultyData
+import io.github.kabirnayeem99.dumarketingadmin.data.model.FacultyData
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.faculty.UpsertFacultyActivity
 import io.github.kabirnayeem99.dumarketingadmin.util.Constants.EXTRA_FACULTY_DATA
 

@@ -3,7 +3,7 @@ package io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.kabirnayeem99.dumarketingadmin.data.repositories.NoticeRepository
-import io.github.kabirnayeem99.dumarketingadmin.data.vo.NoticeData
+import io.github.kabirnayeem99.dumarketingadmin.data.model.NoticeData
 import javax.inject.Inject
 
 

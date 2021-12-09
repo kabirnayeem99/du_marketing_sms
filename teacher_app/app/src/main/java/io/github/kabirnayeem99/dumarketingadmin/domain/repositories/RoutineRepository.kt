@@ -1,6 +1,6 @@
 package io.github.kabirnayeem99.dumarketingadmin.domain.repositories
 
-import io.github.kabirnayeem99.dumarketingadmin.data.vo.RoutineData
+import io.github.kabirnayeem99.dumarketingadmin.data.model.RoutineData
 import io.github.kabirnayeem99.dumarketingadmin.util.Resource
 
 interface RoutineRepository {

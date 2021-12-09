@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.base.BaseFragment
-import io.github.kabirnayeem99.dumarketingadmin.data.vo.EbookData
+import io.github.kabirnayeem99.dumarketingadmin.data.model.EbookData
 import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentEbookBinding
 import io.github.kabirnayeem99.dumarketingadmin.ktx.showErrorMessage
 import io.github.kabirnayeem99.dumarketingadmin.ktx.showMessage

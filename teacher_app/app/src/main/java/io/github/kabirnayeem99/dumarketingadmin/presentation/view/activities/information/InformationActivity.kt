@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
-import io.github.kabirnayeem99.dumarketingadmin.data.vo.InformationData
+import io.github.kabirnayeem99.dumarketingadmin.data.model.InformationData
 import io.github.kabirnayeem99.dumarketingadmin.util.Resource
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.InformationViewModel
 @AndroidEntryPoint

@@ -1,7 +1,7 @@
 package io.github.kabirnayeem99.dumarketingadmin.domain.repositories
 
 import android.net.Uri
-import io.github.kabirnayeem99.dumarketingadmin.data.vo.EbookData
+import io.github.kabirnayeem99.dumarketingadmin.data.model.EbookData
 import io.github.kabirnayeem99.dumarketingadmin.util.Resource
 import kotlinx.coroutines.flow.Flow
 

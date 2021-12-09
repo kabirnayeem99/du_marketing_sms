@@ -2,7 +2,7 @@ package io.github.kabirnayeem99.dumarketingadmin.data.repositories
 
 
 import io.github.kabirnayeem99.dumarketingadmin.data.dataSources.RoutineDataSource
-import io.github.kabirnayeem99.dumarketingadmin.data.vo.RoutineData
+import io.github.kabirnayeem99.dumarketingadmin.data.model.RoutineData
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.RoutineRepository
 import io.github.kabirnayeem99.dumarketingadmin.util.Resource
 import kotlinx.coroutines.ExperimentalCoroutinesApi

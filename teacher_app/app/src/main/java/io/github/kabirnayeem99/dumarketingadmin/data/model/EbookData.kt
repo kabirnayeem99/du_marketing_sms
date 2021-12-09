@@ -1,4 +1,4 @@
-package io.github.kabirnayeem99.dumarketingadmin.data.vo
+package io.github.kabirnayeem99.dumarketingadmin.data.model
 
 import androidx.annotation.Keep
 import com.google.firebase.firestore.DocumentSnapshot

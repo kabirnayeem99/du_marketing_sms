@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
-import io.github.kabirnayeem99.dumarketingadmin.data.vo.GalleryData
+import io.github.kabirnayeem99.dumarketingadmin.data.model.GalleryData
 import io.github.kabirnayeem99.dumarketingadmin.util.Resource
 import io.github.kabirnayeem99.dumarketingadmin.util.adapter.GalleryDataAdapter
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.GalleryViewModel

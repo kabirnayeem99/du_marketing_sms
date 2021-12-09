@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
-import io.github.kabirnayeem99.dumarketingadmin.data.vo.InformationData
-import io.github.kabirnayeem99.dumarketingadmin.data.vo.InformationData.Companion.toInformationData
+import io.github.kabirnayeem99.dumarketingadmin.data.model.InformationData
+import io.github.kabirnayeem99.dumarketingadmin.data.model.InformationData.Companion.toInformationData
 import io.github.kabirnayeem99.dumarketingadmin.util.Constants.ABOUT_DB_REF
 import io.github.kabirnayeem99.dumarketingadmin.util.Resource
 import timber.log.Timber

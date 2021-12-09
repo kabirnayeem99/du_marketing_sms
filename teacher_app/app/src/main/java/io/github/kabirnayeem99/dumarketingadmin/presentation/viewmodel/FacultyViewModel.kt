@@ -2,22 +2,16 @@ package io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.android.gms.tasks.Task
-import com.google.firebase.storage.UploadTask
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.kabirnayeem99.dumarketingadmin.base.BaseViewModel
-import io.github.kabirnayeem99.dumarketingadmin.data.repositories.DefaultFacultyRepository
-import io.github.kabirnayeem99.dumarketingadmin.data.vo.FacultyData
+import io.github.kabirnayeem99.dumarketingadmin.data.model.FacultyData
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.FacultyRepository
 import io.github.kabirnayeem99.dumarketingadmin.util.Resource
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.coroutines.CoroutineContext
 
 
 @HiltViewModel

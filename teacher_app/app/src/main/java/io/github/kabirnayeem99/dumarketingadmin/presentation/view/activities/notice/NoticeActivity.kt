@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
-import io.github.kabirnayeem99.dumarketingadmin.data.vo.NoticeData
+import io.github.kabirnayeem99.dumarketingadmin.data.model.NoticeData
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.fragments.DelayedProgressDialog
 import io.github.kabirnayeem99.dumarketingadmin.util.Resource
 import io.github.kabirnayeem99.dumarketingadmin.util.adapter.NoticeDataAdapter

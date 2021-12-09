@@ -6,7 +6,6 @@ import android.graphics.ImageDecoder
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -19,19 +18,17 @@ import com.google.android.material.textfield.TextInputLayout
 import com.lmntrx.android.library.livin.missme.ProgressDialog
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
-import io.github.kabirnayeem99.dumarketingadmin.data.vo.FacultyData
+import io.github.kabirnayeem99.dumarketingadmin.data.model.FacultyData
 import io.github.kabirnayeem99.dumarketingadmin.util.AssetUtilities
 import io.github.kabirnayeem99.dumarketingadmin.util.Constants.EXTRA_FACULTY_DATA
 import io.github.kabirnayeem99.dumarketingadmin.util.Constants.TEACHER_POSTS
 import io.github.kabirnayeem99.dumarketingadmin.util.RegexValidatorUtils
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.FacultyViewModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
-import kotlin.coroutines.CoroutineContext
 
 @AndroidEntryPoint
 class UpsertFacultyActivity : AppCompatActivity() {

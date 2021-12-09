@@ -21,4 +21,10 @@
     <string name="tf_hint_user_password">Password</string>
     <string name="rationale_ask_allow">Allow</string>
     <string name="rationale_ask_dont">Don\'t Allow</string>
+    <string name="information">Information</string>
+    <string name="routine">Routine</string>
+    <string name="faculty">Faculty</string>
+    <string name="ebook">Ebook</string>
+    <string name="gallery">Gallery</string>
+    <string name="notice">Notice</string>
 </resources>

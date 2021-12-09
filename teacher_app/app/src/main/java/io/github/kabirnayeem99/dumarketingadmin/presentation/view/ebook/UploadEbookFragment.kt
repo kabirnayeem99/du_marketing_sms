@@ -2,19 +2,16 @@ package io.github.kabirnayeem99.dumarketingadmin.presentation.view.ebook
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.database.Cursor
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.provider.OpenableColumns
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.base.BaseFragment
-import io.github.kabirnayeem99.dumarketingadmin.data.vo.EbookData
+import io.github.kabirnayeem99.dumarketingadmin.data.model.EbookData
 import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentUploadEbookBinding
 import io.github.kabirnayeem99.dumarketingadmin.ktx.showErrorMessage
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.EbookViewModel
