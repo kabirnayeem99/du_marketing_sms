@@ -42,7 +42,7 @@ class FacultyDataSource @Inject constructor(
                 facultyData.key = key
             }
 
-            val facultySaveTask = db.collection(Constants.FACULTY_DB_COLLECTION_NAME)
+            db.collection(Constants.FACULTY_DB_COLLECTION_NAME)
                 .document(key)
                 .set(facultyData).await()
 
@@ -54,8 +54,8 @@ class FacultyDataSource @Inject constructor(
 
     // delete data
     suspend fun deleteFacultyDataFromRemote(facultyData: FacultyData): Resource<String> {
-        try {
-            val deleteTask = facultyData.key?.let { key ->
+        return try {
+            facultyData.key?.let { key ->
                 facultyData.profileImageUrl?.let { url ->
                     BaasService.storage.getReferenceFromUrl(url).delete().await()
                 }.also {
@@ -65,9 +65,9 @@ class FacultyDataSource @Inject constructor(
                 }
 
             }
-            return Resource.Success(facultyData.email)
+            Resource.Success(facultyData.email)
         } catch (e: Exception) {
-            return Resource.Error(e.localizedMessage ?: "Could not delete faculty data.")
+            Resource.Error(e.localizedMessage ?: "Could not delete faculty data.")
         }
     }
 

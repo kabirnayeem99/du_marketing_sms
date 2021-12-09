@@ -22,7 +22,6 @@ class UpsertRoutineFragment : BaseFragment<FragmentUpsertRoutineBinding>() {
     private val routineViewModel: RoutineViewModel by activityViewModels()
 
 
-    private lateinit var tiClassLocation: TextInputLayout
     private var isTimeChanged: Boolean = false
     private lateinit var routineData: RoutineData
 
@@ -78,7 +77,7 @@ class UpsertRoutineFragment : BaseFragment<FragmentUpsertRoutineBinding>() {
 
                 // fill the field
                 binding.tiSubjectName.editText?.setText(routine.className)
-                tiClassLocation.editText?.setText(routine.classLocation)
+                binding.tiClassLocation.editText?.setText(routine.classLocation)
                 binding.tiFacultyName.editText?.setText(routine.facultyName)
 
                 // set the time in the picker
@@ -97,7 +96,7 @@ class UpsertRoutineFragment : BaseFragment<FragmentUpsertRoutineBinding>() {
         //gets data from the text fields
         val subjectName: String = binding.tiSubjectName.editText?.text.toString()
         val facultyName: String = binding.tiFacultyName.editText?.text.toString()
-        val classLocation: String = tiClassLocation.editText?.text.toString()
+        val classLocation: String = binding.tiClassLocation.editText?.text.toString()
 
         // checks if the routine data exists, means if it is an update or not
         if (this::routineData.isInitialized) {

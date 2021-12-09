@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class DefaultFacultyRepository @Inject constructor(
-    val dataSource: FacultyDataSource,
+    private val dataSource: FacultyDataSource,
 ) : FacultyRepository {
     override suspend fun uploadImage(imageFile: ByteArray, imageName: String): Resource<String> {
         return dataSource.uploadImageToRemote(imageFile, imageName)
@@ -25,6 +25,5 @@ class DefaultFacultyRepository @Inject constructor(
     override fun getFacultyList(): Flow<Resource<List<FacultyData>>> {
         return dataSource.getFacultyList()
     }
-
 
 }

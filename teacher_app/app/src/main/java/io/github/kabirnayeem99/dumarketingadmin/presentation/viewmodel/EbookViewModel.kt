@@ -4,6 +4,7 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.android.gms.tasks.Task
 import com.google.firebase.storage.UploadTask
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,23 +13,24 @@ import io.github.kabirnayeem99.dumarketingadmin.data.repositories.DefaultEbookRe
 import io.github.kabirnayeem99.dumarketingadmin.data.vo.EbookData
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.EbookRepository
 import io.github.kabirnayeem99.dumarketingadmin.util.Resource
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
 
 @HiltViewModel
 class EbookViewModel @Inject constructor(
     val repo: EbookRepository,
-    val ioScope: CoroutineScope
+    val ioContext: CoroutineDispatcher
 ) :
     BaseViewModel() {
 
-
     fun saveEbook(ebookData: EbookData) {
-        ioScope.launch {
+        viewModelScope.launch(ioContext) {
             _isLoading.postValue(true)
             when (val resource = repo.insertEbookDataToDb(ebookData)) {
                 is Resource.Success -> {
@@ -45,7 +47,7 @@ class EbookViewModel @Inject constructor(
     }
 
     fun deleteEbook(ebookData: EbookData) {
-        ioScope.launch {
+        viewModelScope.launch(ioContext) {
             _isLoading.postValue(true)
             when (val resource = repo.deleteEbookFromDb(ebookData)) {
                 is Resource.Success -> {
@@ -64,7 +66,7 @@ class EbookViewModel @Inject constructor(
     private val _ebookUrl = MutableLiveData<String>()
     val ebookUrl: LiveData<String> = _ebookUrl
     fun uploadPdf(pdfFile: Uri, pdfName: String) {
-        ioScope.launch {
+        viewModelScope.launch(ioContext) {
             repo.uploadPdf(pdfFile, pdfName).collect { resource ->
                 when (resource) {
                     is Resource.Success -> {
@@ -85,7 +87,7 @@ class EbookViewModel @Inject constructor(
     private val _ebookList = MutableLiveData<List<EbookData>>()
     val ebookList: LiveData<List<EbookData>> = _ebookList
     fun getEbooks() {
-        ioScope.launch {
+        viewModelScope.launch(ioContext) {
             repo.getEbooks().collect { resource ->
                 when (resource) {
                     is Resource.Success -> {
