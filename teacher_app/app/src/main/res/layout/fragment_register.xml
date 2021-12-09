@@ -35,6 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@drawable/bg_top_rounded_layout"
+            android:elevation="0.8dp"
             android:paddingHorizontal="24dp"
             android:paddingVertical="24dp"
             app:layout_constraintBottom_toBottomOf="parent"

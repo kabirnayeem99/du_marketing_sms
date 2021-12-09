@@ -19,9 +19,7 @@ class AuthenticationViewModel @Inject constructor(
     private val ioContext: CoroutineDispatcher
 ) : BaseViewModel() {
 
-    init {
-        getAuthenticationStatus()
-    }
+
 
     var email: String = ""
         set(value) {
