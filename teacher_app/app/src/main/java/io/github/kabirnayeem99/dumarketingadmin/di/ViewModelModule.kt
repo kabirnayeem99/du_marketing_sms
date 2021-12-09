@@ -8,10 +8,12 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import io.github.kabirnayeem99.dumarketingadmin.data.dataSources.EbookDataSource
+import io.github.kabirnayeem99.dumarketingadmin.data.dataSources.FacultyDataSource
 import io.github.kabirnayeem99.dumarketingadmin.data.dataSources.RoutineDataSource
 import io.github.kabirnayeem99.dumarketingadmin.data.repositories.*
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.AuthenticationRepository
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.EbookRepository
+import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.FacultyRepository
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.RoutineRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -40,8 +42,13 @@ class ViewModelModule {
     }
 
     @Provides
-    fun provideFacultyRepository(db: FirebaseFirestore, store: FirebaseStorage): FacultyRepository {
-        return FacultyRepository(db, store)
+    fun provideFacultyDataSource(db: FirebaseFirestore, store: FirebaseStorage): FacultyDataSource {
+        return FacultyDataSource(db, store)
+    }
+
+    @Provides
+    fun provideFacultyRepository(dataSource: FacultyDataSource): FacultyRepository {
+        return DefaultFacultyRepository(dataSource)
     }
 
     @Provides

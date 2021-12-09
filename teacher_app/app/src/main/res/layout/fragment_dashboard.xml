@@ -33,7 +33,7 @@
             android:src="@drawable/ic_fluent_lock_closed_24_selector"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/white" />
+            app:tint="?android:colorBackground" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_main_body"
@@ -87,7 +87,7 @@
                                 app:layout_constraintEnd_toStartOf="@+id/mcGalleryImage"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:strokeWidth="0dp">
+                                app:strokeWidth="0.5dp">
 
                                 <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="match_parent"
@@ -134,7 +134,7 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/mcNotice"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:strokeWidth="0dp">
+                                app:strokeWidth="0.5dp">
 
                                 <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="match_parent"
@@ -185,7 +185,7 @@
                                 app:layout_constraintEnd_toStartOf="@+id/mcFaculty"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/mcNotice"
-                                app:strokeWidth="0dp">
+                                app:strokeWidth="0.5dp">
 
                                 <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="match_parent"
@@ -230,7 +230,7 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/mcEbook"
                                 app:layout_constraintTop_toBottomOf="@+id/mcGalleryImage"
-                                app:strokeWidth="0dp">
+                                app:strokeWidth="0.5dp">
 
 
                                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -283,7 +283,7 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/mcEbook"
                                 app:layout_constraintTop_toBottomOf="@+id/mcGalleryImage"
-                                app:strokeWidth="0dp">
+                                app:strokeWidth="0.5dp">
 
                                 <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="match_parent"
@@ -331,7 +331,7 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/mcEbook"
-                                app:strokeWidth="0dp">
+                                app:strokeWidth="0.5dp">
 
                                 <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="match_parent"

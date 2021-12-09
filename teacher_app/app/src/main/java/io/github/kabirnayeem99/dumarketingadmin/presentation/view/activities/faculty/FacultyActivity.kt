@@ -15,6 +15,7 @@ import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.util.Resource
 import io.github.kabirnayeem99.dumarketingadmin.util.adapter.FacultyAdapter
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.FacultyViewModel
+
 @AndroidEntryPoint
 class FacultyActivity : AppCompatActivity() {
     private lateinit var rvFacultyMemberList: RecyclerView
@@ -44,28 +45,8 @@ class FacultyActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@FacultyActivity)
         }
 
-        facultyViewModel.facultyListLiveData.observe(this, { resource ->
-            when (resource) {
-                is Resource.Error -> {
-                    Toast.makeText(
-                        this,
-                        "Could not get the data. ${resource.message}.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    Log.e(TAG, "setUpFacultyListRecyclerView: ${resource.message}")
-                    slRvFacultyMemberList.stopShimmer()
-                    slRvFacultyMemberList.visibility = View.GONE
-                }
-                is Resource.Success -> {
-                    facultyAdapter.differ.submitList(resource.data)
-                    slRvFacultyMemberList.stopShimmer()
-                    slRvFacultyMemberList.visibility = View.GONE
-                }
-                else -> {
-                    Log.d(TAG, "setUpFacultyListRecyclerView: loading.")
-                }
-            }
-
+        facultyViewModel.facultyListObservable.observe(this, {
+            facultyAdapter.differ.submitList(it)
         })
 
     }
@@ -104,9 +85,4 @@ class FacultyActivity : AppCompatActivity() {
         onBackPressed()
         return false
     }
-
-    companion object {
-        private const val TAG = "FacultyActivity"
-    }
-
 }
