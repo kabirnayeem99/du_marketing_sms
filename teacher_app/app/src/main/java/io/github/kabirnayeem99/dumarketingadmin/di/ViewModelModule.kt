@@ -7,10 +7,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
-import io.github.kabirnayeem99.dumarketingadmin.data.dataSources.EbookDataSource
-import io.github.kabirnayeem99.dumarketingadmin.data.dataSources.FacultyDataSource
-import io.github.kabirnayeem99.dumarketingadmin.data.dataSources.GalleryDataSource
-import io.github.kabirnayeem99.dumarketingadmin.data.dataSources.RoutineDataSource
+import io.github.kabirnayeem99.dumarketingadmin.data.dataSources.*
 import io.github.kabirnayeem99.dumarketingadmin.data.repositories.*
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.*
 import kotlinx.coroutines.CoroutineDispatcher
@@ -61,7 +58,14 @@ object ViewModelModule {
     }
 
     @Provides
-    fun provideInformationRepository(db: FirebaseFirestore) = InformationRepository(db)
+    fun provideInfoDataSource(db: FirebaseFirestore): InfoDataSource {
+        return InfoDataSource(db)
+    }
+
+    @Provides
+    fun provideInformationRepository(dataSource: InfoDataSource): InfoRepository {
+        return DefaultInfoRepository(dataSource)
+    }
 
     @Provides
     fun provideNoticeRepository(db: FirebaseFirestore, store: FirebaseStorage): NoticeRepository {

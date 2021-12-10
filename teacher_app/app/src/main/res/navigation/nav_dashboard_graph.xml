@@ -31,6 +31,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_informationFragment"
+            app:destination="@id/informationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -100,6 +107,11 @@
         android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.gallery.AddGalleryImageFragment"
         android:label="AddGalleryImageFragment"
         tools:layout="@layout/fragment_add_gallery_image" />
+    <fragment
+        android:id="@+id/informationFragment"
+        android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.information.InformationFragment"
+        android:label="InformationFragment"
+        tools:layout="@layout/fragment_information" />
 
 
 </navigation>

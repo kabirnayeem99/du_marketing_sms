@@ -22,11 +22,6 @@
         </activity>
 
         <activity
-            android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.information.InformationActivity"
-            android:exported="false"
-            android:label="About Info"
-            android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.dashboard.DashboardActivity" />
-        <activity
             android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.notice.NoticeActivity"
             android:exported="false"
             android:label="Notices"

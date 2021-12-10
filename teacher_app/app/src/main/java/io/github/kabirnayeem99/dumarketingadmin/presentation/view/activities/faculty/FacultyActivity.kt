@@ -34,6 +34,8 @@ class FacultyActivity : AppCompatActivity() {
 
     private fun setUpFacultyListRecyclerView() {
 
+        facultyViewModel.getFacultyList()
+
         val slRvFacultyMemberList: ShimmerFrameLayout by lazy {
             findViewById(R.id.slRvFacultyMemberList)
         }
