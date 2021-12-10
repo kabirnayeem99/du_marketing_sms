@@ -36,6 +36,14 @@ class GalleryViewModel @Inject constructor(
     }
 
 
+    fun startLoading() {
+        _isLoading.value = true
+    }
+
+    fun stopLoading() {
+        _isLoading.value = false
+    }
+
     suspend fun uploadGalleryImage(
         category: String,
         imageFile: ByteArray

@@ -86,7 +86,20 @@
         android:id="@+id/galleryImageFragment"
         android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.gallery.GalleryImageFragment"
         android:label="GalleryImageFragment"
-        tools:layout="@layout/fragment_gallery_image" />
+        tools:layout="@layout/fragment_gallery_image">
+        <action
+            android:id="@+id/action_galleryImageFragment_to_addGalleryImageFragment"
+            app:destination="@id/addGalleryImageFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/addGalleryImageFragment"
+        android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.gallery.AddGalleryImageFragment"
+        android:label="AddGalleryImageFragment"
+        tools:layout="@layout/fragment_add_gallery_image" />
 
 
 </navigation>

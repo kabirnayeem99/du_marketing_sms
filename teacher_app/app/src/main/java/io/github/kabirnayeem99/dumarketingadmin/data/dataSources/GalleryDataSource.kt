@@ -7,6 +7,8 @@ import io.github.kabirnayeem99.dumarketingadmin.data.model.GalleryData.Companion
 import io.github.kabirnayeem99.dumarketingadmin.util.Constants
 import io.github.kabirnayeem99.dumarketingadmin.util.Resource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 import timber.log.Timber
@@ -73,6 +75,8 @@ class GalleryDataSource @Inject constructor(var db: FirebaseFirestore, var store
                 trySend(Resource.Success(value.toGalleryDataList()))
             }
         }
+
+        awaitClose { cancel() }
 
     }
 }

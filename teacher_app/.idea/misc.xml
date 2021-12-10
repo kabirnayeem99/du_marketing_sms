@@ -10,15 +10,20 @@
         <entry key="app/src/main/res/drawable/bg_top_rounded_layout.xml" value="0.25092592592592594" />
         <entry key="app/src/main/res/drawable/gradient_background_overlay.xml" value="0.2760416666666667" />
         <entry key="app/src/main/res/drawable/illust_studying.xml" value="0.55" />
+        <entry key="app/src/main/res/layout/activity_add_gallery_image.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_auth.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.3347222222222222" />
         <entry key="app/src/main/res/layout/activity_ebook.xml" value="0.2557291666666667" />
+        <entry key="app/src/main/res/layout/activity_gallery_image.xml" value="0.1685185185185185" />
         <entry key="app/src/main/res/layout/activity_routine.xml" value="0.1685185185185185" />
         <entry key="app/src/main/res/layout/activity_routine_details.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/layout/activity_upload_ebook.xml" value="0.2557291666666667" />
+        <entry key="app/src/main/res/layout/activity_upsert_faculty.xml" value="0.12552083333333333" />
         <entry key="app/src/main/res/layout/activity_upsert_routine.xml" value="0.1685185185185185" />
+        <entry key="app/src/main/res/layout/fragment_add_gallery_image.xml" value="0.1685185185185185" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_ebook.xml" value="0.1685185185185185" />
+        <entry key="app/src/main/res/layout/fragment_gallery_image.xml" value="0.1685185185185185" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_routine.xml" value="0.1685185185185185" />
