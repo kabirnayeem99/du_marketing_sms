@@ -6,12 +6,14 @@ import com.google.firebase.firestore.DocumentSnapshot
 
 @Keep
 data class InformationData(
-    var intro: String,
-    var email: String,
-    var telephone: String,
-    var lat: Double,
-    var long: Double,
+    var intro: String = "",
+    var email: String = "",
+    var telephone: String = "",
+    var lat: Double = 0.0,
+    var long: Double = 0.0,
 ) {
+
+
     companion object {
         fun DocumentSnapshot.toInformationData(): InformationData {
 
