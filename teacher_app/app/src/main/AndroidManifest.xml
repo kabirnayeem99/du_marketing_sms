@@ -20,11 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.gallery.GalleryImageActivity"
-            android:exported="false"
-            android:label="Gallery"
-            android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.dashboard.DashboardActivity" />
+
         <activity
             android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.information.InformationActivity"
             android:exported="false"
@@ -41,10 +37,10 @@
             android:label="Faculty Members"
             android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.dashboard.DashboardActivity" />
         <activity
-            android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.gallery.AddGalleryImageActivity"
+            android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.gallery.AddGalleryImageActivity"
             android:exported="false"
             android:label="Upload Gallery Image"
-            android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.gallery.GalleryImageActivity" />
+            android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.gallery.GalleryImageActivity" />
         <activity
             android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.faculty.UpsertFacultyActivity"
             android:exported="false"

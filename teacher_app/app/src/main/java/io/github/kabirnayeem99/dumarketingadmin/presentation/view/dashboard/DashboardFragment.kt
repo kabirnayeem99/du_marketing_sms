@@ -9,10 +9,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentDashboardBinding
-import io.github.kabirnayeem99.dumarketingadmin.ktx.animateAndOnClickListener
 import io.github.kabirnayeem99.dumarketingadmin.ktx.openActivity
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.faculty.FacultyActivity
-import io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.gallery.GalleryImageActivity
+import io.github.kabirnayeem99.dumarketingadmin.presentation.view.gallery.GalleryImageActivity
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.information.InformationActivity
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.notice.NoticeActivity
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.auth.AuthActivity
