@@ -14,6 +14,7 @@ import io.github.kabirnayeem99.dumarketingadmin.data.model.NoticeData.Companion.
 import io.github.kabirnayeem99.dumarketingadmin.util.Constants.NOTICE_DB_REF
 import io.github.kabirnayeem99.dumarketingadmin.util.Constants.NOTICE_IMAGE_PATH_STRING_FOLDER_NAME
 import io.github.kabirnayeem99.dumarketingadmin.util.Resource
+import timber.log.Timber
 import javax.inject.Inject
 
 class NoticeRepository @Inject constructor(var db: FirebaseFirestore, var store: FirebaseStorage) {
@@ -74,7 +75,7 @@ class NoticeRepository @Inject constructor(var db: FirebaseFirestore, var store:
                     noticeListLiveData.value = Resource.Loading()
 
                     if (error != null) {
-                        Log.e(TAG, "getNoticeLiveData: ${error.message}")
+                        Timber.e("getNoticeLiveData: " + error.message)
                         error.printStackTrace()
                         noticeListLiveData.value =
                             Resource.Error("There was an error in the server")

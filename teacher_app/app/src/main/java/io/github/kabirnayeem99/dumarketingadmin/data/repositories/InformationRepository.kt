@@ -54,7 +54,6 @@ class InformationRepository @Inject constructor(var db: FirebaseFirestore) {
 
                     } catch (e: Exception) {
                         Timber.e("getInformationData: " + e.message)
-                        e.printStackTrace()
                         informationLiveData.value =
                             Resource.Error("Empty data or could not convert the snapshot to the information data")
                     }

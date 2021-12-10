@@ -102,6 +102,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="16sp"
                 android:scaleType="centerCrop"
+                android:src="@drawable/ic_fluent_image_48_regular"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

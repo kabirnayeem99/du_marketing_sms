@@ -1,24 +1,23 @@
 package io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.google.android.gms.tasks.Task
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.kabirnayeem99.dumarketingadmin.base.BaseViewModel
-import io.github.kabirnayeem99.dumarketingadmin.data.repositories.DefaultGalleryRepository
 import io.github.kabirnayeem99.dumarketingadmin.data.model.GalleryData
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.GalleryRepository
 import io.github.kabirnayeem99.dumarketingadmin.util.Resource
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
 @HiltViewModel
 class GalleryViewModel @Inject constructor(
-    val repo: GalleryRepository,
-    val ioDispatcher: CoroutineDispatcher,
+    private val repo: GalleryRepository,
+    private val ioDispatcher: CoroutineDispatcher,
 ) : BaseViewModel() {
 
     fun saveGalleryData(
@@ -56,12 +55,36 @@ class GalleryViewModel @Inject constructor(
             }
 
         }
+        return url
     }
 
-    suspend fun deleteGalleryData(galleryData: GalleryData) {
-        repo.deleteGalleryData(galleryData)
+    fun deleteGalleryData(galleryData: GalleryData) {
+        _isLoading.postValue(true)
+        viewModelScope.launch(ioDispatcher) {
+            val resource = repo.deleteGalleryData(galleryData)
+            _isLoading.postValue(false)
+            when (resource) {
+                is Resource.Error -> _errorMessage.postValue(resource.message)
+                is Resource.Success -> _message.postValue("${galleryData.category} is deleted")
+                else -> Unit
+            }
+        }
     }
 
-    fun getGalleryDataList(): LiveData<Resource<List<GalleryData>>> =
-        repo.getGalleryDataListObservable()
+
+    private val _galleryDataList = MutableStateFlow<List<GalleryData>>(emptyList())
+    val galleryDataList = _galleryDataList.asLiveData()
+    fun getGalleryDataList() {
+        _isLoading.postValue(true)
+        viewModelScope.launch(ioDispatcher) {
+            repo.getGalleryImages().collect { resource ->
+                _isLoading.postValue(false)
+                when (resource) {
+                    is Resource.Error -> _errorMessage.postValue(resource.message)
+                    is Resource.Success -> _galleryDataList.value = resource.data ?: emptyList()
+                    else -> Unit
+                }
+            }
+        }
+    }
 }
