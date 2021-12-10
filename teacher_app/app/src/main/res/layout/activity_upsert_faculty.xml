@@ -137,8 +137,9 @@
         <Button
             android:id="@+id/btnAddFaculty"
             android:layout_width="300sp"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:layout_gravity="center_horizontal"
+            android:background="@drawable/bg_rounded_rectangle_button_solid"
             android:onClick="btnSaveFacultyClick"
             android:text="Save Faculty"
             app:layout_constraintBottom_toBottomOf="parent"

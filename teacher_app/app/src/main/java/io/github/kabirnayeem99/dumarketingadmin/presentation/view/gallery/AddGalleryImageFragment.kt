@@ -3,22 +3,23 @@ package io.github.kabirnayeem99.dumarketingadmin.presentation.view.gallery
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingadmin.data.model.GalleryData
 import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentAddGalleryImageBinding
+import io.github.kabirnayeem99.dumarketingadmin.ktx.showErrorMessage
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.GalleryViewModel
 import io.github.kabirnayeem99.dumarketingadmin.util.AssetUtilities
 import io.github.kabirnayeem99.dumarketingadmin.util.Constants
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 @AndroidEntryPoint
@@ -46,9 +47,40 @@ class AddGalleryImageFragment : BaseFragment<FragmentAddGalleryImageBinding>() {
         galleryViewModel.saveGalleryData(GalleryData(category, imageUrl))
     }
 
-    fun onBtnAddGalleryImageClick(view: View) = uploadImageToGallery()
-    fun onIvAddGalleryImageClick(view: View) = openImagePicker()
+    private fun onBtnAddGalleryImageClick(view: View) = uploadImageToGallery()
+    private fun onIvAddGalleryImageClick(view: View) = openImagePicker()
 
+
+    private fun uploadImageToGallery() = lifecycleScope.launch {
+
+        if (!this@AddGalleryImageFragment::bitmap.isInitialized) {
+            galleryViewModel.startLoading()
+            showErrorMessage("Please select an image first.")
+            return@launch
+        }
+
+
+        var imageFile: ByteArray? = null
+
+        if (this@AddGalleryImageFragment::bitmap.isInitialized) {
+            imageFile = AssetUtilities.bitmapToJpeg(bitmap)
+        }
+
+        if (imageFile != null) {
+            val imageUrl = galleryViewModel.uploadGalleryImage(
+                category,
+                imageFile
+            )
+
+            if (!imageUrl.isNullOrEmpty()) {
+                saveGalleryData(imageUrl)
+            } else {
+                Timber.e("uploadImageToGallery: imageUrl is empty")
+                showErrorMessage("Could not save the image.")
+                return@launch
+            }
+        }
+    }
 
     private fun openImagePicker() {
 
@@ -74,18 +106,18 @@ class AddGalleryImageFragment : BaseFragment<FragmentAddGalleryImageBinding>() {
 
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == AddGalleryImageActivity.PICK_IMAGE_REQ_CODE && resultCode == AppCompatActivity.RESULT_OK) {
+        if (requestCode == PICK_IMAGE_REQ_CODE && resultCode == AppCompatActivity.RESULT_OK) {
 
             data?.let { dataUri ->
-                val nullableBitmap = AssetUtilities.dataUriToBitmap(dataUri.data, contentResolver)
+                val contentResolver = requireActivity().contentResolver
+                val nullableBitmap =
+                    AssetUtilities.dataUriToBitmap(dataUri.data, contentResolver)
 
                 if (nullableBitmap == null) {
-                    Toast.makeText(this, "Could not get the image.", Toast.LENGTH_SHORT).show()
+                    showErrorMessage("Could not get the image")
                 } else {
                     bitmap = nullableBitmap
-                    ivGalleryImagePreview = findViewById(R.id.ivGalleryImagePreview)
-                    ivGalleryImagePreview.setImageBitmap(bitmap)
-
+                    binding.ivGalleryImagePreview.setImageBitmap(bitmap)
                 }
             }
 
@@ -123,8 +155,6 @@ class AddGalleryImageFragment : BaseFragment<FragmentAddGalleryImageBinding>() {
 
     companion object {
         private const val PICK_IMAGE_REQ_CODE = 1
-        private const val TAG = "GalleryImageActivity"
     }
-
 
 }

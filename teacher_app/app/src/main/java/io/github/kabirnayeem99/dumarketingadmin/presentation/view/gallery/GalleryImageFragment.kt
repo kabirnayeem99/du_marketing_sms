@@ -1,8 +1,8 @@
 package io.github.kabirnayeem99.dumarketingadmin.presentation.view.gallery
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
@@ -65,7 +65,7 @@ class GalleryImageFragment : BaseFragment<FragmentGalleryImageBinding>() {
 
     private fun addGalleryImageClickListener() {
         binding.btnAddGalleryImage.setOnClickListener {
-//            startActivity(Intent(this, AddGalleryImageActivity::class.java))
+            findNavController().navigate(R.id.action_galleryImageFragment_to_addGalleryImageFragment)
         }
     }
 

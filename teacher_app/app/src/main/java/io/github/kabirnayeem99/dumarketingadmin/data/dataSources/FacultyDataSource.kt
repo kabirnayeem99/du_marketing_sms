@@ -6,6 +6,9 @@ import io.github.kabirnayeem99.dumarketingadmin.data.model.FacultyData
 import io.github.kabirnayeem99.dumarketingadmin.data.model.FacultyData.Companion.toFacultyDataList
 import io.github.kabirnayeem99.dumarketingadmin.util.Constants
 import io.github.kabirnayeem99.dumarketingadmin.util.Resource
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 import java.util.*
@@ -72,6 +75,7 @@ class FacultyDataSource @Inject constructor(
     }
 
 
+    @ExperimentalCoroutinesApi
     fun getFacultyList() = callbackFlow<Resource<List<FacultyData>>> {
         val ref = db.collection(Constants.FACULTY_DB_COLLECTION_NAME)
         try {
@@ -88,6 +92,8 @@ class FacultyDataSource @Inject constructor(
         } catch (e: Exception) {
             trySend(Resource.Error(e.localizedMessage ?: "Could not get the faculty list."))
         }
+
+        awaitClose { cancel() }
     }
 
 }

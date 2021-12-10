@@ -37,11 +37,6 @@
             android:label="Faculty Members"
             android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.dashboard.DashboardActivity" />
         <activity
-            android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.gallery.AddGalleryImageActivity"
-            android:exported="false"
-            android:label="Upload Gallery Image"
-            android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.gallery.GalleryImageActivity" />
-        <activity
             android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.faculty.UpsertFacultyActivity"
             android:exported="false"
             android:label="Edit Faculty Member"
