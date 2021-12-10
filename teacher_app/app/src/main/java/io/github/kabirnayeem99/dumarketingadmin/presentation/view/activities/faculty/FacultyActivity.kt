@@ -38,7 +38,7 @@ class FacultyActivity : AppCompatActivity() {
             findViewById(R.id.slRvFacultyMemberList)
         }
 
-        slRvFacultyMemberList.startShimmer();
+        slRvFacultyMemberList.startShimmer()
 
         rvFacultyMemberList.apply {
             adapter = facultyAdapter

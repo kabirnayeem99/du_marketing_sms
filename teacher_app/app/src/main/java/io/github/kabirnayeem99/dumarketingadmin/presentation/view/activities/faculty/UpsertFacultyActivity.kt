@@ -218,7 +218,7 @@ class UpsertFacultyActivity : AppCompatActivity() {
         bitmap: Bitmap,
     ) {
         lifecycleScope.launch(ioContext) {
-            val imageName = facultyData.name.toLowerCase(Locale.ROOT).trim()
+            val imageName = facultyData.name.lowercase(Locale.ROOT).trim()
 
             val imageFile: ByteArray by lazy {
                 AssetUtilities.bitmapToJpeg(bitmap)

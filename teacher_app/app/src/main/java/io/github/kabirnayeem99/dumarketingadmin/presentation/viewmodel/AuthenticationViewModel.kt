@@ -22,15 +22,9 @@ class AuthenticationViewModel @Inject constructor(
 
 
     var email: String = ""
-        set(value) {
-            field = value
-        }
 
 
     var password: String = ""
-        set(value) {
-            field = value
-        }
 
     private val _loginSuccess = MutableLiveData<String>()
     val loginSuccess: LiveData<String> = _loginSuccess

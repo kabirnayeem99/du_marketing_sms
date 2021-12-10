@@ -12,6 +12,7 @@ import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.data.model.RoutineData
 import io.github.kabirnayeem99.dumarketingadmin.util.TimeUtilities.getHourMinuteTimeFromStringTime
 import io.github.kabirnayeem99.dumarketingadmin.util.TimeUtilities.getMeridianFromStringTime
+import java.util.*
 
 class RoutineDataAdapter(
     // lambda
@@ -43,7 +44,7 @@ class RoutineDataAdapter(
             }
 
             getMeridianFromStringTime(routineData.time).let {
-                tvClassTimeMeridiem.text = it.toUpperCase()
+                tvClassTimeMeridiem.text = it.uppercase(Locale.getDefault())
             }
 
             mcvRoutineListItem.setOnClickListener { listener(routineData) }
