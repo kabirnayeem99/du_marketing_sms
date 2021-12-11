@@ -35,7 +35,7 @@ const val PICK_DOC_REQ_CODE = 1
 @AndroidEntryPoint
 class UploadEbookFragment : BaseFragment<FragmentUploadEbookBinding>() {
 
-    var pdfFile: Uri? = null
+    private var pdfFile: Uri? = null
     lateinit var pdfName: String
 
     private val ebookViewModel: EbookViewModel by viewModels()
