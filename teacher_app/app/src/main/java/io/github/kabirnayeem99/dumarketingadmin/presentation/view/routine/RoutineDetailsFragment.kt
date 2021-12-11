@@ -14,6 +14,7 @@ import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.RoutineVi
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.adapter.RoutineDataAdapter
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalCoroutinesApi
 class RoutineDetailsFragment : BaseFragment<FragmentRoutineDetailsBinding>() {
     override val layoutRes: Int
         get() = R.layout.fragment_routine_details
@@ -22,7 +23,7 @@ class RoutineDetailsFragment : BaseFragment<FragmentRoutineDetailsBinding>() {
 
     private val routineViewModel: RoutineViewModel by activityViewModels()
 
-    lateinit var navController: NavController
+    private lateinit var navController: NavController
 
     private val routineDataAdapter: RoutineDataAdapter by lazy {
         RoutineDataAdapter { routineData ->
@@ -32,7 +33,6 @@ class RoutineDetailsFragment : BaseFragment<FragmentRoutineDetailsBinding>() {
         }
     }
 
-    @ExperimentalCoroutinesApi
     override fun onCreated(savedInstanceState: Bundle?) {
         handleViews()
         setUpRecyclerView(batchYear)
@@ -44,7 +44,6 @@ class RoutineDetailsFragment : BaseFragment<FragmentRoutineDetailsBinding>() {
         binding.fabAddRoutine.animateAndOnClickListener { fabAddRoutineClick() }
     }
 
-    @ExperimentalCoroutinesApi
     private fun setUpRecyclerView(batchYear: String) {
         binding.rvRoutineList.apply {
             adapter = routineDataAdapter

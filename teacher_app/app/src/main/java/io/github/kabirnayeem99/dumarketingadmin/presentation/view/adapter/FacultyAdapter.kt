@@ -1,6 +1,5 @@
 package io.github.kabirnayeem99.dumarketingadmin.presentation.view.adapter
 
-import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,10 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.data.model.FacultyData
-import io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.faculty.UpsertFacultyActivity
-import io.github.kabirnayeem99.dumarketingadmin.common.util.Constants.EXTRA_FACULTY_DATA
 
-class FacultyAdapter : RecyclerView.Adapter<FacultyAdapter.FacultyViewHolder>() {
+class FacultyAdapter(val navigateToUpdatePage: (facultyData: FacultyData) -> Unit) :
+    RecyclerView.Adapter<FacultyAdapter.FacultyViewHolder>() {
 
     inner class FacultyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -79,16 +77,7 @@ class FacultyAdapter : RecyclerView.Adapter<FacultyAdapter.FacultyViewHolder>() 
                 }
             }
 
-            itemView.setOnClickListener { v ->
-
-                try {
-                    val intent = Intent(v.context, UpsertFacultyActivity::class.java)
-                    intent.putExtra(EXTRA_FACULTY_DATA, differ.currentList[position])
-                    holder.itemView.context.startActivity(intent)
-                } catch (e: Exception) {
-                    Log.e(TAG, "onBindViewHolder: starting new activity $e")
-                }
-            }
+            itemView.setOnClickListener { navigateToUpdatePage(differ.currentList[position]) }
         }
     }
 

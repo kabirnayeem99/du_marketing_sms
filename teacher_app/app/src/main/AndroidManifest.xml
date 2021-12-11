@@ -22,16 +22,6 @@
         </activity>
 
         <activity
-            android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.faculty.FacultyActivity"
-            android:exported="false"
-            android:label="Faculty Members"
-            android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.dashboard.DashboardActivity" />
-        <activity
-            android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.faculty.UpsertFacultyActivity"
-            android:exported="false"
-            android:label="Edit Faculty Member"
-            android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.faculty.FacultyActivity" />
-        <activity
             android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.dashboard.DashboardActivity"
             android:exported="false" />
 

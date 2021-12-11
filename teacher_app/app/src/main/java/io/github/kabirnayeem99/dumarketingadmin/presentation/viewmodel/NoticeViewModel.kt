@@ -1,6 +1,5 @@
 package io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -9,13 +8,14 @@ import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
 import io.github.kabirnayeem99.dumarketingadmin.data.repositories.DefaultNoticeRepository
 import io.github.kabirnayeem99.dumarketingadmin.data.model.NoticeData
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
+@ExperimentalCoroutinesApi
 @HiltViewModel
 class NoticeViewModel @Inject constructor(
     private val repo: DefaultNoticeRepository,

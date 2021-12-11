@@ -5,6 +5,7 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'com.google.gms.google-services'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -13,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId "io.github.kabirnayeem99.dumarketingadmin"
-        minSdkVersion 26
+        minSdkVersion 21
         targetSdkVersion 31
         versionCode 1
         versionName "v0.1.0-alpha"
