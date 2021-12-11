@@ -5,8 +5,8 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseViewModel
 import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
-import io.github.kabirnayeem99.dumarketingadmin.data.repositories.DefaultNoticeRepository
 import io.github.kabirnayeem99.dumarketingadmin.data.model.NoticeData
+import io.github.kabirnayeem99.dumarketingadmin.data.repositories.DefaultNoticeRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,26 +23,26 @@ class NoticeViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     fun saveNotice(noticeData: NoticeData) {
-        _isLoading.postValue(true)
         viewModelScope.launch(ioDispatcher) {
+            _isLoading.emit(true)
             val resource = repo.saveNotice(noticeData)
-            _isLoading.postValue(false)
+            _isLoading.emit(false)
             when (resource) {
-                is Resource.Error -> _errorMessage.postValue(resource.message)
-                is Resource.Success -> _message.postValue("Successfully saved ${resource.data}.")
+                is Resource.Error -> _errorMessage.emit(resource.message!!)
+                is Resource.Success -> _message.emit("Successfully saved ${resource.data}.")
                 else -> Unit
             }
         }
     }
 
     fun deleteNoticeDataToDb(noticeData: NoticeData) {
-        _isLoading.postValue(true)
         viewModelScope.launch(ioDispatcher) {
+            _isLoading.emit(true)
             val resource = repo.deleteNoticeData(noticeData)
-            _isLoading.postValue(false)
+            _isLoading.emit(false)
             when (resource) {
-                is Resource.Error -> _errorMessage.postValue(resource.message)
-                is Resource.Success -> _message.postValue("Successfully deleted ${resource.data}.")
+                is Resource.Error -> _errorMessage.emit(resource.message!!)
+                is Resource.Success -> _message.emit("Successfully deleted ${resource.data}.")
                 else -> Unit
             }
         }
@@ -51,14 +51,14 @@ class NoticeViewModel @Inject constructor(
 
     suspend fun uploadNoticeImage(imageName: String, imageFile: ByteArray): String? {
         var url: String? = null
-        _isLoading.postValue(true)
+        _isLoading.emit(true)
         val resource = repo.uploadNoticeImage(imageName, imageFile)
-        _isLoading.postValue(false)
+        _isLoading.emit(false)
         when (resource) {
-            is Resource.Error -> _errorMessage.postValue("Could not upload $imageName.")
+            is Resource.Error -> _errorMessage.emit("Could not upload $imageName.")
             is Resource.Success -> {
                 url = resource.data
-                _message.postValue("Successfully uploaded the image.")
+                _message.emit("Successfully uploaded the image.")
             }
             else -> Unit
         }
@@ -70,12 +70,12 @@ class NoticeViewModel @Inject constructor(
     val notices = _notices.asLiveData()
 
     fun getNoticeList() {
-        _isLoading.postValue(true)
         viewModelScope.launch(ioDispatcher) {
+            _isLoading.emit(true)
             repo.getNoticeList().collect { resource ->
-                _isLoading.postValue(false)
+                _isLoading.emit(false)
                 when (resource) {
-                    is Resource.Error -> _errorMessage.postValue(resource.message)
+                    is Resource.Error -> _errorMessage.emit(resource.message!!)
                     is Resource.Success -> _notices.value = resource.data ?: emptyList()
                     else -> Unit
                 }

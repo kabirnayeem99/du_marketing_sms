@@ -7,16 +7,25 @@ import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.activityViewModels
+import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseFragment
-import io.github.kabirnayeem99.dumarketingadmin.data.model.EbookData
-import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentUploadEbookBinding
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.animateAndOnClickListener
 import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showErrorMessage
-import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.EbookViewModel
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showMessage
 import io.github.kabirnayeem99.dumarketingadmin.common.util.Constants.CONTENT_URI
 import io.github.kabirnayeem99.dumarketingadmin.common.util.Constants.FILE_URI
+import io.github.kabirnayeem99.dumarketingadmin.data.model.EbookData
+import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentUploadEbookBinding
+import io.github.kabirnayeem99.dumarketingadmin.domain.data.BookOpenBook
+import io.github.kabirnayeem99.dumarketingadmin.presentation.view.adapter.RecommendedBookAdapter
+import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.EbookViewModel
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import java.io.File
 import java.util.*
 
@@ -29,7 +38,18 @@ class UploadEbookFragment : BaseFragment<FragmentUploadEbookBinding>() {
     var pdfFile: Uri? = null
     lateinit var pdfName: String
 
-    private val ebookViewModel: EbookViewModel by activityViewModels()
+    private val ebookViewModel: EbookViewModel by viewModels()
+
+    lateinit var selectedBook: BookOpenBook
+
+    private val recommendedBookAdapter: RecommendedBookAdapter by lazy {
+        RecommendedBookAdapter { selectRecommendedBookForUpload(it) }
+    }
+
+    private fun selectRecommendedBookForUpload(book: BookOpenBook) {
+        selectedBook = book
+        binding.tiEbookName.editText?.setText(book.name)
+    }
 
     override val layoutRes: Int
         get() = R.layout.fragment_upload_ebook
@@ -40,27 +60,43 @@ class UploadEbookFragment : BaseFragment<FragmentUploadEbookBinding>() {
     }
 
     private fun handleViews() {
-        binding.ivIconEbookImage.setOnClickListener { onIvSelectEbookClick() }
-        binding.btnUploadBook.setOnClickListener { onBtnUploadEbookClick() }
+        binding.ivIconEbookImage.animateAndOnClickListener { onIvSelectEbookClick() }
+        binding.btnUploadBook.animateAndOnClickListener { onBtnUploadEbookClick() }
+        binding.tiEbookName.editText?.addTextChangedListener {
+            val searchQuery = it.toString()
+            ebookViewModel.searchBookDetails(searchQuery)
+        }
+        binding.rvRecommendedBooks.apply {
+            adapter = recommendedBookAdapter
+            layoutManager = LinearLayoutManager(context)
+        }
     }
 
     private fun subscribeObservers() {
         ebookViewModel.apply {
-            ebookUrl.observe(viewLifecycleOwner, {
-                uploadEbookData(it)
-            })
+            ebookUrl.observe(viewLifecycleOwner) { uploadEbookData(it) }
+            recommendedBookList.observe(viewLifecycleOwner) {
+                recommendedBookAdapter.differ.submitList(
+                    it
+                )
+            }
+            lifecycleScope.launch {
+                message.collectLatest { showMessage(it) }
+                errorMessage.collectLatest { showErrorMessage(it) }
+                isLoading.collectLatest { if (it) loadingIndicator.show() else loadingIndicator.dismiss() }
+            }
         }
     }
 
     private fun uploadPdf() {
-        if (pdfFile == null) {
-            showErrorMessage("Select a pdf first")
-        } else {
-            ebookViewModel.uploadPdf(pdfFile!!, pdfName)
-        }
+        if (this::selectedBook.isInitialized) return
+        if (pdfFile == null) showErrorMessage("Select a pdf first")
+        else ebookViewModel.uploadPdf(pdfFile!!, pdfName)
     }
 
-    fun onBtnUploadEbookClick() {
+    private fun onBtnUploadEbookClick() {
+        if (this::selectedBook.isInitialized) uploadEbookData(selectedBook.downloadUrl)
+        returnTransition
 
         if (binding.tiEbookName.editText?.text.toString().trim().isEmpty()) {
             binding.tiEbookName.error = "Add a name for the pdf"
@@ -76,7 +112,7 @@ class UploadEbookFragment : BaseFragment<FragmentUploadEbookBinding>() {
 
     }
 
-    fun onIvSelectEbookClick() {
+    private fun onIvSelectEbookClick() {
 
         when {
             Build.VERSION.SDK_INT <= Build.VERSION_CODES.P -> {

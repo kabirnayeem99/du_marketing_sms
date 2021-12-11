@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -10,8 +9,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="16sp"
-        tools:context=".presentation.view.faculty.UpsertFacultyFragment">
+        android:layout_margin="16sp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -150,12 +148,11 @@
             </RelativeLayout>
 
             <Button
-                android:id="@+id/btnAddFaculty"
+                android:id="@+id/btnSave"
                 android:layout_width="300sp"
                 android:layout_height="56dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/bg_rounded_rectangle_button_solid"
-                android:onClick="btnSaveFacultyClick"
                 android:text="Save Faculty"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

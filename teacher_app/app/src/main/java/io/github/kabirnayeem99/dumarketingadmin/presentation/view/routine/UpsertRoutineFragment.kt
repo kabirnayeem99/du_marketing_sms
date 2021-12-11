@@ -1,6 +1,8 @@
 package io.github.kabirnayeem99.dumarketingadmin.presentation.view.routine
 
+import android.os.Build
 import android.os.Bundle
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,6 +26,7 @@ class UpsertRoutineFragment : BaseFragment<FragmentUpsertRoutineBinding>() {
     private var isTimeChanged: Boolean = false
     private lateinit var routineData: RoutineData
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreated(savedInstanceState: Bundle?) {
         handleViews()
         fillFieldIfUpdate()
@@ -66,6 +69,7 @@ class UpsertRoutineFragment : BaseFragment<FragmentUpsertRoutineBinding>() {
 
     // checks if this is an update or an insert
     // if it is an update, fill the field with the existing data
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun fillFieldIfUpdate() {
 
         routineViewModel.selectedRoutine

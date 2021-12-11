@@ -2,16 +2,19 @@ package io.github.kabirnayeem99.dumarketingadmin.presentation.view.dashboard
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseActivity
-import io.github.kabirnayeem99.dumarketingadmin.databinding.ActivityDashboardBinding
 import io.github.kabirnayeem99.dumarketingadmin.common.ktx.openActivity
 import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showErrorMessage
 import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showMessage
+import io.github.kabirnayeem99.dumarketingadmin.databinding.ActivityDashboardBinding
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.auth.AuthActivity
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.DashboardViewModel
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DashboardActivity : BaseActivity<ActivityDashboardBinding>() {
@@ -33,22 +36,20 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding>() {
     }
 
     private fun setUpObservers() {
-        dashboardViewModel.getAuthenticationStatus()
-        dashboardViewModel.authenticated.observe(this, { isAuthenticated ->
-            if (!isAuthenticated) navigateToAuthentication()
-        })
+        lifecycleScope.launch {
+            dashboardViewModel.getAuthenticationStatus()
+            dashboardViewModel.authenticated.observe(this@DashboardActivity, { isAuthenticated ->
+                if (!isAuthenticated) navigateToAuthentication()
+            })
 
-        dashboardViewModel.errorMessage.observe(this, { errorMessage ->
-            showErrorMessage(errorMessage)
-        })
+            dashboardViewModel.errorMessage.collectLatest { showErrorMessage(it) }
 
-        dashboardViewModel.message.observe(this, { message ->
-            showMessage(message)
-        })
+            dashboardViewModel.message.collectLatest { message -> showMessage(message) }
 
-        dashboardViewModel.isLoading.observe(this, { showLoading ->
-            if (showLoading) loadingIndicator.show() else loadingIndicator.dismiss()
-        })
+            dashboardViewModel.isLoading.collectLatest { showLoading ->
+                if (showLoading) loadingIndicator.show() else loadingIndicator.dismiss()
+            }
+        }
     }
 
     private fun navigateToAuthentication() {

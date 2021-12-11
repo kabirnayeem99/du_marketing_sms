@@ -1,13 +1,16 @@
 package io.github.kabirnayeem99.dumarketingadmin.common.ktx
 
-import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseFragment
+import android.os.Build
 import android.view.View
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.awesomedialog.*
 import com.google.android.material.snackbar.BaseTransientBottomBar.ANIMATION_MODE_SLIDE
 import com.google.android.material.snackbar.Snackbar
+import io.github.kabirnayeem99.dumarketingadmin.R
+import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseFragment
 import pub.devrel.easypermissions.EasyPermissions
 import pub.devrel.easypermissions.PermissionRequest
-import io.github.kabirnayeem99.dumarketingadmin.R
 
 
 /**
@@ -28,11 +31,51 @@ fun BaseFragment<*>.showErrorMessage(message: String) {
  *
  * @param message the message that should be shown
  */
-fun BaseFragment<*>.showMessage(message: String) {
-    val parentLayout: View = baseView
-    val snackbar = Snackbar.make(parentLayout, message, Snackbar.LENGTH_LONG)
-    snackbar.animationMode = ANIMATION_MODE_SLIDE
-    snackbar.show()
+fun Fragment.showMessage(message: String) {
+    try {
+        val parentLayout: View? = view?.findViewById(android.R.id.content)
+        val snackbar = Snackbar.make(parentLayout!!, message, Snackbar.LENGTH_LONG)
+        snackbar.animationMode = ANIMATION_MODE_SLIDE
+        snackbar.show()
+    } catch (e: Exception) {
+        context?.let { ctxt ->
+            Toast.makeText(ctxt, message, Toast.LENGTH_LONG).show()
+        }
+    }
+}
+
+
+fun Fragment.showConfirmationDialog(
+    title: String,
+    body: String,
+    iconName: Int,
+    positiveText: String = "Yes",
+    negativeText: String = "No",
+    onPositiveClicked: () -> Unit,
+) {
+    AwesomeDialog.build(requireActivity())
+        .title(title)
+        .body(body)
+        .background(R.drawable.bg_rounded_dialog)
+        .icon(
+            iconName,
+            animateIcon = true
+        )
+        .onPositive(
+            positiveText,
+            buttonBackgroundColor = R.drawable.bg_rounded_rectangle_button_solid,
+            textColor = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                context?.getColor(R.color.white) else R.color.white
+        ) {
+            onPositiveClicked()
+        }.onNegative(
+            negativeText,
+            buttonBackgroundColor = R.drawable.bg_rounded_rectangle_button_solid,
+            textColor = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                context?.getColor(R.color.white) else R.color.white
+        )
+        .show()
+
 }
 
 /**
@@ -63,9 +106,13 @@ fun BaseFragment<*>.showPermissionDialog(
     AwesomeDialog.build(requireActivity())
         .title("$permissionName Permission!!!")
         .body(rationale)
-        .icon(iconName)
+        .background(R.drawable.bg_rounded_dialog)
+        .icon(iconName, true)
         .onPositive(
             getString(R.string.rationale_ask_allow),
+            buttonBackgroundColor = R.drawable.bg_rounded_rectangle_button_solid,
+            textColor = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                context?.getColor(R.color.white) else R.color.white
         ) {
             EasyPermissions.requestPermissions(
                 PermissionRequest.Builder(this, requestCode, *permissions)
@@ -79,6 +126,9 @@ fun BaseFragment<*>.showPermissionDialog(
         }
         .onNegative(
             getString(R.string.rationale_ask_dont),
+            buttonBackgroundColor = R.drawable.bg_rounded_rectangle_button_solid,
+            textColor = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                context?.getColor(R.color.white) else R.color.white
         ) {
             onPermissionGrated(false)
             showErrorMessage("Be careful!!! $rationale.")

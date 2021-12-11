@@ -6,37 +6,37 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import io.github.kabirnayeem99.dumarketingadmin.common.ktx.animateAndOnClickListener
-import io.github.kabirnayeem99.dumarketingadmin.data.model.EbookData
-import io.github.kabirnayeem99.dumarketingadmin.databinding.ListItemEbookBinding
+import io.github.kabirnayeem99.dumarketingadmin.databinding.ListItemRecommendedBookBinding
+import io.github.kabirnayeem99.dumarketingadmin.domain.data.BookOpenBook
 
-class EbookDataAdapter(private var listener: (EbookData) -> Unit) :
-    RecyclerView.Adapter<EbookDataAdapter.ViewHolder>() {
+class RecommendedBookAdapter(private var listener: (BookOpenBook) -> Unit) :
+    RecyclerView.Adapter<RecommendedBookAdapter.ViewHolder>() {
 
-    inner class ViewHolder(val binding: ListItemEbookBinding) :
+    inner class ViewHolder(val binding: ListItemRecommendedBookBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(ebookData: EbookData) {
-            binding.tvBookTitle.text = ebookData.title
-            binding.btnDeleteBook.animateAndOnClickListener { listener(ebookData) }
+        fun bind(bookOpenBook: BookOpenBook) {
+            binding.tvBookName.text = bookOpenBook.name
+            binding.root.animateAndOnClickListener { listener(bookOpenBook) }
         }
     }
 
-    private val differCallback = object : DiffUtil.ItemCallback<EbookData>() {
+    private val differCallback = object : DiffUtil.ItemCallback<BookOpenBook>() {
         override fun areItemsTheSame(
-            oldItem: EbookData,
-            newItem: EbookData
+            oldItem: BookOpenBook,
+            newItem: BookOpenBook
         ): Boolean {
-            return oldItem.key == newItem.key
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: EbookData,
-            newItem: EbookData
+            oldItem: BookOpenBook,
+            newItem: BookOpenBook
         ): Boolean {
-            if (oldItem.pdfUrl != newItem.pdfUrl) {
+            if (oldItem.name != newItem.name) {
                 return false
             }
 
-            if (oldItem.title != newItem.title) {
+            if (oldItem.downloadUrl != newItem.downloadUrl) {
                 return false
             }
 
@@ -50,7 +50,7 @@ class EbookDataAdapter(private var listener: (EbookData) -> Unit) :
         parent: ViewGroup,
         viewType: Int
     ): ViewHolder {
-        val binding = ListItemEbookBinding.inflate(
+        val binding = ListItemRecommendedBookBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false

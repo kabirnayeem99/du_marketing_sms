@@ -16,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showErrorMessage
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showMessage
 import io.github.kabirnayeem99.dumarketingadmin.common.util.AssetUtilities
 import io.github.kabirnayeem99.dumarketingadmin.common.util.Constants.TEACHER_POSTS
 import io.github.kabirnayeem99.dumarketingadmin.common.util.RegexValidatorUtils
@@ -23,6 +24,7 @@ import io.github.kabirnayeem99.dumarketingadmin.data.model.FacultyData
 import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentUpsertFacultyBinding
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.FacultyViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.util.*
@@ -45,9 +47,25 @@ class UpsertFacultyFragment : BaseFragment<FragmentUpsertFacultyBinding>() {
         get() = R.layout.fragment_upsert_faculty
 
     override fun onCreated(savedInstanceState: Bundle?) {
-
+        handleViews()
         checkAndImplementUpdateFunctionality()
         setUpSpinner()
+        subscribeObservers()
+    }
+
+    private fun subscribeObservers() {
+        lifecycleScope.launchWhenCreated {
+            facultyViewModel.apply {
+                errorMessage.collect { showErrorMessage(it) }
+                message.collect { showMessage(it) }
+                isLoading.collect { if (it) loadingIndicator.show() else loadingIndicator.dismiss() }
+            }
+        }
+    }
+
+    private fun handleViews() {
+        binding.ivAvatar.setOnClickListener { onIvAvatarClick() }
+        binding.btnSave.setOnClickListener { onSaveClick() }
     }
 
     private fun checkAndImplementUpdateFunctionality() {
@@ -139,13 +157,13 @@ class UpsertFacultyFragment : BaseFragment<FragmentUpsertFacultyBinding>() {
         }
     }
 
-    fun onIvAvatarClick(view: View) {
+    private fun onIvAvatarClick() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(intent, PICK_IMAGE_REQ_CODE)
     }
 
 
-    fun btnSaveFacultyClick(view: View) {
+    private fun onSaveClick() {
 
         val name = binding.tiTeacherName.editText?.text.toString()
         val email = binding.tiTeacherEmail.editText?.text.toString()

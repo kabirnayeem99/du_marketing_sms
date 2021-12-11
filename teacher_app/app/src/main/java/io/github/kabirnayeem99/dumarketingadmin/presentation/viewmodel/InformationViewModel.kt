@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseViewModel
+import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
 import io.github.kabirnayeem99.dumarketingadmin.data.model.InformationData
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.InfoRepository
-import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,14 +19,14 @@ class InformationViewModel @Inject constructor(
     private val ioDispatcher: CoroutineDispatcher,
 ) : BaseViewModel() {
 
-    fun upsertInformation(informationData: InformationData) {
-        _isLoading.postValue(true)
-        viewModelScope.launch(ioDispatcher) {
+    fun saveInformation(informationData: InformationData) {
+        viewModelScope.launch {
+            _isLoading.tryEmit(true)
             val res = repo.saveInformationData(informationData)
-            _isLoading.postValue(false)
+            _isLoading.emit(false)
             when (res) {
-                is Resource.Error -> _errorMessage.postValue(res.message)
-                is Resource.Success -> _message.postValue("Successfully saved the information.")
+                is Resource.Error -> _errorMessage.tryEmit(res.message!!)
+                is Resource.Success -> _message.tryEmit("Successfully saved the information.")
                 else -> Unit
             }
         }
@@ -36,12 +36,12 @@ class InformationViewModel @Inject constructor(
     val informationData: LiveData<InformationData> = _informationData
 
     fun getInformationData() {
-        _isLoading.postValue(true)
         viewModelScope.launch(ioDispatcher) {
+            _isLoading.emit(true)
             val res = repo.getCurrentInformation()
-            _isLoading.postValue(false)
+            _isLoading.emit(false)
             when (res) {
-                is Resource.Error -> _errorMessage.postValue(res.message)
+                is Resource.Error -> _errorMessage.emit(res.message!!)
                 is Resource.Success -> {
                     _informationData.postValue(res.data!!)
                 }

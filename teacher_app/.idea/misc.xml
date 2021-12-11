@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.23796296296296296" />
         <entry key="../../../.gradle/caches/transforms-3/e1f52ecbde5859115c0f5355ab9579d5/transformed/jetified-fluent-system-icons-1.1.122/res/drawable/ic_fluent_question_24_filled.xml" value="0.25092592592592594" />
         <entry key="app/src/main/res/drawable/bg_gradient.xml" value="0.2760416666666667" />
         <entry key="app/src/main/res/drawable/bg_rounded_dialog.xml" value="0.23796296296296296" />
@@ -38,12 +39,13 @@
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_routine.xml" value="0.1685185185185185" />
         <entry key="app/src/main/res/layout/fragment_routine_details.xml" value="0.1685185185185185" />
-        <entry key="app/src/main/res/layout/fragment_upload_ebook.xml" value="0.1685185185185185" />
+        <entry key="app/src/main/res/layout/fragment_upload_ebook.xml" value="0.2922619047619048" />
         <entry key="app/src/main/res/layout/fragment_upsert_routine.xml" value="0.25" />
         <entry key="app/src/main/res/layout/list_item_ebook.xml" value="0.335" />
         <entry key="app/src/main/res/layout/list_item_faculty.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/layout/list_item_gallery.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/layout/list_item_notice.xml" value="0.2557291666666667" />
+        <entry key="app/src/main/res/layout/list_item_recommended_book.xml" value="0.1361111111111111" />
         <entry key="app/src/main/res/layout/list_item_routine.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/menu/dashboard_menu.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.25092592592592594" />

@@ -4,9 +4,9 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseViewModel
+import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
 import io.github.kabirnayeem99.dumarketingadmin.data.model.GalleryData
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.GalleryRepository
-import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
@@ -23,13 +23,13 @@ class GalleryViewModel @Inject constructor(
     fun saveGalleryData(
         galleryData: GalleryData
     ) {
-        _isLoading.postValue(true)
         viewModelScope.launch(ioDispatcher) {
+            _isLoading.emit(true)
             val resource = repo.saveGalleryData(galleryData)
-            _isLoading.postValue(false)
+            _isLoading.emit(false)
             when (resource) {
-                is Resource.Error -> _errorMessage.postValue(resource.message)
-                is Resource.Success -> _message.postValue("Successfully saved ${resource.data}")
+                is Resource.Error -> _errorMessage.emit(resource.message!!)
+                is Resource.Success -> _message.emit("Successfully saved ${resource.data}")
                 else -> Unit
             }
         }
@@ -37,11 +37,15 @@ class GalleryViewModel @Inject constructor(
 
 
     fun startLoading() {
-        _isLoading.value = true
+        viewModelScope.launch(ioDispatcher) {
+            _isLoading.emit(true)
+        }
     }
 
     fun stopLoading() {
-        _isLoading.value = false
+        viewModelScope.launch(ioDispatcher) {
+            _isLoading.emit(false)
+        }
     }
 
     suspend fun uploadGalleryImage(
@@ -49,14 +53,14 @@ class GalleryViewModel @Inject constructor(
         imageFile: ByteArray
     ): String? {
         var url: String? = null
-        _isLoading.postValue(true)
         viewModelScope.launch(ioDispatcher) {
+            _isLoading.emit(true)
             val resource = repo.uploadGalleryImage(category, imageFile)
-            _isLoading.postValue(false)
+            _isLoading.emit(false)
             when (resource) {
-                is Resource.Error -> _errorMessage.postValue(resource.message)
+                is Resource.Error -> _errorMessage.emit(resource.message!!)
                 is Resource.Success -> {
-                    _message.postValue("Successfully saved the image in $category.")
+                    _message.emit("Successfully saved the image in $category.")
                     url = resource.data
                 }
                 else -> Unit
@@ -67,13 +71,13 @@ class GalleryViewModel @Inject constructor(
     }
 
     fun deleteGalleryData(galleryData: GalleryData) {
-        _isLoading.postValue(true)
         viewModelScope.launch(ioDispatcher) {
+            _isLoading.emit(true)
             val resource = repo.deleteGalleryData(galleryData)
-            _isLoading.postValue(false)
+            _isLoading.emit(false)
             when (resource) {
-                is Resource.Error -> _errorMessage.postValue(resource.message)
-                is Resource.Success -> _message.postValue("${galleryData.category} is deleted")
+                is Resource.Error -> _errorMessage.emit(resource.message!!)
+                is Resource.Success -> _message.emit("${galleryData.category} is deleted")
                 else -> Unit
             }
         }
@@ -83,12 +87,12 @@ class GalleryViewModel @Inject constructor(
     private val _galleryDataList = MutableStateFlow<List<GalleryData>>(emptyList())
     val galleryDataList = _galleryDataList.asLiveData()
     fun getGalleryDataList() {
-        _isLoading.postValue(true)
         viewModelScope.launch(ioDispatcher) {
+            _isLoading.emit(true)
             repo.getGalleryImages().collect { resource ->
-                _isLoading.postValue(false)
+                _isLoading.emit(false)
                 when (resource) {
-                    is Resource.Error -> _errorMessage.postValue(resource.message)
+                    is Resource.Error -> _errorMessage.emit(resource.message!!)
                     is Resource.Success -> _galleryDataList.value = resource.data ?: emptyList()
                     else -> Unit
                 }

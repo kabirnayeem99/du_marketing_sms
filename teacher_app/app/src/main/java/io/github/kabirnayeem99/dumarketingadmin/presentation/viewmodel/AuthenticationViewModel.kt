@@ -5,9 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseViewModel
-import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.AuthenticationRepository
 import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
+import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.AuthenticationRepository
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -15,40 +16,37 @@ import javax.inject.Inject
 @HiltViewModel
 class AuthenticationViewModel @Inject constructor(
     private val authRepo: AuthenticationRepository,
-    private val ioContext: CoroutineDispatcher
+    private val ioContext: CoroutineDispatcher,
 ) : BaseViewModel() {
 
-
-
     var email: String = ""
-
-
     var password: String = ""
 
     private val _loginSuccess = MutableLiveData<String>()
     val loginSuccess: LiveData<String> = _loginSuccess
 
     fun login() = viewModelScope.launch(ioContext) {
-        _isLoading.postValue(true)
+        delay(1000)
+        _isLoading.emit(true)
         if (email.isEmpty()) {
-            _isLoading.postValue(false)
-            _errorMessage.postValue("Enter a valid email")
+            _isLoading.emit(false)
+            _errorMessage.emit("Enter a valid email")
             return@launch
         }
         if (password.isEmpty()) {
-            _isLoading.postValue(false)
-            _errorMessage.postValue("Enter a valid password")
+            _isLoading.emit(false)
+            _errorMessage.emit("Enter a valid password")
             return@launch
         }
 
         when (val loginResource = authRepo.login(email, password)) {
             is Resource.Error -> {
-                _isLoading.postValue(false)
-                _errorMessage.postValue(loginResource.message ?: "Could not log you in.")
+                _isLoading.emit(false)
+                _errorMessage.emit(loginResource.message ?: "Could not log you in.")
             }
             is Resource.Loading -> Unit
             is Resource.Success -> {
-                _isLoading.postValue(false)
+                _isLoading.emit(false)
                 _loginSuccess.postValue(loginResource.data!!)
             }
         }
@@ -58,26 +56,26 @@ class AuthenticationViewModel @Inject constructor(
     val registerSuccess: LiveData<String> = _registerSuccess
 
     fun register() = viewModelScope.launch(ioContext) {
-        _isLoading.postValue(true)
+        _isLoading.emit(true)
         if (email.isEmpty()) {
-            _isLoading.postValue(false)
-            _errorMessage.postValue("Enter a valid email")
+            _isLoading.emit(false)
+            _errorMessage.emit("Enter a valid email")
             return@launch
         }
         if (password.isEmpty()) {
-            _isLoading.postValue(false)
-            _errorMessage.postValue("Enter a valid password")
+            _isLoading.emit(false)
+            _errorMessage.emit("Enter a valid password")
             return@launch
         }
 
         when (val registerResource = authRepo.register(email, password)) {
             is Resource.Error -> {
-                _isLoading.postValue(false)
-                _errorMessage.postValue(registerResource.message ?: "Could not create an account.")
+                _isLoading.emit(false)
+                _errorMessage.emit(registerResource.message ?: "Could not create an account.")
             }
             is Resource.Loading -> Unit
             is Resource.Success -> {
-                _isLoading.postValue(false)
+                _isLoading.emit(false)
                 _registerSuccess.postValue(registerResource.data!!)
             }
 
@@ -87,10 +85,10 @@ class AuthenticationViewModel @Inject constructor(
     private val _authenticated = MutableLiveData<Boolean>()
     val authenticated: LiveData<Boolean> = _authenticated
     fun getAuthenticationStatus() = viewModelScope.launch(ioContext) {
-        _isLoading.postValue(true)
+        _isLoading.emit(true)
         authRepo.getAuthenticationStatus().collect { authenticationStatus ->
-            _isLoading.postValue(false)
-            if (authenticationStatus) _message.postValue("Successfully logged in.")
+            _isLoading.emit(false)
+            if (authenticationStatus) _message.emit("Successfully logged in.")
             _authenticated.postValue(authenticationStatus)
         }
     }

@@ -6,9 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseViewModel
-import io.github.kabirnayeem99.dumarketingadmin.data.repositories.DefaultRoutineRepository
-import io.github.kabirnayeem99.dumarketingadmin.data.model.RoutineData
 import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
+import io.github.kabirnayeem99.dumarketingadmin.data.model.RoutineData
+import io.github.kabirnayeem99.dumarketingadmin.data.repositories.DefaultRoutineRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
@@ -39,12 +39,12 @@ class RoutineViewModel @Inject constructor(
 
     @ExperimentalCoroutinesApi
     fun getRoutine(batchYear: String) {
-        _isLoading.postValue(true)
         viewModelScope.launch(ioContext) {
+            _isLoading.emit(true)
             repo.getRoutine(batchYear).collect { resource ->
-                _isLoading.postValue(false)
+                _isLoading.emit(false)
                 when (resource) {
-                    is Resource.Error -> _errorMessage.postValue(resource.message)
+                    is Resource.Error -> _errorMessage.emit(resource.message!!)
                     is Resource.Success -> _routines.postValue(resource.data ?: emptyList())
                     else -> Unit
                 }
@@ -53,13 +53,13 @@ class RoutineViewModel @Inject constructor(
     }
 
     fun insertRoutineData(routineData: RoutineData, batchYear: String) {
-        _isLoading.postValue(true)
         viewModelScope.launch(ioContext) {
+            _isLoading.emit(true)
             val resource = repo.insertRoutineData(routineData, batchYear)
-            _isLoading.postValue(false)
+            _isLoading.emit(false)
             when (resource) {
-                is Resource.Error -> _errorMessage.postValue(resource.message)
-                is Resource.Success -> _message.postValue("Saved successfully.")
+                is Resource.Error -> _errorMessage.emit(resource.message!!)
+                is Resource.Success -> _message.emit("Saved successfully.")
                 else -> Unit
             }
         }
