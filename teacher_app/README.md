@@ -36,6 +36,7 @@ uses [Firebase](https://firebase.google.com/) as its back-end.
 
 # Screenshots
 
+[Imgur](https://imgur.com/AIQMDn5)
 [<img src="https://imgur.com/mHcOA0S" title="DU Marketing SMS Dashboard" width="200" hspace="10" vspace="10" />](https://imgur.com/mHcOA0S)
 [<img src="https://imgur.com/JfudNfi" title="DU Marketing SMS Auth Screen" width="200" hspace="10" vspace="10" />](https://imgur.com/JfudNfi)
 [<img src="https://i.imgur.com/mSSwmVH.jpg" title="Faculty Member List Screen" width="200" hspace="10" vspace="10" />](https://imgur.com/BACtRiQ)
