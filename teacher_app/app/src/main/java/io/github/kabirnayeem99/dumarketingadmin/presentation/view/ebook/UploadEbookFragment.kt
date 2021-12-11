@@ -181,8 +181,6 @@ class UploadEbookFragment : BaseFragment<FragmentUploadEbookBinding>() {
                         }
                     }
                 }
-
-
             }
 
         }
