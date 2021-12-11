@@ -13,7 +13,7 @@
         android:padding="12sp"
         app:cardCornerRadius="@dimen/default_radius"
         app:cardElevation="0sp"
-        app:strokeColor="@color/blue_grey_200_transparent"
+        app:strokeColor="?android:colorPrimary"
         app:strokeWidth="0.8sp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
