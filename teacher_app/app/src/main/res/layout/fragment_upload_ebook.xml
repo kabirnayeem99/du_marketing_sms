@@ -50,7 +50,10 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tiEbookName"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                       app:boxCornerRadiusBottomEnd="@dimen/default_radius"
+                app:boxCornerRadiusBottomStart="@dimen/default_radius"
+                app:boxCornerRadiusTopEnd="@dimen/default_radius"
+                app:boxCornerRadiusTopStart="@dimen/default_radius"
                 android:layout_width="300sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

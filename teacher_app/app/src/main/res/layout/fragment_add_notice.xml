@@ -33,7 +33,6 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tiNoticeTitle"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="300sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -41,6 +40,10 @@
                 android:hint="@string/tf_hint_title"
                 android:textAlignment="center"
                 android:textDirection="ltr"
+                app:boxCornerRadiusBottomEnd="@dimen/default_radius"
+                app:boxCornerRadiusBottomStart="@dimen/default_radius"
+                app:boxCornerRadiusTopEnd="@dimen/default_radius"
+                app:boxCornerRadiusTopStart="@dimen/default_radius"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ivIconAddGalleryImage">

@@ -1,4 +1,4 @@
-package io.github.kabirnayeem99.dumarketingadmin.di
+package io.github.kabirnayeem99.dumarketingadmin.common.di
 
 import dagger.Module
 import dagger.Provides

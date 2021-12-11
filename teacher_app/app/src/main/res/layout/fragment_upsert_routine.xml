@@ -29,12 +29,15 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tiSubjectName"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="300sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="12sp"
-                android:hint="@string/tf_hint_subject_name">
+                android:hint="@string/tf_hint_subject_name"
+                app:boxCornerRadiusBottomEnd="@dimen/default_radius"
+                app:boxCornerRadiusBottomStart="@dimen/default_radius"
+                app:boxCornerRadiusTopEnd="@dimen/default_radius"
+                app:boxCornerRadiusTopStart="@dimen/default_radius">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -46,12 +49,15 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tiFacultyName"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="300sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="12sp"
-                android:hint="@string/tf_hint_faculty_name">
+                android:hint="@string/tf_hint_faculty_name"
+                app:boxCornerRadiusBottomEnd="@dimen/default_radius"
+                app:boxCornerRadiusBottomStart="@dimen/default_radius"
+                app:boxCornerRadiusTopEnd="@dimen/default_radius"
+                app:boxCornerRadiusTopStart="@dimen/default_radius">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -63,12 +69,15 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tiClassLocation"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="300sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="12sp"
-                android:hint="@string/tf_hint_location">
+                android:hint="@string/tf_hint_location"
+                app:boxCornerRadiusBottomEnd="@dimen/default_radius"
+                app:boxCornerRadiusBottomStart="@dimen/default_radius"
+                app:boxCornerRadiusTopEnd="@dimen/default_radius"
+                app:boxCornerRadiusTopStart="@dimen/default_radius">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
