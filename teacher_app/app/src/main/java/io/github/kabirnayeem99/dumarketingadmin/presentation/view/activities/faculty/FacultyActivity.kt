@@ -2,9 +2,7 @@ package io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.fa
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,8 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
-import io.github.kabirnayeem99.dumarketingadmin.util.Resource
-import io.github.kabirnayeem99.dumarketingadmin.util.adapter.FacultyAdapter
+import io.github.kabirnayeem99.dumarketingadmin.presentation.view.adapter.FacultyAdapter
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.FacultyViewModel
 
 @AndroidEntryPoint
@@ -48,6 +45,7 @@ class FacultyActivity : AppCompatActivity() {
         }
 
         facultyViewModel.facultyListObservable.observe(this, {
+            slRvFacultyMemberList.visibility = View.GONE
             facultyAdapter.differ.submitList(it)
         })
 

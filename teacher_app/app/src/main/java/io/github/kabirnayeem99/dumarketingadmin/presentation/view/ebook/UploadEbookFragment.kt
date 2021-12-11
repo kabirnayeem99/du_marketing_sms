@@ -10,13 +10,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
-import io.github.kabirnayeem99.dumarketingadmin.base.BaseFragment
+import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingadmin.data.model.EbookData
 import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentUploadEbookBinding
-import io.github.kabirnayeem99.dumarketingadmin.ktx.showErrorMessage
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showErrorMessage
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.EbookViewModel
-import io.github.kabirnayeem99.dumarketingadmin.util.Constants.CONTENT_URI
-import io.github.kabirnayeem99.dumarketingadmin.util.Constants.FILE_URI
+import io.github.kabirnayeem99.dumarketingadmin.common.util.Constants.CONTENT_URI
+import io.github.kabirnayeem99.dumarketingadmin.common.util.Constants.FILE_URI
 import java.io.File
 import java.util.*
 

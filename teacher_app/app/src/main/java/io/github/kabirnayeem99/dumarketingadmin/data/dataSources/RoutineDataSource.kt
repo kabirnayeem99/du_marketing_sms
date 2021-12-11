@@ -3,8 +3,8 @@ package io.github.kabirnayeem99.dumarketingadmin.data.dataSources
 import com.google.firebase.firestore.FirebaseFirestore
 import io.github.kabirnayeem99.dumarketingadmin.data.model.RoutineData
 import io.github.kabirnayeem99.dumarketingadmin.data.model.RoutineData.Companion.toRoutineDataList
-import io.github.kabirnayeem99.dumarketingadmin.util.Constants
-import io.github.kabirnayeem99.dumarketingadmin.util.Resource
+import io.github.kabirnayeem99.dumarketingadmin.common.util.Constants
+import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose

@@ -2,10 +2,8 @@ package io.github.kabirnayeem99.dumarketingadmin.data.repositories
 
 import com.google.firebase.auth.FirebaseAuth
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.AuthenticationRepository
-import io.github.kabirnayeem99.dumarketingadmin.util.Resource
-import kotlinx.coroutines.flow.Flow
+import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
 import kotlinx.coroutines.flow.channelFlow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import timber.log.Timber
 import javax.inject.Inject

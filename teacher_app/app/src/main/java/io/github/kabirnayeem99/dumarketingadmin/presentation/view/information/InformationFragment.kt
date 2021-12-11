@@ -4,11 +4,11 @@ import android.os.Bundle
 import androidx.fragment.app.activityViewModels
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
-import io.github.kabirnayeem99.dumarketingadmin.base.BaseFragment
+import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingadmin.data.model.InformationData
 import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentInformationBinding
-import io.github.kabirnayeem99.dumarketingadmin.ktx.showErrorMessage
-import io.github.kabirnayeem99.dumarketingadmin.ktx.showMessage
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showErrorMessage
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showMessage
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.InformationViewModel
 
 @AndroidEntryPoint

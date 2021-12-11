@@ -3,10 +3,10 @@ package io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.github.kabirnayeem99.dumarketingadmin.base.BaseViewModel
+import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseViewModel
 import io.github.kabirnayeem99.dumarketingadmin.data.model.GalleryData
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.GalleryRepository
-import io.github.kabirnayeem99.dumarketingadmin.util.Resource
+import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect

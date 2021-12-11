@@ -1,11 +1,10 @@
 package io.github.kabirnayeem99.dumarketingadmin.data.dataSources
 
-import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import io.github.kabirnayeem99.dumarketingadmin.data.model.InformationData
 import io.github.kabirnayeem99.dumarketingadmin.data.model.InformationData.Companion.toInformationData
-import io.github.kabirnayeem99.dumarketingadmin.util.Constants
-import io.github.kabirnayeem99.dumarketingadmin.util.Resource
+import io.github.kabirnayeem99.dumarketingadmin.common.util.Constants
+import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 

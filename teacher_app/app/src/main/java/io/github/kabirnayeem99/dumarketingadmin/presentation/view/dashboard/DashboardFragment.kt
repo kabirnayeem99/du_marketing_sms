@@ -7,10 +7,10 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
-import io.github.kabirnayeem99.dumarketingadmin.base.BaseFragment
+import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentDashboardBinding
-import io.github.kabirnayeem99.dumarketingadmin.ktx.animateAndOnClickListener
-import io.github.kabirnayeem99.dumarketingadmin.ktx.openActivity
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.animateAndOnClickListener
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.openActivity
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.faculty.FacultyActivity
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.notice.NoticeActivity
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.auth.AuthActivity

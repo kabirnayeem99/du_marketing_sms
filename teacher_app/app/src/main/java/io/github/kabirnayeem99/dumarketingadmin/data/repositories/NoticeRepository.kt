@@ -1,6 +1,5 @@
 package io.github.kabirnayeem99.dumarketingadmin.data.repositories
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.tasks.Task
@@ -11,9 +10,9 @@ import com.google.firebase.storage.UploadTask
 import io.github.kabirnayeem99.dumarketingadmin.data.dataSources.BaasService
 import io.github.kabirnayeem99.dumarketingadmin.data.model.NoticeData
 import io.github.kabirnayeem99.dumarketingadmin.data.model.NoticeData.Companion.toNoticeDataList
-import io.github.kabirnayeem99.dumarketingadmin.util.Constants.NOTICE_DB_REF
-import io.github.kabirnayeem99.dumarketingadmin.util.Constants.NOTICE_IMAGE_PATH_STRING_FOLDER_NAME
-import io.github.kabirnayeem99.dumarketingadmin.util.Resource
+import io.github.kabirnayeem99.dumarketingadmin.common.util.Constants.NOTICE_DB_REF
+import io.github.kabirnayeem99.dumarketingadmin.common.util.Constants.NOTICE_IMAGE_PATH_STRING_FOLDER_NAME
+import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
 import timber.log.Timber
 import javax.inject.Inject
 

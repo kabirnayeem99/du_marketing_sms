@@ -3,7 +3,7 @@ package io.github.kabirnayeem99.dumarketingadmin.data.repositories
 import io.github.kabirnayeem99.dumarketingadmin.data.dataSources.FacultyDataSource
 import io.github.kabirnayeem99.dumarketingadmin.data.model.FacultyData
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.FacultyRepository
-import io.github.kabirnayeem99.dumarketingadmin.util.Resource
+import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

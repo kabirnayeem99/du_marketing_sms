@@ -19,10 +19,10 @@ import com.lmntrx.android.library.livin.missme.ProgressDialog
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.data.model.FacultyData
-import io.github.kabirnayeem99.dumarketingadmin.util.AssetUtilities
-import io.github.kabirnayeem99.dumarketingadmin.util.Constants.EXTRA_FACULTY_DATA
-import io.github.kabirnayeem99.dumarketingadmin.util.Constants.TEACHER_POSTS
-import io.github.kabirnayeem99.dumarketingadmin.util.RegexValidatorUtils
+import io.github.kabirnayeem99.dumarketingadmin.common.util.AssetUtilities
+import io.github.kabirnayeem99.dumarketingadmin.common.util.Constants.EXTRA_FACULTY_DATA
+import io.github.kabirnayeem99.dumarketingadmin.common.util.Constants.TEACHER_POSTS
+import io.github.kabirnayeem99.dumarketingadmin.common.util.RegexValidatorUtils
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.FacultyViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch

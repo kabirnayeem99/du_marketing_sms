@@ -4,14 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.github.kabirnayeem99.dumarketingadmin.base.BaseViewModel
+import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseViewModel
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.AuthenticationRepository
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.coroutines.CoroutineContext
 
 @HiltViewModel
 class DashboardViewModel @Inject constructor(

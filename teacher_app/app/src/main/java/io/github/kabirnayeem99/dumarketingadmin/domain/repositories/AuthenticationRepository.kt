@@ -1,6 +1,6 @@
 package io.github.kabirnayeem99.dumarketingadmin.domain.repositories
 
-import io.github.kabirnayeem99.dumarketingadmin.util.Resource
+import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
 import kotlinx.coroutines.flow.Flow
 
 
