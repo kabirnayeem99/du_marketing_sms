@@ -45,6 +45,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_facultyFragment"
+            app:destination="@id/facultyFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -137,6 +144,24 @@
         android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.notice.AddNoticeFragment"
         android:label="AddNoticeFragment"
         tools:layout="@layout/fragment_add_notice" />
+    <fragment
+        android:id="@+id/facultyFragment"
+        android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.faculty.FacultyFragment"
+        android:label="FacultyFragment"
+        tools:layout="@layout/fragment_faculty">
+        <action
+            android:id="@+id/action_facultyFragment_to_upsertFacultyFragment"
+            app:destination="@id/upsertFacultyFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/upsertFacultyFragment"
+        android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.faculty.UpsertFacultyFragment"
+        android:label="UpsertFacultyFragment"
+        tools:layout="@layout/fragment_upsert_faculty" />
 
 
 </navigation>

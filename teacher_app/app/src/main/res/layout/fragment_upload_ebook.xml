@@ -9,7 +9,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:padding="16sp">
 
 
@@ -27,13 +27,12 @@
                 android:layout_gravity="center"
                 android:layout_margin="16sp"
                 android:layout_marginTop="8sp"
-                android:onClick="onIvSelectEbookClick"
+                android:contentDescription="@string/select_book"
                 android:padding="16dp"
                 android:src="@drawable/ic_fluent_book_add_24_selector"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
 
             <TextView
                 android:id="@+id/tvPdfName"
@@ -41,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="12sp"
-                android:text="No Ebook selected yet"
+                android:text="@string/no_ebook_selected_yet"
                 app:layout_constraintBottom_toTopOf="@+id/tiEbookName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -50,18 +49,19 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tiEbookName"
-                       app:boxCornerRadiusBottomEnd="@dimen/default_radius"
-                app:boxCornerRadiusBottomStart="@dimen/default_radius"
-                app:boxCornerRadiusTopEnd="@dimen/default_radius"
-                app:boxCornerRadiusTopStart="@dimen/default_radius"
                 android:layout_width="300sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="16sp"
-                android:layout_marginBottom="24dp"
                 android:hint="@string/tf_hint_ebook_name"
                 android:textAlignment="center"
                 android:textDirection="ltr"
+                app:boxCornerRadiusBottomEnd="@dimen/default_radius"
+                app:boxCornerRadiusBottomStart="@dimen/default_radius"
+                app:boxCornerRadiusTopEnd="@dimen/default_radius"
+                app:boxCornerRadiusTopStart="@dimen/default_radius"
+                app:hintEnabled="true"
+                app:layout_constraintBottom_toTopOf="@id/btn_upload_book"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvPdfName">
@@ -69,6 +69,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:autofillHints="name"
                     android:inputType="text"
                     android:maxLines="1" />
 
@@ -82,11 +83,19 @@
                 android:layout_margin="8sp"
                 android:layout_marginTop="24dp"
                 android:background="@drawable/bg_rounded_rectangle_button_solid"
-                android:text="Upload Ebook"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="@string/upload_ebook"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tiEbookName" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_recommended_books"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_upload_book"
+                tools:listitem="@layout/list_item_recommended_book" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

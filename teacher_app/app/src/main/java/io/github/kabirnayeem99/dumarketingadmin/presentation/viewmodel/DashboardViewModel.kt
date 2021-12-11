@@ -21,10 +21,10 @@ class DashboardViewModel @Inject constructor(
     private val _authenticated = MutableLiveData<Boolean>()
     val authenticated: LiveData<Boolean> = _authenticated
     fun getAuthenticationStatus() = viewModelScope.launch(ioContext) {
-        _isLoading.postValue(true)
+        _isLoading.emit(true)
         authRepo.getAuthenticationStatus().collect { authenticationStatus ->
-            _isLoading.postValue(false)
-            if (authenticationStatus) _message.postValue("Successfully logged in.")
+            _isLoading.emit(false)
+            if (authenticationStatus) _message.emit("Successfully logged in.")
             _authenticated.postValue(authenticationStatus)
         }
     }

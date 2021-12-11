@@ -29,4 +29,8 @@
     <string name="notice">Notice</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="delete_notice_button">Delete Notice Button</string>
+    <string name="upload_ebook">Upload Ebook</string>
+    <string name="select_book">tap to select a pdf</string>
+    <string name="no_ebook_selected_yet">No Ebook selected yet</string>
 </resources>

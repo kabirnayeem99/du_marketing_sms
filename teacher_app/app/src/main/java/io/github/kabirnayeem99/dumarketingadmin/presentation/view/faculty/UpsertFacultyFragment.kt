@@ -1,64 +1,77 @@
-package io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.faculty
+package io.github.kabirnayeem99.dumarketingadmin.presentation.view.faculty
 
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.widget.*
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
-import com.google.android.material.textfield.TextInputLayout
-import com.lmntrx.android.library.livin.missme.ProgressDialog
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
-import io.github.kabirnayeem99.dumarketingadmin.data.model.FacultyData
+import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseFragment
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showErrorMessage
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showMessage
 import io.github.kabirnayeem99.dumarketingadmin.common.util.AssetUtilities
-import io.github.kabirnayeem99.dumarketingadmin.common.util.Constants.EXTRA_FACULTY_DATA
 import io.github.kabirnayeem99.dumarketingadmin.common.util.Constants.TEACHER_POSTS
 import io.github.kabirnayeem99.dumarketingadmin.common.util.RegexValidatorUtils
+import io.github.kabirnayeem99.dumarketingadmin.data.model.FacultyData
+import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentUpsertFacultyBinding
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.FacultyViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class UpsertFacultyActivity : AppCompatActivity() {
+class UpsertFacultyFragment : BaseFragment<FragmentUpsertFacultyBinding>() {
 
     @Inject
-    lateinit var ioContext: CoroutineDispatcher
+    lateinit var ioDispatcher: CoroutineDispatcher
+
+    private val facultyViewModel: FacultyViewModel
+            by activityViewModels()
 
     private lateinit var bitmap: Bitmap
     private var teacherPost: String = ""
     private var facultyData: FacultyData? = null
-    private lateinit var ivAvatar: ImageView
-    private lateinit var tiTeacherName: TextInputLayout
-    private lateinit var tiTeacherEmail: TextInputLayout
-    private lateinit var tiTeacherPhone: TextInputLayout
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_upsert_faculty)
-        initViews()
+    override val layoutRes: Int
+        get() = R.layout.fragment_upsert_faculty
+
+    override fun onCreated(savedInstanceState: Bundle?) {
+        handleViews()
         checkAndImplementUpdateFunctionality()
-
         setUpSpinner()
+        subscribeObservers()
+    }
+
+    private fun subscribeObservers() {
+        lifecycleScope.launchWhenCreated {
+            facultyViewModel.apply {
+                errorMessage.collect { showErrorMessage(it) }
+                message.collect { showMessage(it) }
+                isLoading.collect { if (it) loadingIndicator.show() else loadingIndicator.dismiss() }
+            }
+        }
+    }
+
+    private fun handleViews() {
+        binding.ivAvatar.setOnClickListener { onIvAvatarClick() }
+        binding.btnSave.setOnClickListener { onSaveClick() }
     }
 
     private fun checkAndImplementUpdateFunctionality() {
-        facultyData = intent.getParcelableExtra(EXTRA_FACULTY_DATA)
+        facultyData = arguments?.getParcelable("faculty")
 
-        if (facultyData == null) {
-            return
-        }
+        if (facultyData == null) return
 
         fillTextFieldIfUpdate()
     }
@@ -85,15 +98,14 @@ class UpsertFacultyActivity : AppCompatActivity() {
         facultyData?.let {
 
             try {
-                Glide.with(this).load(it.profileImageUrl).into(ivAvatar)
+                Glide.with(this).load(it.profileImageUrl).into(binding.ivAvatar)
             } catch (e: Exception) {
-                Toast.makeText(this, "Could not load the profile picture", Toast.LENGTH_SHORT)
-                    .show()
+                showErrorMessage("Could not load the profile picture")
             }
 
-            tiTeacherName.editText?.setText(it.name)
-            tiTeacherEmail.editText?.setText(it.email)
-            tiTeacherPhone.editText?.setText(it.phone)
+            binding.tiTeacherName.editText?.setText(it.name)
+            binding.tiTeacherEmail.editText?.setText(it.email)
+            binding.tiTeacherPhone.editText?.setText(it.phone)
 
 
             teacherPost = it.post
@@ -106,12 +118,11 @@ class UpsertFacultyActivity : AppCompatActivity() {
     private fun setUpSpinner() {
         val teacherPostsCategories = TEACHER_POSTS
 
-        val sFacultyPostCat = findViewById<Spinner>(R.id.sFacultyPostCat)
 
-        with(sFacultyPostCat) {
+        with(binding.sFacultyPostCat) {
 
             adapter = ArrayAdapter(
-                this@UpsertFacultyActivity,
+                context,
                 android.R.layout.simple_dropdown_item_1line,
                 teacherPostsCategories
             )
@@ -124,23 +135,19 @@ class UpsertFacultyActivity : AppCompatActivity() {
                     id: Long
                 ) {
                     teacherPost =
-                        if (sFacultyPostCat.selectedItem.toString() == teacherPostsCategories[0]
+                        if (binding.sFacultyPostCat.selectedItem.toString() == teacherPostsCategories[0]
                             && teacherPost != ""
                         ) {
                             ""
                         } else {
-                            sFacultyPostCat.selectedItem.toString()
+                            binding.sFacultyPostCat.selectedItem.toString()
                         }
 
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {
 
-                    Toast.makeText(
-                        this@UpsertFacultyActivity,
-                        "You didn't select a post for this faculty.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    showErrorMessage("You didn't select a post for this faculty.")
 
                     teacherPost = "N/A"
                 }
@@ -150,33 +157,28 @@ class UpsertFacultyActivity : AppCompatActivity() {
         }
     }
 
-    fun onIvAvatarClick(view: View) {
+    private fun onIvAvatarClick() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(intent, PICK_IMAGE_REQ_CODE)
     }
 
-    private val facultyViewModel: FacultyViewModel
-            by viewModels()
 
-    fun btnSaveFacultyClick(view: View) {
+    private fun onSaveClick() {
 
-        val name = tiTeacherName.editText?.text.toString()
-        val email = tiTeacherEmail.editText?.text.toString()
-        val phone = tiTeacherPhone.editText?.text.toString()
+        val name = binding.tiTeacherName.editText?.text.toString()
+        val email = binding.tiTeacherEmail.editText?.text.toString()
+        val phone = binding.tiTeacherPhone.editText?.text.toString()
 
         if (name.isEmpty() || name.length < 3) {
-            tiTeacherName.error = "Invalid name"
+            binding.tiTeacherName.error = "Invalid name"
         } else if (phone.isEmpty() || phone.length < 11) {
-            tiTeacherPhone.error = "Invalid phone number"
+            binding.tiTeacherPhone.error = "Invalid phone number"
         } else if (email.isEmpty() || !RegexValidatorUtils.validateEmail(email)) {
-            tiTeacherEmail.error = "Invalid email."
-            tiTeacherEmail.hint = "example@example.org"
+            binding.tiTeacherEmail.error = "Invalid email."
+            binding.tiTeacherEmail.hint = "example@example.org"
         } else if (teacherPost.isEmpty()) {
-            Toast.makeText(this, "Select a position.", Toast.LENGTH_SHORT).show()
+            showErrorMessage("Select a position")
         } else if (!this::bitmap.isInitialized) {
-
-            showProgressDialog("Saving faculty data.")
-
             val createdFacultyData = createFacultyData(name, phone, email, teacherPost)
 
             facultyData?.let {
@@ -187,11 +189,6 @@ class UpsertFacultyActivity : AppCompatActivity() {
             upsertFacultyData(createdFacultyData)
 
         } else {
-
-            showProgressDialog("Uploading the image.")
-
-            Toast.makeText(this, "Uploading the image", Toast.LENGTH_SHORT).show()
-
             val createdFacultyData = createFacultyData(name, phone, email, teacherPost)
 
             facultyData?.let {
@@ -217,7 +214,7 @@ class UpsertFacultyActivity : AppCompatActivity() {
         facultyData: FacultyData,
         bitmap: Bitmap,
     ) {
-        lifecycleScope.launch(ioContext) {
+        lifecycleScope.launch(ioDispatcher) {
             val imageName = facultyData.name.lowercase(Locale.ROOT).trim()
 
             val imageFile: ByteArray by lazy {
@@ -230,36 +227,6 @@ class UpsertFacultyActivity : AppCompatActivity() {
 
             upsertFacultyData(facultyData)
         }
-    }
-
-    private val progressDialog: ProgressDialog by lazy {
-        ProgressDialog(this@UpsertFacultyActivity)
-    }
-
-    private fun showProgressDialog(message: String) {
-
-        progressDialog.apply {
-            setMessage(message)
-            setCancelable(false)
-        }.show()
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        if (item.itemId == R.id.menuItemDelete) {
-            return if (facultyData != null) {
-                showProgressDialog("Deleting...")
-                facultyData?.let {
-                    facultyViewModel.deleteFacultyData(it, it.post)
-                }
-                false
-            } else {
-                onBackPressed()
-                true
-            }
-        }
-
-        return false
     }
 
 
@@ -280,62 +247,32 @@ class UpsertFacultyActivity : AppCompatActivity() {
 
                         Build.VERSION.SDK_INT >= Build.VERSION_CODES.P -> {
 
-                            val source = ImageDecoder.createSource(contentResolver, uri)
+                            val source =
+                                ImageDecoder.createSource(requireContext().contentResolver, uri)
                             ImageDecoder.decodeBitmap(source)
 
                         }
                         else -> {
 
-                            MediaStore.Images.Media.getBitmap(contentResolver, uri)
+                            MediaStore.Images.Media.getBitmap(requireContext().contentResolver, uri)
 
                         }
                     }
 
                     try {
-                        Glide.with(this@UpsertFacultyActivity)
-                            .load(AssetUtilities.bitmapToJpeg(bitmap)).into(ivAvatar)
+                        Glide.with(this@UpsertFacultyFragment)
+                            .load(AssetUtilities.bitmapToJpeg(bitmap)).into(binding.ivAvatar)
                     } catch (e: Exception) {
                         Timber.e("onActivityResult: $e")
                     }
 
                 } catch (e: Exception) {
-
                     Timber.e("onActivityResult: $e")
-
-                    Toast.makeText(
-                        this, "Could not get the image.", Toast.LENGTH_SHORT
-                    ).show()
+                    showErrorMessage("Could not get the image.\n${e.localizedMessage}")
                 }
             }
         }
     }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.upsert_menu, menu)
-        return true
-    }
-
-    override fun navigateUpTo(upIntent: Intent?): Boolean {
-        onBackPressed()
-        return true
-    }
-
-    private fun initViews() {
-
-        tiTeacherName = findViewById(R.id.tiSubjectName)
-        tiTeacherEmail = findViewById(R.id.tiTeacherEmail)
-        tiTeacherPhone = findViewById(R.id.tiTeacherPhone)
-        ivAvatar = findViewById(R.id.ivAvatar)
-
-
-    }
-
-    override fun onBackPressed() {
-        progressDialog.onBackPressed {
-            super.onBackPressed()
-        }
-    }
-
 
     companion object {
         private const val PICK_IMAGE_REQ_CODE = 1

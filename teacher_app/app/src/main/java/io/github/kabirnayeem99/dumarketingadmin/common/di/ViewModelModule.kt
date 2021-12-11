@@ -10,8 +10,6 @@ import dagger.hilt.android.components.ViewModelComponent
 import io.github.kabirnayeem99.dumarketingadmin.data.dataSources.*
 import io.github.kabirnayeem99.dumarketingadmin.data.repositories.*
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.*
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 
@@ -26,8 +24,8 @@ object ViewModelModule {
     }
 
     @Provides
-    fun provideIoScope(): CoroutineDispatcher {
-        return Dispatchers.IO
+    fun provideOpenBookRepo(dataSource: GoogleBooksDataSource): OpenBookRepository {
+        return DefaultOpenBookRepository(dataSource)
     }
 
     @ExperimentalCoroutinesApi

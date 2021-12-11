@@ -2,17 +2,19 @@ package io.github.kabirnayeem99.dumarketingadmin.presentation.view.gallery
 
 import android.os.Bundle
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseFragment
-import io.github.kabirnayeem99.dumarketingadmin.data.model.GalleryData
-import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentGalleryImageBinding
 import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showErrorMessage
 import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showMessage
-import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.GalleryViewModel
+import io.github.kabirnayeem99.dumarketingadmin.data.model.GalleryData
+import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentGalleryImageBinding
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.adapter.GalleryDataAdapter
+import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.GalleryViewModel
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class GalleryImageFragment : BaseFragment<FragmentGalleryImageBinding>() {
@@ -33,21 +35,23 @@ class GalleryImageFragment : BaseFragment<FragmentGalleryImageBinding>() {
     }
 
     private fun subscribeObservers() {
-        galleryViewModel.getGalleryDataList()
-        galleryViewModel.galleryDataList.observe(viewLifecycleOwner) { galleryDataList ->
-            galleryDataAdapter.differ.submitList(galleryDataList)
-        }
+        lifecycleScope.launchWhenCreated {
+            galleryViewModel.getGalleryDataList()
+            galleryViewModel.galleryDataList.observe(viewLifecycleOwner) { galleryDataList ->
+                galleryDataAdapter.differ.submitList(galleryDataList)
+            }
 
-        galleryViewModel.errorMessage.observe(viewLifecycleOwner) {
-            showErrorMessage(it)
-        }
+            galleryViewModel.errorMessage.collect {
+                showErrorMessage(it)
+            }
 
-        galleryViewModel.message.observe(viewLifecycleOwner) {
-            showMessage(it)
-        }
+            galleryViewModel.message.collect {
+                showMessage(it)
+            }
 
-        galleryViewModel.isLoading.observe(viewLifecycleOwner) {
-            if (it) loadingIndicator.show() else loadingIndicator.dismiss()
+            galleryViewModel.isLoading.collect {
+                if (it) loadingIndicator.show() else loadingIndicator.dismiss()
+            }
         }
 
     }

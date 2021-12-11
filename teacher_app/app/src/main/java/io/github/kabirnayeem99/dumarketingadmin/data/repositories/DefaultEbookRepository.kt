@@ -24,10 +24,10 @@ class DefaultEbookRepository
 
 
     override suspend fun insertEbookDataToDb(ebookData: EbookData) =
-        dataSource.insertEbookDataToDb(ebookData)
+        dataSource.saveEbook(ebookData)
 
     override suspend fun deleteEbookFromDb(ebookData: EbookData) =
-        dataSource.deleteEbookFromDb(ebookData)
+        dataSource.deleteEbook(ebookData)
 
     @ExperimentalCoroutinesApi
     override fun getEbooks(): Flow<Resource<List<EbookData>>> = dataSource.getEbooks()

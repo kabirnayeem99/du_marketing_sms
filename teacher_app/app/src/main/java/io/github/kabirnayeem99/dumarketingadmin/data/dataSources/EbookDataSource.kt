@@ -3,10 +3,10 @@ package io.github.kabirnayeem99.dumarketingadmin.data.dataSources
 import android.net.Uri
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import io.github.kabirnayeem99.dumarketingadmin.data.model.EbookData
-import io.github.kabirnayeem99.dumarketingadmin.data.model.EbookData.Companion.toEbookDataList
 import io.github.kabirnayeem99.dumarketingadmin.common.util.Constants
 import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
+import io.github.kabirnayeem99.dumarketingadmin.data.model.EbookData
+import io.github.kabirnayeem99.dumarketingadmin.data.model.EbookData.Companion.toEbookDataList
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
@@ -65,20 +65,20 @@ class EbookDataSource @Inject constructor(
     }
 
 
-    suspend fun deleteEbookFromDb(ebookData: EbookData): Resource<String> {
+    suspend fun deleteEbook(ebookData: EbookData): Resource<String> {
         return try {
             ebookData.key?.let { key ->
                 BaasService.storage.getReferenceFromUrl(ebookData.pdfUrl).delete().also {
                     db.collection(Constants.EBOOK_DB_REF).document(key).delete().await()
                 }
             }?.await()
-            Resource.Success("Successfully delete ${ebookData.title}")
+            Resource.Success(ebookData.title)
         } catch (e: Exception) {
             Resource.Error(e.localizedMessage ?: "Could not delete ${ebookData.title}")
         }
     }
 
-    suspend fun insertEbookDataToDb(ebookData: EbookData): Resource<String> {
+    suspend fun saveEbook(ebookData: EbookData): Resource<String> {
         try {
             lateinit var key: String
             if (ebookData.key == null) {
@@ -91,7 +91,7 @@ class EbookDataSource @Inject constructor(
                 }
             }
             db.collection(Constants.EBOOK_DB_REF).document(key).set(ebookData).await()
-            return Resource.Success("Successfully saved ${ebookData.title}.")
+            return Resource.Success("${ebookData.title}.")
         } catch (e: Exception) {
             return Resource.Error("Could not save ${ebookData.title}.")
         }

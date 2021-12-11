@@ -9,9 +9,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingadmin.common.ktx.animateAndOnClickListener
-import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentDashboardBinding
 import io.github.kabirnayeem99.dumarketingadmin.common.ktx.openActivity
-import io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.faculty.FacultyActivity
+import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentDashboardBinding
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.auth.AuthActivity
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.DashboardViewModel
 
@@ -68,7 +67,9 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
         navController.navigate(R.id.action_dashboardFragment_to_ebookFragment)
 
 
-    private fun onMcFacultyClick(view: View) = activity?.openActivity(FacultyActivity::class.java)
+    private fun onMcFacultyClick(view: View) {
+        navController.navigate(R.id.action_dashboardFragment_to_facultyFragment)
+    }
 
     private fun onMcInfoClick(view: View) {
         navController.navigate(R.id.action_dashboardFragment_to_informationFragment)
