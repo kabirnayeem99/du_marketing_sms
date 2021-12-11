@@ -8,13 +8,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
-import io.github.kabirnayeem99.dumarketingadmin.base.BaseFragment
+import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingadmin.data.model.EbookData
 import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentEbookBinding
-import io.github.kabirnayeem99.dumarketingadmin.ktx.showErrorMessage
-import io.github.kabirnayeem99.dumarketingadmin.ktx.showMessage
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showErrorMessage
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showMessage
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.EbookViewModel
-import io.github.kabirnayeem99.dumarketingadmin.util.adapter.EbookDataAdapter
+import io.github.kabirnayeem99.dumarketingadmin.presentation.view.adapter.EbookDataAdapter
 
 @AndroidEntryPoint
 class EbookFragment : BaseFragment<FragmentEbookBinding>() {

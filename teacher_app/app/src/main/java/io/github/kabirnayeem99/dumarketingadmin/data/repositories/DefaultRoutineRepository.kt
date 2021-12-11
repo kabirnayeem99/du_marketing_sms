@@ -4,7 +4,7 @@ package io.github.kabirnayeem99.dumarketingadmin.data.repositories
 import io.github.kabirnayeem99.dumarketingadmin.data.dataSources.RoutineDataSource
 import io.github.kabirnayeem99.dumarketingadmin.data.model.RoutineData
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.RoutineRepository
-import io.github.kabirnayeem99.dumarketingadmin.util.Resource
+import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 

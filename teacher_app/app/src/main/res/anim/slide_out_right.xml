@@ -6,6 +6,7 @@
         android:fillBefore="true"
         android:fillEnabled="true"
         android:fromXDelta="0"
+        android:interpolator="@android:anim/accelerate_interpolator"
         android:toXDelta="100%p" />
 
     <alpha
@@ -14,5 +15,6 @@
         android:fillBefore="true"
         android:fillEnabled="true"
         android:fromAlpha="0.4"
+        android:interpolator="@android:anim/accelerate_interpolator"
         android:toAlpha="1.0" />
 </set>

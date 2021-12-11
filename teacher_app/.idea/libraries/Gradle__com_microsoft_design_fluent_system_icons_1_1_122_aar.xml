@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.microsoft.design:fluent-system-icons:1.1.122@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/e1f52ecbde5859115c0f5355ab9579d5/transformed/jetified-fluent-system-icons-1.1.122/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e1f52ecbde5859115c0f5355ab9579d5/transformed/jetified-fluent-system-icons-1.1.122/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e1f52ecbde5859115c0f5355ab9579d5/transformed/jetified-fluent-system-icons-1.1.122/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/ffa3e1b9b326abca9335cb215acfb9bb/transformed/jetified-fluent-system-icons-1.1.122/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/ffa3e1b9b326abca9335cb215acfb9bb/transformed/jetified-fluent-system-icons-1.1.122/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/ffa3e1b9b326abca9335cb215acfb9bb/transformed/jetified-fluent-system-icons-1.1.122/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

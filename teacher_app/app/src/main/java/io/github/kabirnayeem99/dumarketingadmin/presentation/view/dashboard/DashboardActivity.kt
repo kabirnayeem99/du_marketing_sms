@@ -5,11 +5,11 @@ import androidx.activity.viewModels
 import androidx.navigation.fragment.NavHostFragment
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
-import io.github.kabirnayeem99.dumarketingadmin.base.BaseActivity
+import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseActivity
 import io.github.kabirnayeem99.dumarketingadmin.databinding.ActivityDashboardBinding
-import io.github.kabirnayeem99.dumarketingadmin.ktx.openActivity
-import io.github.kabirnayeem99.dumarketingadmin.ktx.showErrorMessage
-import io.github.kabirnayeem99.dumarketingadmin.ktx.showMessage
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.openActivity
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showErrorMessage
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showMessage
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.auth.AuthActivity
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.DashboardViewModel
 

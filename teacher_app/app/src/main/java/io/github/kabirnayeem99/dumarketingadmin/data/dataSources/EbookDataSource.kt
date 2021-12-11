@@ -5,8 +5,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import io.github.kabirnayeem99.dumarketingadmin.data.model.EbookData
 import io.github.kabirnayeem99.dumarketingadmin.data.model.EbookData.Companion.toEbookDataList
-import io.github.kabirnayeem99.dumarketingadmin.util.Constants
-import io.github.kabirnayeem99.dumarketingadmin.util.Resource
+import io.github.kabirnayeem99.dumarketingadmin.common.util.Constants
+import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose

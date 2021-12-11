@@ -6,6 +6,7 @@
         android:fillBefore="true"
         android:fillEnabled="true"
         android:fromXDelta="0"
+        android:interpolator="@android:anim/accelerate_interpolator"
         android:toXDelta="-100%p" />
     <alpha
         android:duration="@android:integer/config_mediumAnimTime"
@@ -13,5 +14,6 @@
         android:fillBefore="true"
         android:fillEnabled="true"
         android:fromAlpha="1.0"
+        android:interpolator="@android:anim/accelerate_interpolator"
         android:toAlpha="0.0" />
 </set>

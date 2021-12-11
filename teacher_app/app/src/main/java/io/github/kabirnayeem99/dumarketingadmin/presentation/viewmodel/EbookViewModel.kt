@@ -5,10 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.github.kabirnayeem99.dumarketingadmin.base.BaseViewModel
+import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseViewModel
 import io.github.kabirnayeem99.dumarketingadmin.data.model.EbookData
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.EbookRepository
-import io.github.kabirnayeem99.dumarketingadmin.util.Resource
+import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch

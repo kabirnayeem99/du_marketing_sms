@@ -6,13 +6,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
-import io.github.kabirnayeem99.dumarketingadmin.base.BaseFragment
+import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingadmin.data.model.GalleryData
 import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentGalleryImageBinding
-import io.github.kabirnayeem99.dumarketingadmin.ktx.showErrorMessage
-import io.github.kabirnayeem99.dumarketingadmin.ktx.showMessage
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showErrorMessage
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showMessage
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.GalleryViewModel
-import io.github.kabirnayeem99.dumarketingadmin.util.adapter.GalleryDataAdapter
+import io.github.kabirnayeem99.dumarketingadmin.presentation.view.adapter.GalleryDataAdapter
 
 @AndroidEntryPoint
 class GalleryImageFragment : BaseFragment<FragmentGalleryImageBinding>() {

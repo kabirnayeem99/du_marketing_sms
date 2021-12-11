@@ -68,8 +68,13 @@ object ViewModelModule {
     }
 
     @Provides
-    fun provideNoticeRepository(db: FirebaseFirestore, store: FirebaseStorage): NoticeRepository {
-        return NoticeRepository(db, store)
+    fun provideNoticeRepository(dataSource: NoticeDataSource): NoticeRepository {
+        return DefaultNoticeRepository(dataSource)
+    }
+
+    @Provides
+    fun provideNoticeDataSource(db: FirebaseFirestore, store: FirebaseStorage): NoticeDataSource {
+        return NoticeDataSource(db, store)
     }
 
     @Provides

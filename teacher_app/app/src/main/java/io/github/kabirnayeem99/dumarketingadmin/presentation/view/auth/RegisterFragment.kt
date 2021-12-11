@@ -9,11 +9,11 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
-import io.github.kabirnayeem99.dumarketingadmin.base.BaseFragment
+import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentRegisterBinding
-import io.github.kabirnayeem99.dumarketingadmin.ktx.animateAndOnClickListener
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.animateAndOnClickListener
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.AuthenticationViewModel
-import io.github.kabirnayeem99.dumarketingadmin.util.RegexValidatorUtils
+import io.github.kabirnayeem99.dumarketingadmin.common.util.RegexValidatorUtils
 
 @AndroidEntryPoint
 class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {

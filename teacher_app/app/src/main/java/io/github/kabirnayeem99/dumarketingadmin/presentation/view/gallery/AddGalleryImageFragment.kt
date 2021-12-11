@@ -12,13 +12,13 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
-import io.github.kabirnayeem99.dumarketingadmin.base.BaseFragment
+import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingadmin.data.model.GalleryData
 import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentAddGalleryImageBinding
-import io.github.kabirnayeem99.dumarketingadmin.ktx.showErrorMessage
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showErrorMessage
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.GalleryViewModel
-import io.github.kabirnayeem99.dumarketingadmin.util.AssetUtilities
-import io.github.kabirnayeem99.dumarketingadmin.util.Constants
+import io.github.kabirnayeem99.dumarketingadmin.common.util.AssetUtilities
+import io.github.kabirnayeem99.dumarketingadmin.common.util.Constants
 import kotlinx.coroutines.launch
 import timber.log.Timber
 

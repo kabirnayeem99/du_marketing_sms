@@ -7,11 +7,11 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.github.kabirnayeem99.dumarketingadmin.R
-import io.github.kabirnayeem99.dumarketingadmin.base.BaseFragment
+import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentRoutineDetailsBinding
-import io.github.kabirnayeem99.dumarketingadmin.ktx.animateAndOnClickListener
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.animateAndOnClickListener
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.RoutineViewModel
-import io.github.kabirnayeem99.dumarketingadmin.util.adapter.RoutineDataAdapter
+import io.github.kabirnayeem99.dumarketingadmin.presentation.view.adapter.RoutineDataAdapter
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 class RoutineDetailsFragment : BaseFragment<FragmentRoutineDetailsBinding>() {

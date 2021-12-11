@@ -13,6 +13,7 @@
         android:fillBefore="true"
         android:fillEnabled="true"
         android:fromAlpha="0.0"
+        android:interpolator="@android:anim/accelerate_interpolator"
         android:startOffset="50"
         android:toAlpha="1.0" />
 </set>
