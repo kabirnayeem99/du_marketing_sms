@@ -3,6 +3,7 @@ package io.github.kabirnayeem99.dumarketingadmin.presentation.view.notice
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.awesomedialog.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -10,6 +11,8 @@ import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingadmin.common.ktx.animateAndOnClickListener
 import io.github.kabirnayeem99.dumarketingadmin.common.ktx.openActivity
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showErrorMessage
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showMessage
 import io.github.kabirnayeem99.dumarketingadmin.data.model.NoticeData
 import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentNoticeBinding
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.adapter.NoticeDataAdapter
@@ -30,10 +33,21 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>() {
     }
 
     private fun subscribeObservers() {
-        noticeViewModel.getNoticeList()
-        noticeViewModel.notices.observe(this, { notices ->
-            noticeDataAdapter.differ.submitList(notices)
-        })
+        noticeViewModel.apply {
+            getNoticeList()
+            notices.observe(viewLifecycleOwner, { notices ->
+                noticeDataAdapter.differ.submitList(notices)
+            })
+            errorMessage.observe(viewLifecycleOwner) {
+                showErrorMessage(it)
+            }
+            message.observe(viewLifecycleOwner) {
+                showMessage(it)
+            }
+            isLoading.observe(viewLifecycleOwner) {
+                if (it) loadingIndicator.show() else loadingIndicator.dismiss()
+            }
+        }
     }
 
     private fun setUpViews() {
@@ -49,7 +63,7 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>() {
         }
 
         binding.fabAddNotice.animateAndOnClickListener {
-            activity?.openActivity(AddNoticeActivity::class.java)
+            findNavController().navigate(R.id.action_noticeFragment_to_addNoticeFragment)
         }
     }
 

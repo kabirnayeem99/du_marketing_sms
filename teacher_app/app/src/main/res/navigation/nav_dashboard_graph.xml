@@ -123,7 +123,20 @@
         android:id="@+id/noticeFragment"
         android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.notice.NoticeFragment"
         android:label="NoticeFragment"
-        tools:layout="@layout/fragment_notice" />
+        tools:layout="@layout/fragment_notice">
+        <action
+            android:id="@+id/action_noticeFragment_to_addNoticeFragment"
+            app:destination="@id/addNoticeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNoticeFragment"
+        android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.notice.AddNoticeFragment"
+        android:label="AddNoticeFragment"
+        tools:layout="@layout/fragment_add_notice" />
 
 
 </navigation>

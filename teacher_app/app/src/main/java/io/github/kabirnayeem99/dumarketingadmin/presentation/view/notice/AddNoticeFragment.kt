@@ -1,64 +1,60 @@
 package io.github.kabirnayeem99.dumarketingadmin.presentation.view.notice
 
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
-import android.view.View
-import android.widget.ImageView
-import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.google.android.gms.tasks.Task
-import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
+import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseFragment
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.animateAndOnClickListener
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showErrorMessage
 import io.github.kabirnayeem99.dumarketingadmin.data.model.NoticeData
-import io.github.kabirnayeem99.dumarketingadmin.presentation.view.fragments.DelayedProgressDialog
 import io.github.kabirnayeem99.dumarketingadmin.common.util.AssetUtilities
 import io.github.kabirnayeem99.dumarketingadmin.common.util.TimeUtilities
+import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentAddNoticeBinding
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.NoticeViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class AddNoticeActivity : AppCompatActivity() {
+class AddNoticeFragment : BaseFragment<FragmentAddNoticeBinding>() {
 
-    private lateinit var tiNoticeTitle: TextInputLayout
-    private lateinit var ivImagePreview: ImageView
-    private lateinit var bitmap: Bitmap
-    private lateinit var delayedProgressDialog: DelayedProgressDialog
     private var imageUrlString: String = ""
+    lateinit var bitmap: Bitmap
 
     @Inject
     lateinit var ioDispatcher: CoroutineDispatcher
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_notice)
-
-    }
-
     private val noticeViewModel: NoticeViewModel by viewModels()
 
-    fun onBtnAddNoticeClick(view: View) = addNotice()
+    override val layoutRes: Int
+        get() = R.layout.fragment_add_notice
+
+    override fun onCreated(savedInstanceState: Bundle?) {
+        handleViews()
+    }
+
+    private fun handleViews() {
+        binding.btnAddNotice.animateAndOnClickListener { addNotice() }
+        binding.ivIconAddGalleryImage.animateAndOnClickListener { openGallery() }
+    }
+
 
     private fun addNotice() {
-        tiNoticeTitle = findViewById(R.id.tiNoticeTitle)
 
         when {
-            tiNoticeTitle.editText?.text.toString().isEmpty() -> {
-                tiNoticeTitle.error = "Empty title"
+            binding.tiNoticeTitle.editText?.text.toString().isEmpty() -> {
+                binding.tiNoticeTitle.error = "Empty title"
             }
-            tiNoticeTitle.editText?.text.toString().length < 3 -> {
-                tiNoticeTitle.error = "Too short"
+            binding.tiNoticeTitle.editText?.text.toString().length < 3 -> {
+                binding.tiNoticeTitle.error = "Too short"
             }
             else -> {
                 uploadNoticeData()
@@ -68,12 +64,8 @@ class AddNoticeActivity : AppCompatActivity() {
 
     private fun createNoticeDate(): NoticeData {
 
-        delayedProgressDialog =
-            DelayedProgressDialog()
 
-        delayedProgressDialog.show(supportFragmentManager, TAG)
-
-        val title = tiNoticeTitle.editText?.text.toString()
+        val title = binding.tiNoticeTitle.editText?.text.toString()
         val imageUrl: String = imageUrlString
 
 
@@ -98,11 +90,12 @@ class AddNoticeActivity : AppCompatActivity() {
          else, no title
          added with the unique file name byte array
          */
-        val imageName: String = if (tiNoticeTitle.editText?.text.toString().trim().isEmpty()) {
-            "No_title_$imageFile"
-        } else {
-            tiNoticeTitle.editText?.text.toString() + imageFile.toString()
-        }
+        val imageName: String =
+            if (binding.tiNoticeTitle.editText?.text.toString().trim().isEmpty()) {
+                "No_title_$imageFile"
+            } else {
+                binding.tiNoticeTitle.editText?.text.toString() + imageFile.toString()
+            }
 
 
         if (imageFile != null) {
@@ -119,7 +112,6 @@ class AddNoticeActivity : AppCompatActivity() {
 
     }
 
-    fun onIvAddNoticeImageClick(view: View) = openGallery()
 
     private fun openGallery() {
         val pickImageIntent =
@@ -140,38 +132,36 @@ class AddNoticeActivity : AppCompatActivity() {
 
 
                             // if this is something new like, Android Pie, use this new method
-                            val source = ImageDecoder.createSource(contentResolver, dataUri)
+                            val source = ImageDecoder.createSource(
+                                requireActivity().contentResolver,
+                                dataUri
+                            )
                             ImageDecoder.decodeBitmap(source)
 
                         }
                         else -> {
 
                             // if it is older than Android Pie, than use deprecated getBitmap method
-                            MediaStore.Images.Media.getBitmap(contentResolver, dataUri)
+                            MediaStore.Images.Media.getBitmap(
+                                requireActivity().contentResolver,
+                                dataUri
+                            )
 
                         }
                     }.apply {
 
-                        // sets the image to the preview
-                        ivImagePreview = findViewById(R.id.ivNoticeImagePreview)
-                        ivImagePreview.setImageBitmap(this)
+                        binding.ivNoticeImagePreview.setImageBitmap(this)
                     }
                 } catch (e: Exception) {
-                    Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+                    showErrorMessage(e.localizedMessage ?: "")
                 }
 
             }
         }
     }
 
-    override fun navigateUpTo(upIntent: Intent?): Boolean {
-        onBackPressed()
-        return true
-    }
-
     companion object {
         const val PICK_IMAGE_REQUEST_CODE = 1
-        private const val TAG = "AddNoticeActivity"
     }
 
 }
