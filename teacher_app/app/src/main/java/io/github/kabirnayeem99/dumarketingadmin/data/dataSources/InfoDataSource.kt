@@ -20,16 +20,15 @@ class InfoDataSource @Inject constructor(var db: FirebaseFirestore) {
     }
 
     suspend fun getInformationData(): Resource<InformationData> {
-        lateinit var result: Resource<InformationData>
-        try {
+        val result: Resource<InformationData> = try {
             val key: String = Constants.ABOUT_DB_REF
 
             val informationData =
                 db.collection(Constants.ABOUT_DB_REF).document(key).get().await()
                     .toInformationData()
-            result = Resource.Success(informationData)
+            Resource.Success(informationData)
         } catch (e: Exception) {
-            result = Resource.Error(e.localizedMessage ?: "Could not load information data.")
+            Resource.Error(e.localizedMessage ?: "Could not load information data.")
         }
 
         return result

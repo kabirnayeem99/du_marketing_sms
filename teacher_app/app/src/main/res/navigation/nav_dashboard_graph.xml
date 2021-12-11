@@ -38,6 +38,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_noticeFragment"
+            app:destination="@id/noticeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -112,6 +119,11 @@
         android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.information.InformationFragment"
         android:label="InformationFragment"
         tools:layout="@layout/fragment_information" />
+    <fragment
+        android:id="@+id/noticeFragment"
+        android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.notice.NoticeFragment"
+        android:label="NoticeFragment"
+        tools:layout="@layout/fragment_notice" />
 
 
 </navigation>

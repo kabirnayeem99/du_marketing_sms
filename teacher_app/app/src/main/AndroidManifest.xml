@@ -22,7 +22,7 @@
         </activity>
 
         <activity
-            android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.notice.NoticeActivity"
+            android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.notice.NoticeActivity"
             android:exported="false"
             android:label="Notices"
             android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.dashboard.DashboardActivity" />
@@ -37,7 +37,7 @@
             android:label="Edit Faculty Member"
             android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.faculty.FacultyActivity" />
         <activity
-            android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.notice.AddNoticeActivity"
+            android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.notice.AddNoticeActivity"
             android:exported="false"
             android:label="Add Notice"
             android:parentActivityName="io.github.kabirnayeem99.dumarketingadmin.presentation.view.dashboard.DashboardActivity" />

@@ -27,4 +27,6 @@
     <string name="ebook">Ebook</string>
     <string name="gallery">Gallery</string>
     <string name="notice">Notice</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

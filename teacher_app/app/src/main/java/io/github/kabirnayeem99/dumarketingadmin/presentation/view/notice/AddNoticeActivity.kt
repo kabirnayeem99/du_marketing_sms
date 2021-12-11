@@ -1,4 +1,4 @@
-package io.github.kabirnayeem99.dumarketingadmin.presentation.view.activities.notice
+package io.github.kabirnayeem99.dumarketingadmin.presentation.view.notice
 
 import android.content.Intent
 import android.graphics.Bitmap
@@ -13,6 +13,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.tasks.Task
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,6 +23,10 @@ import io.github.kabirnayeem99.dumarketingadmin.presentation.view.fragments.Dela
 import io.github.kabirnayeem99.dumarketingadmin.common.util.AssetUtilities
 import io.github.kabirnayeem99.dumarketingadmin.common.util.TimeUtilities
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.NoticeViewModel
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.launch
+import timber.log.Timber
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class AddNoticeActivity : AppCompatActivity() {
@@ -31,6 +36,9 @@ class AddNoticeActivity : AppCompatActivity() {
     private lateinit var bitmap: Bitmap
     private lateinit var delayedProgressDialog: DelayedProgressDialog
     private var imageUrlString: String = ""
+
+    @Inject
+    lateinit var ioDispatcher: CoroutineDispatcher
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,76 +107,15 @@ class AddNoticeActivity : AppCompatActivity() {
 
         if (imageFile != null) {
 
-            // if there is an image added
-            val imageUploadTask = noticeViewModel.uploadNoticeImage(imageName, imageFile)
-
-
-            imageUploadTask
-
-                // if image could not be uploaded to storage show toast
-                .addOnFailureListener { e ->
-                    Log.e(TAG, "uploadNoticeData: failed to upload image $e")
-                    Toast.makeText(this, "Failed to upload image.", Toast.LENGTH_SHORT).show()
-
-                    delayedProgressDialog.cancel()
+            lifecycleScope.launch(ioDispatcher) {
+                val imageUrl = noticeViewModel.uploadNoticeImage(imageName, imageFile)
+                if (imageUrl != null) {
+                    noticeData.imageUrl = imageUrl
+                    noticeViewModel.saveNotice(noticeData)
                 }
-
-                // if image was uploaded proceed to insert the notice data to db
-                .addOnSuccessListener {
-
-                    // gets the storage image path
-
-                    val uriTask: Task<Uri> = it.storage.downloadUrl
-
-                    while (!uriTask.isComplete) {
-                        Log.d(TAG, "uploadNoticeData: getting the uri")
-                    }
-
-                    noticeData.imageUrl = uriTask.result.toString()
-
-
-                    noticeViewModel.insertNoticeDataToDb(noticeData)
-
-                        // if the inserting of notice data to db was successful, go back
-                        .addOnSuccessListener {
-                            Toast.makeText(
-                                this,
-                                "The notice was saved with the image.",
-                                Toast.LENGTH_SHORT
-                            )
-                                .show()
-
-                            delayedProgressDialog.cancel()
-
-                            onBackPressed()
-                        }
-
-                        // if the data insertion was not successful show toast
-                        .addOnFailureListener {
-                            Toast.makeText(
-                                this,
-                                "The notice could not be saved with the image.",
-                                Toast.LENGTH_SHORT
-                            )
-                                .show()
-                        }
-                }
-        } else {
-            // if there is no image added, just insert the data
-            val insertNoticeDataTask = noticeViewModel.insertNoticeDataToDb(noticeData)
-            insertNoticeDataTask.addOnFailureListener {
-                Toast.makeText(
-                    this,
-                    "The notice could not be saved with the image.",
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
-            }.addOnSuccessListener {
-                Toast.makeText(this, "This notice was saved.", Toast.LENGTH_SHORT).show()
-                delayedProgressDialog.cancel()
-                onBackPressed()
             }
-        }
+
+        } else noticeViewModel.saveNotice(noticeData)
 
     }
 

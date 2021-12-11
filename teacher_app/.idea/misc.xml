@@ -5,6 +5,7 @@
       <map>
         <entry key="../../../.gradle/caches/transforms-3/e1f52ecbde5859115c0f5355ab9579d5/transformed/jetified-fluent-system-icons-1.1.122/res/drawable/ic_fluent_question_24_filled.xml" value="0.25092592592592594" />
         <entry key="app/src/main/res/drawable/bg_gradient.xml" value="0.2760416666666667" />
+        <entry key="app/src/main/res/drawable/bg_rounded_dialog.xml" value="0.23796296296296296" />
         <entry key="app/src/main/res/drawable/bg_rounded_rectangle_button_bordered.xml" value="0.2760416666666667" />
         <entry key="app/src/main/res/drawable/bg_rounded_rectangle_button_solid.xml" value="0.2760416666666667" />
         <entry key="app/src/main/res/drawable/bg_top_rounded_layout.xml" value="0.25092592592592594" />
@@ -17,6 +18,7 @@
         <entry key="app/src/main/res/layout/activity_faculty.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/layout/activity_gallery_image.xml" value="0.1685185185185185" />
         <entry key="app/src/main/res/layout/activity_information.xml" value="0.1685185185185185" />
+        <entry key="app/src/main/res/layout/activity_notice.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/layout/activity_routine.xml" value="0.1685185185185185" />
         <entry key="app/src/main/res/layout/activity_routine_details.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/layout/activity_upload_ebook.xml" value="0.2557291666666667" />
@@ -28,6 +30,7 @@
         <entry key="app/src/main/res/layout/fragment_gallery_image.xml" value="0.1685185185185185" />
         <entry key="app/src/main/res/layout/fragment_information.xml" value="0.1685185185185185" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_notice.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_routine.xml" value="0.1685185185185185" />
         <entry key="app/src/main/res/layout/fragment_routine_details.xml" value="0.1685185185185185" />
