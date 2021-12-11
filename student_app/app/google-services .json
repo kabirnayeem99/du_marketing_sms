@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "278908019731",
+    "firebase_url": "https://du-marketing-app-default-rtdb.firebaseio.com",
+    "project_id": "du-marketing-app",
+    "storage_bucket": "du-marketing-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278908019731:android:fa58ef86e1b29457430be6",
+        "android_client_info": {
+          "package_name": "io.github.kabirnayeem99.dumarketingadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "278908019731-4ptf6ro479dahb1igns29c35o96vvgfb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAc9JXlEvd6MFsePY-drlTSrfGfzhJ5NQE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "278908019731-4ptf6ro479dahb1igns29c35o96vvgfb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278908019731:android:a9bdabd1850a8142430be6",
+        "android_client_info": {
+          "package_name": "io.github.kabirnayeem99.dumarketingstudent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "278908019731-4ptf6ro479dahb1igns29c35o96vvgfb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAc9JXlEvd6MFsePY-drlTSrfGfzhJ5NQE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "278908019731-4ptf6ro479dahb1igns29c35o96vvgfb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

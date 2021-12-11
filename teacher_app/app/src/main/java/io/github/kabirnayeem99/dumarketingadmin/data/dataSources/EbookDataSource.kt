@@ -68,10 +68,9 @@ class EbookDataSource @Inject constructor(
     suspend fun deleteEbook(ebookData: EbookData): Resource<String> {
         return try {
             ebookData.key?.let { key ->
-                BaasService.storage.getReferenceFromUrl(ebookData.pdfUrl).delete().also {
-                    db.collection(Constants.EBOOK_DB_REF).document(key).delete().await()
-                }
-            }?.await()
+                db.collection(Constants.EBOOK_DB_REF).document(key).delete().await()
+                BaasService.storage.getReferenceFromUrl(ebookData.pdfUrl).delete().await()
+            }
             Resource.Success(ebookData.title)
         } catch (e: Exception) {
             Resource.Error(e.localizedMessage ?: "Could not delete ${ebookData.title}")
