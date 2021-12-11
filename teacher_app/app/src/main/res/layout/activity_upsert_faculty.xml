@@ -40,12 +40,15 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tiSubjectName"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="300sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="12sp"
             android:hint="@string/tf_hint_name"
+            app:boxCornerRadiusBottomEnd="@dimen/default_radius"
+            app:boxCornerRadiusBottomStart="@dimen/default_radius"
+            app:boxCornerRadiusTopEnd="@dimen/default_radius"
+            app:boxCornerRadiusTopStart="@dimen/default_radius"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cvAvatar">
@@ -60,12 +63,15 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tiTeacherPhone"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="300sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="12sp"
             android:hint="@string/tf_hint_phone"
+            app:boxCornerRadiusBottomEnd="@dimen/default_radius"
+            app:boxCornerRadiusBottomStart="@dimen/default_radius"
+            app:boxCornerRadiusTopEnd="@dimen/default_radius"
+            app:boxCornerRadiusTopStart="@dimen/default_radius"
             app:layout_constraintBottom_toTopOf="@+id/tiTeacherEmail"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -81,12 +87,15 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tiTeacherEmail"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="300sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="12sp"
             android:hint="@string/tf_hint_email"
+            app:boxCornerRadiusBottomEnd="@dimen/default_radius"
+            app:boxCornerRadiusBottomStart="@dimen/default_radius"
+            app:boxCornerRadiusTopEnd="@dimen/default_radius"
+            app:boxCornerRadiusTopStart="@dimen/default_radius"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/rlSpinner"
             app:layout_constraintEnd_toEndOf="parent"

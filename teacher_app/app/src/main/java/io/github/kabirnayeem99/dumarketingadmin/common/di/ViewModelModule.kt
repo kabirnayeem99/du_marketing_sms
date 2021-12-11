@@ -1,4 +1,4 @@
-package io.github.kabirnayeem99.dumarketingadmin.di
+package io.github.kabirnayeem99.dumarketingadmin.common.di
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -67,6 +67,7 @@ object ViewModelModule {
         return DefaultInfoRepository(dataSource)
     }
 
+    @ExperimentalCoroutinesApi
     @Provides
     fun provideNoticeRepository(dataSource: NoticeDataSource): NoticeRepository {
         return DefaultNoticeRepository(dataSource)
