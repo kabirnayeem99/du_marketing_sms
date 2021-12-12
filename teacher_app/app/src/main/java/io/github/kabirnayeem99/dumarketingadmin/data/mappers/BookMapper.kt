@@ -23,7 +23,7 @@ object BookMapper {
         val downloadUrl = this["downloadUrl"].toString()
         val thumbnailUrl = this["thumbnailUrl"].toString()
         val authorName = this["authorName"].toString()
-        val id = this["key"].toString()
+        val id = this.id
         return EbookData(id, name, downloadUrl, thumbnailUrl, authorName)
     }
 
