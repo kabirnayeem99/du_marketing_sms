@@ -17,10 +17,14 @@ import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentEbookBinding
 import io.github.kabirnayeem99.dumarketingadmin.domain.data.EbookData
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.adapter.EbookDataAdapter
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.EbookViewModel
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class EbookFragment : BaseFragment<FragmentEbookBinding>() {
+
+    @Inject
+    lateinit var ioDispatcher: CoroutineDispatcher
 
     lateinit var navController: NavController
     private val ebookViewModel: EbookViewModel by viewModels()
@@ -46,7 +50,6 @@ class EbookFragment : BaseFragment<FragmentEbookBinding>() {
         binding.ivBackButton.animateAndOnClickListener {
             navController.navigateUp()
         }
-
     }
 
     private fun setUpBooksList() {
@@ -55,19 +58,25 @@ class EbookFragment : BaseFragment<FragmentEbookBinding>() {
             adapter = ebookAdapter
             layoutManager = LinearLayoutManager(context)
         }
-
         ebookViewModel.ebookList.observe(this, { ebookList ->
             ebookAdapter.differ.submitList(ebookList)
         })
     }
 
     private fun setUpObservers() {
-        lifecycleScope.launch {
+        lifecycleScope.launch(ioDispatcher) {
             ebookViewModel.apply {
-                message.observe(viewLifecycleOwner) { this@EbookFragment.showMessage(it) }
-                errorMessage.observe(viewLifecycleOwner) { this@EbookFragment.showErrorMessage(it) }
-                isLoading.observe(viewLifecycleOwner) {
-                    if (it) loadingIndicator.show() else loadingIndicator.dismiss()
+                delay(500)
+                withContext(Dispatchers.Main) {
+                    isLoading.observe(viewLifecycleOwner) {
+                        if (it) loadingIndicator.show() else loadingIndicator.dismiss()
+                    }
+                    message.observe(viewLifecycleOwner) { this@EbookFragment.showMessage(it) }
+                    errorMessage.observe(viewLifecycleOwner) {
+                        this@EbookFragment.showErrorMessage(
+                            it
+                        )
+                    }
                 }
             }
         }
