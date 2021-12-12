@@ -3,9 +3,9 @@ package io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseViewModel
 import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
 import io.github.kabirnayeem99.dumarketingadmin.domain.data.EbookData
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.EbookRepository
@@ -23,21 +23,31 @@ class EbookViewModel @Inject constructor(
     private val openBookRepo: OpenBookRepository,
     private val ioContext: CoroutineDispatcher
 ) :
-    BaseViewModel() {
+    ViewModel() {
+
+
+    private val _errorMessage = MutableLiveData<String>()
+    val errorMessage: LiveData<String> = _errorMessage
+
+    private val _message = MutableLiveData<String>()
+    val message: LiveData<String> = _errorMessage
+
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
 
     fun saveEbook(ebookData: EbookData) {
         viewModelScope.launch(ioContext) {
-            _isLoading.emit(true)
+            _isLoading.postValue(true)
             when (val resource = repo.insertEbookDataToDb(ebookData)) {
                 is Resource.Success -> {
-                    _isLoading.emit(false)
-                    _message.emit("Successfully saved ${resource.data}.")
+                    _isLoading.postValue(false)
+                    _message.postValue("Successfully saved ${resource.data}.")
                 }
                 is Resource.Error -> {
-                    _isLoading.emit(false)
-                    _errorMessage.emit(resource.message ?: "Something went wrong")
+                    _isLoading.postValue(false)
+                    _errorMessage.postValue(resource.message ?: "Something went wrong")
                 }
-                else -> _isLoading.emit(false)
+                else -> _isLoading.postValue(false)
             }
         }
     }
@@ -62,17 +72,17 @@ class EbookViewModel @Inject constructor(
 
     fun deleteEbook(ebookData: EbookData) {
         viewModelScope.launch(ioContext) {
-            _isLoading.emit(true)
+            _isLoading.postValue(true)
             when (val resource = repo.deleteEbookFromDb(ebookData)) {
                 is Resource.Success -> {
-                    _isLoading.emit(false)
-                    _message.emit("Successfully deleted ${resource.data}.")
+                    _isLoading.postValue(false)
+                    _message.postValue("Successfully deleted ${resource.data}.")
                 }
                 is Resource.Error -> {
-                    _isLoading.emit(false)
-                    _errorMessage.emit(resource.message ?: "Something went wrong")
+                    _isLoading.postValue(false)
+                    _errorMessage.postValue(resource.message ?: "Something went wrong")
                 }
-                else -> _isLoading.emit(false)
+                else -> _isLoading.postValue(false)
             }
         }
     }
@@ -84,15 +94,15 @@ class EbookViewModel @Inject constructor(
             repo.uploadPdf(pdfFile, pdfName).collect { resource ->
                 when (resource) {
                     is Resource.Success -> {
-                        _isLoading.emit(false)
+                        _isLoading.postValue(false)
                         _ebookUrl.postValue(resource.data!!)
-                        _message.emit("Successfully uploaded ${pdfName}.\nYou can download it from ${resource.data}.")
+                        _message.postValue("Successfully uploaded ${pdfName}.\nYou can download it from ${resource.data}.")
                     }
                     is Resource.Error -> {
-                        _isLoading.emit(false)
-                        _errorMessage.emit(resource.message ?: "Something went wrong")
+                        _isLoading.postValue(false)
+                        _errorMessage.postValue(resource.message ?: "Something went wrong")
                     }
-                    is Resource.Loading -> _isLoading.emit(true)
+                    is Resource.Loading -> _isLoading.postValue(true)
                 }
             }
         }
@@ -105,15 +115,15 @@ class EbookViewModel @Inject constructor(
             repo.getEbooks().collect { resource ->
                 when (resource) {
                     is Resource.Success -> {
-                        _isLoading.emit(false)
+                        _isLoading.postValue(false)
                         _ebookList.postValue(resource.data!!)
                     }
                     is Resource.Error -> {
-                        _isLoading.emit(false)
+                        _isLoading.postValue(false)
                         _ebookList.postValue(emptyList())
-                        _errorMessage.emit(resource.message ?: "Something went wrong")
+                        _errorMessage.postValue(resource.message ?: "Something went wrong")
                     }
-                    is Resource.Loading -> _isLoading.emit(true)
+                    is Resource.Loading -> _isLoading.postValue(true)
                 }
             }
         }

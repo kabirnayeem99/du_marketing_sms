@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
@@ -24,8 +24,6 @@ import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentUploadEbookB
 import io.github.kabirnayeem99.dumarketingadmin.domain.data.EbookData
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.adapter.RecommendedBookAdapter
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.EbookViewModel
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 import java.io.File
 import java.util.*
 
@@ -35,23 +33,16 @@ const val PICK_DOC_REQ_CODE = 1
 @AndroidEntryPoint
 class UploadEbookFragment : BaseFragment<FragmentUploadEbookBinding>() {
 
-    private var pdfFile: Uri? = null
-    lateinit var pdfName: String
-
     private val ebookViewModel: EbookViewModel by viewModels()
 
     private lateinit var selectedBook: EbookData
+    private var pdfFile: Uri? = null
+    lateinit var pdfName: String
 
     private val recommendedBookAdapter: RecommendedBookAdapter by lazy {
         RecommendedBookAdapter { selectRecommendedBookForUpload(it) }
     }
 
-    private fun selectRecommendedBookForUpload(book: EbookData) {
-        selectedBook = book
-        binding.tiEbookName.editText?.setText(book.name)
-        binding.tvPdfName.text = book.name
-        binding.ivIconEbookImage.load(book.thumbnailUrl)
-    }
 
     override val layoutRes: Int
         get() = R.layout.fragment_upload_ebook
@@ -64,9 +55,13 @@ class UploadEbookFragment : BaseFragment<FragmentUploadEbookBinding>() {
     private fun handleViews() {
         binding.ivIconEbookImage.animateAndOnClickListener { onIvSelectEbookClick() }
         binding.btnUploadBook.animateAndOnClickListener { onBtnUploadEbookClick() }
+        binding.ivBackButton.animateAndOnClickListener { findNavController().navigateUp() }
+        binding.tvBackButton.animateAndOnClickListener { findNavController().navigateUp() }
         binding.tiEbookName.editText?.addTextChangedListener {
-            val searchQuery = it.toString()
-            ebookViewModel.searchBookDetails(searchQuery)
+            if (!this::selectedBook.isInitialized) {
+                val searchQuery = it.toString()
+                ebookViewModel.searchBookDetails(searchQuery)
+            }
         }
         binding.rvRecommendedBooks.apply {
             adapter = recommendedBookAdapter
@@ -82,10 +77,19 @@ class UploadEbookFragment : BaseFragment<FragmentUploadEbookBinding>() {
                     it
                 )
             }
-            lifecycleScope.launch {
-                message.collectLatest { showMessage(it) }
-                errorMessage.collectLatest { showErrorMessage(it) }
-                isLoading.collectLatest { if (it) loadingIndicator.show() else loadingIndicator.dismiss() }
+            message.observe(viewLifecycleOwner) {
+                binding.tiEbookName.editText?.setText("")
+                showMessage(it)
+            }
+            errorMessage.observe(viewLifecycleOwner) {
+                binding.tiEbookName.editText?.setText("")
+                showErrorMessage(it)
+            }
+            isLoading.observe(viewLifecycleOwner) {
+                if (it) loadingIndicator.show()
+                else loadingIndicator.dismiss().also {
+                    findNavController().navigateUp()
+                }
             }
         }
     }
@@ -109,9 +113,7 @@ class UploadEbookFragment : BaseFragment<FragmentUploadEbookBinding>() {
 
     private fun uploadEbookData(url: String) {
         val ebookData = createEbookData(url)
-
         ebookViewModel.saveEbook(ebookData)
-
     }
 
     private fun onIvSelectEbookClick() {
@@ -169,17 +171,10 @@ class UploadEbookFragment : BaseFragment<FragmentUploadEbookBinding>() {
                         pdfName = "Names" + Date().time.toString()
                     } else if (startsWith(FILE_URI)) {
                         try {
-
                             pdfName = File(this).name
-
+                            binding.tiEbookName.editText?.setText(pdfName)
                         } catch (e: Exception) {
-
-                            Toast.makeText(
-                                context,
-                                "Could not read the file name. ${e.message}",
-                                Toast.LENGTH_SHORT
-                            ).show()
-
+                            showErrorMessage("Could not read the file name. ${e.localizedMessage}.")
                         }
                     }
                 }
@@ -188,9 +183,17 @@ class UploadEbookFragment : BaseFragment<FragmentUploadEbookBinding>() {
         }
     }
 
+    private fun selectRecommendedBookForUpload(book: EbookData) {
+        selectedBook = book
+        binding.tiEbookName.editText?.setText(book.name)
+        binding.tvPdfName.text = book.name
+        binding.ivIconEbookImage.load(book.thumbnailUrl)
+    }
+
     private fun createEbookData(url: String): EbookData {
         val ebookTitle = binding.tiEbookName.editText?.text.toString()
         if (this::selectedBook.isInitialized) return selectedBook
         return EbookData(UUID.randomUUID().toString(), ebookTitle, url, "")
     }
 }
+
