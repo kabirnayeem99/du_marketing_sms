@@ -7,30 +7,30 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import io.github.kabirnayeem99.dumarketingadmin.common.ktx.animateAndOnClickListener
 import io.github.kabirnayeem99.dumarketingadmin.databinding.ListItemRecommendedBookBinding
-import io.github.kabirnayeem99.dumarketingadmin.domain.data.BookOpenBook
+import io.github.kabirnayeem99.dumarketingadmin.domain.data.EbookData
 
-class RecommendedBookAdapter(private var listener: (BookOpenBook) -> Unit) :
+class RecommendedBookAdapter(private var listener: (EbookData) -> Unit) :
     RecyclerView.Adapter<RecommendedBookAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: ListItemRecommendedBookBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(bookOpenBook: BookOpenBook) {
+        fun bind(bookOpenBook: EbookData) {
             binding.tvBookName.text = bookOpenBook.name
             binding.root.animateAndOnClickListener { listener(bookOpenBook) }
         }
     }
 
-    private val differCallback = object : DiffUtil.ItemCallback<BookOpenBook>() {
+    private val differCallback = object : DiffUtil.ItemCallback<EbookData>() {
         override fun areItemsTheSame(
-            oldItem: BookOpenBook,
-            newItem: BookOpenBook
+            oldItem: EbookData,
+            newItem: EbookData
         ): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: BookOpenBook,
-            newItem: BookOpenBook
+            oldItem: EbookData,
+            newItem: EbookData
         ): Boolean {
             if (oldItem.name != newItem.name) {
                 return false

@@ -2,9 +2,10 @@ package io.github.kabirnayeem99.dumarketingadmin.data.repositories
 
 import android.net.Uri
 import io.github.kabirnayeem99.dumarketingadmin.data.dataSources.EbookDataSource
-import io.github.kabirnayeem99.dumarketingadmin.data.model.EbookData
+import io.github.kabirnayeem99.dumarketingadmin.data.dto.EbookDto
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.EbookRepository
 import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
+import io.github.kabirnayeem99.dumarketingadmin.domain.data.EbookData
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -23,11 +24,11 @@ class DefaultEbookRepository
     }
 
 
-    override suspend fun insertEbookDataToDb(ebookData: EbookData) =
-        dataSource.saveEbook(ebookData)
+    override suspend fun insertEbookDataToDb(ebookDto: EbookData) =
+        dataSource.saveEbook(ebookDto)
 
-    override suspend fun deleteEbookFromDb(ebookData: EbookData) =
-        dataSource.deleteEbook(ebookData)
+    override suspend fun deleteEbookFromDb(ebookDto: EbookData) =
+        dataSource.deleteEbook(ebookDto)
 
     @ExperimentalCoroutinesApi
     override fun getEbooks(): Flow<Resource<List<EbookData>>> = dataSource.getEbooks()

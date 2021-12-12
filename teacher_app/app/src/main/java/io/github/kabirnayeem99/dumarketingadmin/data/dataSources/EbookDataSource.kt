@@ -5,14 +5,14 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import io.github.kabirnayeem99.dumarketingadmin.common.util.Constants
 import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
-import io.github.kabirnayeem99.dumarketingadmin.data.model.EbookData
-import io.github.kabirnayeem99.dumarketingadmin.data.model.EbookData.Companion.toEbookDataList
+import io.github.kabirnayeem99.dumarketingadmin.data.mappers.BookMapper.toBookDataList
+import io.github.kabirnayeem99.dumarketingadmin.domain.data.EbookData
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
+import timber.log.Timber
 import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
@@ -44,7 +44,7 @@ class EbookDataSource @Inject constructor(
     }
 
 
-    fun getEbooks(): Flow<Resource<List<EbookData>>> = callbackFlow<Resource<List<EbookData>>> {
+    fun getEbooks() = callbackFlow<Resource<List<EbookData>>> {
 
         trySend(Resource.Loading())
 
@@ -54,7 +54,8 @@ class EbookDataSource @Inject constructor(
             }
 
             if (value != null) {
-                val ebookList = value.toEbookDataList()
+                val ebookList = value.toBookDataList()
+                Timber.d(ebookList.toString())
                 trySend(Resource.Success(ebookList))
             }
 
@@ -65,34 +66,26 @@ class EbookDataSource @Inject constructor(
     }
 
 
-    suspend fun deleteEbook(ebookData: EbookData): Resource<String> {
+    suspend fun deleteEbook(ebookDto: EbookData): Resource<String> {
         return try {
-            ebookData.key?.let { key ->
+            ebookDto.id.let { key ->
                 db.collection(Constants.EBOOK_DB_REF).document(key).delete().await()
-                BaasService.storage.getReferenceFromUrl(ebookData.pdfUrl).delete().await()
+                BaasService.storage.getReferenceFromUrl(ebookDto.downloadUrl).delete().await()
             }
-            Resource.Success(ebookData.title)
+            Resource.Success(ebookDto.name)
         } catch (e: Exception) {
-            Resource.Error(e.localizedMessage ?: "Could not delete ${ebookData.title}")
+            Resource.Error(e.localizedMessage ?: "Could not delete ${ebookDto.name}")
         }
     }
 
-    suspend fun saveEbook(ebookData: EbookData): Resource<String> {
-        try {
+    suspend fun saveEbook(ebookDto: EbookData): Resource<String> {
+        return try {
             lateinit var key: String
-            if (ebookData.key == null) {
-                key = ebookData.title.replace("\\s".toRegex(), "").also {
-                    ebookData.key = it
-                }
-            } else {
-                ebookData.key?.let {
-                    key = it
-                }
-            }
-            db.collection(Constants.EBOOK_DB_REF).document(key).set(ebookData).await()
-            return Resource.Success("${ebookData.title}.")
+            ebookDto.id.let { key = it }
+            db.collection(Constants.EBOOK_DB_REF).document(key).set(ebookDto).await()
+            Resource.Success("${ebookDto.name}.")
         } catch (e: Exception) {
-            return Resource.Error("Could not save ${ebookData.title}.")
+            Resource.Error("Could not save ${ebookDto.name}.")
         }
     }
 

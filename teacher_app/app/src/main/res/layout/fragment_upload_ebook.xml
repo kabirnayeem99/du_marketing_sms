@@ -22,8 +22,8 @@
 
             <ImageView
                 android:id="@+id/ivIconEbookImage"
-                android:layout_width="100sp"
-                android:layout_height="100sp"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
                 android:layout_gravity="center"
                 android:layout_margin="16sp"
                 android:layout_marginTop="8sp"
@@ -41,6 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="12sp"
                 android:text="@string/no_ebook_selected_yet"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/tiEbookName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -6,17 +6,20 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import io.github.kabirnayeem99.dumarketingadmin.common.ktx.animateAndOnClickListener
-import io.github.kabirnayeem99.dumarketingadmin.data.model.EbookData
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.load
 import io.github.kabirnayeem99.dumarketingadmin.databinding.ListItemEbookBinding
+import io.github.kabirnayeem99.dumarketingadmin.domain.data.EbookData
 
 class EbookDataAdapter(private var listener: (EbookData) -> Unit) :
     RecyclerView.Adapter<EbookDataAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: ListItemEbookBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(ebookData: EbookData) {
-            binding.tvBookTitle.text = ebookData.title
-            binding.btnDeleteBook.animateAndOnClickListener { listener(ebookData) }
+        fun bind(ebook: EbookData) {
+            binding.tvBookTitle.text = ebook.name
+            binding.tvAuthorName.text = ebook.authorName
+            binding.ivBookCover.load(ebook.thumbnailUrl)
+            binding.btnDeleteBook.animateAndOnClickListener { listener(ebook) }
         }
     }
 
@@ -25,18 +28,18 @@ class EbookDataAdapter(private var listener: (EbookData) -> Unit) :
             oldItem: EbookData,
             newItem: EbookData
         ): Boolean {
-            return oldItem.key == newItem.key
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
             oldItem: EbookData,
             newItem: EbookData
         ): Boolean {
-            if (oldItem.pdfUrl != newItem.pdfUrl) {
+            if (oldItem.downloadUrl != newItem.downloadUrl) {
                 return false
             }
 
-            if (oldItem.title != newItem.title) {
+            if (oldItem.name != newItem.name) {
                 return false
             }
 

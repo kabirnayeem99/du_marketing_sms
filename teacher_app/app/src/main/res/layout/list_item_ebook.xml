@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -20,22 +21,55 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_book_cover"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="@dimen/default_radius"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/iv_book_cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?android:colorPrimaryDark"
+                    android:contentDescription="@string/book_cover"
+                    android:src="@drawable/illust_studying" />
+            </androidx.cardview.widget.CardView>
+
             <TextView
                 android:id="@+id/tv_book_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:layout_margin="12sp"
                 android:layout_marginStart="16sp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="40dp"
                 android:singleLine="false"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/btn_delete_book"
+                app:layout_constraintStart_toEndOf="@id/cv_book_cover"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Book Name" />
+
+            <TextView
+                android:id="@+id/tv_author_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16sp"
+                android:layout_marginBottom="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/btn_delete_book"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toEndOf="@id/cv_book_cover"
+                app:layout_constraintTop_toBottomOf="@id/tv_book_title"
+                tools:text="Author name" />
 
             <ImageButton
                 android:id="@+id/btn_delete_book"
@@ -45,7 +79,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="12sp"
                 android:layout_marginTop="12sp"
-                android:layout_marginEnd="12sp"
+                android:layout_marginEnd="16sp"
                 android:layout_marginBottom="12sp"
                 android:background="@color/transparent"
                 android:contentDescription="@string/delete_notice_button"

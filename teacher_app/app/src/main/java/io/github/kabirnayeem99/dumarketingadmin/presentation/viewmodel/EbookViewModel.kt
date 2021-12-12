@@ -7,8 +7,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseViewModel
 import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
-import io.github.kabirnayeem99.dumarketingadmin.data.model.EbookData
-import io.github.kabirnayeem99.dumarketingadmin.domain.data.BookOpenBook
+import io.github.kabirnayeem99.dumarketingadmin.domain.data.EbookData
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.EbookRepository
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.OpenBookRepository
 import kotlinx.coroutines.CoroutineDispatcher
@@ -43,8 +42,8 @@ class EbookViewModel @Inject constructor(
     }
 
 
-    private val _recommendedBookList = MutableLiveData<List<BookOpenBook>>()
-    val recommendedBookList: LiveData<List<BookOpenBook>> = _recommendedBookList
+    private val _recommendedBookList = MutableLiveData<List<EbookData>>()
+    val recommendedBookList: LiveData<List<EbookData>> = _recommendedBookList
     fun searchBookDetails(query: String) {
         viewModelScope.launch(ioContext) {
             openBookRepo.searchBooks(query).collect { resource ->
