@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseFragment
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.animateAndOnClickListener
 import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showConfirmationDialog
 import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showErrorMessage
 import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showMessage
@@ -16,11 +17,14 @@ import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentEbookBinding
 import io.github.kabirnayeem99.dumarketingadmin.domain.data.EbookData
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.adapter.EbookDataAdapter
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.EbookViewModel
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class EbookFragment : BaseFragment<FragmentEbookBinding>() {
+
+    @Inject
+    lateinit var ioDispatcher: CoroutineDispatcher
 
     lateinit var navController: NavController
     private val ebookViewModel: EbookViewModel by viewModels()
@@ -40,8 +44,11 @@ class EbookFragment : BaseFragment<FragmentEbookBinding>() {
 
     private fun handleViews() {
         navController = findNavController()
-        binding.fabUploadEbook.setOnClickListener {
+        binding.tvUploadEbook.animateAndOnClickListener {
             navController.navigate(R.id.action_ebookFragment_to_uploadEbookFragment)
+        }
+        binding.ivBackButton.animateAndOnClickListener {
+            navController.navigateUp()
         }
     }
 
@@ -51,19 +58,25 @@ class EbookFragment : BaseFragment<FragmentEbookBinding>() {
             adapter = ebookAdapter
             layoutManager = LinearLayoutManager(context)
         }
-
         ebookViewModel.ebookList.observe(this, { ebookList ->
             ebookAdapter.differ.submitList(ebookList)
         })
     }
 
     private fun setUpObservers() {
-        lifecycleScope.launch {
+        lifecycleScope.launch(ioDispatcher) {
             ebookViewModel.apply {
-                message.collect { this@EbookFragment.showMessage(it) }
-                errorMessage.collect { this@EbookFragment.showErrorMessage(it) }
-                isLoading.collect {
-                    if (it) loadingIndicator.show() else loadingIndicator.dismiss()
+                delay(500)
+                withContext(Dispatchers.Main) {
+                    isLoading.observe(viewLifecycleOwner) {
+                        if (it) loadingIndicator.show() else loadingIndicator.dismiss()
+                    }
+                    message.observe(viewLifecycleOwner) { this@EbookFragment.showMessage(it) }
+                    errorMessage.observe(viewLifecycleOwner) {
+                        this@EbookFragment.showErrorMessage(
+                            it
+                        )
+                    }
                 }
             }
         }

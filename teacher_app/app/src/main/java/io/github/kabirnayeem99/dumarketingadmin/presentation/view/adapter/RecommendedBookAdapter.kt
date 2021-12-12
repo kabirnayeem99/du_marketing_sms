@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import io.github.kabirnayeem99.dumarketingadmin.common.ktx.animateAndOnClickListener
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.load
 import io.github.kabirnayeem99.dumarketingadmin.databinding.ListItemRecommendedBookBinding
 import io.github.kabirnayeem99.dumarketingadmin.domain.data.EbookData
 
@@ -16,6 +17,7 @@ class RecommendedBookAdapter(private var listener: (EbookData) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(bookOpenBook: EbookData) {
             binding.tvBookName.text = bookOpenBook.name
+            binding.ivBookCover.load(bookOpenBook.thumbnailUrl)
             binding.root.animateAndOnClickListener { listener(bookOpenBook) }
         }
     }

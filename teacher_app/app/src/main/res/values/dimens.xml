@@ -6,4 +6,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="default_radius">12dp</dimen>
     <dimen name="default_min_clickable_height">56dp</dimen>
+    <dimen name="default_image_button_size">32dp</dimen>
+    <dimen name="default_horizontal_margin">16dp</dimen>
 </resources>

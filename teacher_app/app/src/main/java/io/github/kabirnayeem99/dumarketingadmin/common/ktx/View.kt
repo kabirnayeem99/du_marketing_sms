@@ -22,7 +22,7 @@ inline fun View.elasticAnimation(
 
 inline fun View.animateAndOnClickListener(crossinline onClickListener: (view: View) -> Unit) {
     setOnClickListener { view ->
-        elasticAnimation(0.9f, 0.9f, 400) {
+        elasticAnimation(0.7f, 0.7f, 120) {
         }.setOnFinishListener {
             onClickListener(view)
         }.doAction()

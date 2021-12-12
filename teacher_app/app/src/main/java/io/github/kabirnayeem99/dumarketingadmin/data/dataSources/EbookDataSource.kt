@@ -69,14 +69,23 @@ class EbookDataSource @Inject constructor(
 
 
     suspend fun deleteEbook(ebookDto: EbookData): Resource<String> {
+
+        try {
+            BaasService.storage.getReferenceFromUrl(ebookDto.downloadUrl).delete().await()
+        } catch (e: Exception) {
+            Timber.e(e)
+        }
+
         return try {
             ebookDto.id.let { key ->
+                Timber.d("deleting $ebookDto with key ${ebookDto.id}")
                 db.collection(Constants.EBOOK_DB_REF).document(key).delete().await()
-                BaasService.storage.getReferenceFromUrl(ebookDto.downloadUrl).delete().await()
             }
             Resource.Success(ebookDto.name)
         } catch (e: Exception) {
+            Timber.e(e)
             Resource.Error(e.localizedMessage ?: "Could not delete ${ebookDto.name}")
+        } finally {
         }
     }
 
