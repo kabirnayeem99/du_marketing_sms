@@ -15,13 +15,13 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingadmin.common.ktx.animateAndOnClickListener
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.load
 import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showErrorMessage
 import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showMessage
 import io.github.kabirnayeem99.dumarketingadmin.common.util.Constants.CONTENT_URI
 import io.github.kabirnayeem99.dumarketingadmin.common.util.Constants.FILE_URI
-import io.github.kabirnayeem99.dumarketingadmin.data.model.EbookData
 import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentUploadEbookBinding
-import io.github.kabirnayeem99.dumarketingadmin.domain.data.BookOpenBook
+import io.github.kabirnayeem99.dumarketingadmin.domain.data.EbookData
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.adapter.RecommendedBookAdapter
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.EbookViewModel
 import kotlinx.coroutines.flow.collectLatest
@@ -40,15 +40,17 @@ class UploadEbookFragment : BaseFragment<FragmentUploadEbookBinding>() {
 
     private val ebookViewModel: EbookViewModel by viewModels()
 
-    lateinit var selectedBook: BookOpenBook
+    private lateinit var selectedBook: EbookData
 
     private val recommendedBookAdapter: RecommendedBookAdapter by lazy {
         RecommendedBookAdapter { selectRecommendedBookForUpload(it) }
     }
 
-    private fun selectRecommendedBookForUpload(book: BookOpenBook) {
+    private fun selectRecommendedBookForUpload(book: EbookData) {
         selectedBook = book
         binding.tiEbookName.editText?.setText(book.name)
+        binding.tvPdfName.text = book.name
+        binding.ivIconEbookImage.load(book.thumbnailUrl)
     }
 
     override val layoutRes: Int
@@ -188,6 +190,7 @@ class UploadEbookFragment : BaseFragment<FragmentUploadEbookBinding>() {
 
     private fun createEbookData(url: String): EbookData {
         val ebookTitle = binding.tiEbookName.editText?.text.toString()
-        return EbookData(ebookTitle, url)
+        if (this::selectedBook.isInitialized) return selectedBook
+        return EbookData(UUID.randomUUID().toString(), ebookTitle, url, "")
     }
 }

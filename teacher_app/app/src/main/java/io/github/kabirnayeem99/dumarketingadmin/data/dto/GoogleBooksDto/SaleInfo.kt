@@ -1,4 +1,4 @@
-package io.github.kabirnayeem99.dumarketingadmin.data.dto
+package io.github.kabirnayeem99.dumarketingadmin.data.dto.GoogleBooksDto
 
 data class SaleInfo(
     val country: String,

@@ -33,4 +33,5 @@
     <string name="upload_ebook">Upload Ebook</string>
     <string name="select_book">tap to select a pdf</string>
     <string name="no_ebook_selected_yet">No Ebook selected yet</string>
+    <string name="book_cover">Book cover</string>
 </resources>
