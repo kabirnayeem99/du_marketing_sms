@@ -39,6 +39,7 @@
                     android:layout_height="match_parent"
                     android:background="?android:colorPrimaryDark"
                     android:contentDescription="@string/book_cover"
+                    android:scaleType="fitXY"
                     android:src="@drawable/illust_studying" />
             </androidx.cardview.widget.CardView>
 

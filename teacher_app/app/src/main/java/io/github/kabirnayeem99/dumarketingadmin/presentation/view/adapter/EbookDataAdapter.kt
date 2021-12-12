@@ -35,15 +35,7 @@ class EbookDataAdapter(private var listener: (EbookData) -> Unit) :
             oldItem: EbookData,
             newItem: EbookData
         ): Boolean {
-            if (oldItem.downloadUrl != newItem.downloadUrl) {
-                return false
-            }
-
-            if (oldItem.name != newItem.name) {
-                return false
-            }
-
-            return true
+            return false
         }
     }
 

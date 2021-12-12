@@ -13,6 +13,7 @@ import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.OpenBookRepo
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -45,6 +46,7 @@ class EbookViewModel @Inject constructor(
     private val _recommendedBookList = MutableLiveData<List<EbookData>>()
     val recommendedBookList: LiveData<List<EbookData>> = _recommendedBookList
     fun searchBookDetails(query: String) {
+        Timber.d("Searching for -> $query")
         viewModelScope.launch(ioContext) {
             openBookRepo.searchBooks(query).collect { resource ->
                 when (resource) {

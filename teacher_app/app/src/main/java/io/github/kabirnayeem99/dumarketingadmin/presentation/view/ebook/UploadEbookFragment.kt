@@ -24,7 +24,6 @@ import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentUploadEbookB
 import io.github.kabirnayeem99.dumarketingadmin.domain.data.EbookData
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.adapter.RecommendedBookAdapter
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.EbookViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.io.File
@@ -41,13 +40,13 @@ class UploadEbookFragment : BaseFragment<FragmentUploadEbookBinding>() {
 
     private val ebookViewModel: EbookViewModel by viewModels()
 
-    private lateinit var selectedBook: io.github.kabirnayeem99.dumarketingadmin.domain.data.EbookData
+    private lateinit var selectedBook: EbookData
 
     private val recommendedBookAdapter: RecommendedBookAdapter by lazy {
         RecommendedBookAdapter { selectRecommendedBookForUpload(it) }
     }
 
-    private fun selectRecommendedBookForUpload(book: io.github.kabirnayeem99.dumarketingadmin.domain.data.EbookData) {
+    private fun selectRecommendedBookForUpload(book: EbookData) {
         selectedBook = book
         binding.tiEbookName.editText?.setText(book.name)
         binding.tvPdfName.text = book.name
@@ -66,11 +65,8 @@ class UploadEbookFragment : BaseFragment<FragmentUploadEbookBinding>() {
         binding.ivIconEbookImage.animateAndOnClickListener { onIvSelectEbookClick() }
         binding.btnUploadBook.animateAndOnClickListener { onBtnUploadEbookClick() }
         binding.tiEbookName.editText?.addTextChangedListener {
-            lifecycleScope.launch {
-                delay(500) // avoid calling the api too much
-                val searchQuery = it.toString()
-                ebookViewModel.searchBookDetails(searchQuery)
-            }
+            val searchQuery = it.toString()
+            ebookViewModel.searchBookDetails(searchQuery)
         }
         binding.rvRecommendedBooks.apply {
             adapter = recommendedBookAdapter
@@ -194,6 +190,7 @@ class UploadEbookFragment : BaseFragment<FragmentUploadEbookBinding>() {
 
     private fun createEbookData(url: String): EbookData {
         val ebookTitle = binding.tiEbookName.editText?.text.toString()
-        return EbookData(ebookTitle, url, "")
+        if (this::selectedBook.isInitialized) return selectedBook
+        return EbookData(UUID.randomUUID().toString(), ebookTitle, url, "")
     }
 }

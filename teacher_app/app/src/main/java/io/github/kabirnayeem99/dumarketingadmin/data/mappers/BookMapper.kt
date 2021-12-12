@@ -9,20 +9,22 @@ import java.util.*
 object BookMapper {
 
     fun RecommendedBookDto.toBookData(): EbookData {
-        val downloadUrl = canonicalVolumeLink
-        val name = title
-        val thumbnailUrl = imageLinks.thumbnail
-        val authorName = authors.toString()
-        return EbookData("$name-${Date()}", name, downloadUrl, thumbnailUrl, authorName)
+        val downloadUrl = canonicalVolumeLink ?: ""
+        val name = title ?: ""
+        val thumbnailUrl = imageLinks?.thumbnail
+            ?: "https://bookstoreromanceday.org/wp-content/uploads/2020/08/book-cover-placeholder.png"
+        val authorName = if (authors.isNullOrEmpty()) "" else authors.toString()
+        val id = UUID.randomUUID().toString()
+        return EbookData(id, name, downloadUrl, thumbnailUrl, authorName)
     }
 
     fun DocumentSnapshot.toBookData(): EbookData {
-        val name = this["title"].toString()
-        val downloadUrl = this["pdfUrl"].toString()
+        val name = this["name"].toString()
+        val downloadUrl = this["downloadUrl"].toString()
         val thumbnailUrl = this["thumbnailUrl"].toString()
         val authorName = this["authorName"].toString()
         val id = this["key"].toString()
-        return EbookData(id, downloadUrl, name, thumbnailUrl, authorName)
+        return EbookData(id, name, downloadUrl, thumbnailUrl, authorName)
     }
 
     fun QuerySnapshot.toBookDataList(): List<EbookData> {

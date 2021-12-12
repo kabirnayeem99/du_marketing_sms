@@ -29,6 +29,7 @@
                 android:layout_marginTop="8sp"
                 android:contentDescription="@string/select_book"
                 android:padding="16dp"
+                android:scaleType="fitXY"
                 android:src="@drawable/ic_fluent_book_add_24_selector"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

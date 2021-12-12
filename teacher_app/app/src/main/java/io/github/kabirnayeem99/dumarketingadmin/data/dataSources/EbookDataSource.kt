@@ -13,6 +13,7 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 import timber.log.Timber
+import java.util.*
 import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
@@ -39,12 +40,13 @@ class EbookDataSource @Inject constructor(
                 Resource.Success(url)
             }
         } catch (e: Exception) {
+            Timber.e(e)
             return Resource.Error(e.localizedMessage ?: "$pdfName could not be uploaded")
         }
     }
 
 
-    fun getEbooks() = callbackFlow<Resource<List<EbookData>>> {
+    fun getEbooks() = callbackFlow {
 
         trySend(Resource.Loading())
 
@@ -80,8 +82,8 @@ class EbookDataSource @Inject constructor(
 
     suspend fun saveEbook(ebookDto: EbookData): Resource<String> {
         return try {
-            lateinit var key: String
-            ebookDto.id.let { key = it }
+            var key: String = UUID.randomUUID().toString()
+            if (ebookDto.id.isNotEmpty()) key = ebookDto.id
             db.collection(Constants.EBOOK_DB_REF).document(key).set(ebookDto).await()
             Resource.Success("${ebookDto.name}.")
         } catch (e: Exception) {
