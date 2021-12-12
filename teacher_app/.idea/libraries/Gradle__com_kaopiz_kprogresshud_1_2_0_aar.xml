@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.kaopiz:kprogresshud:1.2.0@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e26af2253e2fb0df72c664f7f3ae1cd0/transformed/jetified-kprogresshud-1.2.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/e26af2253e2fb0df72c664f7f3ae1cd0/transformed/jetified-kprogresshud-1.2.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e26af2253e2fb0df72c664f7f3ae1cd0/transformed/jetified-kprogresshud-1.2.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.kaopiz/kprogresshud/1.2.0/19e35775be188511ec306ee2d0a63d766893643f/kprogresshud-1.2.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.kaopiz/kprogresshud/1.2.0/5907dc44097acb69faa6dfc0570f392e1aa14293/kprogresshud-1.2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
