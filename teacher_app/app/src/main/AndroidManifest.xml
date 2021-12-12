@@ -10,61 +10,21 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:theme="@style/Theme.DUMarketingAdmin">
+        android:theme="@style/Theme.DUMarketingAdmin"
+        android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.activities.authintication.ui.AuthActivity"
+            android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.auth.AuthActivity"
+            android:exported="true"
             android:immersive="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".ui.activities.ebook.EbookActivity"
-            android:label="Ebooks"
-            android:parentActivityName=".ui.activities.dashboard.DashboardActivity" />
-        <activity android:name=".ui.activities.routine.UpsertRoutineActivity" />
-        <activity
-            android:name=".ui.activities.routine.RoutineDetailsActivity"
-            android:label="Routine"
-            android:parentActivityName=".ui.activities.routine.RoutineActivity" />
-        <activity
-            android:name=".ui.activities.routine.RoutineActivity"
-            android:label="Routine Dashboard"
-            android:parentActivityName=".ui.activities.dashboard.DashboardActivity" />
-        <activity
-            android:name=".ui.activities.gallery.GalleryImageActivity"
-            android:label="Gallery"
-            android:parentActivityName=".ui.activities.dashboard.DashboardActivity" />
-        <activity
-            android:name=".ui.activities.information.InformationActivity"
-            android:label="About Info"
-            android:parentActivityName=".ui.activities.dashboard.DashboardActivity" />
-        <activity
-            android:name=".ui.activities.notice.NoticeActivity"
-            android:label="Notices"
-            android:parentActivityName=".ui.activities.dashboard.DashboardActivity" />
-        <activity
-            android:name=".ui.activities.faculty.FacultyActivity"
-            android:label="Faculty Members"
-            android:parentActivityName=".ui.activities.dashboard.DashboardActivity" />
-        <activity
-            android:name=".ui.activities.ebook.UploadEbookActivity"
-            android:label="Upload Ebook"
-            android:parentActivityName=".ui.activities.dashboard.DashboardActivity" />
-        <activity
-            android:name=".ui.activities.gallery.AddGalleryImageActivity"
-            android:label="Upload Gallery Image"
-            android:parentActivityName=".ui.activities.gallery.GalleryImageActivity" />
-        <activity
-            android:name=".ui.activities.faculty.UpsertFacultyActivity"
-            android:label="Edit Faculty Member"
-            android:parentActivityName=".ui.activities.faculty.FacultyActivity" />
-        <activity
-            android:name=".ui.activities.notice.AddNoticeActivity"
-            android:label="Add Notice"
-            android:parentActivityName=".ui.activities.dashboard.DashboardActivity" />
-        <activity android:name=".ui.activities.dashboard.DashboardActivity" />
+            android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.dashboard.DashboardActivity"
+            android:exported="false" />
 
     </application>
 

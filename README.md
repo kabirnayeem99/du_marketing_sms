@@ -35,15 +35,17 @@ Watch the demo of the app on YouTube-
 
 ## Teacher App
 
-[<img src="https://i.imgur.com/eUxjnRi.jpg" title="DU Marketing SMS Dashboard" width="200" hspace="10" vspace="10" />](https://i.imgur.com/eUxjnRi.jpg)
-[<img src="https://i.imgur.com/gp1ui9A.jpg" title="DU Marketing SMS Auth Screen" width="200" hspace="10" vspace="10" />](https://i.imgur.com/gp1ui9A.jpg)
-[<img src="https://i.imgur.com/mSSwmVH.jpg" title="Faculty Member List Screen" width="200" hspace="10" vspace="10" />](https://i.imgur.com/gp1ui9A.jpg)
-[<img src="https://i.imgur.com/8diijL0.jpg" title="Add or Edit Faculty Member" width="200" hspace="10" vspace="10" />](https://i.imgur.com/8diijL0.jpg)[<img src="https://i.imgur.com/84TbM0V.jpg" title="Ebook List" width="200" hspace="10" vspace="10" />](https://i.imgur.com/84TbM0V.jpg)
-[<img src="https://i.imgur.com/ITDxzch.jpg" title="Gallery Images" width="200" hspace="10" vspace="10" />](https://i.imgur.com/ITDxzch.jpg)
-[<img src="https://i.imgur.com/MbadxJ2.jpg" title="Notices" width="200" hspace="10" vspace="10" />](https://i.imgur.com/MbadxJ2.jpg)
-[<img src="https://i.imgur.com/IM0cWVP.jpg" title="Routine List Screen" width="200" hspace="10" vspace="10" />](https://i.imgur.com/IM0cWVP.jpg)
-[<img src="https://i.imgur.com/QNRlGQJ.jpg" title="Add or Edit Class Routine" width="200" hspace="10" vspace="10" />](https://i.imgur.com/QNRlGQJ.jpg)
-[<img src="https://i.imgur.com/ttGfkBe.jpg" title="Edit About Info" width="200" hspace="10" vspace="10" />](https://i.imgur.com/ttGfkBe.jpg)
+[<img src="https://imgur.com/mHcOA0S" title="DU Marketing SMS Dashboard" width="200" hspace="10" vspace="10" />](https://imgur.com/mHcOA0S)
+[<img src="https://imgur.com/JfudNfi" title="DU Marketing SMS Auth Screen" width="200" hspace="10" vspace="10" />](https://imgur.com/JfudNfi)
+[<img src="https://i.imgur.com/mSSwmVH.jpg" title="Faculty Member List Screen" width="200" hspace="10" vspace="10" />](https://imgur.com/BACtRiQ)
+[<img src="https://imgur.com/cQHm0R1" title="Gallery Images" width="200" hspace="10" vspace="10" />](https://imgur.com/cQHm0R1)
+[<img src="https://imgur.com/uEusrTR" title="Notices" width="200" hspace="10" vspace="10" />](https://imgur.com/uEusrTR)
+[<img src="https://imgur.com/nfbhpwd" title="Routine List Screen" width="200" hspace="10" vspace="10" />](https://imgur.com/nfbhpwd)
+[<img src="https://imgur.com/FXfAQA2" title="Add or Edit Class Routine" width="200" hspace="10" vspace="10" />](https://imgur.com/FXfAQA2)
+[<img src="https://imgur.com/AIQMDn5" title="Edit About Info" width="200" hspace="10" vspace="10" />](https://imgur.com/AIQMDn5)
+[<img src="https://imgur.com/7tWqwNy" title="Edit About Info" width="200" hspace="10" vspace="10" />](https://imgur.com/7tWqwNy)
+[<img src="https://imgur.com/lF2PUMZ" title="Edit About Info" width="200" hspace="10" vspace="10" />](https://imgur.com/lF2PUMZ)
+
 
 
 # Features

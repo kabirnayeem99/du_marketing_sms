@@ -1,9 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.23796296296296296" />
+        <entry key="../../../.gradle/caches/transforms-3/e1f52ecbde5859115c0f5355ab9579d5/transformed/jetified-fluent-system-icons-1.1.122/res/drawable/ic_fluent_question_24_filled.xml" value="0.25092592592592594" />
+        <entry key="app/src/main/res/drawable/bg_bottom_rounded_app_bar.xml" value="0.2760416666666667" />
+        <entry key="app/src/main/res/drawable/bg_gradient.xml" value="0.2760416666666667" />
+        <entry key="app/src/main/res/drawable/bg_gradient_rounded.xml" value="0.2760416666666667" />
+        <entry key="app/src/main/res/drawable/bg_rounded_dialog.xml" value="0.23796296296296296" />
+        <entry key="app/src/main/res/drawable/bg_rounded_rectangle_button_bordered.xml" value="0.2760416666666667" />
+        <entry key="app/src/main/res/drawable/bg_rounded_rectangle_button_solid.xml" value="0.2760416666666667" />
+        <entry key="app/src/main/res/drawable/bg_rounded_semi_gradient_layout.xml" value="0.2760416666666667" />
+        <entry key="app/src/main/res/drawable/bg_top_rounded_layout.xml" value="0.25092592592592594" />
+        <entry key="app/src/main/res/drawable/gradient_background_overlay.xml" value="0.2760416666666667" />
+        <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.23796296296296296" />
+        <entry key="app/src/main/res/drawable/illust_studying.xml" value="0.55" />
+        <entry key="app/src/main/res/drawable/spinner_border.xml" value="0.23796296296296296" />
+        <entry key="app/src/main/res/layout/activity_add_gallery_image.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_add_notice.xml" value="0.2557291666666667" />
+        <entry key="app/src/main/res/layout/activity_auth.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.3347222222222222" />
+        <entry key="app/src/main/res/layout/activity_ebook.xml" value="0.2557291666666667" />
+        <entry key="app/src/main/res/layout/activity_faculty.xml" value="0.2557291666666667" />
+        <entry key="app/src/main/res/layout/activity_gallery_image.xml" value="0.1685185185185185" />
+        <entry key="app/src/main/res/layout/activity_information.xml" value="0.1685185185185185" />
+        <entry key="app/src/main/res/layout/activity_notice.xml" value="0.2557291666666667" />
+        <entry key="app/src/main/res/layout/activity_routine.xml" value="0.1685185185185185" />
+        <entry key="app/src/main/res/layout/activity_routine_details.xml" value="0.2557291666666667" />
+        <entry key="app/src/main/res/layout/activity_upload_ebook.xml" value="0.2557291666666667" />
+        <entry key="app/src/main/res/layout/activity_upsert_faculty.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_upsert_routine.xml" value="0.1685185185185185" />
+        <entry key="app/src/main/res/layout/fragment_add_gallery_image.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/fragment_add_notice.xml" value="0.2557291666666667" />
+        <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_ebook.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_gallery_image.xml" value="0.1685185185185185" />
+        <entry key="app/src/main/res/layout/fragment_information.xml" value="0.1685185185185185" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_notice.xml" value="0.2557291666666667" />
+        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/fragment_routine.xml" value="0.1685185185185185" />
+        <entry key="app/src/main/res/layout/fragment_routine_details.xml" value="0.1685185185185185" />
+        <entry key="app/src/main/res/layout/fragment_upload_ebook.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_upsert_routine.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/list_item_ebook.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/list_item_faculty.xml" value="0.2557291666666667" />
+        <entry key="app/src/main/res/layout/list_item_gallery.xml" value="0.2557291666666667" />
+        <entry key="app/src/main/res/layout/list_item_notice.xml" value="0.2557291666666667" />
+        <entry key="app/src/main/res/layout/list_item_recommended_book.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/list_item_routine.xml" value="0.2557291666666667" />
+        <entry key="app/src/main/res/menu/dashboard_menu.xml" value="0.2557291666666667" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.25092592592592594" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.25092592592592594" />
+      </map>
+    </option>
+  </component>
   <component name="JavadocGenerationManager">
     <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/../../Downloads" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

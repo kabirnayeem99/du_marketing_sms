@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16sp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16sp">
+
+
+            <ImageView
+                android:id="@+id/ivIconAddGalleryImage"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_gravity="center"
+                android:layout_margin="16sp"
+                android:layout_marginTop="8sp"
+                android:onClick="onIvAddGalleryImageClick"
+                android:padding="16dp"
+                android:src="@drawable/ic_fluent_image_add_24_selector"
+                app:layout_constraintBottom_toTopOf="@+id/tvSelectImageCat"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvSelectImageCat"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16sp"
+                android:text="Select image category."
+                app:layout_constraintBottom_toTopOf="@+id/rlSpinner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivIconAddGalleryImage" />
+
+            <RelativeLayout
+                android:id="@+id/rlSpinner"
+                android:layout_width="300sp"
+                android:layout_height="@dimen/default_min_clickable_height"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/spinner_border"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/btnAddImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSelectImageCat">
+
+                <Spinner
+                    android:id="@+id/sImageCat"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:spinnerMode="dropdown" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_fluent_caret_down_24_selector" />
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btnAddImage"
+                android:layout_width="300dp"
+                android:layout_height="@dimen/default_min_clickable_height"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="8sp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_rounded_rectangle_button_solid"
+                android:onClick="onBtnAddGalleryImageClick"
+                android:text="Add Image"
+                app:layout_constraintBottom_toTopOf="@id/ivGalleryImagePreview"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rlSpinner" />
+
+            <ImageView
+                android:id="@+id/ivGalleryImagePreview"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:layout_margin="16sp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_fluent_image_48_regular"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnAddImage" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

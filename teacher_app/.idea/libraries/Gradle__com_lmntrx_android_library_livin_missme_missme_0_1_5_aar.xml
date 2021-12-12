@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.lmntrx.android.library.livin.missme:missme:0.1.5@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8c79107716cc82153072f01522dc48d1/transformed/jetified-missme-0.1.5/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8c79107716cc82153072f01522dc48d1/transformed/jetified-missme-0.1.5/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/8c79107716cc82153072f01522dc48d1/transformed/jetified-missme-0.1.5/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.lmntrx.android.library.livin.missme/missme/0.1.5/71364d975336cce7721ee1563209130ff4631d09/missme-0.1.5-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.lmntrx.android.library.livin.missme/missme/0.1.5/52fd38ff248c313a8f21186db28c65bb014014ef/missme-0.1.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/teacher_app.iml" filepath="$PROJECT_DIR$/.idea/teacher_app.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DU_Marketing_Admin.iml" filepath="$PROJECT_DIR$/.idea/modules/DU_Marketing_Admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/DU_Marketing_Admin.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/DU_Marketing_Admin.app.iml" />
+>>>>>>> ade1519f8a87f2b2cecfe0d8b7b6eaac9258f368
     </modules>
   </component>
 </project>

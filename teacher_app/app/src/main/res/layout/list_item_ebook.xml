@@ -1,44 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="12sp"
-    android:padding="12sp"
-    app:cardCornerRadius="8sp"
-    app:cardElevation="2sp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <RelativeLayout
+    <data>
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:layout_margin="12sp"
+        android:padding="12sp"
+        app:cardCornerRadius="@dimen/default_radius"
+        app:strokeColor="?android:colorPrimary"
+        app:strokeWidth="0.8dp">
 
-        <TextView
-            android:id="@+id/tvBookTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_margin="12sp"
-            android:layout_marginStart="16sp"
-            android:layout_marginEnd="40dp"
-            android:singleLine="false"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <ImageButton
-            android:id="@+id/btnDeleteBook"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_margin="12sp"
-            android:backgroundTint="@color/transparent"
-            android:backgroundTintMode="multiply"
-            android:contentDescription="Delete Notice Button"
-            android:src="@drawable/ic_fluent_delete_24_selector" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
 
-    </RelativeLayout>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_book_cover"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="@dimen/default_radius"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-</com.google.android.material.card.MaterialCardView>
+                <ImageView
+                    android:id="@+id/iv_book_cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#22000000"
+                    android:contentDescription="@string/book_cover"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/illust_studying" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/tv_book_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16sp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="40dp"
+                android:singleLine="false"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/btn_delete_book"
+                app:layout_constraintStart_toEndOf="@id/cv_book_cover"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Book Name" />
+
+            <TextView
+                android:id="@+id/tv_author_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16sp"
+                android:layout_marginBottom="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_delete_book"
+                app:layout_constraintStart_toEndOf="@id/cv_book_cover"
+                app:layout_constraintTop_toBottomOf="@id/tv_book_title"
+                tools:text="Author name" />
+
+            <ImageButton
+                android:id="@+id/btn_delete_book"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="12sp"
+                android:layout_marginTop="12sp"
+                android:layout_marginEnd="16sp"
+                android:layout_marginBottom="12sp"
+                android:background="@color/transparent"
+                android:contentDescription="@string/delete_notice_button"
+                android:src="@drawable/ic_fluent_delete_24_selector"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

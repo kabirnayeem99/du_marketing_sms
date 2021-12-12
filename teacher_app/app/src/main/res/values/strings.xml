@@ -19,4 +19,25 @@
     <string name="login_failed">"Login failed"</string>
     <string name="tf_hint_user_email">Email Address</string>
     <string name="tf_hint_user_password">Password</string>
+    <string name="rationale_ask_allow">Allow</string>
+    <string name="rationale_ask_dont">Don\'t Allow</string>
+    <string name="information">Information</string>
+    <string name="routine">Routine</string>
+    <string name="faculty">Faculty</string>
+    <string name="ebook">Ebook</string>
+    <string name="gallery">Gallery</string>
+    <string name="notice">Notice</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="delete_notice_button">Delete Notice Button</string>
+    <string name="upload_ebook">Upload Ebook</string>
+    <string name="select_book">tap to select a pdf</string>
+    <string name="no_ebook_selected_yet">No Ebook selected yet</string>
+    <string name="book_cover">Book cover</string>
+    <string name="suggestion">Suggestion</string>
+    <string name="go_back">Go back</string>
+    <string name="back">Back</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="ebooks">Ebooks</string>
+    <string name="upload">Upload</string>
 </resources>
