@@ -9,7 +9,7 @@ on:
 jobs:
   build:
 
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -20,9 +20,8 @@ jobs:
         distribution: 'adopt'
         cache: gradle
 
-    - name: Changing directory to teacher_app
-      run: cd teacher_app
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-    - name: Build with Gradle
-      run: ./gradlew build
+    - name: Building the app
+      run: |
+        cd teacher_app
+        chmod +x gradlew
+        ./gradlew build
