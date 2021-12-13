@@ -1,4 +1,4 @@
-package io.github.kabirnayeem99.dumarketingadmin.data.dto.GoogleBooksDto
+package io.github.kabirnayeem99.dumarketingadmin.data.dto.googleBooksDto
 
 data class Pdf(
     val acsTokenLink: String,

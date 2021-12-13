@@ -1,6 +1,6 @@
-package io.github.kabirnayeem99.dumarketingadmin.data.dto.GoogleBooksDto
+package io.github.kabirnayeem99.dumarketingadmin.data.dto.googleBooksDto
 
-data class AccessInfo(
+data class AccessInfoDto(
     val accessViewStatus: String,
     val country: String,
     val embeddable: Boolean,

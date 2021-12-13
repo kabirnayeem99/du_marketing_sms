@@ -1,7 +1,7 @@
-package io.github.kabirnayeem99.dumarketingadmin.data.dto.GoogleBooksDto
+package io.github.kabirnayeem99.dumarketingadmin.data.dto.googleBooksDto
 
 data class Item(
-    val accessInfo: AccessInfo,
+    val accessInfo: AccessInfoDto,
     val etag: String,
     val id: String,
     val kind: String,

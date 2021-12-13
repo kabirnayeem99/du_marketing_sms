@@ -1,6 +1,6 @@
 package io.github.kabirnayeem99.dumarketingadmin.data.dataSources
 
-import io.github.kabirnayeem99.dumarketingadmin.data.dto.GoogleBooksDto.GoogleBooksResponseDto
+import io.github.kabirnayeem99.dumarketingadmin.data.dto.googleBooksDto.GoogleBooksResponseDto
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
