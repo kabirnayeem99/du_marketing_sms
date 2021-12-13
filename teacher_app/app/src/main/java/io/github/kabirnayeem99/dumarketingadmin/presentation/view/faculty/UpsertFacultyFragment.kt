@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.*
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
@@ -25,7 +26,6 @@ import io.github.kabirnayeem99.dumarketingadmin.data.model.FacultyData
 import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentUpsertFacultyBinding
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.FacultyViewModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.util.*
@@ -54,11 +54,17 @@ class UpsertFacultyFragment : BaseFragment<FragmentUpsertFacultyBinding>() {
     }
 
     private fun subscribeObservers() {
-        lifecycleScope.launchWhenCreated {
-            facultyViewModel.apply {
-                errorMessage.collect { showErrorMessage(it) }
-                message.collect { showMessage(it) }
-                isLoading.collect { if (it) loadingIndicator.show() else loadingIndicator.dismiss() }
+        facultyViewModel.apply {
+            errorMessage.observe(viewLifecycleOwner) { showErrorMessage(it) }
+            message.observe(viewLifecycleOwner) { showMessage(it) }
+            shouldLeavePage.observe(viewLifecycleOwner) {
+                if (it) findNavController().navigateUp().also {
+                    resetLeavePageStatus()
+                }
+            }
+            isLoading.observe(viewLifecycleOwner) {
+                if (it) loadingIndicator.show()
+                else loadingIndicator.dismiss()
             }
         }
     }
@@ -76,9 +82,7 @@ class UpsertFacultyFragment : BaseFragment<FragmentUpsertFacultyBinding>() {
 
     private fun checkAndImplementUpdateFunctionality() {
         facultyData = arguments?.getParcelable("faculty")
-
         if (facultyData == null) return
-
         fillTextFieldIfUpdate()
     }
 
@@ -210,7 +214,7 @@ class UpsertFacultyFragment : BaseFragment<FragmentUpsertFacultyBinding>() {
 
     private fun upsertFacultyData(
         facultyData: FacultyData
-    ) = facultyViewModel.insertFacultyDataToDb(facultyData, facultyData.post)
+    ) = facultyViewModel.saveFacultyData(facultyData, facultyData.post)
 
 
     /**

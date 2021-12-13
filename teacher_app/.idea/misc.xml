@@ -44,7 +44,7 @@
         <entry key="app/src/main/res/layout/fragment_routine.xml" value="0.1685185185185185" />
         <entry key="app/src/main/res/layout/fragment_routine_details.xml" value="0.1685185185185185" />
         <entry key="app/src/main/res/layout/fragment_upload_ebook.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_upsert_faculty.xml" value="0.2557291666666667" />
+        <entry key="app/src/main/res/layout/fragment_upsert_faculty.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_upsert_routine.xml" value="0.25" />
         <entry key="app/src/main/res/layout/list_item_ebook.xml" value="0.335" />
         <entry key="app/src/main/res/layout/list_item_faculty.xml" value="0.2557291666666667" />

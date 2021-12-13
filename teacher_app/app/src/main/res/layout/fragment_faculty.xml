@@ -67,7 +67,10 @@
             android:layout_height="0dp"
             android:layout_marginHorizontal="@dimen/default_horizontal_margin"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cl_app_bar">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_app_bar"
+            app:layout_constraintVertical_bias="0">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvFacultyMemberLists"
@@ -77,7 +80,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:itemCount="5"
+                app:layout_constraintVertical_bias="0"
+                tools:itemCount="2"
                 tools:listitem="@layout/list_item_faculty" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
