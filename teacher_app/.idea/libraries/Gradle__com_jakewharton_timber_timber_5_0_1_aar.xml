@@ -1,9 +1,6 @@
 <component name="libraryTable">
   <library name="Gradle: com.jakewharton.timber:timber:5.0.1@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/1b6aadd3fb4e11fa4cdf5b43cc91c91f/transformed/jetified-timber-5.0.1/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/d9947bf2c697e9f8ba4ca74adfaf5ed2/transformed/jetified-timber-5.0.1/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8736ee7a7cadb44c4ef8705d9f58ae88/transformed/jetified-timber-5.0.1/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/c69218a2cb08a92ca38fd4e7119adc1d/transformed/jetified-timber-5.0.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c69218a2cb08a92ca38fd4e7119adc1d/transformed/jetified-timber-5.0.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c69218a2cb08a92ca38fd4e7119adc1d/transformed/jetified-timber-5.0.1/AndroidManifest.xml" />

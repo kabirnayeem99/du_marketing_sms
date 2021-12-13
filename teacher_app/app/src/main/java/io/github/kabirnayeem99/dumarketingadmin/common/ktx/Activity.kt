@@ -80,9 +80,7 @@ fun BaseActivity<*>.showPermissionDialog(
         .title("$permissionName Permission!!!")
         .body(rationale)
         .icon(iconName)
-        .onPositive(
-            getString(R.string.rationale_ask_allow),
-        ) {
+        .onPositive(getString(R.string.rationale_ask_allow)) {
             EasyPermissions.requestPermissions(
                 PermissionRequest.Builder(this, requestCode, *permissions)
                     .setRationale(rationale)
@@ -92,9 +90,7 @@ fun BaseActivity<*>.showPermissionDialog(
                     .build()
             )
         }
-        .onNegative(
-            getString(R.string.rationale_ask_dont),
-        ) {
+        .onNegative(getString(R.string.rationale_ask_dont)) {
             showErrorMessage("Be careful!!! $rationale.")
         }
 
