@@ -31,7 +31,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="?android:colorPrimary" />
 
-
             <TextView
                 android:id="@+id/tv_app_bar_title"
                 android:layout_width="150dp"
@@ -165,7 +164,7 @@
                 android:layout_marginTop="12sp"
                 android:background="@drawable/spinner_border"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/btnSave"
+                app:layout_constraintBottom_toTopOf="@+id/btn_save"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tiTeacherEmail">
@@ -187,12 +186,14 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="@string/select_post"
                     android:src="@drawable/ic_fluent_caret_down_24_selector" />
 
             </RelativeLayout>
 
             <Button
-                android:id="@+id/btnSave"
+                android:id="@+id/btn_save"
                 android:layout_width="300sp"
                 android:layout_height="56dp"
                 android:layout_gravity="center_horizontal"
@@ -214,7 +215,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btnSave" />
+                app:layout_constraintTop_toBottomOf="@id/btn_save" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

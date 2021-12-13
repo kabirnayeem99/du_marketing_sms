@@ -46,4 +46,5 @@
     <string name="add_faculty">Add Faculty</string>
     <string name="save_faculty">Save Faculty</string>
     <string name="delete">Delete</string>
+    <string name="select_post">Select post for teacher</string>
 </resources>

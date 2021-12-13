@@ -37,8 +37,7 @@ class UpsertFacultyFragment : BaseFragment<FragmentUpsertFacultyBinding>() {
     @Inject
     lateinit var ioDispatcher: CoroutineDispatcher
 
-    private val facultyViewModel: FacultyViewModel
-            by activityViewModels()
+    private val facultyViewModel: FacultyViewModel by activityViewModels()
 
     private lateinit var bitmap: Bitmap
     private var teacherPost: String = ""
