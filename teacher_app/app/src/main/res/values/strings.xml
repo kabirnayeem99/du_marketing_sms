@@ -40,4 +40,7 @@
     <string name="dashboard">Dashboard</string>
     <string name="ebooks">Ebooks</string>
     <string name="upload">Upload</string>
+    <string name="upload_image">Upload image</string>
+    <string name="add_image">Add Image</string>
+    <string name="select_image_category">Select image category.</string>
 </resources>

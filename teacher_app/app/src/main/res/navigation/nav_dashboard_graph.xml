@@ -92,7 +92,7 @@
         tools:layout="@layout/fragment_upsert_routine" />
     <fragment
         android:id="@+id/fragmentRoutine"
-        android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.routine.FragmentRoutine"
+        android:name="io.github.kabirnayeem99.dumarketingadmin.presentation.view.routine.RoutineFragment"
         android:label="FragmentRoutine"
         tools:layout="@layout/fragment_routine">
         <action

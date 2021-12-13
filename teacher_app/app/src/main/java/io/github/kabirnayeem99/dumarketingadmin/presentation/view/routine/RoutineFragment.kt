@@ -14,7 +14,7 @@ import io.github.kabirnayeem99.dumarketingadmin.common.ktx.animateAndOnClickList
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.RoutineViewModel
 
 @AndroidEntryPoint
-class FragmentRoutine : BaseFragment<FragmentRoutineBinding>() {
+class RoutineFragment : BaseFragment<FragmentRoutineBinding>() {
 
     lateinit var navController: NavController
     private val routineViewModel: RoutineViewModel by activityViewModels()

@@ -13,7 +13,7 @@ import io.github.kabirnayeem99.dumarketingadmin.R
 
 abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
     protected lateinit var binding: V
-    lateinit var baseView: View
+    private lateinit var baseView: View
 
     @get:LayoutRes
     protected abstract val layout: Int

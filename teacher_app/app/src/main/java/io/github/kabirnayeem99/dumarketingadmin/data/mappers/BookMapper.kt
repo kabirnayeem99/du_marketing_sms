@@ -2,6 +2,7 @@ package io.github.kabirnayeem99.dumarketingadmin.data.mappers
 
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.toCommaSeparatedList
 import io.github.kabirnayeem99.dumarketingadmin.data.dto.GoogleBooksDto.RecommendedBookDto
 import io.github.kabirnayeem99.dumarketingadmin.domain.data.EbookData
 import java.util.*
@@ -13,7 +14,8 @@ object BookMapper {
         val name = title ?: ""
         val thumbnailUrl = imageLinks?.thumbnail
             ?: "https://bookstoreromanceday.org/wp-content/uploads/2020/08/book-cover-placeholder.png"
-        val authorName = if (authors.isNullOrEmpty()) "" else authors.toString()
+        val authorName =
+            if (authors.isNullOrEmpty()) "" else (authors as ArrayList<String>).toCommaSeparatedList()
         val id = UUID.randomUUID().toString()
         return EbookData(id, name, downloadUrl, thumbnailUrl, authorName)
     }
