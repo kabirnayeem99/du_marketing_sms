@@ -19,7 +19,7 @@ import javax.inject.Inject
 @ExperimentalCoroutinesApi
 class EbookDataSource @Inject constructor(
     var db: FirebaseFirestore,
-    var store: FirebaseStorage
+    store: FirebaseStorage
 ) {
 
     private val storage = store.reference.child(Constants.EBOOK_STORAGE_PATH)

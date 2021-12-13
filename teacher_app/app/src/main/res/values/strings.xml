@@ -43,4 +43,5 @@
     <string name="upload_image">Upload image</string>
     <string name="add_image">Add Image</string>
     <string name="select_image_category">Select image category.</string>
+    <string name="add_faculty">Add Faculty</string>
 </resources>

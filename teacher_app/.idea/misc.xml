@@ -35,6 +35,7 @@
         <entry key="app/src/main/res/layout/fragment_add_notice.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_ebook.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_faculty.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/layout/fragment_gallery_image.xml" value="0.1685185185185185" />
         <entry key="app/src/main/res/layout/fragment_information.xml" value="0.1685185185185185" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
