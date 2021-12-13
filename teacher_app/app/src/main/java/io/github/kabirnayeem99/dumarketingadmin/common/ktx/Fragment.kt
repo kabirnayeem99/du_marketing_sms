@@ -19,10 +19,14 @@ import pub.devrel.easypermissions.PermissionRequest
  * @param message the message that should be shown
  */
 fun BaseFragment<*>.showErrorMessage(message: String) {
-    val parentLayout: View = baseView
-    val snackbar = Snackbar.make(parentLayout, message, Snackbar.LENGTH_LONG)
-    snackbar.animationMode = ANIMATION_MODE_SLIDE
-    snackbar.show()
+    try {
+        val parentLayout: View = baseView
+        val snackbar = Snackbar.make(parentLayout, message, Snackbar.LENGTH_LONG)
+        snackbar.animationMode = ANIMATION_MODE_SLIDE
+        snackbar.show()
+    } catch (e: Exception) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+    }
 }
 
 

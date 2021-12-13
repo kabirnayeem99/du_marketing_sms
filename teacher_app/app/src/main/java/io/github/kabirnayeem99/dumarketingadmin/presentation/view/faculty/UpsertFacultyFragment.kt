@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseFragment
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.animateAndOnClickListener
 import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showErrorMessage
 import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showMessage
 import io.github.kabirnayeem99.dumarketingadmin.common.util.AssetUtilities
@@ -64,8 +65,14 @@ class UpsertFacultyFragment : BaseFragment<FragmentUpsertFacultyBinding>() {
     }
 
     private fun handleViews() {
-        binding.ivAvatar.setOnClickListener { onIvAvatarClick() }
-        binding.btnSave.setOnClickListener { onSaveClick() }
+        binding.ivAvatar.animateAndOnClickListener { onIvAvatarClick() }
+        binding.btnSave.animateAndOnClickListener { onSaveClick() }
+        binding.btDeleteFaculty.animateAndOnClickListener {
+            facultyViewModel.deleteFacultyData(
+                facultyData!!,
+                teacherPost
+            )
+        }
     }
 
     private fun checkAndImplementUpdateFunctionality() {

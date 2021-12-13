@@ -6,15 +6,59 @@
 
     </data>
 
-    <ScrollView
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="16sp">
+        android:orientation="vertical">
 
+        <!-- app bar -->
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_app_bar"
             android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_back_button"
+                android:layout_width="@dimen/default_image_button_size"
+                android:layout_height="@dimen/default_image_button_size"
+                android:layout_marginStart="8dp"
+                android:contentDescription="@string/go_back"
+                android:src="@drawable/ic_fluent_ios_arrow_left_24_selector"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="?android:colorPrimary" />
+
+
+            <TextView
+                android:id="@+id/tv_app_bar_title"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="middle"
+                android:singleLine="true"
+                android:text="@string/add_faculty"
+                android:textAlignment="center"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- main body -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_main_body"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_app_bar"
+            app:layout_constraintVertical_bias="0">
 
 
             <androidx.cardview.widget.CardView
@@ -37,7 +81,7 @@
                     style="@style/avatarImage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:onClick="onIvAvatarClick"
+                    android:contentDescription="@string/add_image"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_fluent_person_add_24_filled" />
             </androidx.cardview.widget.CardView>
@@ -47,7 +91,7 @@
                 android:layout_width="300sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_margin="12sp"
+                android:layout_marginTop="12sp"
                 android:hint="@string/tf_hint_name"
                 app:boxCornerRadiusBottomEnd="@dimen/default_radius"
                 app:boxCornerRadiusBottomStart="@dimen/default_radius"
@@ -70,7 +114,7 @@
                 android:layout_width="300sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_margin="12sp"
+                android:layout_marginTop="12sp"
                 android:hint="@string/tf_hint_phone"
                 app:boxCornerRadiusBottomEnd="@dimen/default_radius"
                 app:boxCornerRadiusBottomStart="@dimen/default_radius"
@@ -94,7 +138,7 @@
                 android:layout_width="300sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_margin="12sp"
+                android:layout_marginTop="12dp"
                 android:hint="@string/tf_hint_email"
                 app:boxCornerRadiusBottomEnd="@dimen/default_radius"
                 app:boxCornerRadiusBottomStart="@dimen/default_radius"
@@ -118,10 +162,10 @@
                 android:layout_width="300sp"
                 android:layout_height="50sp"
                 android:layout_gravity="center_horizontal"
-                android:layout_margin="20sp"
+                android:layout_marginTop="12sp"
                 android:background="@drawable/spinner_border"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/btnAddFaculty"
+                app:layout_constraintBottom_toTopOf="@+id/btnSave"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tiTeacherEmail">
@@ -152,13 +196,27 @@
                 android:layout_width="300sp"
                 android:layout_height="56dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
                 android:background="@drawable/bg_rounded_rectangle_button_solid"
-                android:text="Save Faculty"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="@string/save_faculty"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rlSpinner" />
 
+            <Button
+                android:id="@+id/bt_delete_faculty"
+                android:layout_width="300sp"
+                android:layout_height="@dimen/default_min_clickable_height"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_rounded_rectangle_button_bordered"
+                android:text="@string/delete"
+                android:textColor="?android:colorPrimary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnSave" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
