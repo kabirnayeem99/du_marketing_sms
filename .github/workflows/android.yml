@@ -20,7 +20,9 @@ jobs:
         distribution: 'adopt'
         cache: gradle
 
+    - name: Changing directory to teacher_app
+      run: cd teacher_app
     - name: Grant execute permission for gradlew
-      run: cd teacher_app && chmod +x gradlew
+      run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
