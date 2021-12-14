@@ -7,6 +7,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.parcelize.Parcelize
+import timber.log.Timber
 
 @Parcelize
 @Keep
@@ -53,7 +54,7 @@ data class FacultyData(
             for (data in this) {
                 val facultyData = data.toFacultyData()
                 facultyDataList.add(data.toFacultyData())
-                Log.d(TAG, "toFacultyDataList: $facultyData")
+                Timber.d("toFacultyDataList: $facultyData")
             }
 
             return facultyDataList

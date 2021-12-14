@@ -1,11 +1,10 @@
 package io.github.kabirnayeem99.dumarketingadmin.data.repositories
 
 import android.net.Uri
-import io.github.kabirnayeem99.dumarketingadmin.data.dataSources.EbookDataSource
-import io.github.kabirnayeem99.dumarketingadmin.data.dto.EbookDto
-import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.EbookRepository
 import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
+import io.github.kabirnayeem99.dumarketingadmin.data.dataSources.EbookDataSource
 import io.github.kabirnayeem99.dumarketingadmin.domain.data.EbookData
+import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.EbookRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -14,7 +13,7 @@ import javax.inject.Inject
 @ExperimentalCoroutinesApi
 class DefaultEbookRepository
 @Inject constructor(
-    val dataSource: EbookDataSource
+    private val dataSource: EbookDataSource
 ) : EbookRepository {
 
     override suspend fun uploadPdf(pdfFile: Uri, pdfName: String) = flow {

@@ -29,11 +29,10 @@ open class FacultyViewModel @Inject constructor(
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading = _isLoading
 
-    private val _shouldLeavePage = MutableLiveData<Boolean>(false)
+    private val _shouldLeavePage = MutableLiveData(false)
     val shouldLeavePage: LiveData<Boolean> = _shouldLeavePage
-    fun resetLeavePageStatus() {
-        _shouldLeavePage.postValue(false)
-    }
+    fun resetLeavePageStatus() = _shouldLeavePage.postValue(false)
+
 
     fun saveFacultyData(facultyData: FacultyData, post: String) {
         viewModelScope.launch(ioDispatcher) {

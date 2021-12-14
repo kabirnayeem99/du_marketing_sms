@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="12sp"
-                android:hint="Official Email Address"
+                android:hint="@string/official_email_address"
                 app:boxCornerRadiusBottomEnd="@dimen/default_radius"
                 app:boxCornerRadiusBottomStart="@dimen/default_radius"
                 app:boxCornerRadiusTopEnd="@dimen/default_radius"
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="12sp"
-                android:hint="Official Telephone Number"
+                android:hint="@string/official_telephone_number"
                 app:boxCornerRadiusBottomEnd="@dimen/default_radius"
                 app:boxCornerRadiusBottomStart="@dimen/default_radius"
                 app:boxCornerRadiusTopEnd="@dimen/default_radius"
@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4sp"
                     android:layout_weight="50"
-                    android:hint="Latitude"
+                    android:hint="@string/latitude"
                     app:boxCornerRadiusBottomEnd="@dimen/default_radius"
                     app:boxCornerRadiusBottomStart="@dimen/default_radius"
                     app:boxCornerRadiusTopEnd="@dimen/default_radius"
@@ -89,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4sp"
                     android:layout_weight="50"
-                    android:hint="Longtitude"
+                    android:hint="@string/longitude"
                     app:boxCornerRadiusBottomEnd="@dimen/default_radius"
                     app:boxCornerRadiusBottomStart="@dimen/default_radius"
                     app:boxCornerRadiusTopEnd="@dimen/default_radius"
@@ -111,7 +111,7 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="0dp"
                 android:gravity="start|top"
-                android:hint="Introduction about the department."
+                android:hint="@string/introduction_about_the_department"
                 app:boxCornerRadiusBottomEnd="@dimen/default_radius"
                 app:boxCornerRadiusBottomStart="@dimen/default_radius"
                 app:boxCornerRadiusTopEnd="@dimen/default_radius"
@@ -134,7 +134,7 @@
                 android:layout_height="56dp"
                 android:layout_marginTop="24dp"
                 android:background="@drawable/bg_rounded_rectangle_button_solid"
-                android:text="Save" />
+                android:text="@string/save" />
         </LinearLayout>
     </ScrollView>
 </layout>

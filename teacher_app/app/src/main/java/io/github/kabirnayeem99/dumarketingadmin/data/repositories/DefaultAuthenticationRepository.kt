@@ -34,7 +34,7 @@ class DefaultAuthenticationRepository @Inject constructor(
         }
     }
 
-    override fun getAuthenticationStatus() = channelFlow<Boolean> {
+    override fun getAuthenticationStatus() = channelFlow {
 
         try {
             val isLoggedIn = auth.currentUser != null

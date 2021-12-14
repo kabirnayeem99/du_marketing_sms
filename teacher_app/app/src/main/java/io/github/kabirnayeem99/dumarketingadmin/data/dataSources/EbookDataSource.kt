@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
 class EbookDataSource @Inject constructor(
-    var db: FirebaseFirestore,
+    private var db: FirebaseFirestore,
     store: FirebaseStorage
 ) {
 

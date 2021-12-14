@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
-class DefaultGalleryRepository @Inject constructor(var dataSource: GalleryDataSource) :
+class DefaultGalleryRepository @Inject constructor(private var dataSource: GalleryDataSource) :
     GalleryRepository {
     override fun getGalleryImages(): Flow<Resource<List<GalleryData>>> {
         return dataSource.getGalleryImages()

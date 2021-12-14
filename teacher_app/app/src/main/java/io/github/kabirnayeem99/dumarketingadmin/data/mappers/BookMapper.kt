@@ -10,10 +10,9 @@ import java.util.*
 object BookMapper {
 
     fun RecommendedBookDto.toBookData(): EbookData {
-        val downloadUrl = canonicalVolumeLink ?: ""
-        val name = title ?: ""
-        val thumbnailUrl = imageLinks?.thumbnail
-            ?: "https://bookstoreromanceday.org/wp-content/uploads/2020/08/book-cover-placeholder.png"
+        val downloadUrl = canonicalVolumeLink
+        val name = title
+        val thumbnailUrl = imageLinks.thumbnail
         val authorName =
             if (authors.isNullOrEmpty()) "" else (authors as ArrayList<String>).toCommaSeparatedList()
         val id = UUID.randomUUID().toString()

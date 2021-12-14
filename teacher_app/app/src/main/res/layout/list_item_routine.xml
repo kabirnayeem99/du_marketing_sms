@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -35,13 +36,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="0sp"
                     android:layout_weight="50"
-                    android:text="08:00"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/tvClassTimeMeridiem"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="08:00" />
 
                 <TextView
                     android:id="@+id/tvClassTimeMeridiem"
@@ -49,12 +50,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2sp"
                     android:layout_weight="50"
-                    android:text="AM"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvClassTime" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvClassTime"
+                    tools:text="AM" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -75,9 +76,9 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="4sp"
                     android:padding="1sp"
-                    android:text="Class Name"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:text="Class Name" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -89,6 +90,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginEnd="8sp"
+                        android:contentDescription="@string/location"
                         android:padding="1.8sp"
                         android:src="@drawable/ic_fluent_map_24_selector" />
 
@@ -96,7 +98,7 @@
                         android:id="@+id/tvClassLocation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="location to the third building bla bla" />
+                        tools:text="location to the third building bla bla" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -109,6 +111,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginEnd="8sp"
+                        android:contentDescription="@string/teacher"
                         android:padding="1.8sp"
                         android:src="@drawable/ic_fluent_people_24_selector" />
 
@@ -116,7 +119,7 @@
                         android:id="@+id/tvTeacherName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Teacher Name" />
+                        tools:text="Teacher Name" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

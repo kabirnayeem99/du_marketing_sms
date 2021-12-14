@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -35,6 +36,7 @@
                 <ImageView
                     android:id="@+id/ivProfileImage"
                     android:layout_width="match_parent"
+                    android:contentDescription="@string/teacher_photo"
                     android:layout_height="match_parent"
                     android:background="@drawable/ic_fluent_person_24_selector"
                     android:scaleType="centerCrop" />
@@ -51,11 +53,11 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="2sp"
                     android:layout_marginBottom="0sp"
-                    android:text="Name"
                     android:textAlignment="gravity"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    app:layout_constrainedWidth="true" />
+                    app:layout_constrainedWidth="true"
+                    tools:text="Name" />
 
 
                 <LinearLayout
@@ -67,6 +69,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:contentDescription="@string/teacher_position"
                         android:layout_marginEnd="8sp"
                         android:padding="1.8sp"
                         android:paddingStart="0sp"
@@ -77,7 +80,7 @@
                         android:id="@+id/tvFacultyPost"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Position" />
+                        tools:text="Position" />
 
                 </LinearLayout>
 
@@ -92,6 +95,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginEnd="8sp"
+                        android:contentDescription="@string/teacher_phone"
                         android:padding="1.8sp"
                         android:src="@drawable/ic_fluent_phone_arrow_right_24_selector" />
 
@@ -99,7 +103,7 @@
                         android:id="@+id/tvFacultyPhone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="PlaceHlder" />
+                        tools:text="01928291" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -112,6 +116,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginEnd="8sp"
+                        android:contentDescription="@string/teacher_mail"
                         android:padding="1.8sp"
                         android:src="@drawable/ic_fluent_mail_24_selector" />
 
@@ -119,7 +124,7 @@
                         android:id="@+id/tvFacultyEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="fdsfa" />
+                        tools:text="mail@mail.com" />
                 </LinearLayout>
 
             </LinearLayout>
