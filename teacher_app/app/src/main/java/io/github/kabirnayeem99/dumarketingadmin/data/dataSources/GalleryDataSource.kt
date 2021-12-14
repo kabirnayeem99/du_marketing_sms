@@ -17,7 +17,7 @@ import javax.inject.Inject
 class GalleryDataSource
 @Inject constructor(
     private var db: FirebaseFirestore,
-    private store: FirebaseStorage,
+    store: FirebaseStorage,
 ) {
 
     private val galleryStorageRef =

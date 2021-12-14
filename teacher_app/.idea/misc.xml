@@ -15,6 +15,10 @@
         <entry key="app/src/main/res/drawable/bg_top_rounded_layout.xml" value="0.25092592592592594" />
         <entry key="app/src/main/res/drawable/gradient_background_overlay.xml" value="0.2760416666666667" />
         <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.23796296296296296" />
+        <entry key="app/src/main/res/drawable/ic_number_four.xml" value="0.14583333333333334" />
+        <entry key="app/src/main/res/drawable/ic_number_one.xml" value="0.14583333333333334" />
+        <entry key="app/src/main/res/drawable/ic_number_three.xml" value="0.14583333333333334" />
+        <entry key="app/src/main/res/drawable/ic_number_two.xml" value="0.14583333333333334" />
         <entry key="app/src/main/res/drawable/illust_studying.xml" value="0.55" />
         <entry key="app/src/main/res/drawable/spinner_border.xml" value="0.23796296296296296" />
         <entry key="app/src/main/res/layout/activity_add_gallery_image.xml" value="0.165" />
