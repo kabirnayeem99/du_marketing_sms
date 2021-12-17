@@ -8,10 +8,10 @@ import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseFragment
+import io.github.kabirnayeem99.dumarketingadmin.common.util.TimeUtilities
 import io.github.kabirnayeem99.dumarketingadmin.data.model.RoutineData
 import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentUpsertRoutineBinding
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.RoutineViewModel
-import io.github.kabirnayeem99.dumarketingadmin.common.util.TimeUtilities
 import timber.log.Timber
 import java.util.*
 
@@ -34,7 +34,7 @@ class UpsertRoutineFragment : BaseFragment<FragmentUpsertRoutineBinding>() {
     }
 
     private fun handleViews() {
-        binding.btnSaveRotuine.setOnClickListener { btnSaveRoutineClick() }
+        binding.btnSaveRoutine.setOnClickListener { btnSaveRoutineClick() }
     }
 
     private val mutableTime = MutableLiveData<String>()

@@ -1,8 +1,8 @@
 package io.github.kabirnayeem99.dumarketingadmin.data.repositories
 
 import com.google.firebase.auth.FirebaseAuth
-import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.AuthenticationRepository
 import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
+import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.AuthenticationRepository
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.tasks.await
 import timber.log.Timber
@@ -38,8 +38,7 @@ class DefaultAuthenticationRepository @Inject constructor(
 
         try {
             val isLoggedIn = auth.currentUser != null
-            if (isLoggedIn)
-                send(true)
+            if (isLoggedIn) send(true)
             else send(false)
         } catch (e: Exception) {
             Timber.e(e.localizedMessage)

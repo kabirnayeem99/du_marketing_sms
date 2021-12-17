@@ -4,18 +4,22 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseFragment
-import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentLoginBinding
 import io.github.kabirnayeem99.dumarketingadmin.common.ktx.animateAndOnClickListener
-import io.github.kabirnayeem99.dumarketingadmin.common.ktx.openActivity
-import io.github.kabirnayeem99.dumarketingadmin.presentation.view.dashboard.DashboardActivity
-import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.AuthenticationViewModel
+import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showErrorMessage
 import io.github.kabirnayeem99.dumarketingadmin.common.util.RegexValidatorUtils
+import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentLoginBinding
+import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.AuthenticationViewModel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginFragment : BaseFragment<FragmentLoginBinding>() {
@@ -44,24 +48,33 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
     private fun setUpRegisterButton() {
         binding.btnRegister.animateAndOnClickListener {
-            navController.navigate(R.id.action_loginFragment_to_registerFragment)
+            lifecycleScope.launch {
+                navController.navigate(R.id.action_loginFragment_to_registerFragment)
+            }
         }
     }
 
     private fun setUpObservers() {
         authViewModel.apply {
-            loginSuccess.observe(viewLifecycleOwner, {
-                if (it.isNotEmpty()) navigateToDashboard()
-            })
+            lifecycleScope.launch {
+                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    uiState.collect { authState ->
+                        if (authState.isCheckingAuthentication) loadingIndicator.show() else loadingIndicator.dismiss()
+                        if (authState.errorMessage.isNotEmpty()) showErrorMessage(authState.errorMessage)
+                        binding.authState = authState
+                    }
+                }
+            }
         }
     }
 
 
     private fun logIn() {
-        authViewModel.email = binding.tiUserEmail.editText?.text.toString()
-        authViewModel.password = binding.tiUserPassword.editText?.text.toString()
-
-        authViewModel.login()
+        authViewModel.apply {
+            setEmail(binding.tiUserEmail.editText?.text.toString())
+            setPassword(binding.tiUserPassword.editText?.text.toString())
+            login()
+        }
     }
 
     private fun setUpEmailTextInput() {
@@ -85,10 +98,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 logIn()
             }
         }
-    }
-
-    private fun navigateToDashboard() {
-        activity?.openActivity(DashboardActivity::class.java, true)
     }
 
     private class ValidationTextWatcher(val textInputLayout: TextInputLayout) : TextWatcher {

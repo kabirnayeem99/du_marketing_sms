@@ -4,6 +4,9 @@
 
     <data>
 
+        <variable
+            name="authState"
+            type="io.github.kabirnayeem99.dumarketingadmin.presentation.uiStates.AuthUiState" />
     </data>
 
 
@@ -78,7 +81,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:text="@{authState.name}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -103,7 +107,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:text="@{authState.email}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -127,7 +132,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:text="@{authState.password}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -138,7 +144,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="6dp"
                 android:background="@drawable/bg_rounded_rectangle_button_solid"
-                android:text="@string/log_in"
+                android:text="@string/register"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

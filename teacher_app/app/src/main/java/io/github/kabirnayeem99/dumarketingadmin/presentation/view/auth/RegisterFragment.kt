@@ -10,17 +10,16 @@ import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.common.base.BaseFragment
-import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentRegisterBinding
 import io.github.kabirnayeem99.dumarketingadmin.common.ktx.animateAndOnClickListener
-import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.AuthenticationViewModel
 import io.github.kabirnayeem99.dumarketingadmin.common.util.RegexValidatorUtils
+import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentRegisterBinding
+import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.AuthenticationViewModel
 
 @AndroidEntryPoint
 class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
 
     private lateinit var navController: NavController
     private val authViewModel: AuthenticationViewModel by activityViewModels()
-
 
     private lateinit var emailValidationTextWatcher: ValidationTextWatcher
     private lateinit var passwordValidationTextWatcher: ValidationTextWatcher
@@ -30,7 +29,6 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
 
     override fun onCreated(savedInstanceState: Bundle?) {
         setUpViews()
-        setUpObservers()
     }
 
 
@@ -41,18 +39,15 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
         setUpRegisterButton()
     }
 
-    private fun setUpObservers() {
-        authViewModel.registerSuccess.observe(viewLifecycleOwner, {
-            if (it.isNotEmpty()) navController.navigateUp()
-        })
-    }
-
 
     private fun register() {
-        authViewModel.email = binding.tiUserEmail.editText?.text.toString()
-        authViewModel.password = binding.tiUserPassword.editText?.text.toString()
+        authViewModel.apply {
+            setEmail(binding.tiUserEmail.editText?.text.toString())
+            setPassword(binding.tiUserPassword.editText?.text.toString())
+            setName(binding.tiUserName.editText?.text.toString())
 
-        authViewModel.register()
+            register()
+        }
     }
 
     private fun setUpEmailTextInput() {
