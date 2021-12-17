@@ -15,7 +15,6 @@ object Constants {
     const val NOTICE_DB_REF = "Notice"
     const val GALLERY_DB_REF = "Gallery"
     const val CONTENT_URI = "content://"
-    const val EXTRA_FACULTY_DATA = "faculty data"
     const val FILE_URI = "file://"
 
     const val IMAGE_QUALITY_LESSEN_PERCENT = 50

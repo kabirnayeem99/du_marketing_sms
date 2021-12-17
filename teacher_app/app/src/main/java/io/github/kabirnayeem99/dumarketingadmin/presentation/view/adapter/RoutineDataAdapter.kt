@@ -19,19 +19,19 @@ class RoutineDataAdapter(
     private val listener: (RoutineData) -> Unit
 ) : RecyclerView.Adapter<RoutineDataAdapter.ViewHolder>() {
 
-    inner class ViewHolder(private val view: View) :
+    inner class ViewHolder(view: View) :
 
 
         RecyclerView.ViewHolder(view) {
 
         private val mcvRoutineListItem: MaterialCardView =
             view.findViewById(R.id.mcvRoutineListItem)
-        private val tvSubjectName: TextView = view.findViewById<TextView>(R.id.tvSubjectName)
-        private val tvTeacherName: TextView = view.findViewById<TextView>(R.id.tvTeacherName)
-        private val tvClassLocation: TextView = view.findViewById<TextView>(R.id.tvClassLocation)
-        private val tvClassTime: TextView = view.findViewById<TextView>(R.id.tvClassTime)
-        private val tvClassTimeMeridiem: TextView =
-            view.findViewById<TextView>(R.id.tvClassTimeMeridiem)
+        private val tvSubjectName: TextView = view.findViewById(R.id.tvSubjectName)
+        private val tvTeacherName: TextView = view.findViewById(R.id.tvTeacherName)
+        private val tvClassLocation: TextView = view.findViewById(R.id.tvClassLocation)
+        private val tvClassTime: TextView = view.findViewById(R.id.tvClassTime)
+        private val tvClassTimeMeridian: TextView =
+            view.findViewById(R.id.tvClassTimeMeridiem)
 
         fun bind(routineData: RoutineData) {
             tvSubjectName.text = routineData.className
@@ -44,7 +44,7 @@ class RoutineDataAdapter(
             }
 
             getMeridianFromStringTime(routineData.time).let {
-                tvClassTimeMeridiem.text = it.uppercase(Locale.getDefault())
+                tvClassTimeMeridian.text = it.uppercase(Locale.getDefault())
             }
 
             mcvRoutineListItem.setOnClickListener { listener(routineData) }

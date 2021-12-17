@@ -2,10 +2,10 @@ package io.github.kabirnayeem99.dumarketingadmin.data.dataSources
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import io.github.kabirnayeem99.dumarketingadmin.data.model.GalleryData
-import io.github.kabirnayeem99.dumarketingadmin.data.model.GalleryData.Companion.toGalleryDataList
 import io.github.kabirnayeem99.dumarketingadmin.common.util.Constants
 import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
+import io.github.kabirnayeem99.dumarketingadmin.data.model.GalleryData
+import io.github.kabirnayeem99.dumarketingadmin.data.model.GalleryData.Companion.toGalleryDataList
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
@@ -14,7 +14,11 @@ import kotlinx.coroutines.tasks.await
 import timber.log.Timber
 import javax.inject.Inject
 
-class GalleryDataSource @Inject constructor(var db: FirebaseFirestore, var store: FirebaseStorage) {
+class GalleryDataSource
+@Inject constructor(
+    private var db: FirebaseFirestore,
+    store: FirebaseStorage,
+) {
 
     private val galleryStorageRef =
         store.reference.child(Constants.GALLERY_IMAGE_PATH_STRING_FOLDER_NAME)
@@ -66,7 +70,7 @@ class GalleryDataSource @Inject constructor(var db: FirebaseFirestore, var store
     }
 
     @ExperimentalCoroutinesApi
-    fun getGalleryImages() = callbackFlow<Resource<List<GalleryData>>> {
+    fun getGalleryImages() = callbackFlow {
         db.collection(Constants.GALLERY_DB_REF).addSnapshotListener { value, error ->
             if (error != null || value == null) {
                 trySend(Resource.Error(error?.localizedMessage ?: "Could not get the images."))

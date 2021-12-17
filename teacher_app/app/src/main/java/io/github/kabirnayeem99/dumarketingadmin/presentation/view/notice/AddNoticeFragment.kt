@@ -27,7 +27,7 @@ import javax.inject.Inject
 class AddNoticeFragment : BaseFragment<FragmentAddNoticeBinding>() {
 
     private var imageUrlString: String = ""
-    lateinit var bitmap: Bitmap
+    private lateinit var bitmap: Bitmap
 
     @Inject
     lateinit var ioDispatcher: CoroutineDispatcher

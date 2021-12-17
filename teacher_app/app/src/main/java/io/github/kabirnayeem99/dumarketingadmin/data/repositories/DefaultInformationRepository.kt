@@ -5,7 +5,7 @@ import io.github.kabirnayeem99.dumarketingadmin.data.model.InformationData
 import io.github.kabirnayeem99.dumarketingadmin.domain.repositories.InfoRepository
 import javax.inject.Inject
 
-class DefaultInfoRepository @Inject constructor(var dataSource: InfoDataSource) : InfoRepository {
+class DefaultInfoRepository @Inject constructor(private var dataSource: InfoDataSource) : InfoRepository {
     override suspend fun saveInformationData(informationData: InformationData) =
         dataSource.saveInformationData(informationData)
 

@@ -3,7 +3,6 @@ package io.github.kabirnayeem99.dumarketingadmin.presentation.view.faculty
 import android.os.Bundle
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,7 +16,6 @@ import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentFacultyBindi
 import io.github.kabirnayeem99.dumarketingadmin.presentation.view.adapter.FacultyAdapter
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.FacultyViewModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -32,9 +30,7 @@ class FacultyFragment : BaseFragment<FragmentFacultyBinding>() {
         get() = R.layout.fragment_faculty
 
     private val facultyAdapter: FacultyAdapter by lazy {
-        FacultyAdapter {
-            navigateToAddFaculty(it)
-        }
+        FacultyAdapter { faculty -> navigateToAddFaculty(faculty) }
     }
 
     override fun onCreated(savedInstanceState: Bundle?) {
@@ -43,20 +39,18 @@ class FacultyFragment : BaseFragment<FragmentFacultyBinding>() {
     }
 
     private fun subscribeObservers() {
-        lifecycleScope.launchWhenCreated {
-            facultyViewModel.apply {
-                facultyListObservable.observe(viewLifecycleOwner, {
-                    facultyAdapter.differ.submitList(it)
-                })
-                errorMessage.collect {
-                    showErrorMessage(it)
-                }
-                message.collect {
-                    showMessage(it)
-                }
-                isLoading.collect {
-                    if (it) loadingIndicator.show() else loadingIndicator.dismiss()
-                }
+        facultyViewModel.apply {
+            facultyListObservable.observe(viewLifecycleOwner, {
+                facultyAdapter.differ.submitList(it)
+            })
+            errorMessage.observe(viewLifecycleOwner) {
+                showErrorMessage(it)
+            }
+            message.observe(viewLifecycleOwner) {
+                showMessage(it)
+            }
+            isLoading.observe(viewLifecycleOwner) {
+                if (it) loadingIndicator.show() else loadingIndicator.dismiss()
             }
         }
     }

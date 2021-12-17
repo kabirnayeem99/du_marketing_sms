@@ -1,11 +1,7 @@
 package io.github.kabirnayeem99.dumarketingadmin.data.dataSources
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.UploadTask
 import io.github.kabirnayeem99.dumarketingadmin.common.util.Constants
 import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
 import io.github.kabirnayeem99.dumarketingadmin.data.model.NoticeData
@@ -14,12 +10,11 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
-import timber.log.Timber
 import javax.inject.Inject
 
 class NoticeDataSource @Inject constructor(
-    var db: FirebaseFirestore,
-    var store: FirebaseStorage,
+    private var db: FirebaseFirestore,
+    store: FirebaseStorage,
 ) {
     // initialise database and storage
     private val storage = store.reference.child(Constants.NOTICE_IMAGE_PATH_STRING_FOLDER_NAME)
@@ -48,7 +43,7 @@ class NoticeDataSource @Inject constructor(
 
             return Resource.Success(noticeData.title)
         } catch (e: Exception) {
-            return Resource.Error(e.localizedMessage ?: "Coould not save the notice.")
+            return Resource.Error(e.localizedMessage ?: "Could not save the notice.")
         }
 
     }

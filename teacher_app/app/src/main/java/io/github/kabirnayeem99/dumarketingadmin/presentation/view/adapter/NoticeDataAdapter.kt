@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.data.model.NoticeData
+import timber.log.Timber
 
 class NoticeDataAdapter(
     // lambda
@@ -66,7 +67,7 @@ class NoticeDataAdapter(
                 try {
                     Glide.with(holder.itemView).load(imageUrl).into(ivNoticeImage)
                 } catch (e: Exception) {
-                    Log.e(TAG, "onBindViewHolder: ${e.message}")
+                    Timber.e("onBindViewHolder: " + e.message)
                     e.printStackTrace()
                 }
 

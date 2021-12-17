@@ -1,6 +1,7 @@
 package io.github.kabirnayeem99.dumarketingadmin.common.util
 
 import android.util.Log
+import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.max
@@ -52,7 +53,7 @@ object TimeUtilities {
             val format = SimpleDateFormat("hh:mm a", Locale.UK)
             format.parse(timeString)
         } catch (e: Exception) {
-            Log.e(TAG, "getDateFromString: ${e.message}")
+            Timber.e("getDateFromString: " + e.message)
             null
         }
     }

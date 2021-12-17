@@ -26,7 +26,7 @@ class EbookFragment : BaseFragment<FragmentEbookBinding>() {
     @Inject
     lateinit var ioDispatcher: CoroutineDispatcher
 
-    lateinit var navController: NavController
+    private lateinit var navController: NavController
     private val ebookViewModel: EbookViewModel by viewModels()
 
     private val ebookAdapter: EbookDataAdapter by lazy {

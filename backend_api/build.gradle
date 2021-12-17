@@ -1,0 +1,46 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version "$kotlin_version"
+    id 'org.jetbrains.kotlin.plugin.serialization' version "$kotlin_version"
+    id 'application'
+}
+
+
+group 'io.github.kabirnayeem99'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // adds Ktor's core components to our project.
+    implementation "io.ktor:ktor-server-core:$ktor_version"
+
+    // adds the Netty engine to our project, allowing us to use server
+    // functionality without having to rely on an external application container
+    implementation "io.ktor:ktor-server-netty:$ktor_version"
+
+    // provides an implementation of SLF4J, allowing us to see nicely
+    // formatted logs in our console
+    implementation "ch.qos.logback:logback-classic:$logback_version"
+
+    // provides a convenient mechanism for converting Kotlin
+    // objects into a serialized form like JSON, and vice versa
+    implementation "io.ktor:ktor-serialization:$ktor_version"
+
+    // allows us to test parts of our Ktor application without having to
+    // use the whole HTTP stack in the process
+    testImplementation "io.ktor:ktor-server-test-host:$ktor_version"
+    testImplementation "org.jetbrains.kotlin:kotlin-test"
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+application {
+    mainClassName = 'io.github.kabirnayeem99.httpapi.ApplicationKt'
+}

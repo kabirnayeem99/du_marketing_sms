@@ -1,6 +1,5 @@
 package io.github.kabirnayeem99.dumarketingadmin.presentation.view.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.data.model.FacultyData
+import timber.log.Timber
 
 class FacultyAdapter(val navigateToUpdatePage: (facultyData: FacultyData) -> Unit) :
     RecyclerView.Adapter<FacultyAdapter.FacultyViewHolder>() {
@@ -73,7 +73,7 @@ class FacultyAdapter(val navigateToUpdatePage: (facultyData: FacultyData) -> Uni
                 try {
                     Glide.with(holder.itemView).load(profileImageUrl).into(ivAvatarFacultyMember)
                 } catch (e: Exception) {
-                    Log.e(TAG, "onBindViewHolder: Glide loading $e")
+                    Timber.e(e, "onBindViewHolder: Glide loading ${e.localizedMessage}")
                 }
             }
 

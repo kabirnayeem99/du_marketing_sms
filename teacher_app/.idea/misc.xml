@@ -15,6 +15,10 @@
         <entry key="app/src/main/res/drawable/bg_top_rounded_layout.xml" value="0.25092592592592594" />
         <entry key="app/src/main/res/drawable/gradient_background_overlay.xml" value="0.2760416666666667" />
         <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.23796296296296296" />
+        <entry key="app/src/main/res/drawable/ic_number_four.xml" value="0.14583333333333334" />
+        <entry key="app/src/main/res/drawable/ic_number_one.xml" value="0.14583333333333334" />
+        <entry key="app/src/main/res/drawable/ic_number_three.xml" value="0.14583333333333334" />
+        <entry key="app/src/main/res/drawable/ic_number_two.xml" value="0.14583333333333334" />
         <entry key="app/src/main/res/drawable/illust_studying.xml" value="0.55" />
         <entry key="app/src/main/res/drawable/spinner_border.xml" value="0.23796296296296296" />
         <entry key="app/src/main/res/layout/activity_add_gallery_image.xml" value="0.165" />
@@ -35,6 +39,7 @@
         <entry key="app/src/main/res/layout/fragment_add_notice.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_ebook.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_faculty.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/layout/fragment_gallery_image.xml" value="0.1685185185185185" />
         <entry key="app/src/main/res/layout/fragment_information.xml" value="0.1685185185185185" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
@@ -43,6 +48,7 @@
         <entry key="app/src/main/res/layout/fragment_routine.xml" value="0.1685185185185185" />
         <entry key="app/src/main/res/layout/fragment_routine_details.xml" value="0.1685185185185185" />
         <entry key="app/src/main/res/layout/fragment_upload_ebook.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_upsert_faculty.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_upsert_routine.xml" value="0.25" />
         <entry key="app/src/main/res/layout/list_item_ebook.xml" value="0.335" />
         <entry key="app/src/main/res/layout/list_item_faculty.xml" value="0.2557291666666667" />
@@ -50,6 +56,7 @@
         <entry key="app/src/main/res/layout/list_item_notice.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/layout/list_item_recommended_book.xml" value="0.335" />
         <entry key="app/src/main/res/layout/list_item_routine.xml" value="0.2557291666666667" />
+        <entry key="app/src/main/res/layout/shimmer_placeholder_faculty.xml" value="0.1" />
         <entry key="app/src/main/res/menu/dashboard_menu.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.25092592592592594" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.25092592592592594" />

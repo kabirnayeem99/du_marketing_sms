@@ -8,7 +8,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
-class DefaultNoticeRepository @Inject constructor(val dataSource: NoticeDataSource) :
+class DefaultNoticeRepository @Inject constructor(private val dataSource: NoticeDataSource) :
     NoticeRepository {
 
     override suspend fun saveNotice(noticeData: NoticeData) = dataSource.saveNotice(noticeData)

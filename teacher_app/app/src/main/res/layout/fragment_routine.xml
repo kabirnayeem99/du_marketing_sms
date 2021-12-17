@@ -46,17 +46,19 @@
                             android:layout_height="96dp"
                             android:layout_gravity="center"
                             android:layout_marginTop="8dp"
+                            android:contentDescription="@string/_1st_year"
                             android:padding="10dp"
                             android:src="@drawable/ic_number_one"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="?android:colorPrimary" />
 
                         <TextView
                             style="@style/TextAppearance.AppCompat.Large"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="1st Year"
+                            android:text="@string/_1st_year"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -90,17 +92,19 @@
                             android:layout_height="96dp"
                             android:layout_gravity="center"
                             android:layout_marginTop="8dp"
+                            android:contentDescription="@string/_2nd_year"
                             android:padding="10dp"
                             android:src="@drawable/ic_number_two"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="?android:colorPrimary" />
 
                         <TextView
                             style="@style/TextAppearance.AppCompat.Large"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="2nd Year"
+                            android:text="@string/_2nd_year"
                             android:textAlignment="center"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -138,17 +142,19 @@
                             android:layout_height="96dp"
                             android:layout_gravity="center"
                             android:layout_marginTop="8dp"
+                            android:contentDescription="@string/_3rd_year"
                             android:padding="10dp"
                             android:src="@drawable/ic_number_three"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="?android:colorPrimary" />
 
                         <TextView
                             style="@style/TextAppearance.AppCompat.Large"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="3rd Year"
+                            android:text="@string/_3rd_year"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -182,17 +188,19 @@
                             android:layout_height="96dp"
                             android:layout_gravity="center"
                             android:layout_marginTop="8dp"
+                            android:contentDescription="@string/_4th_year"
                             android:padding="10dp"
                             android:src="@drawable/ic_number_four"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="?android:colorPrimary" />
 
                         <TextView
                             style="@style/TextAppearance.AppCompat.Large"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="4th Year"
+                            android:text="@string/_4th_year"
                             android:textAlignment="center"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"

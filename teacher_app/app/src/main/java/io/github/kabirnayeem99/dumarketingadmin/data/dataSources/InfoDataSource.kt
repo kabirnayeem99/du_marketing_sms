@@ -8,7 +8,7 @@ import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
-class InfoDataSource @Inject constructor(var db: FirebaseFirestore) {
+class InfoDataSource @Inject constructor(private var db: FirebaseFirestore) {
     suspend fun saveInformationData(informationData: InformationData): Resource<String> {
         return try {
             val key: String = Constants.ABOUT_DB_REF

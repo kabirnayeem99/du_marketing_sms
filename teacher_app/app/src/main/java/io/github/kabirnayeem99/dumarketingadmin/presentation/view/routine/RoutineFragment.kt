@@ -16,7 +16,7 @@ import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.RoutineVi
 @AndroidEntryPoint
 class RoutineFragment : BaseFragment<FragmentRoutineBinding>() {
 
-    lateinit var navController: NavController
+    private lateinit var navController: NavController
     private val routineViewModel: RoutineViewModel by activityViewModels()
 
     override val layoutRes: Int

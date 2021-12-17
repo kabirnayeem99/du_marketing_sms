@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
-class RoutineDataSource @Inject constructor(val db: FirebaseFirestore) {
+class RoutineDataSource @Inject constructor(private val db: FirebaseFirestore) {
     suspend fun insertRoutineData(routineData: RoutineData, batchYear: String): Resource<String> {
 
         return try {

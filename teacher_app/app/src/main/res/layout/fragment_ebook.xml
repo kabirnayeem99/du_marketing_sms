@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- app bar -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_app_bar"
             android:layout_width="match_parent"
@@ -60,6 +61,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+        <!-- main body -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_ebooks"
             android:layout_width="match_parent"

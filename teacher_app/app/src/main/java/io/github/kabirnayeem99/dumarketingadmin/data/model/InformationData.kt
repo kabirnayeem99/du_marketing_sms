@@ -3,6 +3,7 @@ package io.github.kabirnayeem99.dumarketingadmin.data.model
 import android.util.Log
 import androidx.annotation.Keep
 import com.google.firebase.firestore.DocumentSnapshot
+import timber.log.Timber
 
 @Keep
 data class InformationData(
@@ -29,7 +30,7 @@ data class InformationData(
                 lat = this["lat"].toString().toDouble()
                 long = this["long"].toString().toDouble()
             } catch (e: Exception) {
-                Log.e(TAG, "toInformationData: ${e.message}")
+                Timber.e("toInformationData: " + e.message)
                 e.printStackTrace()
             }
 

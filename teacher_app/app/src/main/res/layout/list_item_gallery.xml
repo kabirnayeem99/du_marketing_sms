@@ -18,6 +18,7 @@
             android:layout_width="170sp"
             android:layout_height="130sp"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/gallery_image"
             android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher_round"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -43,6 +44,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_margin="4sp"
+            android:contentDescription="@string/delete"
             android:padding="8sp"
             android:src="@drawable/ic_fluent_delete_24_selector"
             app:tint="@color/red" />

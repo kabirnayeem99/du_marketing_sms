@@ -1,6 +1,5 @@
 package io.github.kabirnayeem99.dumarketingadmin.presentation.view.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,15 +11,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import io.github.kabirnayeem99.dumarketingadmin.R
 import io.github.kabirnayeem99.dumarketingadmin.data.model.GalleryData
+import timber.log.Timber
 
 class GalleryDataAdapter(private var listener: (GalleryData) -> Unit) :
     RecyclerView.Adapter<GalleryDataAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val ivGalleryImage: ImageView = itemView.findViewById<ImageView>(R.id.ivGalleryImage)
-        val tvImageCategory: TextView = itemView.findViewById<TextView>(R.id.tvImageCategory)
-        val ivBtnDelete: ImageView = itemView.findViewById<ImageView>(R.id.ivBtnDelete)
+        val ivGalleryImage: ImageView = itemView.findViewById(R.id.ivGalleryImage)
+        val tvImageCategory: TextView = itemView.findViewById(R.id.tvImageCategory)
+        val ivBtnDelete: ImageView = itemView.findViewById(R.id.ivBtnDelete)
     }
 
     private val differCallback = object : DiffUtil.ItemCallback<GalleryData>() {
@@ -66,15 +66,13 @@ class GalleryDataAdapter(private var listener: (GalleryData) -> Unit) :
                 tvImageCategory.text = category
 
                 ivBtnDelete.setOnClickListener {
-                    listener(this).also {
-                        Log.d(TAG, "onBindViewHolder: Successfull")
-                    }
+                    listener(this).also { Timber.d("onBindViewHolder: Successful") }
                 }
 
                 try {
                     Glide.with(holder.itemView).load(imageUrl).into(ivGalleryImage)
                 } catch (e: Exception) {
-                    Log.e(TAG, "onBindViewHolder: ${e.message}")
+                    Timber.e(e, "onBindViewHolder: " + e.localizedMessage)
                     e.printStackTrace()
                 }
 
@@ -84,7 +82,4 @@ class GalleryDataAdapter(private var listener: (GalleryData) -> Unit) :
 
     override fun getItemCount() = differ.currentList.size
 
-    companion object {
-        private const val TAG = "GalleryDataAdapter"
-    }
 }

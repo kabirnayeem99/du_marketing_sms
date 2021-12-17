@@ -8,7 +8,7 @@ import io.github.kabirnayeem99.dumarketingadmin.common.util.Resource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
-class DefaultRoutineRepository @Inject constructor(val dataSource: RoutineDataSource) :
+class DefaultRoutineRepository @Inject constructor(private val dataSource: RoutineDataSource) :
     RoutineRepository {
 
     override suspend fun insertRoutineData(

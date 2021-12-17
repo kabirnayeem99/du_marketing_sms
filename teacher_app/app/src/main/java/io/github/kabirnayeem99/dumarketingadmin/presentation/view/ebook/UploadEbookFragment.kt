@@ -37,7 +37,7 @@ class UploadEbookFragment : BaseFragment<FragmentUploadEbookBinding>() {
 
     private lateinit var selectedBook: EbookData
     private var pdfFile: Uri? = null
-    lateinit var pdfName: String
+    private lateinit var pdfName: String
 
     private val recommendedBookAdapter: RecommendedBookAdapter by lazy {
         RecommendedBookAdapter { selectRecommendedBookForUpload(it) }

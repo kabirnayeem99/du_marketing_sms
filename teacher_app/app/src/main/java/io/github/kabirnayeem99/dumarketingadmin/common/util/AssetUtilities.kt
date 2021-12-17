@@ -8,6 +8,7 @@ import android.os.Build
 import android.provider.MediaStore
 import android.util.Log
 import io.github.kabirnayeem99.dumarketingadmin.common.util.Constants.IMAGE_QUALITY_LESSEN_PERCENT
+import timber.log.Timber
 import java.io.ByteArrayOutputStream
 
 object AssetUtilities {
@@ -46,7 +47,7 @@ object AssetUtilities {
     fun dataUriToBitmap(dataUri: Uri?, contentResolver: ContentResolver): Bitmap? {
         try {
             if (dataUri == null) {
-                Log.e(TAG, "dataUriToBitmap: the uri is null")
+                Timber.e("dataUriToBitmap: the uri is null")
                 return null
             }
 
@@ -64,7 +65,7 @@ object AssetUtilities {
                 }
             }
         } catch (e: Exception) {
-            Log.e(TAG, "dataUriToBitmap: $e")
+            Timber.e(e, "dataUriToBitmap: $e")
             return null
         }
     }

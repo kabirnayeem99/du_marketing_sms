@@ -16,7 +16,7 @@ import io.github.kabirnayeem99.dumarketingadmin.R
 
 abstract class BaseDialog<V : ViewDataBinding> : DialogFragment() {
     lateinit var binding: V
-    lateinit var baseView: View
+    private lateinit var baseView: View
 
     @get:LayoutRes
     protected abstract val layoutRes: Int

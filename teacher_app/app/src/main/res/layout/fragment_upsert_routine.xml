@@ -88,7 +88,7 @@
 
 
             <Button
-                android:id="@+id/btnSaveRotuine"
+                android:id="@+id/btnSaveRoutine"
                 android:layout_width="300dp"
                 android:layout_height="56dp"
                 android:layout_gravity="center_horizontal"
@@ -96,7 +96,7 @@
                 android:layout_marginBottom="6dp"
                 android:background="@drawable/bg_rounded_rectangle_button_solid"
                 android:backgroundTint="?android:colorPrimary"
-                android:text="Save Routine"
+                android:text="@string/save_routine"
                 android:textColor="@color/white" />
 
         </LinearLayout>

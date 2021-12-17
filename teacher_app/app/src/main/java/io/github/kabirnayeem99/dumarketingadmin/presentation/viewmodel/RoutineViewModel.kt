@@ -17,8 +17,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RoutineViewModel @Inject constructor(
-    val repo: DefaultRoutineRepository,
-    val ioContext: CoroutineDispatcher
+    private val repo: DefaultRoutineRepository,
+    private val ioContext: CoroutineDispatcher
 ) : BaseViewModel() {
 
 
