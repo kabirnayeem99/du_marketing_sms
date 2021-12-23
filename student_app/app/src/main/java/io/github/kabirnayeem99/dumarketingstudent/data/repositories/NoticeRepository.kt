@@ -5,9 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
-import io.github.kabirnayeem99.dumarketingstudent.data.vo.NoticeData
-import io.github.kabirnayeem99.dumarketingstudent.data.vo.NoticeData.Companion.toNoticeDataList
-import io.github.kabirnayeem99.dumarketingstudent.util.Constants.NOTICE_DB_REF
+import io.github.kabirnayeem99.dumarketingstudent.data.dto.NoticeData
+import io.github.kabirnayeem99.dumarketingstudent.data.dto.NoticeData.Companion.toNoticeDataList
+import io.github.kabirnayeem99.dumarketingstudent.common.util.Constants.NOTICE_DB_REF
 import javax.inject.Inject
 
 class NoticeRepository @Inject constructor(var db: FirebaseFirestore) {

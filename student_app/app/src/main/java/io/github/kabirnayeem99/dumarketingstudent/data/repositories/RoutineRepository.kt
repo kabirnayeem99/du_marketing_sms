@@ -3,10 +3,10 @@ package io.github.kabirnayeem99.dumarketingstudent.data.repositories
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
-import io.github.kabirnayeem99.dumarketingstudent.data.vo.RoutineData
-import io.github.kabirnayeem99.dumarketingstudent.data.vo.RoutineData.Companion.toRoutineDataList
-import io.github.kabirnayeem99.dumarketingstudent.util.Constants
-import io.github.kabirnayeem99.dumarketingstudent.util.Resource
+import io.github.kabirnayeem99.dumarketingstudent.data.dto.RoutineData
+import io.github.kabirnayeem99.dumarketingstudent.data.dto.RoutineData.Companion.toRoutineDataList
+import io.github.kabirnayeem99.dumarketingstudent.common.util.Constants
+import io.github.kabirnayeem99.dumarketingstudent.common.util.Resource
 import javax.inject.Inject
 
 class RoutineRepository @Inject constructor(var db: FirebaseFirestore) {

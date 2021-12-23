@@ -4,10 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import io.github.kabirnayeem99.dumarketingstudent.data.vo.FacultyData
-import io.github.kabirnayeem99.dumarketingstudent.data.vo.FacultyData.Companion.toFacultyDataList
-import io.github.kabirnayeem99.dumarketingstudent.util.Constants.FACULTY_STORAGE_PATH
-import io.github.kabirnayeem99.dumarketingstudent.util.Resource
+import io.github.kabirnayeem99.dumarketingstudent.data.dto.FacultyData
+import io.github.kabirnayeem99.dumarketingstudent.data.dto.FacultyData.Companion.toFacultyDataList
+import io.github.kabirnayeem99.dumarketingstudent.common.util.Constants.FACULTY_STORAGE_PATH
+import io.github.kabirnayeem99.dumarketingstudent.common.util.Resource
 import javax.inject.Inject
 
 class FacultyRepository @Inject constructor(var db: FirebaseFirestore) {

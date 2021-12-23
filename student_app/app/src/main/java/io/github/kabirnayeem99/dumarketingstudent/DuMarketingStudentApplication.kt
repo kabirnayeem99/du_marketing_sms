@@ -8,6 +8,10 @@ import timber.log.Timber
 class DuMarketingStudentApplication : Application() {
     override fun onCreate() {
         super.onCreate()
+        setUpLogging()
+    }
+
+    private fun setUpLogging() {
         Timber.plant(Timber.DebugTree())
     }
 }

@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
-import io.github.kabirnayeem99.dumarketingstudent.data.vo.EbookData
-import io.github.kabirnayeem99.dumarketingstudent.data.vo.EbookData.Companion.toEbookDataList
-import io.github.kabirnayeem99.dumarketingstudent.util.Constants.EBOOK_DB_REF
-import io.github.kabirnayeem99.dumarketingstudent.util.Resource
+import io.github.kabirnayeem99.dumarketingstudent.data.dto.EbookData
+import io.github.kabirnayeem99.dumarketingstudent.data.dto.EbookData.Companion.toEbookDataList
+import io.github.kabirnayeem99.dumarketingstudent.common.util.Constants.EBOOK_DB_REF
+import io.github.kabirnayeem99.dumarketingstudent.common.util.Resource
 import javax.inject.Inject
 
 class EbookRepository @Inject constructor(var db: FirebaseFirestore) {

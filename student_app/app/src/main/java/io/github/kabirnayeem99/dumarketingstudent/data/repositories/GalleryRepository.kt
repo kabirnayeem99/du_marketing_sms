@@ -4,11 +4,11 @@ import androidx.lifecycle.MutableLiveData
 import com.denzcoskun.imageslider.models.SlideModel
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
-import io.github.kabirnayeem99.dumarketingstudent.data.vo.GalleryData
-import io.github.kabirnayeem99.dumarketingstudent.data.vo.GalleryData.Companion.toGalleryDataList
-import io.github.kabirnayeem99.dumarketingstudent.data.vo.GalleryData.Companion.toSlideModelList
-import io.github.kabirnayeem99.dumarketingstudent.util.Constants
-import io.github.kabirnayeem99.dumarketingstudent.util.Resource
+import io.github.kabirnayeem99.dumarketingstudent.data.dto.GalleryData
+import io.github.kabirnayeem99.dumarketingstudent.data.dto.GalleryData.Companion.toGalleryDataList
+import io.github.kabirnayeem99.dumarketingstudent.data.dto.GalleryData.Companion.toSlideModelList
+import io.github.kabirnayeem99.dumarketingstudent.common.util.Constants
+import io.github.kabirnayeem99.dumarketingstudent.common.util.Resource
 import javax.inject.Inject
 
 class GalleryRepository @Inject constructor(var db: FirebaseFirestore) {
