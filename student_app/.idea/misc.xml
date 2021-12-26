@@ -20,6 +20,11 @@
         <entry key="..\:/Projects/du_marketing_sms/student_app/app/src/main/res/layout/list_item_gallery.xml" value="0.178125" />
         <entry key="..\:/Projects/du_marketing_sms/student_app/app/src/main/res/layout/list_item_notice_data.xml" value="0.178125" />
         <entry key="..\:/Projects/du_marketing_sms/student_app/app/src/main/res/layout/list_item_routine.xml" value="0.178125" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.18981481481481483" />
+        <entry key="app/src/main/res/layout/dialog_batch_year.xml" value="0.1361111111111111" />
+        <entry key="app/src/main/res/layout/fragment_about.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.18981481481481483" />
+        <entry key="app/src/main/res/layout/fragment_image_details.xml" value="0.1361111111111111" />
       </map>
     </option>
   </component>

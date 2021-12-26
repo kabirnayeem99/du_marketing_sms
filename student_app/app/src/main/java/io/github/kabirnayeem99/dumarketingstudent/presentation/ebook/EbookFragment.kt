@@ -95,7 +95,11 @@ class EbookFragment : BaseFragment<FragmentEbookBinding>() {
     }
 
     override fun onDestroy() {
-        activity?.unregisterReceiver(onDownloadComplete)
+        try {
+            activity?.unregisterReceiver(onDownloadComplete)
+        } catch (e: Exception) {
+            Timber.e(e, e.localizedMessage)
+        }
         super.onDestroy()
     }
 

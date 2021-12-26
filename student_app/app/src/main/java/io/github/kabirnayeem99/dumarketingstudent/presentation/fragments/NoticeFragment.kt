@@ -86,7 +86,7 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>() {
             tvNoticeDetailedTitle.text = noticeData.title
         }
 
-        BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme)
+        BottomSheetDialog(requireContext())
             .apply {
                 setContentView(sheet.root)
                 sheet.root.startAnimation(scale)

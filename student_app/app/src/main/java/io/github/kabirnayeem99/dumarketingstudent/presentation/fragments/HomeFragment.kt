@@ -12,6 +12,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingstudent.R
+import io.github.kabirnayeem99.dumarketingstudent.common.util.Preferences
+import io.github.kabirnayeem99.dumarketingstudent.common.util.Resource
+import io.github.kabirnayeem99.dumarketingstudent.common.util.showSnackBar
+import io.github.kabirnayeem99.dumarketingstudent.common.util.showToast
 import io.github.kabirnayeem99.dumarketingstudent.data.dto.NoticeData
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentHomeBinding
 import io.github.kabirnayeem99.dumarketingstudent.databinding.LayoutNoticeDetailsBottomSheetBinding
@@ -19,10 +23,6 @@ import io.github.kabirnayeem99.dumarketingstudent.presentation.activities.MainAc
 import io.github.kabirnayeem99.dumarketingstudent.presentation.adapters.NoticeDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.presentation.adapters.RoutineDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.presentation.base.BaseFragment
-import io.github.kabirnayeem99.dumarketingstudent.common.util.Preferences
-import io.github.kabirnayeem99.dumarketingstudent.common.util.Resource
-import io.github.kabirnayeem99.dumarketingstudent.common.util.showSnackBar
-import io.github.kabirnayeem99.dumarketingstudent.common.util.showToast
 import io.github.kabirnayeem99.dumarketingstudent.presentation.viewmodel.GalleryViewModel
 import io.github.kabirnayeem99.dumarketingstudent.presentation.viewmodel.NoticeViewModel
 import io.github.kabirnayeem99.dumarketingstudent.presentation.viewmodel.RoutineViewModel
@@ -183,7 +183,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             tvNoticeDetailedTitle.text = noticeData.title
         }
 
-        context?.let { ctxt -> BottomSheetDialog(ctxt, R.style.BottomSheetDialogTheme) }
+        context?.let { ctxt -> BottomSheetDialog(ctxt) }
             ?.apply {
                 setContentView(sheet.root)
                 sheet.btnCancelNoticeDetailed.setOnClickListener {

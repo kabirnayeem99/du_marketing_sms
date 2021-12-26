@@ -14,7 +14,6 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            style="@style/ToolbarTheme"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             android:elevation="0sp">
@@ -63,21 +62,16 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:navGraph="@navigation/bottom_nav_graph" />
 
-            <nl.joery.animatedbottombar.AnimatedBottomBar
+            <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottomNavBar"
+                style="@style/Widget.Material3.BottomNavigationView"
                 android:layout_width="match_parent"
-                android:layout_height="52sp"
+                android:layout_height="wrap_content"
                 android:elevation="0sp"
-                app:abb_iconSize="30sp"
-                app:abb_indicatorAppearance="round"
-                app:abb_indicatorHeight="4sp"
-                app:abb_indicatorMargin="16sp"
-                app:abb_selectedIndex="0"
-                app:abb_selectedTabType="text"
-                app:abb_tabs="@menu/tabs"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:menu="@menu/tabs" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
