@@ -1,9 +1,10 @@
 package io.github.kabirnayeem99.dumarketingstudent.data.dto
 
 import com.google.firebase.firestore.DocumentSnapshot
+import io.github.kabirnayeem99.dumarketingstudent.domain.entity.AboutData
 import timber.log.Timber
 
-data class AboutData(
+data class AboutDataDto(
     var intro: String,
     var email: String,
     var telephone: String,

@@ -16,7 +16,7 @@
 
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.fragments.AboutFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.about.AboutFragment"
         android:label="AboutFragment"
         tools:layout="@layout/fragment_about" />
 
@@ -79,7 +79,7 @@
 
     <fragment
         android:id="@+id/ebookFragment"
-        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.fragments.EbookFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.ebook.EbookFragment"
         android:label="EbookFragment" />
 
     <action

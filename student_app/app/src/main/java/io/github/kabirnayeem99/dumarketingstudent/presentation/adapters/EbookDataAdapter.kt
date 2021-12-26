@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import io.github.kabirnayeem99.dumarketingstudent.data.dto.EbookData
+import io.github.kabirnayeem99.dumarketingstudent.domain.entity.EbookData
 import io.github.kabirnayeem99.dumarketingstudent.databinding.ListItemEbookBinding
 
 class EbookDataAdapter(private val listener: (EbookData) -> Unit) :

@@ -1,4 +1,4 @@
-package io.github.kabirnayeem99.dumarketingstudent.presentation.fragments
+package io.github.kabirnayeem99.dumarketingstudent.presentation.ebook
 
 import android.app.DownloadManager
 import android.content.BroadcastReceiver
@@ -8,26 +8,26 @@ import android.content.IntentFilter
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
-import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.observe
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingstudent.R
-import io.github.kabirnayeem99.dumarketingstudent.data.dto.EbookData
-import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentEbookBinding
-import io.github.kabirnayeem99.dumarketingstudent.presentation.adapters.EbookDataAdapter
-import io.github.kabirnayeem99.dumarketingstudent.presentation.base.BaseFragment
-import io.github.kabirnayeem99.dumarketingstudent.common.util.Resource
+import io.github.kabirnayeem99.dumarketingstudent.common.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingstudent.common.util.showSnackBar
-import io.github.kabirnayeem99.dumarketingstudent.presentation.viewmodel.EbookViewModel
+import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentEbookBinding
+import io.github.kabirnayeem99.dumarketingstudent.domain.entity.EbookData
+import io.github.kabirnayeem99.dumarketingstudent.presentation.adapters.EbookDataAdapter
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 @AndroidEntryPoint
 class EbookFragment : BaseFragment<FragmentEbookBinding>() {
 
-    override val layout: Int
+    override val layoutRes: Int
         get() = R.layout.fragment_ebook
 
     private val ebookViewModel: EbookViewModel by activityViewModels()
@@ -40,27 +40,32 @@ class EbookFragment : BaseFragment<FragmentEbookBinding>() {
 
     private var downloadId: Long? = null
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreated(savedInstanceState: Bundle?) {
+        handleViews()
+        subscribeToQuery()
+    }
 
+    private fun subscribeToQuery() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                ebookViewModel.fetchEbooks()
+                ebookViewModel.uiState.collect { handleUiState(it) }
+            }
+        }
+    }
 
+    private fun handleUiState(uiState: EbookUiState) {
+        uiState.apply {
+            if (isLoading) loadingIndicator.show() else loadingIndicator.dismiss()
+            if (message.isNotEmpty()) showSnackBar(message)
+            if (ebookList.isNotEmpty()) ebookAdapter.differ.submitList(ebookList)
+        }
+    }
 
+    private fun handleViews() {
         binding.rvEbookList.apply {
             adapter = ebookAdapter
             layoutManager = LinearLayoutManager(requireContext())
-        }
-
-        ebookViewModel.getEbooks().observe(viewLifecycleOwner) { resource ->
-            when (resource) {
-                is Resource.Error -> {
-                    showSnackBar("Could not load the ebooks")
-                    Timber.e("onViewCreated: ${resource.message}")
-                }
-                is Resource.Success -> {
-                    ebookAdapter.differ.submitList(resource.data)
-                }
-            }
-
         }
     }
 
@@ -84,9 +89,8 @@ class EbookFragment : BaseFragment<FragmentEbookBinding>() {
                 IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE)
             )
         } catch (e: Exception) {
-            Timber.e(e)
-            Toast.makeText(context, "Could not download ${ebookData.title}", Toast.LENGTH_SHORT)
-                .show()
+            Timber.e(e, "Failed in downloading ebook " + e.localizedMessage)
+            showSnackBar("Could not download ${ebookData.title}.")
         }
     }
 
@@ -97,7 +101,7 @@ class EbookFragment : BaseFragment<FragmentEbookBinding>() {
 
     private var onDownloadComplete: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            var id: Long = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
+            val id: Long = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
 
             downloadId?.let { downloadId ->
                 if (downloadId == id) {

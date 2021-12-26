@@ -1,67 +1,56 @@
-package io.github.kabirnayeem99.dumarketingstudent.presentation.fragments
+package io.github.kabirnayeem99.dumarketingstudent.presentation.about
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.observe
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingstudent.R
-import io.github.kabirnayeem99.dumarketingstudent.data.dto.AboutData
-import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentAboutBinding
-import io.github.kabirnayeem99.dumarketingstudent.presentation.base.BaseFragment
+import io.github.kabirnayeem99.dumarketingstudent.common.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingstudent.common.util.Constants.GMAIL_PACKAGE_NAME
 import io.github.kabirnayeem99.dumarketingstudent.common.util.Constants.GOOGLE_MAPS_PACKAGE_NAME
-import io.github.kabirnayeem99.dumarketingstudent.common.util.Resource
 import io.github.kabirnayeem99.dumarketingstudent.common.util.showSnackBar
-import io.github.kabirnayeem99.dumarketingstudent.presentation.viewmodel.AboutViewModel
+import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentAboutBinding
+import io.github.kabirnayeem99.dumarketingstudent.domain.entity.AboutData
+import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.util.*
 
 @AndroidEntryPoint
 class AboutFragment : BaseFragment<FragmentAboutBinding>() {
 
-
-    private lateinit var aboutData: AboutData
-
     private val aboutViewModel: AboutViewModel by activityViewModels()
 
 
-    override val layout: Int
+    override val layoutRes: Int
         get() = R.layout.fragment_about
 
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        getAboutData()
+    override fun onCreated(savedInstanceState: Bundle?) {
+        subscribeQuery()
     }
 
-
-    private fun getAboutData() {
-        aboutViewModel.getAboutData().observe(viewLifecycleOwner) { resource ->
-            when (resource) {
-                is Resource.Error -> {
-                    Toast.makeText(
-                        context,
-                        "Could not get the data from server.",
-                        Toast.LENGTH_LONG
-                    )
-                        .show()
-                    Timber.e(resource.message)
-                }
-
-                is Resource.Success -> {
-                    resource.data?.let { resourceData ->
-                        aboutData = resourceData
-                        loadUi(aboutData)
-                    }
+    private fun subscribeQuery() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                aboutViewModel.uiState.collect {
+                    handleUiState(it)
                 }
             }
         }
     }
+
+    private fun handleUiState(uiState: AboutUiState) {
+        uiState.apply {
+            if (isLoading) loadingIndicator.show() else loadingIndicator.dismiss()
+            if (message.isNotEmpty()) showSnackBar(message)
+            loadUi(about)
+        }
+    }
+
 
     private fun loadUi(aboutData: AboutData) {
         binding.tvAboutIntro.text = aboutData.intro

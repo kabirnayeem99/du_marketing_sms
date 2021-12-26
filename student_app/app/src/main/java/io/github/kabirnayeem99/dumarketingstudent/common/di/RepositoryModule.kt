@@ -4,21 +4,24 @@ import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.components.SingletonComponent
+import io.github.kabirnayeem99.dumarketingstudent.data.dataSources.AboutRemoteDataSource
 import io.github.kabirnayeem99.dumarketingstudent.data.repositories.*
+import io.github.kabirnayeem99.dumarketingstudent.domain.repository.AboutRepository
+import io.github.kabirnayeem99.dumarketingstudent.domain.repository.EbookRepository
 
 @Module
-@InstallIn(ViewModelComponent::class)
-object ViewModelModule {
+@InstallIn(SingletonComponent::class)
+object RepositoryModule {
 
     @Provides
-    fun provideAboutRepository(db: FirebaseFirestore): DefaultAboutRepository {
-        return DefaultAboutRepository(db)
+    fun provideAboutRepository(dataSource: AboutRemoteDataSource): AboutRepository {
+        return DefaultAboutRepository(dataSource)
     }
 
     @Provides
     fun provideEbookRepository(db: FirebaseFirestore): EbookRepository {
-        return EbookRepository(db)
+        return DefaultEbookRepository(db)
     }
 
     @Provides

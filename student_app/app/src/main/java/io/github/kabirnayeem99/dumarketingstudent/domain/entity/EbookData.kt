@@ -1,4 +1,4 @@
-package io.github.kabirnayeem99.dumarketingstudent.data.dto
+package io.github.kabirnayeem99.dumarketingstudent.domain.entity
 
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
@@ -16,7 +16,7 @@ data class EbookData(
             return EbookData(title, pdfUrl, key)
         }
 
-        fun QuerySnapshot.toEbookDataList(): MutableList<EbookData> {
+        fun QuerySnapshot.toEbookDataList(): List<EbookData> {
             val ebookDataList = mutableListOf<EbookData>()
 
             for (docSnapshot in this) {
