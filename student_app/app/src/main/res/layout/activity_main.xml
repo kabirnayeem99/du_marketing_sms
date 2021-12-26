@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
         android:fitsSystemWindows="true"
-        tools:context=".ui.activities.MainActivity">
+        tools:context=".presentation.activities.MainActivity">
 
 
         <androidx.appcompat.widget.Toolbar

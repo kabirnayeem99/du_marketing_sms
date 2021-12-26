@@ -17,6 +17,11 @@
         <item name="android:windowBackground">@color/white</item>
     </style>
 
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_up</item>
+        <item name="android:windowExitAnimation">@anim/slide_down</item>
+    </style>
+
 
     <style name="DUMarketingStudent_SnackbarStyle" parent="Widget.MaterialComponents.Snackbar">
         <item name="backgroundTint">@color/green_500</item>

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="io.github.kabirnayeem99.dumarketingstudent.ui.fragments.HomeFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.fragments.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home" />
     <action
@@ -16,7 +16,7 @@
 
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="io.github.kabirnayeem99.dumarketingstudent.ui.fragments.AboutFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.about.AboutFragment"
         android:label="AboutFragment"
         tools:layout="@layout/fragment_about" />
 
@@ -26,7 +26,7 @@
 
     <fragment
         android:id="@+id/facultyFragment"
-        android:name="io.github.kabirnayeem99.dumarketingstudent.ui.fragments.FacultyFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.fragments.FacultyFragment"
         android:label="FacultyFragment"
         tools:layout="@layout/fragment_faculty" />
 
@@ -36,7 +36,7 @@
 
     <fragment
         android:id="@+id/galleryFragment"
-        android:name="io.github.kabirnayeem99.dumarketingstudent.ui.fragments.GalleryFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.fragments.GalleryFragment"
         android:label="GalleryFragment"
         tools:layout="@layout/fragment_gallery">
         <action
@@ -50,7 +50,7 @@
 
     <fragment
         android:id="@+id/noticeFragment"
-        android:name="io.github.kabirnayeem99.dumarketingstudent.ui.fragments.NoticeFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.fragments.NoticeFragment"
         android:label="NoticeFragment"
         tools:layout="@layout/fragment_notice" />
 
@@ -60,7 +60,7 @@
 
     <fragment
         android:id="@+id/imageDetailsFragment"
-        android:name="io.github.kabirnayeem99.dumarketingstudent.ui.fragments.ImageDetailsFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.fragments.ImageDetailsFragment"
         android:label="fragment_image_details"
         tools:layout="@layout/fragment_image_details">
         <argument
@@ -70,7 +70,7 @@
 
     <fragment
         android:id="@+id/webViewFragment"
-        android:name="io.github.kabirnayeem99.dumarketingstudent.ui.fragments.WebViewFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.fragments.WebViewFragment"
         android:label="WebViewFragment" />
 
     <action
@@ -79,7 +79,7 @@
 
     <fragment
         android:id="@+id/ebookFragment"
-        android:name="io.github.kabirnayeem99.dumarketingstudent.ui.fragments.EbookFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.ebook.EbookFragment"
         android:label="EbookFragment" />
 
     <action
