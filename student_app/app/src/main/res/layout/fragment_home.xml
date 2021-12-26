@@ -23,11 +23,12 @@
                     android:layout_marginTop="0sp"
                     android:padding="16sp"
                     app:iss_auto_cycle="true"
-                    app:iss_corner_radius="25"
+                    app:iss_corner_radius="22"
                     app:iss_delay="800"
                     app:iss_error_image="@drawable/ic_fluent_document_error_24_selector"
                     app:iss_period="2000"
                     app:iss_placeholder="@drawable/ic_fluent_image_multiple_24_selector"
+                    app:iss_selected_dot="?android:colorPrimary"
                     app:layout_constraintBottom_toTopOf="@+id/mcvRoutine"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -38,10 +39,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16sp"
+                    app:cardCornerRadius="22dp"
                     app:cardElevation="0.2dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/galleryImageSlider">
+                    app:layout_constraintTop_toBottomOf="@id/galleryImageSlider"
+                    app:strokeColor="?android:colorPrimary"
+                    app:strokeWidth="0.1dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"

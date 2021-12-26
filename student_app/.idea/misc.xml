@@ -23,8 +23,18 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18981481481481483" />
         <entry key="app/src/main/res/layout/dialog_batch_year.xml" value="0.1361111111111111" />
         <entry key="app/src/main/res/layout/fragment_about.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_ebook.xml" value="0.1361111111111111" />
+        <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.1361111111111111" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.18981481481481483" />
         <entry key="app/src/main/res/layout/fragment_image_details.xml" value="0.1361111111111111" />
+        <entry key="app/src/main/res/layout/fragment_notice.xml" value="0.1361111111111111" />
+        <entry key="app/src/main/res/layout/fragment_web_view.xml" value="0.1361111111111111" />
+        <entry key="app/src/main/res/layout/layout_nav_drawer_header.xml" value="0.1361111111111111" />
+        <entry key="app/src/main/res/layout/layout_notice_details_bottom_sheet.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/list_item_ebook.xml" value="0.1361111111111111" />
+        <entry key="app/src/main/res/layout/list_item_gallery.xml" value="0.1361111111111111" />
+        <entry key="app/src/main/res/layout/list_item_notice_data.xml" value="0.1361111111111111" />
+        <entry key="app/src/main/res/layout/list_item_routine.xml" value="0.335" />
       </map>
     </option>
   </component>
