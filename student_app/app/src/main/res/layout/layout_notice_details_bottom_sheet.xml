@@ -41,14 +41,15 @@
             android:id="@+id/btnCancelNoticeDetailed"
             style="@style/Widget.Material3.Button"
             android:layout_width="@dimen/default_width_300_sp"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:layout_margin="@dimen/default_margin_8_sp"
             android:layout_marginBottom="16sp"
             android:insetLeft="0dp"
             android:insetTop="0dp"
             android:insetRight="0dp"
             android:insetBottom="0dp"
-            android:text="Mark As Seen" />
+            android:text="Mark As Seen"
+            app:cornerRadius="16dp" />
 
     </LinearLayout>
 </layout>
