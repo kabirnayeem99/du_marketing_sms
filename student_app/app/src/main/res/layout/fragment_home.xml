@@ -9,8 +9,7 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:overScrollMode="never">
+            android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -40,16 +39,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16sp"
                     app:cardCornerRadius="22dp"
-                    app:cardElevation="0.2dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/galleryImageSlider"
-                    app:strokeColor="?android:colorPrimary"
-                    app:strokeWidth="0.1dp">
+                    app:strokeColor="?android:colorAccent"
+                    app:strokeWidth="0.0dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/bg_gradient"
                         android:orientation="vertical">
 
                         <TextView
@@ -61,6 +60,7 @@
                             android:layout_marginBottom="0sp"
                             android:padding="8sp"
                             android:text="Today's Classes"
+                            android:textColor="@color/white"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -84,6 +84,7 @@
                             android:layout_marginBottom="0sp"
                             android:padding="8sp"
                             android:text="Recent Notices"
+                            android:textColor="@color/white"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 

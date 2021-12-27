@@ -8,41 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
-        android:fitsSystemWindows="true"
         tools:context=".presentation.activities.MainActivity">
 
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            android:elevation="0sp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/toolbar_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_gravity="center"
-                    android:text="@string/app_name"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/ivMenuIcon"
-                    android:layout_width="42sp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="16sp"
-                    android:padding="8sp"
-                    android:src="@drawable/ic_fluent_info_24_filled" />
-            </RelativeLayout>
-        </androidx.appcompat.widget.Toolbar>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -54,7 +21,6 @@
                 android:name="androidx.navigation.fragment.NavHostFragment"
                 android:layout_width="0sp"
                 android:layout_height="0sp"
-                android:layout_marginTop="?attr/actionBarSize"
                 app:defaultNavHost="true"
                 app:layout_constraintBottom_toTopOf="@id/bottomNavBar"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -67,8 +33,9 @@
                 style="@style/Widget.Material3.BottomNavigationView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/transparent"
-                android:elevation="0sp"
+                android:backgroundTint="?android:colorBackground"
+                android:backgroundTintMode="src_atop"
+                android:elevation="0dp"
                 android:outlineAmbientShadowColor="@android:color/transparent"
                 android:outlineSpotShadowColor="@android:color/transparent"
                 android:shadowColor="@android:color/transparent"
