@@ -9,7 +9,8 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:scrollbarSize="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -59,8 +60,8 @@
                             android:layout_marginTop="16sp"
                             android:layout_marginBottom="0sp"
                             android:padding="8sp"
-                            android:text="Today's Classes"
-                            android:textColor="@color/white"
+                            android:text="@string/today_s_classes"
+                            android:textColor="@android:color/white"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -71,7 +72,6 @@
                             android:layoutAnimation="@anim/rv_fallout_layout_animation"
                             android:overScrollMode="never"
                             android:padding="16sp"
-                            app:layout_behavior="@string/appbar_scrolling_view_behavior"
                             tools:itemCount="2"
                             tools:listitem="@layout/list_item_routine" />
 
@@ -83,8 +83,8 @@
                             android:layout_marginTop="16sp"
                             android:layout_marginBottom="0sp"
                             android:padding="8sp"
-                            android:text="Recent Notices"
-                            android:textColor="@color/white"
+                            android:text="@string/recent_notices"
+                            android:textColor="?android:textColorPrimary"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -95,7 +95,6 @@
                             android:layoutAnimation="@anim/rv_fallout_layout_animation"
                             android:overScrollMode="never"
                             android:padding="16sp"
-                            app:layout_behavior="@string/appbar_scrolling_view_behavior"
                             tools:listitem="@layout/list_item_notice_data" />
                     </LinearLayout>
 

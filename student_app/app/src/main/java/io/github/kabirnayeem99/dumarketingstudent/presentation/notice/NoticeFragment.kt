@@ -1,4 +1,4 @@
-package io.github.kabirnayeem99.dumarketingstudent.presentation.fragments
+package io.github.kabirnayeem99.dumarketingstudent.presentation.notice
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,12 +11,10 @@ import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingstudent.R
+import io.github.kabirnayeem99.dumarketingstudent.common.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingstudent.data.dto.NoticeData
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentNoticeBinding
 import io.github.kabirnayeem99.dumarketingstudent.databinding.LayoutNoticeDetailsBottomSheetBinding
-import io.github.kabirnayeem99.dumarketingstudent.presentation.adapters.NoticeDataAdapter
-import io.github.kabirnayeem99.dumarketingstudent.presentation.base.BaseFragment
-import io.github.kabirnayeem99.dumarketingstudent.presentation.viewmodel.NoticeViewModel
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 import timber.log.Timber
 import javax.inject.Inject
@@ -25,7 +23,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class NoticeFragment : BaseFragment<FragmentNoticeBinding>() {
 
-    override val layout: Int
+    override val layoutRes: Int
         get() = R.layout.fragment_notice
 
 
@@ -41,9 +39,7 @@ class NoticeFragment : BaseFragment<FragmentNoticeBinding>() {
     }
 
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun onCreated(savedInstanceState: Bundle?) {
         binding.root.startAnimation(scale)
 
         binding.rvNoticeDataList.apply {

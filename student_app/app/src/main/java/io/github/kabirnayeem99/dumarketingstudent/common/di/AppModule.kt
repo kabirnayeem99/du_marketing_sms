@@ -11,7 +11,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import io.github.kabirnayeem99.dumarketingstudent.common.util.Preferences
-import io.github.kabirnayeem99.dumarketingstudent.presentation.adapters.RoutineDataAdapter
+import io.github.kabirnayeem99.dumarketingstudent.presentation.routine.RoutineDataAdapter
 import javax.inject.Singleton
 
 @Module

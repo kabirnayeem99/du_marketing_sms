@@ -1,4 +1,4 @@
-package io.github.kabirnayeem99.dumarketingstudent.presentation.activities
+package io.github.kabirnayeem99.dumarketingstudent.presentation
 
 import android.os.Bundle
 import androidx.navigation.NavController
@@ -20,8 +20,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         get() = R.layout.activity_main
 
     lateinit var bottomNavBar: BottomNavigationView
-    lateinit var navController: NavController
-
+    private lateinit var navController: NavController
 
     override fun onCreated(savedInstanceState: Bundle?) {
         setUpNavigation()

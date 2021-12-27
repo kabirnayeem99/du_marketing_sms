@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.fragments.HomeFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.routine.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home" />
     <action
@@ -30,7 +30,7 @@
 
     <fragment
         android:id="@+id/facultyFragment"
-        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.fragments.FacultyFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.faculty.FacultyFragment"
         android:label="FacultyFragment"
         tools:layout="@layout/fragment_faculty" />
 
@@ -44,7 +44,7 @@
 
     <fragment
         android:id="@+id/galleryFragment"
-        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.fragments.GalleryFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.gallery.GalleryFragment"
         android:label="GalleryFragment"
         tools:layout="@layout/fragment_gallery">
         <action
@@ -62,7 +62,7 @@
 
     <fragment
         android:id="@+id/noticeFragment"
-        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.fragments.NoticeFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.notice.NoticeFragment"
         android:label="NoticeFragment"
         tools:layout="@layout/fragment_notice" />
 
@@ -76,7 +76,7 @@
 
     <fragment
         android:id="@+id/imageDetailsFragment"
-        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.fragments.ImageDetailsFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.gallery.ImageDetailsFragment"
         android:label="fragment_image_details"
         tools:layout="@layout/fragment_image_details">
         <argument

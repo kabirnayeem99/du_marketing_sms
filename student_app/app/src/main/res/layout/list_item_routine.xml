@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/default_card_margin_8_sp"
-        app:cardCornerRadius="16sp"
+        app:cardCornerRadius="16dp"
         app:cardElevation="@dimen/default_card_elevation_0_2_sp"
-        app:rippleColor="#0000"
-        app:strokeColor="@color/semi_transparent_dark_grey"
+        app:rippleColor="?android:colorEdgeEffect"
+        app:strokeColor="?android:colorPrimaryDark"
         app:strokeWidth="@dimen/stroke_line_width_0_8_sp">
 
         <LinearLayout
@@ -45,19 +46,20 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2sp"
                     android:layout_weight="50"
-                    android:text="AM"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvClassTime" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvClassTime"
+                    tools:text="AM" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <View
                 android:layout_width="@dimen/stroke_line_width_0_8_sp"
                 android:layout_height="match_parent"
-                android:background="@color/semi_transparent_dark_grey" />
+                android:background="?android:colorPrimaryDark" />
+
 
             <LinearLayout
                 android:layout_width="wrap_content"

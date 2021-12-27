@@ -1,4 +1,4 @@
-package io.github.kabirnayeem99.dumarketingstudent.presentation.fragments
+package io.github.kabirnayeem99.dumarketingstudent.presentation.faculty
 
 import android.os.Bundle
 import android.view.View
@@ -7,11 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingstudent.R
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentFacultyBinding
-import io.github.kabirnayeem99.dumarketingstudent.presentation.adapters.FacultyDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.presentation.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingstudent.common.util.Resource
 import io.github.kabirnayeem99.dumarketingstudent.common.util.showSnackBar
-import io.github.kabirnayeem99.dumarketingstudent.presentation.viewmodel.FacultyViewModel
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 import timber.log.Timber
 

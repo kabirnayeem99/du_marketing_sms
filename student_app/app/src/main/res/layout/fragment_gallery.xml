@@ -12,6 +12,7 @@
             android:id="@+id/rvGallery"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layoutAnimation="@anim/rv_fallout_layout_animation"
             tools:listitem="@layout/list_item_gallery" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

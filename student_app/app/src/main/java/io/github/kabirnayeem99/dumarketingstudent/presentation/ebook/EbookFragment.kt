@@ -20,7 +20,6 @@ import io.github.kabirnayeem99.dumarketingstudent.common.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingstudent.common.util.showSnackBar
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentEbookBinding
 import io.github.kabirnayeem99.dumarketingstudent.domain.entity.EbookData
-import io.github.kabirnayeem99.dumarketingstudent.presentation.adapters.EbookDataAdapter
 import kotlinx.coroutines.launch
 import timber.log.Timber
 

@@ -1,4 +1,4 @@
-package io.github.kabirnayeem99.dumarketingstudent.presentation.viewmodel
+package io.github.kabirnayeem99.dumarketingstudent.presentation.notice
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

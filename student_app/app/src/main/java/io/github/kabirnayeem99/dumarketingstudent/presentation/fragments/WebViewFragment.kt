@@ -9,10 +9,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingstudent.R
-import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentWebViewBinding
-import io.github.kabirnayeem99.dumarketingstudent.presentation.activities.MainActivity
-import io.github.kabirnayeem99.dumarketingstudent.presentation.base.BaseFragment
+import io.github.kabirnayeem99.dumarketingstudent.common.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingstudent.common.util.Constants.DU_WEBSITE_URL
+import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentWebViewBinding
+import io.github.kabirnayeem99.dumarketingstudent.presentation.MainActivity
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
@@ -27,14 +27,13 @@ https://proandroiddev.com/enhance-android-webview-performance-using-glide-aba4bb
 class WebViewFragment : BaseFragment<FragmentWebViewBinding>() {
 
 
-    override val layout: Int
+    override val layoutRes: Int
         get() = R.layout.fragment_web_view
 
     lateinit var webView: WebView
 
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreated(savedInstanceState: Bundle?) {
         hideBottomNavBar()
         showWebsite()
     }

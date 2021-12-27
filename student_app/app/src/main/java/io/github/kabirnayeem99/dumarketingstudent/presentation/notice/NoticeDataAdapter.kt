@@ -1,4 +1,4 @@
-package io.github.kabirnayeem99.dumarketingstudent.presentation.adapters
+package io.github.kabirnayeem99.dumarketingstudent.presentation.notice
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

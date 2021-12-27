@@ -1,4 +1,4 @@
-package io.github.kabirnayeem99.dumarketingstudent.presentation.fragments
+package io.github.kabirnayeem99.dumarketingstudent.presentation.routine
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +12,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingstudent.R
+import io.github.kabirnayeem99.dumarketingstudent.common.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingstudent.common.util.Preferences
 import io.github.kabirnayeem99.dumarketingstudent.common.util.Resource
 import io.github.kabirnayeem99.dumarketingstudent.common.util.showSnackBar
@@ -19,20 +20,17 @@ import io.github.kabirnayeem99.dumarketingstudent.common.util.showToast
 import io.github.kabirnayeem99.dumarketingstudent.data.dto.NoticeData
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentHomeBinding
 import io.github.kabirnayeem99.dumarketingstudent.databinding.LayoutNoticeDetailsBottomSheetBinding
-import io.github.kabirnayeem99.dumarketingstudent.presentation.activities.MainActivity
-import io.github.kabirnayeem99.dumarketingstudent.presentation.adapters.NoticeDataAdapter
-import io.github.kabirnayeem99.dumarketingstudent.presentation.adapters.RoutineDataAdapter
-import io.github.kabirnayeem99.dumarketingstudent.presentation.base.BaseFragment
-import io.github.kabirnayeem99.dumarketingstudent.presentation.viewmodel.GalleryViewModel
-import io.github.kabirnayeem99.dumarketingstudent.presentation.viewmodel.NoticeViewModel
-import io.github.kabirnayeem99.dumarketingstudent.presentation.viewmodel.RoutineViewModel
+import io.github.kabirnayeem99.dumarketingstudent.presentation.MainActivity
+import io.github.kabirnayeem99.dumarketingstudent.presentation.gallery.GalleryViewModel
+import io.github.kabirnayeem99.dumarketingstudent.presentation.notice.NoticeDataAdapter
+import io.github.kabirnayeem99.dumarketingstudent.presentation.notice.NoticeViewModel
 import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
-    override val layout: Int
+    override val layoutRes: Int
         get() = R.layout.fragment_home
 
     private val galleryViewModel: GalleryViewModel by activityViewModels()
@@ -55,9 +53,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
     }
 
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreated(savedInstanceState: Bundle?) {
         showAlertDialog()
         setUpGallerySlider()
         setUpRoutine()
