@@ -10,9 +10,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import io.github.kabirnayeem99.dumarketingstudent.R
-import io.github.kabirnayeem99.dumarketingstudent.presentation.adapters.RoutineDataAdapter
 import io.github.kabirnayeem99.dumarketingstudent.common.util.Preferences
+import io.github.kabirnayeem99.dumarketingstudent.presentation.routine.RoutineDataAdapter
 import javax.inject.Singleton
 
 @Module
@@ -35,7 +34,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideBottomSheetDialog(@ApplicationContext app: Context): BottomSheetDialog {
-        return BottomSheetDialog(app.applicationContext, R.style.BottomSheetDialogTheme)
+        return BottomSheetDialog(app.applicationContext)
     }
 
 

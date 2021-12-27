@@ -1,4 +1,4 @@
-package io.github.kabirnayeem99.dumarketingstudent.presentation.viewmodel
+package io.github.kabirnayeem99.dumarketingstudent.presentation.routine
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

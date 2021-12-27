@@ -20,7 +20,6 @@ import io.github.kabirnayeem99.dumarketingstudent.common.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingstudent.common.util.showSnackBar
 import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentEbookBinding
 import io.github.kabirnayeem99.dumarketingstudent.domain.entity.EbookData
-import io.github.kabirnayeem99.dumarketingstudent.presentation.adapters.EbookDataAdapter
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -95,7 +94,11 @@ class EbookFragment : BaseFragment<FragmentEbookBinding>() {
     }
 
     override fun onDestroy() {
-        activity?.unregisterReceiver(onDownloadComplete)
+        try {
+            activity?.unregisterReceiver(onDownloadComplete)
+        } catch (e: Exception) {
+            Timber.e(e, e.localizedMessage)
+        }
         super.onDestroy()
     }
 

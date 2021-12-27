@@ -7,12 +7,16 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.fragments.HomeFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.routine.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home" />
     <action
         android:id="@+id/toHomeFragment"
-        app:destination="@id/homeFragment" />
+        app:destination="@id/homeFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right" />
 
     <fragment
         android:id="@+id/aboutFragment"
@@ -26,22 +30,30 @@
 
     <fragment
         android:id="@+id/facultyFragment"
-        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.fragments.FacultyFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.faculty.FacultyFragment"
         android:label="FacultyFragment"
         tools:layout="@layout/fragment_faculty" />
 
     <action
         android:id="@+id/toFacultyFragment"
-        app:destination="@id/facultyFragment" />
+        app:destination="@id/facultyFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right" />
 
     <fragment
         android:id="@+id/galleryFragment"
-        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.fragments.GalleryFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.gallery.GalleryFragment"
         android:label="GalleryFragment"
         tools:layout="@layout/fragment_gallery">
         <action
             android:id="@+id/action_galleryFragment_to_imageDetailsFragment"
-            app:destination="@id/imageDetailsFragment" />
+            app:destination="@id/imageDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <action
@@ -50,17 +62,21 @@
 
     <fragment
         android:id="@+id/noticeFragment"
-        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.fragments.NoticeFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.notice.NoticeFragment"
         android:label="NoticeFragment"
         tools:layout="@layout/fragment_notice" />
 
     <action
         android:id="@+id/toNoticeFragment"
-        app:destination="@id/noticeFragment" />
+        app:destination="@id/noticeFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right" />
 
     <fragment
         android:id="@+id/imageDetailsFragment"
-        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.fragments.ImageDetailsFragment"
+        android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.gallery.ImageDetailsFragment"
         android:label="fragment_image_details"
         tools:layout="@layout/fragment_image_details">
         <argument
@@ -71,19 +87,29 @@
     <fragment
         android:id="@+id/webViewFragment"
         android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.fragments.WebViewFragment"
-        android:label="WebViewFragment" />
+        android:label="WebViewFragment"
+        tools:layout="@layout/fragment_web_view" />
 
     <action
         android:id="@+id/toWebViewFragment"
-        app:destination="@id/webViewFragment" />
+        app:destination="@id/webViewFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right" />
 
     <fragment
+        tools:layout="@layout/fragment_ebook"
         android:id="@+id/ebookFragment"
         android:name="io.github.kabirnayeem99.dumarketingstudent.presentation.ebook.EbookFragment"
         android:label="EbookFragment" />
 
     <action
         android:id="@+id/toEbookFragment"
-        app:destination="@id/ebookFragment" />
+        app:destination="@id/ebookFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right" />
 
 </navigation>

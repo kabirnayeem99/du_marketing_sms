@@ -2,7 +2,7 @@
 <resources>
     <dimen name="bottom_sheet_corner_radius">16dp</dimen>
     <dimen name="bottom_sheet_top_padding">8dp</dimen>
-    <dimen name="stroke_line_width_0_8_sp">0.8sp</dimen>
+    <dimen name="stroke_line_width_0_8_sp">0.2sp</dimen>
     <dimen name="default_card_elevation_0_2_sp">0.2sp</dimen>
     <dimen name="default_card_margin_8_sp">8sp</dimen>
     <dimen name="default_width_300_sp">300sp</dimen>

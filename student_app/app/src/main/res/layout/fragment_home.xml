@@ -10,7 +10,7 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:overScrollMode="never">
+            android:scrollbarSize="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -23,31 +23,33 @@
                     android:layout_marginTop="0sp"
                     android:padding="16sp"
                     app:iss_auto_cycle="true"
-                    app:iss_corner_radius="25"
+                    app:iss_corner_radius="22"
                     app:iss_delay="800"
                     app:iss_error_image="@drawable/ic_fluent_document_error_24_selector"
                     app:iss_period="2000"
                     app:iss_placeholder="@drawable/ic_fluent_image_multiple_24_selector"
+                    app:iss_selected_dot="?android:colorPrimary"
                     app:layout_constraintBottom_toTopOf="@+id/mcvRoutine"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/mcvRoutine"
-                    style="@style/TopRoundedCardViewStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16sp"
-                    app:cardElevation="0.2dp"
+                    app:cardCornerRadius="22dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/galleryImageSlider">
+                    app:layout_constraintTop_toBottomOf="@id/galleryImageSlider"
+                    app:strokeColor="?android:colorAccent"
+                    app:strokeWidth="0.0dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@drawable/bg_gradient"
                         android:orientation="vertical">
 
                         <TextView
@@ -58,7 +60,8 @@
                             android:layout_marginTop="16sp"
                             android:layout_marginBottom="0sp"
                             android:padding="8sp"
-                            android:text="Today's Classes"
+                            android:text="@string/today_s_classes"
+                            android:textColor="@android:color/white"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -69,7 +72,6 @@
                             android:layoutAnimation="@anim/rv_fallout_layout_animation"
                             android:overScrollMode="never"
                             android:padding="16sp"
-                            app:layout_behavior="@string/appbar_scrolling_view_behavior"
                             tools:itemCount="2"
                             tools:listitem="@layout/list_item_routine" />
 
@@ -81,7 +83,8 @@
                             android:layout_marginTop="16sp"
                             android:layout_marginBottom="0sp"
                             android:padding="8sp"
-                            android:text="Recent Notices"
+                            android:text="@string/recent_notices"
+                            android:textColor="?android:textColorPrimary"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -92,7 +95,6 @@
                             android:layoutAnimation="@anim/rv_fallout_layout_animation"
                             android:overScrollMode="never"
                             android:padding="16sp"
-                            app:layout_behavior="@string/appbar_scrolling_view_behavior"
                             tools:listitem="@layout/list_item_notice_data" />
                     </LinearLayout>
 
