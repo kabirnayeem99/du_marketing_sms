@@ -101,8 +101,8 @@ class WebViewFragment : BaseFragment<FragmentWebViewBinding>() {
                 if (url == null) {
                     return super.shouldInterceptRequest(view, url as String)
                 }
-                return if (url.toLowerCase(Locale.ROOT)
-                        .contains(".jpg") || url.toLowerCase(Locale.ROOT).contains(".jpeg")
+                return if (url.lowercase(Locale.ROOT)
+                        .contains(".jpg") || url.lowercase(Locale.ROOT).contains(".jpeg")
                 ) {
                     val bitmap =
                         Glide.with(webView).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -113,7 +113,7 @@ class WebViewFragment : BaseFragment<FragmentWebViewBinding>() {
                             Bitmap.CompressFormat.JPEG
                         )
                     )
-                } else if (url.toLowerCase(Locale.ROOT).contains(".png")) {
+                } else if (url.lowercase(Locale.ROOT).contains(".png")) {
                     val bitmap =
                         Glide.with(webView).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL)
                             .load(url).submit().get()
@@ -123,7 +123,7 @@ class WebViewFragment : BaseFragment<FragmentWebViewBinding>() {
                             Bitmap.CompressFormat.PNG
                         )
                     )
-                } else if (url.toLowerCase(Locale.ROOT)
+                } else if (url.lowercase(Locale.ROOT)
                         .contains(".webp") && Build.VERSION.SDK_INT >= Build.VERSION_CODES.R
                 ) {
                     val bitmap =

@@ -1,22 +1,21 @@
 package io.github.kabirnayeem99.dumarketingstudent.presentation.faculty
 
 import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.kabirnayeem99.dumarketingstudent.R
-import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentFacultyBinding
-import io.github.kabirnayeem99.dumarketingstudent.presentation.base.BaseFragment
+import io.github.kabirnayeem99.dumarketingstudent.common.base.BaseFragment
 import io.github.kabirnayeem99.dumarketingstudent.common.util.Resource
 import io.github.kabirnayeem99.dumarketingstudent.common.util.showSnackBar
+import io.github.kabirnayeem99.dumarketingstudent.databinding.FragmentFacultyBinding
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 import timber.log.Timber
 
 @AndroidEntryPoint
 class FacultyFragment : BaseFragment<FragmentFacultyBinding>() {
 
-    override val layout: Int
+    override val layoutRes: Int
         get() = R.layout.fragment_faculty
 
     private val facultyViewModel: FacultyViewModel by activityViewModels()
@@ -25,8 +24,7 @@ class FacultyFragment : BaseFragment<FragmentFacultyBinding>() {
         FacultyDataAdapter()
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreated(savedInstanceState: Bundle?) {
         setUpFacultyRecyclerView()
     }
 

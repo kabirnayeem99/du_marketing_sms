@@ -1,4 +1,3 @@
 package io.github.kabirnayeem99.dumarketingstudent.data.dataSources
 
-class RoutineRemoteDataSource {
-}
+class RoutineRemoteDataSource

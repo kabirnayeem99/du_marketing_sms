@@ -10,6 +10,7 @@ import io.github.kabirnayeem99.dumarketingstudent.data.dto.RoutineData
 import io.github.kabirnayeem99.dumarketingstudent.databinding.ListItemRoutineBinding
 import io.github.kabirnayeem99.dumarketingstudent.common.util.TimeUtilities.getHourMinuteTimeFromStringTime
 import io.github.kabirnayeem99.dumarketingstudent.common.util.TimeUtilities.getMeridiemFromStringTime
+import java.util.*
 
 
 class RoutineDataAdapter(var scale: ScaleAnimation) :
@@ -24,7 +25,7 @@ class RoutineDataAdapter(var scale: ScaleAnimation) :
             binding.tvClassLocation.text = routineData.classLocation
             binding.tvClassTime.text = getHourMinuteTimeFromStringTime(routineData.time)
             binding.tvClassTimeMeridiem.text =
-                getMeridiemFromStringTime(routineData.time).toUpperCase()
+                getMeridiemFromStringTime(routineData.time).uppercase(Locale.getDefault())
 
             binding.root.setOnClickListener {
                 it.startAnimation(scale)
