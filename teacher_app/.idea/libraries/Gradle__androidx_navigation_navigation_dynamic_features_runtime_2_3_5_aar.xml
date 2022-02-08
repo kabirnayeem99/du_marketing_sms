@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.navigation:navigation-dynamic-features-runtime:2.3.5@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/77486c325397b25b36c204903249f671/transformed/jetified-navigation-dynamic-features-runtime-2.3.5/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/77486c325397b25b36c204903249f671/transformed/jetified-navigation-dynamic-features-runtime-2.3.5/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/77486c325397b25b36c204903249f671/transformed/jetified-navigation-dynamic-features-runtime-2.3.5/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/d3973e6827626bd431ac88e698eab4fc/transformed/jetified-navigation-dynamic-features-runtime-2.3.5/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/d3973e6827626bd431ac88e698eab4fc/transformed/jetified-navigation-dynamic-features-runtime-2.3.5/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/d3973e6827626bd431ac88e698eab4fc/transformed/jetified-navigation-dynamic-features-runtime-2.3.5/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

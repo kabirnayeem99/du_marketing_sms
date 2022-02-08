@@ -45,6 +45,7 @@ object AppModule {
     }
 
     @Provides
+    @Singleton
     fun provideScaleAnimation(): ScaleAnimation {
         val scale = ScaleAnimation(
             0F,

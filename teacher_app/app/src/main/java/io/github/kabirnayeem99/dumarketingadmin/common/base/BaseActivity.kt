@@ -7,8 +7,8 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import com.kaopiz.kprogresshud.KProgressHUD
 import io.github.kabirnayeem99.dumarketingadmin.R
+import io.github.kabirnayeem99.dumarketingadmin.common.views.LoadingDialog
 
 
 abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
@@ -17,8 +17,9 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
 
     @get:LayoutRes
     protected abstract val layout: Int
-
-    lateinit var loadingIndicator: KProgressHUD
+    protected val loadingIndicator: LoadingDialog by lazy(mode = LazyThreadSafetyMode.NONE) {
+        LoadingDialog(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,13 +31,6 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, layout)
         binding.lifecycleOwner = this
         baseView = binding.root
-
-        loadingIndicator = KProgressHUD.create(this)
-            .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
-            .setCancellable(false)
-            .setAnimationSpeed(2)
-            .setDimAmount(0.5f)
-
     }
 
 

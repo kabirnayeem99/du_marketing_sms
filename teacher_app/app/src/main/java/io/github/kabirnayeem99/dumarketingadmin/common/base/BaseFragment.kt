@@ -9,7 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import com.kaopiz.kprogresshud.KProgressHUD
+import io.github.kabirnayeem99.dumarketingadmin.common.views.LoadingDialog
 
 abstract class BaseFragment<V : ViewDataBinding> : Fragment() {
     @get:LayoutRes
@@ -17,7 +17,9 @@ abstract class BaseFragment<V : ViewDataBinding> : Fragment() {
     lateinit var baseView: View
     protected lateinit var binding: V
 
-    lateinit var loadingIndicator: KProgressHUD
+    protected val loadingIndicator: LoadingDialog by lazy(mode = LazyThreadSafetyMode.NONE) {
+        LoadingDialog(requireActivity())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,18 +33,13 @@ abstract class BaseFragment<V : ViewDataBinding> : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loadingIndicator = KProgressHUD.create(activity)
-            .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
-            .setCancellable(false)
-            .setAnimationSpeed(2)
-            .setDimAmount(0.5f)
         ViewCompat.setTranslationZ(view, 100f)
         onCreated(savedInstanceState)
     }
 
     override fun onStop() {
-        super.onStop()
         loadingIndicator.dismiss()
+        super.onStop()
     }
 
     protected abstract fun onCreated(savedInstanceState: Bundle?)

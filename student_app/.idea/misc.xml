@@ -21,8 +21,10 @@
         <entry key="..\:/Projects/du_marketing_sms/student_app/app/src/main/res/layout/list_item_notice_data.xml" value="0.178125" />
         <entry key="..\:/Projects/du_marketing_sms/student_app/app/src/main/res/layout/list_item_routine.xml" value="0.178125" />
         <entry key="app/src/main/res/drawable/bg_gradient.xml" value="0.2760416666666667" />
+        <entry key="app/src/main/res/drawable/bg_loader.xml" value="0.169" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18981481481481483" />
         <entry key="app/src/main/res/layout/dialog_batch_year.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/dialog_loading.xml" value="0.2507660878447395" />
         <entry key="app/src/main/res/layout/fragment_about.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_ebook.xml" value="0.1361111111111111" />
         <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.1361111111111111" />

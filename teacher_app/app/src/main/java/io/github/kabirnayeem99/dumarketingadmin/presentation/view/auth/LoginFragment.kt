@@ -48,16 +48,14 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
     private fun setUpRegisterButton() {
         binding.btnRegister.animateAndOnClickListener {
-            lifecycleScope.launch {
-                navController.navigate(R.id.action_loginFragment_to_registerFragment)
-            }
+            navController.navigate(R.id.action_loginFragment_to_registerFragment)
         }
     }
 
     private fun setUpObservers() {
         authViewModel.apply {
-            lifecycleScope.launch {
-                repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                     uiState.collect { authState ->
                         if (authState.isCheckingAuthentication) {
                             binding.lavLoading.visibility = View.VISIBLE

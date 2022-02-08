@@ -45,9 +45,9 @@ class EbookFragment : BaseFragment<FragmentEbookBinding>() {
     }
 
     private fun subscribeToQuery() {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                ebookViewModel.fetchEbooks()
+        ebookViewModel.fetchEbooks()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 ebookViewModel.uiState.collect { handleUiState(it) }
             }
         }

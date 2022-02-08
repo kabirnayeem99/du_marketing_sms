@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.chnouman:AwesomeDialog:1.0.5@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/aacf7444d7fe2e5b3c78b8f7d2c9793a/transformed/jetified-AwesomeDialog-1.0.5/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/aacf7444d7fe2e5b3c78b8f7d2c9793a/transformed/jetified-AwesomeDialog-1.0.5/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/aacf7444d7fe2e5b3c78b8f7d2c9793a/transformed/jetified-AwesomeDialog-1.0.5/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/80561fe1f742c7e2d370f0f3bbf1d2fb/transformed/jetified-AwesomeDialog-1.0.5/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/80561fe1f742c7e2d370f0f3bbf1d2fb/transformed/jetified-AwesomeDialog-1.0.5/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/80561fe1f742c7e2d370f0f3bbf1d2fb/transformed/jetified-AwesomeDialog-1.0.5/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

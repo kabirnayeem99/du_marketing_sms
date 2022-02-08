@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/drawable/bg_bottom_rounded_app_bar.xml" value="0.2760416666666667" />
         <entry key="app/src/main/res/drawable/bg_gradient.xml" value="0.2760416666666667" />
         <entry key="app/src/main/res/drawable/bg_gradient_rounded.xml" value="0.2760416666666667" />
+        <entry key="app/src/main/res/drawable/bg_loader.xml" value="0.26" />
         <entry key="app/src/main/res/drawable/bg_rounded_dialog.xml" value="0.23796296296296296" />
         <entry key="app/src/main/res/drawable/bg_rounded_rectangle_button_bordered.xml" value="0.2760416666666667" />
         <entry key="app/src/main/res/drawable/bg_rounded_rectangle_button_solid.xml" value="0.2760416666666667" />
@@ -35,6 +36,7 @@
         <entry key="app/src/main/res/layout/activity_upload_ebook.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/layout/activity_upsert_faculty.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_upsert_routine.xml" value="0.1685185185185185" />
+        <entry key="app/src/main/res/layout/dialog_loading.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_add_gallery_image.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_add_notice.xml" value="0.2557291666666667" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.165" />
