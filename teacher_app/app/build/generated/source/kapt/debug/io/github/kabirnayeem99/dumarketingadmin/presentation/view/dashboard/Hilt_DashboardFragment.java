@@ -9,6 +9,7 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.MainThread;
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModelProvider;
+import dagger.hilt.android.flags.FragmentGetContextFix;
 import dagger.hilt.android.internal.lifecycle.DefaultViewModelFactories;
 import dagger.hilt.android.internal.managers.FragmentComponentManager;
 import dagger.hilt.internal.GeneratedComponentManagerHolder;
@@ -22,9 +23,10 @@ import java.lang.SuppressWarnings;
 /**
  * A generated base class to be extended by the @dagger.hilt.android.AndroidEntryPoint annotated class. If using the Gradle plugin, this is swapped as the base class via bytecode transformation.
  */
-@SuppressWarnings("deprecation")
 public abstract class Hilt_DashboardFragment<V extends ViewDataBinding> extends BaseFragment<V> implements GeneratedComponentManagerHolder {
   private ContextWrapper componentContext;
+
+  private boolean disableGetContextFix;
 
   private volatile FragmentComponentManager componentManager;
 
@@ -41,6 +43,7 @@ public abstract class Hilt_DashboardFragment<V extends ViewDataBinding> extends 
   }
 
   @Override
+  @SuppressWarnings("deprecation")
   @CallSuper
   @MainThread
   public void onAttach(Activity activity) {
@@ -54,12 +57,13 @@ public abstract class Hilt_DashboardFragment<V extends ViewDataBinding> extends 
     if (componentContext == null) {
       // Note: The LayoutInflater provided by this componentContext may be different from super Fragment's because we getting it from base context instead of cloning from the super Fragment's LayoutInflater.
       componentContext = FragmentComponentManager.createContextWrapper(super.getContext(), this);
+      disableGetContextFix = FragmentGetContextFix.isFragmentGetContextFixDisabled(super.getContext());
     }
   }
 
   @Override
   public Context getContext() {
-    if (super.getContext() == null && componentContext == null) {
+    if (super.getContext() == null && !disableGetContextFix) {
       return null;
     }
     initializeComponentContext();

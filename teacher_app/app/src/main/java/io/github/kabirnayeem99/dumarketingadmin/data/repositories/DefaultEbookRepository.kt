@@ -29,7 +29,6 @@ class DefaultEbookRepository
     override suspend fun deleteEbookFromDb(ebookDto: EbookData) =
         dataSource.deleteEbook(ebookDto)
 
-    @ExperimentalCoroutinesApi
     override fun getEbooks(): Flow<Resource<List<EbookData>>> = dataSource.getEbooks()
 
 }

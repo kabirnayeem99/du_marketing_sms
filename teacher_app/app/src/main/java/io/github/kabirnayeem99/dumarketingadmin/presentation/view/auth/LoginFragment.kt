@@ -3,6 +3,7 @@ package io.github.kabirnayeem99.dumarketingadmin.presentation.view.auth
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -18,7 +19,6 @@ import io.github.kabirnayeem99.dumarketingadmin.common.ktx.showErrorMessage
 import io.github.kabirnayeem99.dumarketingadmin.common.util.RegexValidatorUtils
 import io.github.kabirnayeem99.dumarketingadmin.databinding.FragmentLoginBinding
 import io.github.kabirnayeem99.dumarketingadmin.presentation.viewmodel.AuthenticationViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -59,7 +59,13 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             lifecycleScope.launch {
                 repeatOnLifecycle(Lifecycle.State.STARTED) {
                     uiState.collect { authState ->
-                        if (authState.isCheckingAuthentication) loadingIndicator.show() else loadingIndicator.dismiss()
+                        if (authState.isCheckingAuthentication) {
+                            binding.lavLoading.visibility = View.VISIBLE
+                            binding.ivIllustrationLogo.visibility = View.GONE
+                        } else {
+                            binding.lavLoading.visibility = View.GONE
+                            binding.ivIllustrationLogo.visibility = View.VISIBLE
+                        }
                         if (authState.errorMessage.isNotEmpty()) showErrorMessage(authState.errorMessage)
                         binding.authState = authState
                     }
